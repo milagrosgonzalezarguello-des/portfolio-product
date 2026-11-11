@@ -6623,7 +6623,7 @@ function start() {
     <section aria-labelledby="ds-s2">
       <h2 id="ds-s2" data-short="Rules">Rules a model can follow</h2>
       <div class="prose">
-        <p>A design system usually speaks to designers. This one also speaks to Claude. The voice has concrete rules: no "leverage" or "seamless", Title Case only for buttons, and the reader as the subject of every sentence. Each color pairing has its contrast ratio, and the tokens are ready for engineering.</p>
+        <p>A design system usually speaks to designers. This one also speaks to Claude. The voice has concrete rules: no "leverage" or "seamless", Title Case only for buttons, and the reader as the subject of every sentence. Each color pairing has its contrast ratio, and the tokens are written as plain values a model can read.</p>
         <p>Packaged as a Claude skill, the whole system loads whenever someone asks for a deck, a proposal or a mock, so the first draft already looks like Clear Tech.</p>
         <p>The handoff was a set of Markdown files, not a component library. I gave them to Clear Tech's director of technology, who loaded them into a Clear Tech agent that adapts content to the brand automatically. The system now works without me, or anyone, in the loop for a first draft.</p>
       </div>
@@ -6634,10 +6634,10 @@ function start() {
     </section>
 
     <section aria-labelledby="ds-s7">
-      <h2 id="ds-s7" data-short="Variables">Variables in Figma, tokens in code</h2>
+      <h2 id="ds-s7" data-short="Variables">Variables in Figma, tokens in the skill</h2>
       <div class="prose">
-        <p>The system lives in two places that have to agree: Figma variables for the people who design, and a tokens file for the people who build. Each semantic token has a light and a dark value, and the same name on both sides, so a developer looks up <code>color/brand/primary</code> in Figma and finds <code>--color-brand-primary</code> in the code without a mapping document.</p>
-        <p>Figma MCP keeps the two honest: when I prototype with Claude, it reads the variables straight from the file, so the prototype uses the real tokens and a change in Figma shows up in the next build.</p>
+        <p>The system lives in two places that have to agree: Figma variables for the people who design, and a tokens file inside the skill for Claude and the agent. Each semantic token has a light and a dark value and the same name on both sides: <code>color/brand/primary</code> in Figma is <code>--color-brand-primary</code> in the file, with no mapping document. It has not been built into a product codebase by developers; the handoff was the Markdown and the skill.</p>
+        <p>Figma MCP keeps the two honest: when I prototype with Claude, it reads the variables straight from the file, so the prototype uses the real tokens and a change in Figma shows up in the next prototype.</p>
       </div>
       <figure class="shot wide">
         <button type="button" data-zoom aria-label="Enlarge: Figma variables and the tokens file">
