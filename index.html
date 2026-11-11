@@ -4795,6 +4795,23 @@ body .jf-base { margin-top: 1.5rem; }
 body .jf-t td { vertical-align: middle; }
 :root[data-theme="dark"] body .jf-t th:last-child, :root[data-theme="dark"] body .jf-t td:last-child { background: #1B1E2C; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body .jf-t th:last-child, :root:not([data-theme="light"]) body .jf-t td:last-child { background: #1B1E2C; } }
+
+/* ===== LG: a map of the Figma file (pages on the left, sections by user on the canvas) ===== */
+body .fmap { margin: 1.75rem 0 2.25rem; }
+body .fmap-in { display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--surface); }
+body .fmap-pages { padding: 1.25rem 1.25rem 1.5rem; border-right: 1px solid var(--line); }
+body .fmap-k { margin: 0 0 1.1rem; font-size: 0.78rem; line-height: 1.35; color: var(--muted); }
+body .fmap-h { margin: 0 0 0.6rem; font: 600 0.7rem/1.2 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+body .fmap ul { margin: 0; padding: 0; list-style: none; }
+body .fmap-pages li { padding: 0.5rem 0.7rem; margin: 0 -0.7rem; border-radius: 8px; font-size: 0.9rem; color: var(--ink); }
+body .fmap-pages li.is-on { background: color-mix(in srgb, var(--accent) 12%, transparent); font-weight: 600; }
+body .fmap-canvas { display: grid; gap: 1.25rem; padding: 1.25rem; background: color-mix(in srgb, var(--accent) 5%, var(--surface)); }
+body .fmap-group ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; }
+body .fmap-group li { display: grid; gap: 0.2rem; padding: 0.85rem 0.95rem; border: 1px dashed color-mix(in srgb, var(--ink) 28%, transparent); border-radius: 10px; background: var(--surface); }
+body .fmap-group b { font-size: 0.95rem; font-weight: 600; color: var(--ink); }
+body .fmap-group span { font-size: 0.82rem; line-height: 1.4; color: var(--muted); }
+@media (max-width: 640px) { body .fmap-in { grid-template-columns: 1fr; } body .fmap-pages { border-right: 0; border-bottom: 1px solid var(--line); } }
+body .fmap figcaption { margin-top: 0.75rem; font-size: 0.86rem; color: var(--muted); }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -6482,6 +6499,37 @@ function start() {
         <p>For Gradient, I first defined the product, then mapped the whole journey, then iterated on what the developers had already built.</p>
         <p>To move faster, we used Figma's AI agents for production work throughout the project.</p>
       </div>
+      <figure class="fmap" aria-labelledby="fmap-cap">
+        <div class="fmap-in">
+          <div class="fmap-pages">
+            <p class="fmap-k">Figma file · Gradient UI redesign</p>
+            <p class="fmap-h">Pages</p>
+            <ul>
+              <li>Mockup</li>
+              <li class="is-on">Homepage, by user</li>
+              <li>Post-campaign wrap report</li>
+              <li>Pre-sales dashboard</li>
+            </ul>
+          </div>
+          <div class="fmap-canvas">
+            <div class="fmap-group">
+              <p class="fmap-h">Internal users</p>
+              <ul>
+                <li><b>Account managers</b><span>Homepage</span></li>
+                <li><b>Team leads</b><span>Homepage</span></li>
+                <li><b>Company-wide</b><span>Homepage</span></li>
+              </ul>
+            </div>
+            <div class="fmap-group">
+              <p class="fmap-h">External users</p>
+              <ul>
+                <li><b>Advertisers</b><span>The Gradient experience, with its UX documentation on the canvas</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <figcaption id="fmap-cap">How the Gradient file is organized: one page per deliverable, and on the homepage page one section per kind of user. A diagram of the file, not a screenshot.</figcaption>
+      </figure>
       <h3>It started with a product definition</h3>
       <div class="prose">
         <p>For the dashboard builder, I first wrote down what it is and what it isn't: the pages, the flows, who owns and edits a dashboard, and what goes into the first version.</p>
