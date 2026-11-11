@@ -5035,6 +5035,21 @@ body #contact { margin-top: 150px; }
 /* the pixel robot */
 body .jf-bot svg { width: 50px; height: 44px; filter: drop-shadow(0 8px 8px rgba(190, 90, 30, 0.35)); }
 body .jf-bot .jf-eyes { transform-origin: 32px 20px; }
+
+/* ===== How I lead, compact: one row per stage, the result on the right ===== */
+body .lead-rows { display: block; max-width: 1040px; }
+body .lead-rows li { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 0.8fr) minmax(0, 1.5fr); gap: 0.5rem 2rem; align-items: baseline; padding: 1.05rem 0; border-top: 1px solid var(--line); }
+body .lead-rows li:first-child { border-top: 2px solid var(--ink); }
+body .lead-rows h3 { margin: 0; font-size: 1.12rem; letter-spacing: -0.015em; }
+body .lead-rows p { margin: 0; max-width: none; font-size: 0.92rem; line-height: 1.5; }
+body .lead-rows .lead-r { color: var(--ink); }
+body .lead-rows .lead-r span { display: inline-block; margin-right: 0.6rem; padding: 0.18rem 0.5rem; border-radius: 999px; font: 600 0.66rem/1.3 var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: linear-gradient(120deg, #5B7CFF, #4A2FD6); vertical-align: 1px; }
+@media (max-width: 760px) { body .lead-rows li { grid-template-columns: 1fr; gap: 0.3rem; } }
+body .lead-steps.lead-rows li { border-top: 1px solid var(--line); padding: 0.95rem 0; }
+body .lead-steps.lead-rows li:first-child { border-top: 2px solid var(--ink); }
+body .lead-steps.lead-rows h3 { margin: 0; font-size: 1.12rem; }
+body .lead-steps.lead-rows h3 br { display: none; }
+body .lead-steps.lead-rows p { margin: 0; max-width: none; }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -6395,7 +6410,7 @@ function start() {
       <h2 id="lead-title">How I lead</h2>
       <p>I lead a team of three designers at Clear Tech. The practice didn't exist when I arrived, so I built it in three stages.</p>
     </div>
-    <ol class="lead-steps" data-lens="Psychology||Scaffolding||A team learns a new way of working one layer at a time: first the craft, then the bridges to other teams, then the tools that change the work.||Wood, Bruner and Ross, 1976"><li><span class="lead-n" aria-hidden="true">01</span><h3>Build the practice</h3><p>There was no design practice to join, so I created one: a skill matrix, shared working frameworks, best practices from Figma to code and a clear handoff to developers. Biweekly team syncs and a 1:1 with each designer keep us aligned, and each designer owns their clients.</p></li><li><span class="lead-n" aria-hidden="true">02</span><h3>Connect it to the company</h3><p>Then I took design to the other practices: prototypes and decks with Sales, Marketing and the practice leads, for the people who make the decisions.</p></li><li><span class="lead-n" aria-hidden="true">03</span><h3>Make it AI-competitive</h3><p>Today the focus is AI, and we changed the whole way we work: prototypes built with Claude, Lovable and Figma MCP, and a design system that anyone on the team, and Claude, can use.</p></li></ol>
+    <ol class="lead-steps lead-rows"><li><h3>Build the practice</h3><p class="lead-w">It did not exist, so I made it.</p><p class="lead-r"><span>Result</span>A skill matrix, shared frameworks, written processes and sanitized client materials the team can reuse.</p></li><li><h3>Connect it to the company</h3><p class="lead-w">Design reaches engineering and sales.</p><p class="lead-r"><span>Result</span>A handoff process developers follow, and prototypes and decks built with Sales and Marketing.</p></li><li><h3>Make it AI-competitive</h3><p class="lead-w">We changed how we work.</p><p class="lead-r"><span>Result</span>Prototypes with Claude, Lovable and the Figma MCP, and a design system anyone can use: 23 deliverables in one month, no designer needed.</p></li></ol>
     <p class="lead-more"><a class="ai-proof" href="#designsystem">See the design system the team runs on<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></a></p>
   </section>
 
