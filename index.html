@@ -5115,7 +5115,7 @@ function start() {
     cyl(0.07, 0.055, 0.1, '#E7795C', WX + 0.38, WY - WH / 2 - 0.07, -2.64); caps(0.04, 0.1, '#5BAE7D', WX + 0.38, WY - WH / 2 + 0.1, -2.64); caps(0.024, 0.05, '#5BAE7D', WX + 0.43, WY - WH / 2 + 0.09, -2.64, { rz: -0.9 });
 
     // the diploma on the side wall: the studies are written on it, legible once the camera comes close
-    const dipCanvas = document.createElement('canvas'); dipCanvas.width = 2400; dipCanvas.height = 1800;
+    const dipCanvas = document.createElement('canvas'); dipCanvas.width = 3200; dipCanvas.height = 2400;
     const dipTex = new THREE.CanvasTexture(dipCanvas); dipTex.colorSpace = THREE.SRGBColorSpace; dipTex.anisotropy = aniso;
     function wrapC(g, text, x, y, maxW, lh) {
       const words = text.split(' '); let line = '', yy = y;
@@ -5123,50 +5123,47 @@ function start() {
       if (line) g.fillText(line, x, yy); return yy;
     }
     function drawDiploma() {
-      // a printed sheet in a frame: warm paper, a serif title, the two degrees large, the courses as a quiet row below
-      const g = dipCanvas.getContext('2d'), w = 1600, h = 1200, L = 124, R = w - 124, SERIF = '"Instrument Serif", Georgia, serif';
-      g.setTransform(1.5, 0, 0, 1.5, 0, 0);
-      g.fillStyle = '#FBF8F1'; g.fillRect(0, 0, w, h);
-      const sh = g.createRadialGradient(w / 2, h / 2, h * 0.35, w / 2, h / 2, w * 0.75); sh.addColorStop(0, 'rgba(120,96,50,0)'); sh.addColorStop(1, 'rgba(120,96,50,0.10)'); g.fillStyle = sh; g.fillRect(0, 0, w, h);
-      g.strokeStyle = '#C9B98F'; g.lineWidth = 2; g.strokeRect(44, 44, w - 88, h - 88); g.lineWidth = 1; g.strokeRect(54, 54, w - 108, h - 108);
+      // a modern sheet: one sans face, two equal columns (the mind, the screens), and what she is learning now as a band below
+      const g = dipCanvas.getContext('2d'), w = 1600, h = 1200, L = 110, R = w - 110, INK = '#12141C', MUT = '#5B6072', AC = '#3346E8';
+      g.setTransform(2, 0, 0, 2, 0, 0);
+      g.fillStyle = '#FFFFFF'; g.fillRect(0, 0, w, h);
       g.textAlign = 'left'; g.textBaseline = 'alphabetic';
-      const caps = (t, x, y, c, s = 20, sp = 4) => { g.fillStyle = c; g.font = '600 ' + s + 'px ' + font; g.letterSpacing = sp + 'px'; g.fillText(t, x, y); g.letterSpacing = '0px'; };
-      caps('EDUCATION', L, 158, '#3346E8'); g.textAlign = 'right'; caps('MILAGROS GONZALEZ', R, 158, '#8A7F66'); g.textAlign = 'left';
-      // the title: roman, then italic
-      g.fillStyle = '#14161F'; g.font = '400 132px ' + SERIF; g.fillText('Mind first,', L - 4, 296);
-      const tw = g.measureText('Mind first, ').width; g.font = 'italic 400 132px ' + SERIF; g.fillStyle = '#3346E8'; g.fillText('then screens', L - 4 + tw, 296);
-      g.fillStyle = '#5E5A50'; g.font = '400 27px ' + font; g.fillText('My path started with how people learn and decide. Every skill after that was built on top of it.', L, 356);
-      // the two university degrees
-      const colW = (R - L - 72) / 2, top = 432;
-      [['2012–2016', "Bachelor's in Learning Psychology", 'Universidad del Salvador · Licenciatura en Psicopedagogía', 'How people learn, remember and decide.'],
-       ['2017', 'Postgraduate in Adult Learning Psychology', 'Pontificia Universidad Católica Argentina', 'How adults learn at work, and why they resist change.']].forEach(([yr, t1, school, what], k) => {
-        const x = L + k * (colW + 72);
-        g.fillStyle = '#14161F'; g.fillRect(x, top, colW, 3);
-        caps('UNIVERSITY DEGREE', x, top + 46, '#3346E8', 18, 3.5); g.textAlign = 'right'; g.fillStyle = '#8A7F66'; g.font = 'italic 400 34px ' + SERIF; g.fillText(yr, x + colW, top + 50); g.textAlign = 'left';
-        g.fillStyle = '#14161F'; g.font = '400 54px ' + SERIF; const y1 = wrapC(g, t1, x, top + 122, colW, 58);
-        g.fillStyle = '#14161F'; g.font = '600 24px ' + font; g.fillText(school, x, y1 + 50, colW);
-        g.fillStyle = '#5E5A50'; g.font = '400 24px ' + font; g.fillText(what, x, y1 + 88, colW);
-      });
-      // courses and self-study: four quiet columns
-      const top2 = 800, n = 4, gap = 44, cw = (R - L - gap * (n - 1)) / n;
-      caps('COURSES AND SELF-STUDY', L, top2 - 26, '#8A7F66', 18, 3.5);
-      [['2018–2019', 'UX/UI Design', 'Coderhouse', 'From the mind to the screen.'], ['2024–2025', 'Branding and Graphic Design', 'Coderhouse', 'Visual identity and design systems.'],
-       ['2025', 'Art Direction', 'Haus Argentina', 'Creative direction and visual storytelling, including AI image and video with Midjourney and Veo.'],
-       ['Now', 'Learning AI by doing', 'Anthropic courses and real projects', 'Figma AI, Claude, MCPs and Claude Skills, AI prototyping and AI video to introduce products.']].forEach(([yr, t1, school, what], k) => {
-        const x = L + k * (cw + gap);
-        g.fillStyle = '#C9B98F'; g.fillRect(x, top2, cw, 2);
-        g.fillStyle = '#8A7F66'; g.font = 'italic 400 30px ' + SERIF; g.fillText(yr, x, top2 + 46);
-        g.fillStyle = '#14161F'; g.font = '400 38px ' + SERIF; const y1 = wrapC(g, t1, x, top2 + 96, cw, 42);
-        g.fillStyle = '#14161F'; g.font = '600 20px ' + font; const y2 = wrapC(g, school, x, y1 + 38, cw, 26);
-        g.fillStyle = '#5E5A50'; g.font = '400 20px ' + font; wrapC(g, what, x, y2 + 32, cw, 27);
-      });
+      const caps = (t, x, y, c, s = 19, sp = 3.5) => { g.fillStyle = c; g.font = '700 ' + s + 'px ' + font; g.letterSpacing = sp + 'px'; g.fillText(t, x, y); g.letterSpacing = '0px'; };
+      caps('EDUCATION', L, 150, AC); g.textAlign = 'right'; caps('MILAGROS GONZALEZ', R, 150, MUT); g.textAlign = 'left';
+      g.font = '700 112px ' + font; g.letterSpacing = '-4px'; g.fillStyle = INK; g.fillText('Mind first,', L - 4, 276);
+      const tw = g.measureText('Mind first, ').width; g.fillStyle = AC; g.fillText('then screens.', L - 4 + tw, 276); g.letterSpacing = '0px';
+      const gap = 56, colW = (R - L - gap) / 2, top = 360, colH = 590;
+      const col = (x, tag, tint, rows) => {
+        g.fillStyle = tint; g.beginPath(); g.roundRect(x, top, colW, colH, 28); g.fill();
+        g.fillStyle = AC; g.beginPath(); g.roundRect(x + 36, top + 34, g.measureText('').width + 0, 0, 0); g.fill();
+        g.font = '700 18px ' + font; g.letterSpacing = '3px'; const tagW = g.measureText(tag).width + 40; g.fillStyle = INK; g.beginPath(); g.roundRect(x + 36, top + 34, tagW, 40, 20); g.fill();
+        g.fillStyle = '#FFFFFF'; g.fillText(tag, x + 56, top + 61); g.letterSpacing = '0px';
+        const rh = (colH - 110) / rows.length;
+        rows.forEach(([yr, t1, school, what], k) => { const y = top + 110 + k * rh;
+          if (k) { g.fillStyle = 'rgba(18,20,28,0.10)'; g.fillRect(x + 36, y - 14, colW - 72, 2); }
+          g.fillStyle = AC; g.font = '700 21px ' + font; g.fillText(yr, x + 36, y + 22);
+          g.fillStyle = INK; g.font = '700 ' + (rows.length > 2 ? 35 : 39) + 'px ' + font; g.letterSpacing = '-0.8px'; const y1 = wrapC(g, t1, x + 36, y + 66, colW - 72, 44); g.letterSpacing = '0px';
+          g.fillStyle = INK; g.font = '600 22px ' + font; g.fillText(school, x + 36, y1 + 36, colW - 72);
+          g.fillStyle = MUT; g.font = '500 22px ' + font; wrapC(g, what, x + 36, y1 + 68, colW - 72, 30); });
+      };
+      col(L, 'THE MIND · UNIVERSITY', '#EEF0FF', [
+        ['2012–2016', "Bachelor's in Learning Psychology", 'Universidad del Salvador · Licenciatura en Psicopedagogía', 'How people learn, remember and decide.'],
+        ['2017', 'Postgraduate in Adult Learning Psychology', 'Pontificia Universidad Católica Argentina', 'How adults learn at work, and why they resist change.']]);
+      col(L + colW + gap, 'THE SCREENS · DESIGN', '#F1F6EC', [
+        ['2018–2019', 'UX/UI Design', 'Coderhouse', 'From the mind to the screen.'],
+        ['2024–2025', 'Branding and Graphic Design', 'Coderhouse', 'Visual identity and design systems.'],
+        ['2025', 'Art Direction', 'Haus Argentina', 'Creative direction and visual storytelling.']]);
+      // now
+      const ny = top + colH + 34; g.fillStyle = INK; g.beginPath(); g.roundRect(L, ny, R - L, 132, 28); g.fill();
+      caps('NOW', L + 36, ny + 54, '#9FB0FF'); g.fillStyle = '#FFFFFF'; g.font = '700 36px ' + font; g.letterSpacing = '-0.8px'; g.fillText('Learning AI by doing', L + 36, ny + 100); g.letterSpacing = '0px';
+      g.fillStyle = 'rgba(255,255,255,0.78)'; g.font = '500 22px ' + font; wrapC(g, 'Anthropic courses and real projects: Figma AI, Claude, MCPs and Claude Skills, AI prototyping and AI video.', L + 470, ny + 62, R - L - 510, 32);
       g.setTransform(1, 0, 0, 1, 0, 0);
       dipTex.needsUpdate = true;
     }
     if (document.fonts && document.fonts.load) Promise.all([document.fonts.load('400 60px "Instrument Serif"'), document.fonts.load('italic 400 60px "Instrument Serif"')]).then(() => drawDiploma()).catch(() => {});
     drawDiploma();
     const dipG = new THREE.Group(); scene.add(dipG);
-    box(0.05, 0.985, 1.29, '#B58A52', -3.035, 1.528, -1.65, { r: 0.014, g: dipG, mat: { clearcoat: 0.5, roughness: 0.45 } });   // a slim float frame
+    box(0.05, 0.955, 1.26, '#14161F', -3.035, 1.543, -1.65, { r: 0.01, g: dipG, mat: { clearcoat: 0.8, roughness: 0.3 } });   // a slim float frame
     plane(1.22, 0.915, dipTex, -2.995, 2.02, -1.65, { ry: Math.PI / 2, g: dipG, basic: true });   // unlit, so the paper stays paper-white up close
     // a shelf of books
     box(0.42, 0.06, 1.3, '#FFFFFF', -2.85, 1.75, 0.6, { r: 0.02 });
