@@ -6672,7 +6672,7 @@ function start() {
       <dl class="meta">
         <div><dt>Role</dt><dd>Product Design Lead</dd></div>
         <div><dt>Team</dt><dd>LG's product teams, Clear Tech's developers, a second designer and me</dd></div>
-        <div><dt>What I owned</dt><dd>The builder, the agent's error states and the review set. Another designer owned the marketplace. I presented to LG's product leads every two weeks.</dd></div>
+        <div><dt>Ownership</dt><dd>Shared. A second designer and I designed all of it together: the marketplace, the builder, the agent's error states and the token system under them. I presented to LG's product leads every two weeks.</dd></div>
         <div><dt>Year</dt><dd>2025&ndash;2026</dd></div>
         <div><dt>Outcome</dt><dd>Live, in use at LG</dd></div>
         <div><dt>Product</dt><dd>Gradient analytics and AI agents</dd></div>
@@ -6899,6 +6899,66 @@ function start() {
       <div class="prose"><p>Answers that failed went back into the next sprint as a design or prompt fix, and the wording of every error state came out of that review.</p></div>
     </section>
 
+    <section aria-labelledby="lg-sys">
+      <h2 id="lg-sys" data-short="System">One system under every agent</h2>
+      <div class="prose">
+        <p>Agents were being built in parallel, each team reading LG's brand manual its own way. Left alone, the marketplace would have looked like products from different companies. And someone who learns one agent should already know the next: with agents, consistency is trust.</p>
+        <p>So the second designer and I put the brand manual into tokens, under everything that got built. We did it alongside the first agent's real screens, so no team waited for a finished system.</p>
+      </div>
+      <h3>Three layers of tokens</h3>
+      <div class="table-scroll">
+        <table class="impact">
+          <thead><tr><th scope="col">Layer</th><th scope="col">Example</th><th scope="col">Its job</th></tr></thead>
+          <tbody>
+            <tr><td>Primitive</td><td><code>blue-500</code>, <code>space-4</code></td><td>The raw values of the brand manual</td></tr>
+            <tr><td>Semantic</td><td><code>color.action.primary</code>, <code>text.danger</code></td><td>Names by intent. The contract every agent shares</td></tr>
+            <tr><td>Component</td><td><code>button.primary.bg</code></td><td>Points to a semantic token, never to a raw value</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="prose">
+        <p>We built them as Figma Variables in one central library, light and dark from the start. Where the manual had no answer (hover, disabled, error, dark mode), we solved it inside its rules and checked it with LG's brand team.</p>
+      </div>
+      <h3>One accent per agent, one mode per agent</h3>
+      <div class="prose">
+        <p>Each agent has its own accent, always from the brand palette, so you know which agent you are in. <code>color.brand.accent</code> is a single token with one mode per agent. Components never use the colour directly, so the same button or header takes each agent's colour on its own. Adding an agent means adding a mode and a theme file, not designing an interface.</p>
+        <p>Behaviour is shared too. Every agent looks the same while it works, when it answers, when it fails or hits a limit, and when it asks you to confirm before it acts.</p>
+      </div>
+      <h3>Accessibility, checked in design and in code</h3>
+      <ul class="handoff three" aria-label="Accessibility checks">
+        <li><strong>Stark, in Figma</strong><span>Contrast for every token pair, light and dark. Some accents failed 4.5:1 under white text, so text and buttons use a darker step of the same brand scale, agreed with LG's brand team. Errors and successes always carry an icon and text, never colour alone.</span></li>
+        <li><strong>axe, in Storybook and the browser</strong><span>It found what Figma can't show: inputs with no label, icon-only buttons with no accessible name, a modal that didn't return focus when it closed. Fixed once in the base component, fixed in every agent.</span></li>
+        <li><strong>Keyboard, by hand</strong><span>Every flow walked without a mouse.</span></li>
+      </ul>
+      <div class="prose"><p>The target was WCAG 2.2 AA. What we did not do: test with VoiceOver or NVDA, or with people who use them every day. In a chat, where an answer arrives bit by bit, that is the next test.</p></div>
+      <h3>From Figma to code</h3>
+      <pre class="ret-code" style="white-space:pre-wrap" tabindex="0" aria-label="The token pipeline"><code>Figma Variables &rarr; Tokens Studio &rarr; JSON in the repo &rarr; Style Dictionary &rarr; CSS per agent &rarr; Storybook + axe</code></pre>
+      <div class="prose">
+        <p>The tokens leave Figma as JSON in the W3C format (DTCG), versioned in the repository with one theme file per agent. With the developers we set up Style Dictionary to generate each agent's CSS variables from that file, so no developer types a colour or a spacing value by hand.</p>
+        <p>Storybook holds every component, state and theme. Reviews stopped comparing a mockup to a screen: we open the real component.</p>
+      </div>
+      <h3>What the AI got wrong</h3>
+      <div class="prose">
+        <p>AI drafted the token names, the JSON and the component docs. Nothing went into the system unread. What I corrected:</p>
+        <ul>
+          <li><strong>Colours that aren't LG's.</strong> Asked for scales, it invented in-between tones. The manual is the source, so they went out.</li>
+          <li><strong>Mixed naming.</strong> <code>color.action.primary</code> next to <code>blue-button</code>. One wrong name multiplies across every agent.</li>
+          <li><strong>Broken JSON.</strong> Drafts missing <code>$value</code> and <code>$type</code>, which Style Dictionary can't read.</li>
+          <li><strong>Contrast it never measured.</strong> The docs said pairs passed. Every claim was re-checked with Stark and axe.</li>
+          <li><strong>ARIA nobody needed.</strong> <code>role="button"</code> on a <code>&lt;button&gt;</code>, which can make a screen reader worse.</li>
+        </ul>
+      </div>
+      <h3>What it changed</h3>
+      <div class="prose">
+        <ul>
+          <li>A new agent is a theme to configure, not an interface to design.</li>
+          <li>When brand adjusted a colour, the change reached every agent in minutes.</li>
+          <li>Developers stopped asking for colour and spacing specs.</li>
+        </ul>
+        <p>I can't put a number on the speed: we didn't time the first agent against the next ones.</p>
+      </div>
+    </section>
+
     <section aria-labelledby="lg-proc">
       <h2 id="lg-proc" data-short="Behind the screens">Behind the screens</h2>
       <div class="prose">
@@ -6996,6 +7056,9 @@ function start() {
           <li><strong>An AI agent needs a visible frame.</strong> Clear context, visible status and a plan step are what make people trust it.</li>
           <li><strong>Privacy has to be visible too.</strong> Permissions protect the data; clear cues about whose data you're seeing make people believe it.</li>
           <li><strong>Instrument before launch, not after.</strong> I'd set up analytics on the builder before it went live: we lost 6 weeks of baseline data.</li>
+          <li><strong>Name tokens with the developers on day one.</strong> We renamed some later because they didn't match how the code was organised.</li>
+          <li><strong>Put axe in the pipeline.</strong> The check lived in Storybook, so it depended on someone looking. In CI, an accessibility failure would block the change.</li>
+          <li><strong>One accent per agent runs out.</strong> A brand palette has a limit. Next time: colour by category, plus an icon per agent.</li>
         </ul>
       </div>
     </section>
