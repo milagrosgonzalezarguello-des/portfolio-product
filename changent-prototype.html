@@ -1,0 +1,1338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex">
+<style>.brand svg[aria-label="Changent"]{filter:blur(6px) saturate(.6)}</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Changent · Retention Agent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CHANGENT RETENTION AGENT
+   Palette sampled directly from the Changent logo.
+   Role colour = view identity: cyan = nurse, purple = manager.
+   Risk ramp  = orange (high) -> amber (medium) -> green (low).
+   ============================================================ */
+:root{
+  --navy:#18216D;
+  --navy-700:#232E85;
+  --navy-900:#111845;
+  --orange:#F37121;
+  --purple:#7A3779;
+  --cyan:#3FC4E0;
+  --green:#80B036;
+  --amber:#E0A32E;
+
+  --page:#F4F6FB;
+  --panel:#FFFFFF;
+  --line:#E3E7F3;
+  --line-soft:#EDF0F8;
+  --ink:#1A2140;
+  --ink-2:#414B72;
+  --muted:#727BA0;
+  --faint:#9AA2C0;
+
+  --hi-bg:#FEF1E8; --hi-ink:#B14C09;
+  --md-bg:#FDF7E7; --md-ink:#8A6314;
+  --lo-bg:#F1F7E8; --lo-ink:#4E7016;
+  --cy-bg:#E9F8FC; --cy-ink:#106E88;
+  --pu-bg:#F5EEF5; --pu-ink:#6A2F69;
+  --nv-bg:#EDEFF8;
+
+  --r-sm:7px; --r:11px; --r-lg:16px;
+  --sh-1:0 1px 2px rgba(24,33,109,.05), 0 6px 18px rgba(24,33,109,.055);
+  --sh-2:0 2px 4px rgba(24,33,109,.06), 0 16px 40px rgba(24,33,109,.10);
+  --sans:'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--page); color:var(--ink);
+  font-family:var(--sans); font-size:14px; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+button,select,input{font:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--cyan); outline-offset:2px; border-radius:4px}
+
+/* ---------- type utilities ---------- */
+.eyebrow{
+  font-family:var(--mono); font-size:10.5px; font-weight:500;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--faint);
+}
+.mono{font-family:var(--mono); font-variant-numeric:tabular-nums}
+h1,h2,h3{margin:0; letter-spacing:-.015em}
+
+/* ============================ HEADER ============================ */
+.masthead{
+  background:var(--navy);
+  color:#fff;
+  position:sticky; top:0; z-index:40;
+}
+.masthead-in{
+  max-width:1420px; margin:0 auto; padding:13px 24px;
+  display:flex; align-items:center; gap:18px;
+}
+.brand{display:flex; align-items:center; gap:11px; flex-shrink:0}
+.brand svg{display:block}
+.brand-sep{width:1px; height:22px; background:rgba(255,255,255,.22)}
+.brand-app{
+  font-family:var(--mono); font-size:11px; letter-spacing:.12em;
+  text-transform:uppercase; color:#A9B4E8; padding-top:1px;
+}
+
+/* segmented view switch */
+.viewswitch{
+  margin-left:auto; display:flex; gap:3px; padding:3px;
+  background:rgba(255,255,255,.10); border-radius:10px;
+}
+.viewswitch button{
+  border:0; background:transparent; color:#C3CBF0; cursor:pointer;
+  display:inline-flex; align-items:center; gap:7px;
+  padding:7px 14px; border-radius:8px; font-size:13px; font-weight:600;
+  transition:background .18s, color .18s;
+}
+.viewswitch button:hover{color:#fff}
+.viewswitch button[aria-pressed="true"]{background:#fff; color:var(--navy)}
+.viewswitch button[aria-pressed="true"] .swatch{opacity:1}
+.swatch{width:7px; height:7px; border-radius:50%; opacity:.7}
+.swatch.cy{background:var(--cyan)}
+.swatch.pu{background:#B770B6}
+.viewswitch button[aria-pressed="true"] .swatch.pu{background:var(--purple)}
+
+.stamp{
+  display:flex; align-items:center; gap:7px; flex-shrink:0;
+  font-family:var(--mono); font-size:11px; color:#A9B4E8;
+}
+.stamp .dot{width:6px; height:6px; border-radius:50%; background:var(--green)}
+
+/* ============================ SHELL ============================ */
+.wrap{max-width:1420px; margin:0 auto; padding:0 24px 56px}
+
+/* context strip */
+.context{
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  padding:20px 0 18px;
+}
+.who{display:flex; align-items:center; gap:12px}
+.avatar{
+  width:42px; height:42px; border-radius:12px; flex-shrink:0;
+  display:grid; place-items:center; color:#fff; font-weight:700; font-size:14px;
+  background:linear-gradient(140deg,#2B3699,#18216D);
+}
+.avatar.mgr{background:linear-gradient(140deg,#9A4B98,#5F2A5E)}
+.who h1{font-size:19px; font-weight:800}
+.who p{margin:1px 0 0; color:var(--muted); font-size:12.5px}
+.ctx-actions{margin-left:auto; display:flex; align-items:center; gap:9px; flex-wrap:wrap}
+
+.btn{
+  display:inline-flex; align-items:center; gap:7px;
+  height:36px; padding:0 13px; border-radius:var(--r-sm);
+  border:1px solid var(--line); background:#fff; color:var(--ink-2);
+  font-size:13px; font-weight:600; cursor:pointer;
+  transition:border-color .16s, background .16s, color .16s, transform .16s;
+}
+.btn:hover{border-color:#C5CCE4; color:var(--ink)}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--navy); border-color:var(--navy); color:#fff}
+.btn.primary:hover{background:var(--navy-700); border-color:var(--navy-700); color:#fff}
+.btn.go{background:var(--green); border-color:var(--green); color:#fff}
+.btn.go:hover{background:#74A02F; border-color:#74A02F; color:#fff}
+.btn.ghost{background:transparent; border-color:transparent; color:var(--muted)}
+.btn.ghost:hover{background:#fff; border-color:var(--line)}
+.btn svg{flex-shrink:0}
+
+.picker{
+  height:36px; padding:0 32px 0 11px; border-radius:var(--r-sm);
+  border:1px solid var(--line); background:#fff; color:var(--ink);
+  font-size:13px; font-weight:600; cursor:pointer;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23727BA0' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 9px center;
+}
+
+/* ============================ METRIC TILES ============================ */
+.tiles{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px}
+.tile{
+  background:var(--panel); border:1px solid var(--line); border-radius:var(--r);
+  padding:15px 16px 14px; box-shadow:var(--sh-1);
+  position:relative; overflow:hidden;
+}
+.tile::before{
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:var(--c,var(--cyan));
+}
+.tile-top{display:flex; align-items:center; gap:8px; margin-bottom:9px}
+.tile-ic{
+  width:26px; height:26px; border-radius:8px; flex-shrink:0;
+  display:grid; place-items:center;
+  background:var(--cbg,var(--cy-bg)); color:var(--c,var(--cyan));
+}
+.tile-top .eyebrow{color:var(--muted)}
+.tile-val{display:flex; align-items:baseline; gap:8px}
+.tile-val b{
+  font-family:var(--mono); font-size:30px; font-weight:600;
+  letter-spacing:-.03em; line-height:1; color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.tile-val .delta{
+  font-family:var(--mono); font-size:11.5px; font-weight:600;
+  display:inline-flex; align-items:center; gap:2px;
+}
+.delta.up{color:var(--hi-ink)} .delta.down{color:var(--lo-ink)}
+.tile p{margin:8px 0 0; font-size:12px; color:var(--muted); line-height:1.4}
+
+/* ============================ PANELS ============================ */
+.panel{
+  background:var(--panel); border:1px solid var(--line);
+  border-radius:var(--r); box-shadow:var(--sh-1); overflow:hidden;
+}
+.panel-hd{
+  display:flex; align-items:center; gap:11px;
+  padding:14px 16px; border-bottom:1px solid var(--line-soft);
+}
+.panel-hd h2{font-size:14.5px; font-weight:700}
+.panel-hd .eyebrow{margin-left:auto}
+.hd-ic{
+  width:24px; height:24px; border-radius:7px; flex-shrink:0;
+  display:grid; place-items:center; background:var(--nv-bg); color:var(--navy);
+}
+
+/* ============================ CHIPS / PILLS ============================ */
+.pill{
+  display:inline-flex; align-items:center; gap:5px;
+  height:22px; padding:0 9px; border-radius:999px;
+  font-size:11.5px; font-weight:700; letter-spacing:.01em; white-space:nowrap;
+}
+.pill .pd{width:6px; height:6px; border-radius:50%; background:currentColor; opacity:.8}
+.pill.high{background:var(--hi-bg); color:var(--hi-ink)}
+.pill.medium{background:var(--md-bg); color:var(--md-ink)}
+.pill.low{background:var(--lo-bg); color:var(--lo-ink)}
+.pill.info{background:var(--cy-bg); color:var(--cy-ink)}
+.pill.mgr{background:var(--pu-bg); color:var(--pu-ink)}
+.pill.plain{background:var(--nv-bg); color:var(--navy)}
+
+.chip{
+  display:inline-flex; align-items:center; gap:5px;
+  padding:3px 8px; border-radius:6px;
+  background:#F6F8FC; border:1px solid var(--line-soft);
+  font-size:11.5px; font-weight:600; color:var(--ink-2); white-space:nowrap;
+}
+.chip svg{color:var(--faint)}
+.chip.warn{background:var(--hi-bg); border-color:#F8D9C4; color:var(--hi-ink)}
+.chip.warn svg{color:var(--orange)}
+.chip.ok{background:var(--lo-bg); border-color:#DCEBC6; color:var(--lo-ink)}
+.chip.ok svg{color:var(--green)}
+
+/* ============================ NURSE VIEW ============================ */
+.split{
+  display:grid; grid-template-columns:minmax(340px,.86fr) minmax(0,1.4fr);
+  gap:14px; margin-top:14px; align-items:start;
+}
+
+/* queue */
+.queue{position:sticky; top:70px}
+@media (max-width:1120px){.queue{position:static}}
+.queue-foot{
+  padding:11px 14px; border-top:1px solid var(--line-soft); background:#FCFDFF;
+  font-size:11.5px; color:var(--muted); display:flex; align-items:center; gap:7px;
+}
+.queue-foot svg{color:var(--faint); flex-shrink:0}
+.queue-list{padding:8px; display:grid; gap:7px}
+.case{
+  width:100%; text-align:left; cursor:pointer;
+  background:#fff; border:1px solid var(--line-soft); border-radius:10px;
+  padding:12px 13px 11px; display:grid; gap:9px;
+  transition:border-color .16s, box-shadow .16s, transform .16s, background .16s;
+  position:relative;
+}
+.case:hover{border-color:#CDD5EA; box-shadow:0 4px 14px rgba(24,33,109,.07)}
+.case[aria-current="true"]{
+  border-color:var(--navy); background:#FCFDFF;
+  box-shadow:0 0 0 1px var(--navy), 0 6px 18px rgba(24,33,109,.10);
+}
+.case-l1{display:flex; align-items:center; gap:9px}
+.tierdot{width:9px; height:9px; border-radius:50%; flex-shrink:0}
+.tierdot.high{background:var(--orange); box-shadow:0 0 0 3px var(--hi-bg)}
+.tierdot.medium{background:var(--amber); box-shadow:0 0 0 3px var(--md-bg)}
+.tierdot.low{background:var(--green); box-shadow:0 0 0 3px var(--lo-bg)}
+.case-name{font-size:14px; font-weight:700; letter-spacing:-.01em}
+.case-id{font-family:var(--mono); font-size:10.5px; color:var(--faint)}
+.case-score{
+  margin-left:auto; display:flex; align-items:center; gap:8px; flex-shrink:0;
+}
+.case-score b{font-family:var(--mono); font-size:16px; font-weight:600; font-variant-numeric:tabular-nums}
+.case-l2{font-size:12.5px; color:var(--ink-2); line-height:1.45}
+.case-l3{display:flex; align-items:center; gap:6px; flex-wrap:wrap}
+.case-status{
+  position:absolute; top:11px; right:13px; display:none;
+}
+.spark{display:block; flex-shrink:0}
+
+/* detail */
+.detail{display:grid; gap:14px}
+.dhead{
+  padding:17px 20px 16px; border-bottom:1px solid var(--line-soft);
+  display:grid; gap:13px;
+}
+.dhead-top{display:flex; align-items:flex-start; gap:14px; flex-wrap:wrap}
+.dhead h2{font-size:21px; font-weight:800}
+.dhead-meta{display:flex; align-items:center; gap:9px; flex-wrap:wrap; margin-top:6px}
+.scoreblock{margin-left:auto; text-align:right; flex-shrink:0}
+.scoreblock .eyebrow{display:block; margin-bottom:3px}
+.scorenum{
+  font-family:var(--mono); font-size:34px; font-weight:600;
+  line-height:1; letter-spacing:-.035em; font-variant-numeric:tabular-nums;
+}
+.scoreblock .delta{
+  font-family:var(--mono); font-size:12px; font-weight:600;
+  display:inline-flex; align-items:center; gap:3px; margin-top:5px;
+}
+.rising{
+  display:flex; align-items:center; gap:8px;
+  background:var(--hi-bg); border:1px solid #F8D9C4; border-radius:9px;
+  padding:9px 12px; font-size:12.5px; font-weight:600; color:var(--hi-ink);
+}
+.rising svg{flex-shrink:0; color:var(--orange)}
+
+.chartbox{padding:16px 18px 12px; overflow-x:auto}
+.chartbox > svg{min-width:470px}
+.chart-legend{
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  margin-top:10px; padding-top:11px; border-top:1px solid var(--line-soft);
+}
+.lg{display:flex; align-items:center; gap:6px; font-size:11.5px; color:var(--muted); font-weight:500}
+.lg i{width:14px; height:0; border-top:2px solid var(--faint); display:block}
+.lg i.dash{border-top-style:dashed; border-color:var(--orange)}
+.lg i.solid{border-color:var(--orange)}
+
+/* why flagged */
+.two{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; align-items:start}
+.drivers{padding:14px 16px; display:grid; gap:11px}
+.driver{display:grid; gap:6px}
+.driver-l{display:flex; align-items:flex-start; gap:8px}
+.driver-ic{
+  width:22px; height:22px; border-radius:6px; flex-shrink:0; margin-top:-1px;
+  display:grid; place-items:center; background:var(--hi-bg); color:var(--hi-ink);
+}
+.driver.good .driver-ic{background:var(--lo-bg); color:var(--lo-ink)}
+.driver-l span{font-size:12.5px; line-height:1.4; color:var(--ink-2)}
+.driver-l b{
+  margin-left:auto; font-family:var(--mono); font-size:11px;
+  color:var(--faint); flex-shrink:0; padding-top:2px;
+}
+.meter{height:5px; border-radius:99px; background:#EEF1F8; overflow:hidden}
+.meter i{display:block; height:100%; border-radius:99px; background:var(--orange)}
+.driver.good .meter i{background:var(--green)}
+
+/* suggested approach */
+.approach{position:relative}
+.approach .panel-hd .hd-ic{background:#EFEAF5; color:var(--purple)}
+.steps{padding:14px 16px 6px; display:grid; gap:0; counter-reset:s}
+.step{
+  display:flex; gap:11px; padding:10px 0;
+  border-bottom:1px dashed var(--line-soft);
+}
+.step:last-child{border-bottom:0}
+.step-n{
+  width:21px; height:21px; border-radius:50%; flex-shrink:0;
+  display:grid; place-items:center; background:var(--nv-bg);
+  font-family:var(--mono); font-size:11px; font-weight:600; color:var(--navy);
+}
+.step p{margin:0; font-size:13px; line-height:1.5; color:var(--ink-2)}
+.step p b{color:var(--ink); font-weight:700}
+.sourced{
+  display:flex; align-items:center; gap:7px;
+  margin:2px 16px 0; padding:9px 11px;
+  background:#FAFBFE; border:1px solid var(--line-soft); border-radius:8px;
+  font-size:11.5px; color:var(--muted);
+}
+.sourced svg{color:var(--purple); flex-shrink:0}
+.actions{
+  display:flex; align-items:center; gap:9px; flex-wrap:wrap;
+  padding:14px 16px; border-top:1px solid var(--line-soft); background:#FCFDFF;
+}
+.actions .btn.ghost{margin-left:auto}
+
+/* engagement snapshot */
+.snap{padding:6px 16px 14px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:2px 14px}
+.snap-row{
+  display:flex; align-items:center; gap:9px;
+  padding:10px 0; border-bottom:1px solid var(--line-soft);
+}
+.snap-row:nth-last-child(-n+2){border-bottom:0}
+.snap-ic{
+  width:26px; height:26px; border-radius:8px; flex-shrink:0;
+  display:grid; place-items:center; background:var(--cy-bg); color:var(--cy-ink);
+}
+.snap-row span{font-size:12px; color:var(--muted)}
+.snap-row b{margin-left:auto; font-size:13px; font-weight:700; text-align:right}
+
+/* ============================ MANAGER VIEW ============================ */
+.mgrow{display:grid; grid-template-columns:minmax(0,1.5fr) minmax(320px,1fr); gap:14px; margin-top:14px}
+.roster{padding:8px 16px 14px}
+.rrow{
+  display:grid; grid-template-columns:140px minmax(0,1fr) 42px 56px;
+  align-items:center; gap:11px; padding:11px 0;
+  border-bottom:1px solid var(--line-soft);
+}
+.rrow:last-child{border-bottom:0}
+.rname{display:flex; align-items:center; gap:8px; min-width:0}
+.rinit{
+  width:24px; height:24px; border-radius:7px; flex-shrink:0;
+  display:grid; place-items:center; background:var(--nv-bg);
+  font-size:10.5px; font-weight:700; color:var(--navy);
+}
+.rname b{font-size:12.5px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.rbar{height:8px; border-radius:99px; background:#EEF1F8; overflow:hidden; position:relative}
+.rbar i{display:block; height:100%; border-radius:99px; background:var(--cyan)}
+.rrow.mid .rbar i{background:var(--amber)}
+.rrow.slow .rbar i{background:var(--orange)}
+.rfrac{
+  font-family:var(--mono); font-size:11.5px; font-weight:600;
+  text-align:right; font-variant-numeric:tabular-nums; color:var(--ink);
+}
+.rresp{
+  font-family:var(--mono); font-size:11px; font-weight:600; text-align:right;
+  font-variant-numeric:tabular-nums; color:var(--cy-ink);
+  background:var(--cy-bg); border-radius:5px; padding:3px 0;
+}
+.rrow.mid .rresp{color:var(--md-ink); background:var(--md-bg)}
+.rrow.slow .rresp{color:var(--hi-ink); background:var(--hi-bg)}
+.rmeta{
+  font-family:var(--mono); font-size:11px; color:var(--muted);
+  text-align:right; font-variant-numeric:tabular-nums;
+}
+.rmeta em{font-style:normal; font-weight:600; color:var(--ink)}
+.rmeta.slow em{color:var(--hi-ink)}
+
+/* table */
+.rlegend{
+  display:flex; align-items:center; gap:15px; flex-wrap:wrap;
+  margin-top:13px; padding-top:11px; border-top:1px solid var(--line-soft);
+}
+.tablewrap{overflow-x:auto; contain:paint; -webkit-overflow-scrolling:touch}
+.tablewrap table{min-width:700px}
+.swipe{display:none}
+table{width:100%; border-collapse:collapse; font-size:13px}
+thead th{
+  text-align:left; padding:10px 14px; white-space:nowrap;
+  background:#FAFBFE; border-bottom:1px solid var(--line);
+  font-family:var(--mono); font-size:10.5px; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
+}
+tbody td{padding:11px 14px; border-bottom:1px solid var(--line-soft); vertical-align:middle}
+tbody tr:last-child td{border-bottom:0}
+tbody tr{transition:background .14s}
+tbody tr:hover{background:#FAFBFE}
+.tc-name{display:flex; align-items:center; gap:9px}
+.tc-name b{font-size:13px; font-weight:700}
+.tc-name .case-id{display:block}
+.tc-nurse{display:flex; align-items:center; gap:7px; white-space:nowrap}
+.tc-score{display:flex; align-items:center; gap:9px}
+.tc-score b{font-family:var(--mono); font-size:14px; font-weight:600; font-variant-numeric:tabular-nums}
+.trend{
+  display:inline-flex; align-items:center; gap:4px;
+  font-family:var(--mono); font-size:12px; font-weight:600;
+}
+.trend.up{color:var(--hi-ink)} .trend.down{color:var(--lo-ink)}
+.linkbtn{
+  border:0; background:transparent; cursor:pointer; padding:4px 6px; margin:-4px -6px;
+  border-radius:6px; color:var(--navy); font-size:12.5px; font-weight:700;
+  display:inline-flex; align-items:center; gap:5px;
+}
+.linkbtn:hover{background:var(--nv-bg)}
+
+.filters{
+  display:flex; align-items:center; gap:9px; flex-wrap:wrap;
+  padding:12px 16px; border-bottom:1px solid var(--line-soft); background:#FCFDFF;
+}
+.filters .eyebrow{margin-right:2px}
+.count{margin-left:auto; font-family:var(--mono); font-size:11.5px; color:var(--muted)}
+
+/* escalation strip */
+.strip{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-top:14px}
+.note{
+  background:var(--panel); border:1px solid var(--line); border-radius:var(--r);
+  padding:15px 16px; box-shadow:var(--sh-1);
+  display:flex; gap:12px; align-items:flex-start;
+}
+.note-ic{
+  width:32px; height:32px; border-radius:9px; flex-shrink:0;
+  display:grid; place-items:center;
+}
+.note-ic.o{background:var(--hi-bg); color:var(--hi-ink)}
+.note-ic.c{background:var(--cy-bg); color:var(--cy-ink)}
+.note-ic.g{background:var(--lo-bg); color:var(--lo-ink)}
+.note b{display:block; font-size:13px; font-weight:700; margin-bottom:3px}
+.note p{margin:0; font-size:12.5px; color:var(--muted); line-height:1.5}
+
+/* ============================ MISC ============================ */
+.view{display:none}
+.view.active{display:block; animation:enter .3s ease both}
+@keyframes enter{from{opacity:0; transform:translateY(7px)} to{opacity:1; transform:none}}
+
+.footnote{
+  margin-top:22px; display:flex; align-items:center; gap:9px; flex-wrap:wrap;
+  font-size:12px; color:var(--faint); font-style:italic;
+}
+.footnote svg{color:var(--faint)}
+
+.toast{
+  position:fixed; left:50%; bottom:26px; transform:translate(-50%,120%);
+  display:flex; align-items:center; gap:10px;
+  background:var(--navy); color:#fff; padding:12px 17px;
+  border-radius:11px; box-shadow:var(--sh-2); z-index:80;
+  font-size:13px; font-weight:600; visibility:hidden;
+  transition:transform .32s cubic-bezier(.2,.9,.3,1), visibility .32s;
+  max-width:calc(100vw - 32px);
+}
+.toast.show{transform:translate(-50%,0); visibility:visible}
+.toast svg{color:var(--green); flex-shrink:0}
+
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+
+/* ============================ RESPONSIVE ============================ */
+@media (max-width:1120px){
+  .split,.mgrow{grid-template-columns:minmax(0,1fr)}
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .strip{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:760px){
+  .wrap{padding:0 14px 44px}
+  .masthead-in{padding:11px 14px; flex-wrap:wrap; gap:12px}
+  .viewswitch{margin-left:0; order:3; width:100%}
+  .viewswitch button{flex:1; justify-content:center}
+  .stamp{margin-left:auto}
+  .two,.snap{grid-template-columns:minmax(0,1fr)}
+  .snap-row:nth-last-child(2){border-bottom:1px solid var(--line-soft)}
+  .tiles{gap:9px}
+  .tile-val b{font-size:25px}
+  .scoreblock{margin-left:0; text-align:left}
+  .dhead h2{font-size:18px}
+  .swipe{
+    display:inline-flex; align-items:center; gap:5px; margin-left:auto;
+    font-size:11px; color:var(--faint); font-family:var(--mono);
+  }
+  .count{margin-left:0; width:100%}
+  .rrow{grid-template-columns:minmax(0,1fr) 42px 56px; grid-template-areas:'n n n' 'b f r'; row-gap:7px}
+  .rname{grid-area:n} .rbar{grid-area:b} .rfrac{grid-area:f} .rresp{grid-area:r}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important; transition-duration:.001ms !important}
+}
+</style>
+</head>
+<body>
+
+<!-- ======================= MASTHEAD ======================= -->
+<header class="masthead">
+  <div class="masthead-in">
+    <div class="brand">
+      <svg width="81" height="28" viewBox="50 10 310 108" role="img" aria-label="Changent"><path fill="#F37121" fill-rule="evenodd" d="M85.2 12.0 81.5 12.0 80.3 13.0 76.5 13.0 75.3 14.0 74.5 14.0 73.3 15.0 71.5 15.0 70.3 16.0 69.5 16.0 68.3 17.0 67.5 17.0 63.8 20.7 63.3 21.0 62.5 21.0 61.3 22.0 60.7 23.8 58.0 26.5 58.0 27.3 56.0 29.5 56.0 30.3 55.0 31.5 55.0 32.3 54.0 33.5 54.0 35.3 53.0 36.5 53.0 39.3 52.0 40.5 52.0 50.3 53.0 51.5 53.0 52.3 54.0 53.5 54.0 54.3 55.0 55.5 55.0 56.3 58.0 59.5 58.5 59.8 59.3 59.8 61.5 61.8 63.3 61.8 64.5 62.8 73.3 62.8 74.5 61.8 76.3 61.8 77.5 60.8 78.3 60.8 82.5 56.8 82.8 56.3 82.8 55.5 84.8 53.3 84.8 51.5 85.8 50.3 85.8 12.7Z"/><path fill="#7A3779" fill-rule="evenodd" d="M91.0 22.5 91.0 25.3 90.0 26.5 90.0 31.3 91.0 32.5 91.0 35.3 92.0 36.5 92.0 37.3 94.7 40.0 95.2 41.5 96.3 41.8 98.5 43.8 99.3 43.8 100.5 44.8 102.3 44.8 103.5 45.8 141.5 45.7 141.5 45.2 140.8 44.3 140.8 38.5 139.8 37.3 139.8 35.5 138.8 34.3 138.8 32.5 137.8 31.3 137.8 30.5 135.8 28.3 135.8 27.5 133.8 25.3 133.8 24.5 128.8 19.3 128.3 19.0 127.5 19.0 125.3 17.0 124.5 17.0 123.3 16.0 122.5 16.0 121.3 15.0 120.5 15.0 119.3 14.0 117.5 14.0 116.3 13.0 113.5 13.0 112.3 12.0 103.5 12.0 102.3 13.0 100.5 13.0 98.8 14.7 97.0 15.3 92.0 20.5 92.0 21.3Z"/><path fill="#80B036" fill-rule="evenodd" d="M130.3 51.0 128.5 51.0 127.3 50.0 121.5 50.0 120.3 51.0 118.5 51.0 117.3 52.0 116.5 52.0 115.3 53.0 114.5 53.0 110.3 57.0 110.0 57.5 110.0 58.3 109.0 59.5 109.0 60.3 108.0 61.5 108.0 64.3 107.0 65.5 107.0 101.2 107.7 101.8 108.8 101.5 109.5 100.8 114.3 100.8 115.5 99.8 118.3 99.8 119.5 98.8 121.3 98.8 123.5 96.8 124.3 96.8 125.5 95.8 126.3 95.8 129.5 92.8 130.3 92.8 132.8 90.3 132.8 89.5 135.8 86.3 135.8 85.5 136.8 84.3 136.8 83.5 138.8 81.3 138.8 79.5 139.8 78.3 139.8 75.5 140.8 74.3 140.8 69.5 141.8 68.3 141.8 65.5 140.8 64.3 140.8 61.5 139.8 60.3 139.8 59.5 138.8 58.3 138.8 57.5 134.8 53.3 134.3 53.0 133.5 53.0 132.3 52.0 131.5 52.0Z"/><path fill="#3FC4E0" fill-rule="evenodd" d="M52.0 67.7 52.0 71.3 53.0 72.5 53.0 76.3 54.0 77.5 54.0 79.3 55.0 80.5 55.0 81.3 56.0 82.5 56.0 83.3 57.0 84.5 57.0 85.3 58.7 87.0 59.3 88.8 64.5 93.8 65.3 93.8 67.5 95.8 68.3 95.8 70.5 97.8 71.3 97.8 72.5 98.8 74.3 98.8 75.5 99.8 77.3 99.8 78.5 100.8 83.3 100.8 84.5 101.8 88.3 101.8 89.5 100.8 92.3 100.8 93.5 99.8 94.3 99.8 97.0 97.2 98.7 96.5 99.2 95.0 101.8 92.3 101.8 90.5 102.8 89.3 102.8 79.5 101.8 78.3 101.8 76.5 98.8 73.3 98.8 72.5 97.3 71.0 96.5 71.0 94.3 69.0 93.5 69.0 92.3 68.0 89.5 68.0 88.3 67.0 52.7 67.0Z"/><path fill="#FFFFFF" fill-rule="evenodd" d="M334.3 79.0 332.5 79.0 331.3 78.0 329.5 78.0 328.3 79.0 326.5 79.0 325.3 80.0 324.5 80.0 323.2 81.0 322.3 80.8 321.7 79.3 321.2 79.0 318.7 79.0 318.2 79.3 318.0 100.2 318.3 100.7 322.2 100.8 322.8 100.2 322.8 86.5 326.5 82.8 330.3 82.8 331.5 83.8 332.3 83.8 334.0 85.5 334.0 86.3 335.0 87.5 335.0 100.2 335.7 100.8 339.2 100.8 339.7 100.5 339.8 86.5 338.8 85.3 338.8 83.5ZM299.5 78.0 298.3 79.0 296.5 79.0 294.8 80.7 293.3 81.2 292.7 82.8 291.0 84.5 291.0 94.3 292.0 95.5 292.0 96.3 293.0 97.5 293.2 98.5 294.8 99.2 296.5 100.8 298.3 100.8 299.5 101.8 305.3 101.8 306.5 100.8 308.3 100.8 309.5 99.8 310.3 99.8 311.5 98.7 311.5 98.2 309.3 96.0 307.5 96.0 306.3 97.0 299.5 97.0 296.2 93.8 295.8 93.2 296.0 92.3 296.7 91.8 313.2 91.8 313.8 91.2 313.8 86.5 312.8 85.3 312.8 83.5 309.3 80.0 308.5 80.0 307.3 79.0 306.5 79.0 305.3 78.0ZM308.7 86.2 308.7 86.7 307.3 88.0 296.7 88.0 295.8 87.2 296.2 86.0 299.5 82.8 301.3 82.8 302.2 82.2 302.7 82.2 303.5 82.8 305.3 82.8 306.5 83.8 307.5 84.0ZM256.3 79.0 254.5 79.0 253.3 78.0 251.5 78.0 250.3 79.0 248.5 79.0 247.3 80.0 246.5 80.0 245.2 81.0 244.3 80.8 243.7 79.3 243.2 79.0 239.7 79.0 239.2 79.3 239.0 100.2 239.3 100.7 244.2 100.8 244.7 100.5 244.8 86.5 248.5 82.8 252.3 82.8 253.5 83.8 254.3 83.8 256.0 85.5 256.0 87.3 257.0 88.5 257.0 100.2 257.7 100.8 261.2 100.8 261.7 100.5 261.8 87.5 260.8 86.3 260.8 84.5 259.8 83.3 259.8 82.5ZM214.2 81.3 213.7 82.8 212.0 84.5 212.0 87.3 211.0 88.5 211.0 91.3 212.0 92.5 212.0 95.3 213.0 96.5 213.0 97.3 215.0 99.5 215.5 99.8 216.3 99.8 217.5 100.8 219.3 100.8 220.5 101.8 225.3 101.8 226.5 100.8 227.3 100.8 229.3 98.8 230.2 98.2 230.7 98.2 231.0 98.7 231.0 100.2 231.7 100.8 235.2 100.8 235.7 100.5 235.8 79.7 235.5 79.2 231.7 79.0 231.0 79.7 230.8 81.5 230.2 81.7 227.3 79.0 225.5 79.0 224.3 78.0 221.5 78.0 220.3 79.0 217.5 79.0 215.8 80.7ZM220.5 82.8 226.3 82.8 230.0 86.5 230.0 88.3 231.0 89.7 230.7 90.8 230.0 91.5 230.0 93.3 226.3 97.0 220.5 97.0 216.8 93.3 216.8 91.5 215.8 90.2 216.2 89.0 216.8 88.3 216.8 86.5ZM284.2 77.0 283.0 77.3 281.3 79.0 279.5 79.0 278.3 78.0 273.5 78.0 272.3 79.0 270.5 79.0 266.0 83.5 266.0 84.3 265.0 85.5 265.0 93.3 266.0 94.5 266.0 95.3 267.0 96.5 267.2 97.5 268.8 98.2 270.5 99.8 272.3 99.8 273.5 100.8 278.3 100.8 279.5 101.8 280.3 101.8 282.0 103.5 282.0 107.3 281.0 108.5 280.8 109.5 280.2 110.0 279.5 110.0 278.3 111.0 273.5 111.0 270.2 107.8 269.7 106.3 269.2 106.0 265.7 106.0 265.2 106.3 265.0 109.3 266.0 110.5 266.0 111.3 268.5 113.8 269.3 113.8 270.5 114.8 272.3 114.8 273.5 115.8 278.3 115.8 279.5 114.8 281.3 114.8 282.5 113.8 283.3 113.8 285.5 111.8 285.8 111.3 285.8 110.5 286.8 109.3 286.8 102.5 285.8 101.3 285.7 100.3 284.5 100.0 283.2 98.7 283.2 98.2 285.5 95.8 285.8 95.3 285.8 94.5 286.8 93.3 286.8 85.5 285.8 84.3 285.8 83.5 285.2 82.7 285.2 82.2 286.5 80.8 286.8 79.7 286.5 79.0ZM273.5 82.8 278.3 82.8 282.0 86.5 282.0 92.3 278.3 96.0 273.5 96.0 269.8 92.3 269.8 86.5ZM346.7 73.0 346.0 73.7 345.8 78.5 345.2 79.0 342.3 79.2 342.0 79.7 342.0 82.2 342.7 82.8 345.2 82.8 346.0 83.7 346.0 94.3 347.0 95.5 347.0 98.3 349.5 100.8 352.3 100.8 353.5 101.8 355.3 101.8 356.5 100.8 358.5 100.7 358.5 100.2 357.8 99.3 357.7 97.3 357.2 97.0 353.5 97.0 351.8 95.3 351.8 94.5 350.8 93.3 350.8 84.5 352.5 82.8 357.5 82.7 357.8 82.2 357.8 79.7 357.2 79.0 352.5 79.0 350.8 77.3 350.7 72.3 350.2 72.3 349.3 73.0ZM186.3 69.2 186.0 69.7 186.2 100.5 186.7 100.8 190.2 100.8 190.7 100.5 190.8 88.5 191.8 87.3 191.8 86.5 194.0 84.2 194.5 83.8 195.3 83.8 196.5 82.8 198.3 82.8 199.5 83.8 200.3 83.8 202.0 85.5 202.0 86.3 203.0 87.5 203.2 100.5 203.7 100.8 207.5 100.7 207.8 100.2 207.8 86.5 206.8 85.3 206.8 83.5 205.8 82.3 205.8 81.5 204.3 80.0 203.5 80.0 202.3 79.0 195.5 79.0 194.3 80.0 193.5 80.0 191.7 81.7 191.2 81.7 190.8 81.2 190.8 69.7 190.2 69.0ZM172.3 68.0 170.5 68.0 169.3 69.0 165.5 69.0 164.3 70.0 162.5 70.0 160.8 71.7 159.0 72.3 157.0 74.5 157.0 75.3 156.0 76.5 156.0 77.3 155.0 78.5 155.0 80.3 154.0 81.5 154.0 89.3 155.0 90.5 155.0 92.3 156.0 93.5 156.0 94.3 161.5 99.8 162.3 99.8 163.5 100.8 165.3 100.8 166.5 101.8 174.3 101.8 175.5 100.8 178.3 100.8 179.5 99.8 180.3 99.8 182.5 97.7 182.5 97.2 181.8 96.3 179.2 94.0 178.0 94.3 176.3 96.0 174.5 96.0 173.3 97.0 167.5 97.0 166.3 96.0 165.5 96.0 161.2 91.8 160.8 91.3 160.8 90.5 159.8 89.3 159.8 86.5 159.2 85.7 159.2 85.2 159.8 84.3 159.8 80.5 161.8 78.3 161.8 77.5 163.5 75.8 164.3 75.8 165.5 74.8 166.3 74.8 167.5 73.8 174.3 73.8 175.5 74.8 176.3 74.8 177.5 75.8 179.3 75.8 181.5 73.8 181.8 72.7 180.3 71.0 179.5 71.0 178.3 70.0 177.5 70.0 176.3 69.0 173.5 69.0Z"/></svg>
+      <span class="brand-sep"></span>
+      <span class="brand-app">Retention Agent</span>
+    </div>
+
+    <div class="viewswitch" role="group" aria-label="Choose view">
+      <button type="button" id="tabNurse" aria-pressed="true">
+        <span class="swatch cy"></span> Nurse view
+      </button>
+      <button type="button" id="tabMgr" aria-pressed="false">
+        <span class="swatch pu"></span> Manager view
+      </button>
+    </div>
+
+    <div class="stamp">
+      <span class="dot"></span> Refreshed Mon 3 Aug, 06:00
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ======================= NURSE VIEW ======================= -->
+  <main class="view active" id="viewNurse">
+
+    <div class="context">
+      <div class="who">
+        <div class="avatar">EV</div>
+        <div>
+          <h1>Good morning, Elliot</h1>
+          <p>Nurse home visitor · Adams County NFP · <b>24 active clients</b></p>
+        </div>
+      </div>
+      <div class="ctx-actions">
+        <select class="picker" id="nursePick" aria-label="Viewing caseload for"></select>
+        <button class="btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"/></svg> Export week</button>
+      </div>
+    </div>
+
+    <section class="tiles" aria-label="Your week at a glance" id="nurseTiles"></section>
+
+    <div class="split">
+      <!-- queue -->
+      <section class="panel queue">
+        <div class="panel-hd">
+          <span class="hd-ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span>
+          <h2>Your priority list</h2>
+          <span class="eyebrow" id="queueCount"></span>
+        </div>
+        <div class="queue-list" id="queueList" role="list"></div>
+        <div class="queue-foot">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 8v8m0-11h.01"/><circle cx="12" cy="12" r="9"/></svg>
+          Ordered by risk, then by how fast it is moving — not alphabetically.
+        </div>
+      </section>
+
+      <!-- detail -->
+      <section class="detail" id="caseDetail" aria-live="polite"></section>
+    </div>
+
+    <p class="footnote">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg>
+      Illustrative mockup with synthetic client data · final screens to be refined with nurse input.
+    </p>
+  </main>
+
+  <!-- ======================= MANAGER VIEW ======================= -->
+  <main class="view" id="viewMgr">
+
+    <div class="context">
+      <div class="who">
+        <div class="avatar mgr">DR</div>
+        <div>
+          <h1>Team overview · this week</h1>
+          <p>Dana Rivera · Supervisor · <b>6 nurses · 142 active clients</b></p>
+        </div>
+      </div>
+      <div class="ctx-actions">
+        <select class="picker" aria-label="Reporting period">
+          <option>Week of 3 Aug 2026</option>
+          <option>Week of 27 Jul 2026</option>
+          <option>Last 4 weeks</option>
+        </select>
+        <button class="btn primary"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4H4zM4 12h10v8H4zM18 12h2v8h-2z"/></svg> Build weekly report</button>
+      </div>
+    </div>
+
+    <section class="tiles" aria-label="Team metrics" id="mgrTiles"></section>
+
+    <div class="mgrow">
+      <!-- retention trend -->
+      <section class="panel">
+        <div class="panel-hd">
+          <span class="hd-ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 3 5-7 4 3"/></svg></span>
+          <h2>Retention rate · 12 weeks</h2>
+          <span class="pill low"><span class="pd"></span> +3.3 pts since May</span>
+        </div>
+        <div class="chartbox" id="trendChart"></div>
+      </section>
+
+      <!-- nurse response -->
+      <section class="panel">
+        <div class="panel-hd">
+          <span class="hd-ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="3.5"/><path d="M22 20v-2a4 4 0 0 0-3-3.9"/></svg></span>
+          <h2>Flags acted on, by nurse</h2>
+        </div>
+        <div class="roster" id="roster"></div>
+      </section>
+    </div>
+
+    <!-- flagged cases -->
+    <section class="panel" style="margin-top:14px">
+      <div class="panel-hd">
+        <span class="hd-ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V4h9l-1 3h8v9h-8l1-3H4"/></svg></span>
+        <h2>Flagged clients</h2>
+        <span class="eyebrow">Ranked by risk, then movement</span>
+      </div>
+      <div class="filters">
+        <span class="eyebrow">Filter</span>
+        <select class="picker" id="fNurse" aria-label="Filter by nurse"></select>
+        <select class="picker" id="fTier" aria-label="Filter by risk tier">
+          <option value="All">All risk tiers</option>
+          <option value="High">High risk</option>
+          <option value="Medium">Medium risk</option>
+          <option value="Low">Low risk</option>
+        </select>
+        <select class="picker" id="fStatus" aria-label="Filter by status">
+          <option value="All">All statuses</option>
+          <option value="open">Needs action</option>
+          <option value="acted">Outreach logged</option>
+          <option value="watch">Monitoring</option>
+        </select>
+        <span class="count" id="tableCount"></span>
+        <span class="swipe">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          swipe the table
+        </span>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Client</th><th>Nurse</th><th>Risk</th><th>7-week trend</th>
+              <th>Last contact</th><th>Status</th><th><span class="sr">Open</span></th>
+            </tr>
+          </thead>
+          <tbody id="mgrTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="strip">
+      <article class="note">
+        <span class="note-ic o"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M10.3 4.2 2.7 17.5A2 2 0 0 0 4.4 20h15.2a2 2 0 0 0 1.7-2.5L13.7 4.2a2 2 0 0 0-3.4 0Z"/></svg></span>
+        <div>
+          <b>3 flags need a decision</b>
+          <p>Still no logged outreach. Noelle Price (#71) has been open longest at 88% risk — she sits with the team's slowest responder.</p>
+        </div>
+      </article>
+      <article class="note">
+        <span class="note-ic c"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 12v4m0 3h.01"/></svg></span>
+        <div>
+          <b>7 records with stale inputs</b>
+          <p>Depression, IPV or birth-timing fields older than 90 days. Predictions still run, with wider error margins.</p>
+        </div>
+      </article>
+      <article class="note">
+        <span class="note-ic g"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+        <div>
+          <b>9 of 12 flags acted on</b>
+          <p>Median response 2.1 days, down from 3.4 last month. 6 of 9 led to a completed in-person visit.</p>
+        </div>
+      </article>
+    </section>
+
+    <p class="footnote">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg>
+      Illustrative mockup with synthetic client data · drill into any case to see the flag, the guidance used, and the action taken.
+    </p>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+  <span id="toastText"></span>
+</div>
+
+<script>
+/* ============================================================
+   ICON LIBRARY — single consistent stroke set
+   ============================================================ */
+const P = {
+  phone:'M6.6 3h-2A1.6 1.6 0 0 0 3 4.7C3 12.6 9.4 19 17.3 19a1.6 1.6 0 0 0 1.7-1.6v-2a1 1 0 0 0-.8-1l-3-.6a1 1 0 0 0-1 .4l-.8 1.1a13 13 0 0 1-4.7-4.7l1.1-.8a1 1 0 0 0 .4-1l-.6-3a1 1 0 0 0-1-.8Z',
+  home:'M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z',
+  video:'M2 7.5A1.5 1.5 0 0 1 3.5 6h9A1.5 1.5 0 0 1 14 7.5v9A1.5 1.5 0 0 1 12.5 18h-9A1.5 1.5 0 0 1 2 16.5zM14 10.5l6-3.5v10l-6-3.5z',
+  msg:'M21 12a8 8 0 0 1-8 8H8l-5 2 1.6-4.4A8 8 0 1 1 21 12Z',
+  cal:'M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zM4 9h16M8 3v3m8-3v3',
+  alert:'M12 9v4m0 4h.01M10.3 4.2 2.7 17.5A2 2 0 0 0 4.4 20h15.2a2 2 0 0 0 1.7-2.5L13.7 4.2a2 2 0 0 0-3.4 0Z',
+  up:'M4 16 10 10l4 4 6-8M15 6h5v5',
+  down:'M4 8 10 14l4-4 6 8M15 18h5v-5',
+  clock:'M12 7v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z',
+  check:'M20 6 9 17l-5-5',
+  shield:'M12 3l7 3v6c0 4.4-3 7.9-7 9-4-1.1-7-4.6-7-9V6z',
+  users:'M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M22 20v-2a4 4 0 0 0-3-3.9',
+  user:'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2',
+  spark:'M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8z',
+  chart:'M4 19h16M7 16V9m5 7V5m5 11v-4',
+  pin:'M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z',
+  file:'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6',
+  arrow:'M5 12h14M13 6l6 6-6 6',
+  target:'M12 12h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM17 12a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z',
+  eye:'M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Zm10 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z'
+};
+const ic = (n, s = 16, w = 2) =>
+  `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+     stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${P[n]}"/></svg>`;
+
+const MODE_ICON = {'In person':'home', 'Telephone':'phone', 'Video':'video', 'Text only':'msg'};
+
+/* ============================================================
+   DATA
+   ============================================================ */
+const NURSES = [
+  {name:'Elliot Vega',   init:'EV', caseload:24, flagged:4, acted:2, resp:1.2},
+  {name:'Riley Chen',    init:'RC', caseload:26, flagged:3, acted:3, resp:1.8},
+  {name:'Morgan Lee',    init:'ML', caseload:23, flagged:2, acted:1, resp:4.0},
+  {name:'Priya Shah',    init:'PS', caseload:25, flagged:1, acted:1, resp:2.3},
+  {name:'Dana Okafor',   init:'DO', caseload:22, flagged:1, acted:1, resp:1.5},
+  {name:'Sam Ruiz',      init:'SR', caseload:22, flagged:1, acted:1, resp:2.9}
+];
+
+const CLIENTS = [
+  {
+    id:48, name:'Avery Daniels', line:'Contact thinned to text only, two visits missed in a row.', caseId:'NSO-556844', nurse:'Elliot Vega',
+    tier:'High', score:84, change:12, rises:3, flagged:true, status:'open',
+    start:'11 Mar 2025', lastContact:'7 Jul 2026', days:27, mode:'Text only', missed:2,
+    history:[42,46,51,57,65,72,84],
+    why:'Contact has thinned out and moved to text only. Two visits missed in a row. This pattern matches families who leave the programme within about eight weeks.',
+    drivers:[
+      ['Completed visits fell from 4 a month to 1', 92, 'risk', 'chart'],
+      ['Last three contacts were text, not in person', 76, 'risk', 'msg'],
+      ['27 days since the last completed visit', 68, 'risk', 'clock'],
+      ['Still answers messages within a day', 34, 'good', 'check']
+    ],
+    approach:[
+      'Offer an <b>in-person visit this week</b> — give two concrete time windows rather than asking when suits.',
+      'Open with the <b>family support resource</b> from Changent guidance; text-only drift often tracks a practical barrier.',
+      'Ask directly about transport, childcare and work hours, and note whatever she says in the barrier field.',
+      '<b>Book the next appointment before you leave.</b> Unbooked follow-ups are the strongest predictor of the next miss.'
+    ],
+    snap:{completed:'31%', attendees:'0.8', mode:'Mostly text', due:'3 days'}
+  },
+  {
+    id:63, name:'Nia Carter', line:'Visits moved to phone; partner has stopped attending.', caseId:'NSO-591204', nurse:'Elliot Vega',
+    tier:'High', score:76, change:9, rises:2, flagged:true, status:'open',
+    start:'2 Sep 2025', lastContact:'13 Jul 2026', days:21, mode:'Telephone', missed:1,
+    history:[48,52,55,58,64,67,76],
+    why:'Visits are still happening but have shifted to phone, and the number of people present has dropped. Partner stopped attending three visits ago.',
+    drivers:[
+      ['Visits moved from in person to phone', 81, 'risk', 'phone'],
+      ['Partner no longer attending', 64, 'risk', 'users'],
+      ['One visit missed without a reschedule', 55, 'risk', 'cal'],
+      ['Assessments all current', 30, 'good', 'shield']
+    ],
+    approach:[
+      'Convert the next phone slot to a <b>home visit</b> — phone-only stretches rarely reverse on their own.',
+      'Ask whether the partner wants a separate check-in; changes at home often sit behind attendance drops.',
+      'Re-run the relationship safety questions at the next in-person visit.'
+    ],
+    snap:{completed:'44%', attendees:'1.0', mode:'Telephone', due:'2 days'}
+  },
+  {
+    id:31, name:'Jasmine Ford', line:'Improving for four weeks. One health input out of date.', caseId:'NSO-601661', nurse:'Elliot Vega',
+    tier:'Medium', score:61, change:-8, rises:0, flagged:true, status:'acted',
+    start:'20 Jan 2026', lastContact:'20 Jul 2026', days:14, mode:'In person', missed:0,
+    history:[73,69,67,68,64,63,61],
+    why:'Improving. Risk has come down for four weeks since visits returned to in person. One maternal health input is out of date.',
+    drivers:[
+      ['Four straight weeks of falling risk', 78, 'good', 'down'],
+      ['In-person visits resumed', 66, 'good', 'home'],
+      ['One health input over 90 days old', 42, 'risk', 'file'],
+      ['Early in the programme', 30, 'risk', 'clock']
+    ],
+    approach:[
+      'Hold the current cadence — no extra outreach needed.',
+      'Refresh the stale health input at the next scheduled visit.',
+      'Recheck after the next Monday refresh; escalate only if risk turns back up.'
+    ],
+    snap:{completed:'58%', attendees:'1.7', mode:'In person', due:'9 days'}
+  },
+  {
+    id:57, name:'Rosa Medina', line:'Video only, with two late reschedules around shift changes.', caseId:'NSO-574318', nurse:'Elliot Vega',
+    tier:'Medium', score:57, change:6, rises:1, flagged:true, status:'acted',
+    start:'5 Nov 2025', lastContact:'12 Jul 2026', days:22, mode:'Video', missed:1,
+    history:[41,44,47,50,52,51,57],
+    why:'Visits complete on video but not in person, and appointments are being moved late in the day. Reschedules cluster around shift changes.',
+    drivers:[
+      ['Every visit in the last month was video', 70, 'risk', 'video'],
+      ['Two same-day reschedules', 58, 'risk', 'cal'],
+      ['Engaged and responsive on calls', 44, 'good', 'check']
+    ],
+    approach:[
+      'Offer an <b>early-morning or weekend</b> in-person slot to work around shift patterns.',
+      'Confirm 24 hours ahead by text — her reschedules are late, not refusals.',
+      'Outreach logged 30 Jul; recheck at the next Monday refresh.'
+    ],
+    snap:{completed:'62%', attendees:'1.2', mode:'Video', due:'6 days'}
+  },
+  {
+    id:12, name:'Tanya Bell', line:'Steady on schedule with a consistent second attendee.', caseId:'NSO-533987', nurse:'Elliot Vega',
+    tier:'Low', score:31, change:-4, rises:0, flagged:false, status:'watch',
+    start:'14 Jun 2025', lastContact:'27 Jul 2026', days:7, mode:'In person', missed:0,
+    history:[40,38,36,35,33,32,31],
+    why:'Steady. Visits complete on schedule with a consistent second attendee. No action needed.',
+    drivers:[
+      ['87% of visits completed', 86, 'good', 'check'],
+      ['Consistent in-person pattern', 64, 'good', 'home'],
+      ['No data gaps', 32, 'good', 'shield']
+    ],
+    approach:['Maintain cadence.','No outreach needed this week.','Useful reference pattern for steady engagement.'],
+    snap:{completed:'87%', attendees:'2.1', mode:'In person', due:'11 days'}
+  },
+  {id:22, name:'Maya Brooks',     caseId:'NSO-508321', nurse:'Riley Chen',  tier:'High',   score:79, change:7,   rises:2, flagged:true, status:'acted', days:23, mode:'Telephone', history:[58,55,61,63,70,72,79], lastContact:'11 Jul 2026'},
+  {id:44, name:'Elena Hughes',    caseId:'NSO-572950', nurse:'Riley Chen',  tier:'High',   score:82, change:-3,  rises:0, flagged:true, status:'acted', days:23, mode:'In person', history:[91,88,86,84,83,85,82], lastContact:'11 Jul 2026'},
+  {id:39, name:'Dara Whitfield',  caseId:'NSO-588140', nurse:'Riley Chen',  tier:'Medium', score:58, change:11,  rises:2, flagged:true, status:'acted', days:18, mode:'Text only', history:[36,39,43,45,48,47,58], lastContact:'16 Jul 2026'},
+  {id:71, name:'Noelle Price',    caseId:'NSO-533051', nurse:'Morgan Lee',  tier:'High',   score:88, change:16,  rises:4, flagged:true, status:'open',  days:22, mode:'Telephone', history:[49,54,59,63,71,72,88], lastContact:'12 Jul 2026'},
+  {id:18, name:'Camila Reed',     caseId:'NSO-546423', nurse:'Morgan Lee',  tier:'Medium', score:57, change:9,   rises:2, flagged:true, status:'acted', days:24, mode:'Video',     history:[36,40,42,47,51,48,57], lastContact:'10 Jul 2026'},
+  {id:29, name:'Imani Collins',   caseId:'NSO-584848', nurse:'Priya Shah',  tier:'Medium', score:52, change:-10, rises:0, flagged:true, status:'acted', days:22, mode:'In person', history:[70,66,63,60,56,54,52], lastContact:'12 Jul 2026'},
+  {id:9,  name:'Sofia Grant',     caseId:'NSO-601006', nurse:'Priya Shah',  tier:'Low',    score:28, change:-5,  rises:0, flagged:false,status:'watch', days:9,  mode:'In person', history:[39,37,34,33,31,29,28], lastContact:'25 Jul 2026'},
+  {id:66, name:'Leah Nakamura',   caseId:'NSO-566702', nurse:'Dana Okafor', tier:'High',   score:81, change:14,  rises:3, flagged:true, status:'acted', days:20, mode:'Telephone', history:[45,50,56,61,66,67,81], lastContact:'14 Jul 2026'},
+  {id:52, name:'Bethany Cruz',    caseId:'NSO-579433', nurse:'Sam Ruiz',    tier:'Medium', score:64, change:8,   rises:1, flagged:true, status:'acted', days:19, mode:'Video',     history:[44,47,50,54,58,56,64], lastContact:'15 Jul 2026'}
+];
+
+const RETENTION = [84.1,84.0,83.6,84.4,84.9,85.2,85.0,85.6,86.1,86.4,87.0,87.4];
+const TIER_HEX = {High:'#F37121', Medium:'#E0A32E', Low:'#80B036'};
+const STATUS = {
+  open:  {label:'Needs action',    cls:'high',   icon:'alert'},
+  acted: {label:'Outreach logged', cls:'low',    icon:'check'},
+  watch: {label:'Monitoring',      cls:'plain',  icon:'eye'}
+};
+
+const state = {view:'nurse', nurse:'Elliot Vega', caseId:48, fNurse:'All', fTier:'All', fStatus:'All'};
+
+/* ============================================================
+   CHART HELPERS
+   ============================================================ */
+function sparkline(history, tier, w = 62, h = 22){
+  const hex = TIER_HEX[tier], pad = 2;
+  const min = Math.min(...history) - 4, max = Math.max(...history) + 4;
+  const pts = history.map((v,i) => [
+    pad + i * ((w - pad*2) / (history.length - 1)),
+    h - pad - ((v - min) / (max - min)) * (h - pad*2)
+  ]);
+  const d = pts.map((p,i) => `${i ? 'L' : 'M'}${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(' ');
+  const last = pts[pts.length - 1];
+  return `<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true">
+    <path d="${d}" fill="none" stroke="${hex}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>
+    <circle cx="${last[0].toFixed(1)}" cy="${last[1].toFixed(1)}" r="2.6" fill="${hex}"/>
+  </svg>`;
+}
+
+function riskChart(history, tier){
+  const W = 660, H = 200, L = 34, R = 14, T = 16, B = 30, hex = TIER_HEX[tier];
+  const px = i => L + i * ((W - L - R) / (history.length - 1));
+  const py = v => H - B - (v / 100) * (H - T - B);
+  const pts = history.map((v,i) => [px(i), py(v), v]);
+  const line = pts.map((p,i) => `${i ? 'L' : 'M'}${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(' ');
+  const area = `${line} L${pts[pts.length-1][0].toFixed(1)} ${H-B} L${pts[0][0].toFixed(1)} ${H-B} Z`;
+  const weeks = ['-6w','-5w','-4w','-3w','-2w','-1w','now'];
+
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img"
+      aria-label="Risk score over the last seven weeks, now ${history[history.length-1]} percent">
+    <defs>
+      <linearGradient id="rg" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stop-color="${hex}" stop-opacity=".22"/>
+        <stop offset="100%" stop-color="${hex}" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    ${[0,25,50,75,100].map(v => `
+      <line x1="${L}" x2="${W-R}" y1="${py(v)}" y2="${py(v)}" stroke="#EDF0F8" stroke-width="1"/>
+      <text x="${L-9}" y="${py(v)+3.5}" text-anchor="end" fill="#9AA2C0"
+        font-family="IBM Plex Mono, monospace" font-size="9.5">${v}</text>`).join('')}
+    <line x1="${L}" x2="${W-R}" y1="${py(70)}" y2="${py(70)}" stroke="#F37121"
+      stroke-width="1.2" stroke-dasharray="4 4" opacity=".55"/>
+    <text x="${L+7}" y="${py(70)-7}" fill="#B14C09"
+      font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing=".08em">HIGH-RISK THRESHOLD</text>
+    <path d="${area}" fill="url(#rg)"/>
+    <path d="${line}" fill="none" stroke="${hex}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    ${pts.map((p,i) => {
+      const isLast = i === pts.length - 1;
+      return `${isLast ? `<circle cx="${p[0]}" cy="${p[1]}" r="8.5" fill="${hex}" opacity=".16"/>` : ''}
+        <circle cx="${p[0]}" cy="${p[1]}" r="${isLast ? 4.6 : 3.2}" fill="#fff" stroke="${hex}" stroke-width="${isLast ? 2.8 : 2}"/>
+        <title>${weeks[i]}: ${p[2]}%</title>`;
+    }).join('')}
+    <text x="${pts[pts.length-1][0]}" y="${pts[pts.length-1][1]-15}" text-anchor="end"
+      fill="${hex}" font-family="IBM Plex Mono, monospace" font-size="12"
+      font-weight="600">${history[history.length-1]}%</text>
+    ${weeks.map((w,i) => `<text x="${px(i)}" y="${H-9}" text-anchor="middle" fill="#9AA2C0"
+      font-family="IBM Plex Mono, monospace" font-size="9.5">${w}</text>`).join('')}
+  </svg>`;
+}
+
+function trendChart(){
+  const W = 660, H = 190, L = 38, R = 14, T = 16, B = 28;
+  const min = 82, max = 89;
+  const px = i => L + i * ((W - L - R) / (RETENTION.length - 1));
+  const py = v => H - B - ((v - min) / (max - min)) * (H - T - B);
+  const pts = RETENTION.map((v,i) => [px(i), py(v), v]);
+  const line = pts.map((p,i) => `${i ? 'L' : 'M'}${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(' ');
+  const area = `${line} L${pts[pts.length-1][0].toFixed(1)} ${H-B} L${pts[0][0].toFixed(1)} ${H-B} Z`;
+
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img"
+      aria-label="Retention rate over 12 weeks, rising from 84.1 to 87.4 percent">
+    <defs>
+      <linearGradient id="tg" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stop-color="#80B036" stop-opacity=".26"/>
+        <stop offset="100%" stop-color="#80B036" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    ${[82,84,86,88].map(v => `
+      <line x1="${L}" x2="${W-R}" y1="${py(v)}" y2="${py(v)}" stroke="#EDF0F8" stroke-width="1"/>
+      <text x="${L-9}" y="${py(v)+3.5}" text-anchor="end" fill="#9AA2C0"
+        font-family="IBM Plex Mono, monospace" font-size="9.5">${v}%</text>`).join('')}
+    <path d="${area}" fill="url(#tg)"/>
+    <path d="${line}" fill="none" stroke="#80B036" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    ${pts.map((p,i) => {
+      const isLast = i === pts.length - 1;
+      return `${isLast ? `<circle cx="${p[0]}" cy="${p[1]}" r="8.5" fill="#80B036" opacity=".18"/>` : ''}
+        <circle cx="${p[0]}" cy="${p[1]}" r="${isLast ? 4.4 : 2.8}" fill="#fff" stroke="#80B036" stroke-width="${isLast ? 2.8 : 1.9}"/>
+        <title>Week ${i+1}: ${p[2]}%</title>`;
+    }).join('')}
+    <text x="${pts[pts.length-1][0]}" y="${pts[pts.length-1][1]-14}" text-anchor="end"
+      fill="#4E7016" font-family="IBM Plex Mono, monospace" font-size="12.5" font-weight="600">87.4%</text>
+    <text x="${L}" y="${H-8}" fill="#9AA2C0" font-family="IBM Plex Mono, monospace" font-size="9.5">12 weeks ago</text>
+    <text x="${W-R}" y="${H-8}" text-anchor="end" fill="#9AA2C0" font-family="IBM Plex Mono, monospace" font-size="9.5">this week</text>
+  </svg>`;
+}
+
+/* ============================================================
+   NURSE VIEW
+   ============================================================ */
+function myCases(){
+  return CLIENTS
+    .filter(c => c.nurse === state.nurse)
+    .sort((a,b) => ({High:3,Medium:2,Low:1}[b.tier] - {High:3,Medium:2,Low:1}[a.tier]) || b.change - a.change);
+}
+
+function renderNurseTiles(){
+  const mine = myCases();
+  const needsVisit = mine.filter(c => c.status === 'open').length;
+  const rising = mine.filter(c => c.rises >= 2).length;
+  const overdue = mine.filter(c => c.days >= 21).length;
+  const nurse = NURSES.find(n => n.name === state.nurse);
+
+  const tiles = [
+    {c:'--orange', bg:'--hi-bg', i:'alert', k:'Needs action today', v:needsVisit,
+     p:'Flagged with no outreach logged yet'},
+    {c:'--purple', bg:'--pu-bg', i:'up', k:'Risk rising 2+ weeks', v:rising,
+     p:'The pattern that precedes most drop-outs'},
+    {c:'--cyan', bg:'--cy-bg', i:'clock', k:'21+ days no visit', v:overdue,
+     p:'Contact gap past the programme standard'},
+    {c:'--green', bg:'--lo-bg', i:'shield', k:'Your retention', v:'91<span style="font-size:16px">%</span>',
+     p:`Team median 87.4% · ${nurse.caseload} active clients`,
+     delta:'+2.4 pts', arrow:'up', tone:'good'}
+  ];
+
+  document.getElementById('nurseTiles').innerHTML = tiles.map(t => `
+    <article class="tile" style="--c:var(${t.c}); --cbg:var(${t.bg})">
+      <div class="tile-top">
+        <span class="tile-ic">${ic(t.i, 14, 2.1)}</span>
+        <span class="eyebrow">${t.k}</span>
+      </div>
+      <div class="tile-val">
+        <b>${t.v}</b>
+        ${t.delta ? `<span class="delta ${t.tone === 'good' ? 'down' : 'up'}">${ic(t.arrow, 12, 2.4)} ${t.delta}</span>` : ''}
+      </div>
+      <p>${t.p}</p>
+    </article>`).join('');
+}
+
+function renderQueue(){
+  const mine = myCases();
+  document.getElementById('queueCount').textContent = `${mine.length} clients`;
+
+  document.getElementById('queueList').innerHTML = mine.map(c => {
+    const st = STATUS[c.status];
+    return `<button class="case" role="listitem" data-case="${c.id}"
+        aria-current="${c.id === state.caseId}">
+      <span class="case-l1">
+        <span class="tierdot ${c.tier.toLowerCase()}"></span>
+        <span>
+          <span class="case-name">${c.name}</span>
+          <span class="case-id">#${c.id} · ${c.caseId}</span>
+        </span>
+        <span class="case-score">
+          ${sparkline(c.history, c.tier)}
+          <b style="color:${TIER_HEX[c.tier]}">${c.score}</b>
+        </span>
+      </span>
+      <span class="case-l2">${c.line || `${c.tier} risk · last contact ${c.days} days ago by ${c.mode.toLowerCase()}.`}</span>
+      <span class="case-l3">
+        <span class="pill ${st.cls}">${ic(st.icon, 11, 2.4)} ${st.label}</span>
+        <span class="chip">${ic(MODE_ICON[c.mode], 11, 2)} ${c.mode}</span>
+        ${c.rises >= 2 ? `<span class="chip warn">${ic('up', 11, 2.4)} ${c.rises}w rising</span>` : ''}
+        ${c.missed ? `<span class="chip warn">${ic('cal', 11, 2)} ${c.missed} missed</span>` : ''}
+      </span>
+    </button>`;
+  }).join('');
+}
+
+function renderDetail(){
+  const c = CLIENTS.find(x => x.id === state.caseId) || myCases()[0];
+  if (!c) return;
+  const hex = TIER_HEX[c.tier];
+  const st = STATUS[c.status];
+  const up = c.change > 0;
+
+  const why = c.why || `${c.tier} risk. Last contact ${c.days} days ago by ${c.mode.toLowerCase()}.`;
+  const drivers = c.drivers || [
+    ['Contact frequency declining', 72, 'risk', 'chart'],
+    [`Recent contact by ${c.mode.toLowerCase()}`, 58, 'risk', MODE_ICON[c.mode]],
+    [`${c.days} days since last completed visit`, 50, 'risk', 'clock']
+  ];
+  const approach = c.approach || [
+    'Offer an <b>in-person visit</b> with two specific time windows.',
+    'Confirm contact details and any practical barriers.',
+    '<b>Book the next appointment before leaving.</b>'
+  ];
+  const snap = c.snap || {completed:'—', attendees:'—', mode:c.mode, due:'—'};
+
+  document.getElementById('caseDetail').innerHTML = `
+    <section class="panel">
+      <div class="dhead">
+        <div class="dhead-top">
+          <div>
+            <h2>${c.name}</h2>
+            <div class="dhead-meta">
+              <span class="pill ${c.tier.toLowerCase()}"><span class="pd"></span> ${c.tier} risk</span>
+              <span class="pill ${st.cls}">${ic(st.icon, 11, 2.4)} ${st.label}</span>
+              <span class="chip">${ic('pin', 11, 2)} Client #${c.id}</span>
+              <span class="chip"><span class="mono">${c.caseId}</span></span>
+              ${c.start ? `<span class="chip">${ic('cal', 11, 2)} Started ${c.start}</span>` : ''}
+            </div>
+          </div>
+          <div class="scoreblock">
+            <span class="eyebrow">Drop-out risk</span>
+            <div class="scorenum" style="color:${hex}">${c.score}<span style="font-size:18px">%</span></div>
+            <span class="delta ${up ? 'up' : 'down'}">
+              ${ic(up ? 'up' : 'down', 12, 2.4)} ${up ? '+' : ''}${c.change} this week
+            </span>
+          </div>
+        </div>
+        ${c.rises >= 2 ? `<div class="rising">
+          ${ic('alert', 16, 2.1)}
+          Risk has climbed for ${c.rises} weeks running — the strongest single warning sign in the model.
+        </div>` : ''}
+      </div>
+      <div class="chartbox">
+        ${riskChart(c.history, c.tier)}
+        <div class="chart-legend">
+          <span class="lg"><i class="solid" style="border-color:${hex}"></i> Weekly risk score</span>
+          <span class="lg"><i class="dash"></i> High-risk threshold (70)</span>
+          <span class="lg">${ic('cal', 12, 2)} Refreshed every Monday 06:00</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="two">
+      <section class="panel">
+        <div class="panel-hd">
+          <span class="hd-ic" style="background:var(--hi-bg); color:var(--hi-ink)">${ic('alert', 13, 2.1)}</span>
+          <h2>Why it flagged</h2>
+        </div>
+        <div style="padding:13px 16px 0"><p style="margin:0; font-size:13px; line-height:1.55; color:var(--ink-2)">${why}</p></div>
+        <div class="drivers">
+          ${drivers.map(([label, w, kind, icon]) => `
+            <div class="driver ${kind === 'good' ? 'good' : ''}">
+              <div class="driver-l">
+                <span class="driver-ic">${ic(icon, 12, 2.1)}</span>
+                <span>${label}</span>
+                <b>${w}</b>
+              </div>
+              <div class="meter"><i style="width:${w}%"></i></div>
+            </div>`).join('')}
+        </div>
+      </section>
+
+      <section class="panel approach">
+        <div class="panel-hd">
+          <span class="hd-ic">${ic('spark', 13, 2.1)}</span>
+          <h2>Suggested approach</h2>
+          <span class="pill mgr">Draft</span>
+        </div>
+        <div class="steps">
+          ${approach.map((s,i) => `<div class="step">
+            <span class="step-n">${i+1}</span><p>${s}</p>
+          </div>`).join('')}
+        </div>
+        <div class="sourced">
+          ${ic('file', 13, 2)}
+          Drawn from Changent engagement guidance · you decide what fits this family
+        </div>
+        <div class="actions">
+          <button class="btn go" data-act="Outreach logged for ${c.name} — next check Monday.">${ic('check', 14, 2.4)} Use this plan</button>
+          <button class="btn" data-act="Draft opened for editing.">${ic('file', 14, 2)} Edit</button>
+          <button class="btn ghost" data-act="Flag snoozed for 7 days.">${ic('clock', 14, 2)} Snooze 7 days</button>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel">
+      <div class="panel-hd">
+        <span class="hd-ic" style="background:var(--cy-bg); color:var(--cy-ink)">${ic('chart', 13, 2.1)}</span>
+        <h2>Engagement snapshot</h2>
+        <span class="eyebrow">Last 60 days</span>
+      </div>
+      <div class="snap">
+        ${[
+          ['cal','Visits completed', snap.completed],
+          ['users','Average attendees', snap.attendees],
+          [MODE_ICON[c.mode] || 'phone','Usual contact method', snap.mode],
+          ['clock','Last contact', `${c.lastContact} · ${c.days}d ago`],
+          ['target','Next visit due', snap.due],
+          ['user','Assigned nurse', c.nurse]
+        ].map(([i,k,v]) => `
+          <div class="snap-row">
+            <span class="snap-ic">${ic(i, 13, 2)}</span>
+            <span>${k}</span><b>${v}</b>
+          </div>`).join('')}
+      </div>
+    </section>`;
+}
+
+/* ============================================================
+   MANAGER VIEW
+   ============================================================ */
+function renderMgrTiles(){
+  const flagged = CLIENTS.filter(c => c.flagged).length;
+  const acted = CLIENTS.filter(c => c.flagged && c.status === 'acted').length;
+  const tiles = [
+    {c:'--orange', bg:'--hi-bg', i:'alert', k:'Flagged this week', v:flagged,
+     p:'Across 142 active clients · 6 nurses'},
+    {c:'--green', bg:'--lo-bg', i:'check', k:'Acted on', v:`${acted}`,
+     p:`${flagged - acted} still waiting on a first contact`},
+    {c:'--cyan', bg:'--cy-bg', i:'clock', k:'Median response', v:'2.1<span style="font-size:16px">d</span>',
+     p:'From flag raised to outreach logged', delta:'1.3d faster', arrow:'down', tone:'good'},
+    {c:'--purple', bg:'--pu-bg', i:'shield', k:'12-week retention', v:'87.4<span style="font-size:16px">%</span>',
+     p:'Clients still active at 12 months', delta:'+3.3 pts', arrow:'up', tone:'good'}
+  ];
+  document.getElementById('mgrTiles').innerHTML = tiles.map(t => `
+    <article class="tile" style="--c:var(${t.c}); --cbg:var(${t.bg})">
+      <div class="tile-top">
+        <span class="tile-ic">${ic(t.i, 14, 2.1)}</span>
+        <span class="eyebrow">${t.k}</span>
+      </div>
+      <div class="tile-val">
+        <b>${t.v}</b>
+        ${t.delta ? `<span class="delta ${t.tone === 'good' ? 'down' : 'up'}">${ic(t.arrow, 12, 2.4)} ${t.delta}</span>` : ''}
+      </div>
+      <p>${t.p}</p>
+    </article>`).join('');
+}
+
+function renderRoster(){
+  document.getElementById('roster').innerHTML = NURSES.map(n => {
+    const pct = n.flagged ? (n.acted / n.flagged) * 100 : 0;
+    const tone = n.resp >= 3.5 ? 'slow' : n.resp >= 2.5 ? 'mid' : '';
+    return `<div class="rrow ${tone}">
+      <span class="rname"><span class="rinit">${n.init}</span><b>${n.name}</b></span>
+      <span class="rbar" role="img"
+        aria-label="${n.acted} of ${n.flagged} flags acted on, median response ${n.resp} days">
+        <i style="width:${Math.max(pct, 5)}%"></i>
+      </span>
+      <span class="rfrac">${n.acted}/${n.flagged}</span>
+      <span class="rresp">${n.resp.toFixed(1)}d</span>
+    </div>`;
+  }).join('') + `<div class="rlegend">
+    <span class="lg"><i class="solid" style="border-color:var(--cyan)"></i> Bar: flags acted on</span>
+    <span class="lg">${ic('clock', 12, 2)} Right: median days to respond</span>
+  </div>
+  <p style="margin:9px 0 0; font-size:12px; color:var(--muted); line-height:1.5">
+    <span style="color:var(--hi-ink); font-weight:700">Morgan Lee is at 4.0 days</span>
+    with 1 of 2 flags acted on — the one worth a conversation this week.
+  </p>`;
+}
+
+function renderMgrTable(){
+  const rows = CLIENTS
+    .filter(c => c.flagged)
+    .filter(c => state.fNurse === 'All' || c.nurse === state.fNurse)
+    .filter(c => state.fTier === 'All' || c.tier === state.fTier)
+    .filter(c => state.fStatus === 'All' || c.status === state.fStatus)
+    .sort((a,b) => ({High:3,Medium:2,Low:1}[b.tier] - {High:3,Medium:2,Low:1}[a.tier]) || b.change - a.change);
+
+  document.getElementById('tableCount').textContent =
+    `${rows.length} of ${CLIENTS.filter(c => c.flagged).length} flags`;
+
+  document.getElementById('mgrTable').innerHTML = rows.length ? rows.map(c => {
+    const st = STATUS[c.status], up = c.change > 0;
+    const nurse = NURSES.find(n => n.name === c.nurse);
+    return `<tr>
+      <td>
+        <span class="tc-name">
+          <span class="tierdot ${c.tier.toLowerCase()}"></span>
+          <span><b>${c.name}</b><span class="case-id">#${c.id} · ${c.caseId}</span></span>
+        </span>
+      </td>
+      <td><span class="tc-nurse"><span class="rinit">${nurse.init}</span>${c.nurse}</span></td>
+      <td>
+        <span class="tc-score">
+          <b style="color:${TIER_HEX[c.tier]}">${c.score}</b>
+          <span class="pill ${c.tier.toLowerCase()}"><span class="pd"></span>${c.tier}</span>
+        </span>
+      </td>
+      <td>
+        <span class="tc-score">
+          ${sparkline(c.history, c.tier, 56, 20)}
+          <span class="trend ${up ? 'up' : 'down'}">${ic(up ? 'up' : 'down', 12, 2.4)} ${up ? '+' : ''}${c.change}</span>
+        </span>
+      </td>
+      <td><span class="chip">${ic(MODE_ICON[c.mode], 11, 2)} ${c.days}d · ${c.mode}</span></td>
+      <td><span class="pill ${st.cls}">${ic(st.icon, 11, 2.4)} ${st.label}</span></td>
+      <td>
+        <button class="linkbtn" data-open="${c.id}" data-nurse="${c.nurse}">
+          Open case ${ic('arrow', 13, 2.2)}
+        </button>
+      </td>
+    </tr>`;
+  }).join('') : `<tr><td colspan="7" style="padding:34px 14px; text-align:center; color:var(--muted)">
+      No flags match these filters. Widen a filter to see more.</td></tr>`;
+}
+
+/* ============================================================
+   WIRING
+   ============================================================ */
+function switchView(v){
+  state.view = v;
+  document.getElementById('tabNurse').setAttribute('aria-pressed', v === 'nurse');
+  document.getElementById('tabMgr').setAttribute('aria-pressed', v === 'mgr');
+  document.getElementById('viewNurse').classList.toggle('active', v === 'nurse');
+  document.getElementById('viewMgr').classList.toggle('active', v === 'mgr');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+let toastTimer;
+function toast(msg){
+  const t = document.getElementById('toast');
+  document.getElementById('toastText').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+function renderNurse(){ renderNurseTiles(); renderQueue(); renderDetail(); }
+
+document.getElementById('tabNurse').onclick = () => switchView('nurse');
+document.getElementById('tabMgr').onclick  = () => switchView('mgr');
+
+document.addEventListener('click', e => {
+  const openBtn = e.target.closest('[data-open]');
+  if (openBtn){
+    state.nurse = openBtn.dataset.nurse;
+    state.caseId = Number(openBtn.dataset.open);
+    document.getElementById('nursePick').value = state.nurse;
+    renderNurse();
+    switchView('nurse');
+    return;
+  }
+  const caseBtn = e.target.closest('[data-case]');
+  if (caseBtn){
+    state.caseId = Number(caseBtn.dataset.case);
+    renderQueue(); renderDetail();
+    return;
+  }
+  const act = e.target.closest('[data-act]');
+  if (act) toast(act.dataset.act);
+});
+
+/* pickers */
+const nursePick = document.getElementById('nursePick');
+nursePick.innerHTML = NURSES.map(n => `<option>${n.name}</option>`).join('');
+nursePick.value = state.nurse;
+nursePick.onchange = e => {
+  state.nurse = e.target.value;
+  state.caseId = myCases()[0]?.id ?? null;
+  renderNurse();
+};
+
+const fNurse = document.getElementById('fNurse');
+fNurse.innerHTML = '<option value="All">All nurses</option>' +
+  NURSES.map(n => `<option value="${n.name}">${n.name}</option>`).join('');
+fNurse.onchange  = e => { state.fNurse  = e.target.value; renderMgrTable(); };
+document.getElementById('fTier').onchange   = e => { state.fTier   = e.target.value; renderMgrTable(); };
+document.getElementById('fStatus').onchange = e => { state.fStatus = e.target.value; renderMgrTable(); };
+
+/* boot */
+renderNurse();
+renderMgrTiles();
+document.getElementById('trendChart').innerHTML = trendChart();
+renderRoster();
+renderMgrTable();
+</script>
+</body>
+</html>
