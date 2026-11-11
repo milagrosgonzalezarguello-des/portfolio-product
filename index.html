@@ -4873,6 +4873,26 @@ body .jf-t.will-in tbody td:first-child { translate: -14px 0; } body .jf-t.will-
 body .jf-t.is-in tbody td { opacity: 1; translate: 0 0; transition: opacity 520ms ease, translate 700ms cubic-bezier(0.16, 1, 0.3, 1), color 200ms ease, background-color 240ms ease; transition-delay: calc(var(--r, 0) * 90ms), calc(var(--r, 0) * 90ms), 0s, 0s; }
 body .jf-t.is-in tbody td:last-child { transition-delay: calc(var(--r, 0) * 90ms + 120ms), calc(var(--r, 0) * 90ms + 120ms), 0s, 0s; }
 @media (prefers-reduced-motion: reduce) { body .jf-t.will-in tbody td { opacity: 1; translate: none; } body .jf-t td:last-child::before { transition: none; } }
+
+/* ===== the accent phrase of each home heading takes the brand gradient, like the hero ===== */
+body .section h2 .wd.gw > span, body .jf-line span, body .jf-close b { background-image: linear-gradient(100deg, #5B7CFF 0%, #2338B8 38%, #4A2FD6 70%, #7B4DFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+:root[data-theme="dark"] body .section h2 .wd.gw > span, :root[data-theme="dark"] body .jf-line span, :root[data-theme="dark"] body .jf-close b { background-image: linear-gradient(100deg, #B9CCFF 0%, #86A8FF 38%, #9C8BFF 70%, #C3A6FF 100%); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body .section h2 .wd.gw > span, :root:not([data-theme="light"]) body .jf-line span, :root:not([data-theme="light"]) body .jf-close b { background-image: linear-gradient(100deg, #B9CCFF 0%, #86A8FF 38%, #9C8BFF 70%, #C3A6FF 100%); } }
+body .contact h2 .wd.gw > span { background-image: linear-gradient(100deg, #C9D6FF 0%, #A9BEFF 45%, #D5C2FF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+body .jf-close b { font-weight: inherit; }
+
+/* ===== case facts, compact: one tight row of small labels and values ===== */
+body .case .meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 0.85rem 1.5rem; padding-top: 1rem; margin-top: 1.5rem; }
+body .case .meta dt { font-size: 0.74rem; letter-spacing: 0.01em; }
+body .case .meta dd { margin-top: 0.15rem; font-size: 0.88rem; font-weight: 600; line-height: 1.35; }
+/* ===== the NDA lock: a small tile that tilts in 3D; the shackle lifts and clicks shut ===== */
+body .note:has(svg rect[x="4"][y="11"]) { align-items: center; gap: 0.8rem; perspective: 300px; }
+body .note svg:has(rect[x="4"][y="11"]) { width: 38px; height: 38px; margin: 0; padding: 9px; border-radius: 11px; overflow: visible; color: #fff; background: linear-gradient(140deg, #5B7CFF, #4A2FD6);
+  box-shadow: 0 10px 18px -8px rgba(51, 70, 232, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.35); animation: nda-tilt 5s ease-in-out infinite; transform-style: preserve-3d; }
+body .note svg:has(rect[x="4"][y="11"]) path { animation: nda-shackle 5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite; }
+@keyframes nda-tilt { 0%, 100% { transform: rotateY(-18deg) rotateX(6deg); } 50% { transform: rotateY(18deg) rotateX(-4deg); } }
+@keyframes nda-shackle { 0%, 55% { transform: translateY(0); } 65%, 80% { transform: translateY(-3.2px); } 88%, 100% { transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { body .note svg:has(rect[x="4"][y="11"]), body .note svg:has(rect[x="4"][y="11"]) path { animation: none; } }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -6221,7 +6241,7 @@ function start() {
       <p class="jf-lede">AI exposes the designer who only makes screens. Fast and good-looking is not the same as right.</p>
       <table class="jf-t"><thead><tr><th scope="col">What AI does</th><th scope="col">What I decide</th></tr></thead><tbody><tr><td>Makes screens and artifacts in minutes</td><td>Decide what should exist in the first place</td></tr><tr><td>Generates ten options</td><td>Define what success looks like, and pick the one that gets there</td></tr><tr><td>Automates whatever it is pointed at</td><td>Decide when automation builds trust and when it destroys it, and what should never be personalized</td></tr><tr><td>Follows the prompt</td><td>Read what is behind it: the business context, how users feel, what the organization can carry, the trade-offs</td></tr><tr><td>Behaves the same when it is unsure</td><td>Design how the product should behave when things are uncertain</td></tr><tr><td>Executes</td><td>Frame the problem, shape how the system behaves, and answer for the decision</td></tr></tbody></table>
       <p class="jf-base">The second column comes from my base in learning psychology: knowing how people think, trust and decide.</p>
-      <p class="jf-close">The market does not need more interfaces. It needs better decisions about which experiences deserve to exist.</p>
+      <p class="jf-close">The market does not need more interfaces. It needs <b>better decisions</b> about which experiences deserve to exist.</p>
     </div>
     <ol class="mg-steps"><li><h3>Frame it first</h3><p>The problem in one sentence, the person it is for and what they must be able to do. AI is fast at producing; it cannot tell me what matters.</p></li><li><h3>Prototype in days</h3><p>Claude and Lovable turn the flows into a working prototype with real logic and sample data. Court Funds was seven screens from one recorded call.</p></li><li><h3>Design in Figma, connect to code</h3><p>Components and variables in Figma; the Figma MCP reads them into the prototype, so a token has one name on both sides.</p></li><li><h3>Check, then ship</h3><p>A usability round or a look at PostHog to see where people stall, then a pass against how the work really happens.</p></li></ol>
     <p class="jf-note">I don't write production code: I describe, the model writes, and I read, test and ship what it wrote.</p>
@@ -11531,6 +11551,14 @@ document.addEventListener('click', function (e) {
   }, { threshold: 0.25 }).observe(t);
   t.addEventListener('pointerenter', function () { paused = true; rows.forEach(function (r) { r.classList.remove('is-hot'); }); });
   t.addEventListener('pointerleave', function () { paused = false; });
+})();
+</script>
+
+<script>
+// The last words of each home heading carry the brand gradient (the headings are split into words by the entrance script).
+(function () {
+  var map = { 'work-title': 1, 'ai-title': 3, 'how-title': 1, 'lead-title': 1, 'proof-title': 1, 'contact-title': 3 };
+  Object.keys(map).forEach(function (id) { var h2 = document.getElementById(id); if (!h2) return; var w = h2.querySelectorAll('.wd'); for (var i = Math.max(0, w.length - map[id]); i < w.length; i++) w[i].classList.add('gw'); });
 })();
 </script>
 </body>
