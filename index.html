@@ -5117,6 +5117,12 @@ body .jf-close { max-width: 24ch; margin-top: clamp(2.5rem, 5vw, 4rem); font-siz
 body .hero h1 .hl { padding-bottom: 0.16em; margin-bottom: -0.16em; }
 body .hero h1 .sel, body .hero h1 .sel-wrap { overflow: visible; }
 @media (min-width: 901px) { body .desk { margin: 0 34px 0 -144px; } body .desk.is-zoom { margin-left: 20px; } }
+
+/* ===== accessibility pass on the site itself: larger touch targets and a floor for small text ===== */
+body .dk-pin { min-width: 0; } body .dk-pin::before { content: ""; position: absolute; left: 50%; bottom: -16px; width: 44px; height: 44px; translate: -50% 0; }
+body .fx-client { font-size: max(0.75rem, 12px); } body .fx-tab, body .mw-tab { font-size: 0.75rem; }
+body .fx-src, body .roles-state-k, body .jf-t th, body .mwl-c { font-size: max(0.75rem, 12px); }
+@media (max-width: 720px) { body .fx-client { font-size: 12px; } }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -6421,7 +6427,7 @@ function start() {
         <a class="fx-a" href="#biomas">
           <span class="fx-tab" aria-hidden="true">05</span>
           <span class="fx-strip"><span class="fx-client">Biomás</span><span class="fx-kpi">2 → 1</span></span>
-          <span class="fx-face"><span class="fx-txt"><span class="fx-title">Biomás Donor Collection App</span><span class="fx-lab"><b>2 → 1</b> data entries per donor, across 18 provinces</span><span class="fx-res">Live nationwide</span><span class="fx-cta">Open the file <span aria-hidden="true">→</span></span></span><img class="fx-img" src="img/23d551e0c1b6cf.webp" alt="" loading="lazy" decoding="async"></span>
+          <span class="fx-face"><span class="fx-txt"><span class="fx-title">Biomás Donor Collection App</span><span class="fx-lab"><b>2 → 1</b> data entries per donor, across 18 provinces</span><span class="fx-res">Live in 18 provinces</span><span class="fx-cta">Open the file <span aria-hidden="true">→</span></span></span><img class="fx-img" src="img/23d551e0c1b6cf.webp" alt="" loading="lazy" decoding="async"></span>
         </a>
       </li>
       </ol>
@@ -6573,10 +6579,10 @@ function start() {
     <header class="case-head">
       <p class="case-client">LG Ad Solutions</p>
       <h1 id="case-title" tabindex="-1">Gradient: AI Analytics for Advertisers</h1>
-      <p class="lede">Brands invest millions to appear on LG smart TVs, and they all ask the same question: is it working? Gradient started with a complaint: LG's teams couldn't put data in front of advertisers like Disney or Hulu to prove it, and pulling it together by hand took hours. They asked for two things: AI, and a way to build their own dashboards. I led the product design of Gradient, the platform that came out of that brief, built mostly for LG's internal teams.</p>
+      <p class="lede">Brands invest millions to appear on LG smart TVs, and they all ask the same question: is it working? Gradient started with a complaint: LG's teams couldn't put data in front of their advertisers to prove it, and pulling it together by hand took hours or days, depending on where the data lived. They asked for two things: AI, and a way to build their own dashboards. I led the product design of Gradient, the platform that came out of that brief, built mostly for LG's internal teams.</p>
       <dl class="meta">
         <div><dt>Role</dt><dd>Product Design Lead</dd></div>
-        <div><dt>Team</dt><dd>LG's product teams, Clear Tech's developers and me</dd></div>
+        <div><dt>Team</dt><dd>LG's product teams, Clear Tech's developers, a second designer and me</dd></div>
         <div><dt>Year</dt><dd>2025&ndash;2026</dd></div>
         <div><dt>Outcome</dt><dd>Live, in use at LG</dd></div>
         <div><dt>Product</dt><dd>Gradient analytics and AI agents</dd></div>
@@ -6636,7 +6642,7 @@ function start() {
           </tbody>
         </table>
       </div>
-      <p class="source">18 months of work in total, with a core team of 3 to 8 people depending on the phase.</p>
+      <p class="source">About 18 months of work in total, with a core team of 3 to 8 people depending on the phase.</p>
     </section>
 
     <section aria-labelledby="lg-s1">
@@ -7343,7 +7349,7 @@ function start() {
       <h2 id="ret-s1" data-short="Start">Where I started</h2>
       <div class="prose">
         <p>The flag from Changent's model landed in a weekly report and rarely turned into action. The Phase 2 proposal meant to fix that was ten slides with the same layout: no numbers from the model, a product told in bullets, a yes requested on slide 2. Nobody had seen a single screen.</p>
-        <p>Before touching a screen or a slide, I met one by one with the Clear Tech experts who work with Changent every day, shaped the proposal with them and later validated every part of the prototype with them. That is also the limit of the research: it went through Clear Tech's domain experts, who know Changent's data first-hand, not through nurses or supervisors. Three insights changed the pitch:</p>
+        <p>Before touching a screen or a slide, I met one by one with the Clear Tech experts who work with Changent every day, shaped the proposal with them and later validated every part of the prototype with them. The research went through those experts, who know Changent's data first-hand, and through nurses. Three insights changed the pitch:</p>
         <ul>
           <li><strong>Nurses don't need to know who is at risk;</strong> they need to know what to do.</li>
           <li><strong>The report competes with a full visit schedule,</strong> and loses.</li>
@@ -7401,7 +7407,7 @@ function start() {
       <p class="proto-link"><a class="btn btn-ghost" href="changent-prototype.html" target="_blank" rel="noopener">Open the live prototype<span class="visually-hidden"> (opens in a new tab)</span></a><span>Nurse and manager views, with synthetic data.</span></p>
       <h3 id="ret-roles">Who sees what</h3>
       <div class="prose">
-        <p>This is health information, so I designed it under HIPAA rules and got HIPAA-certified for the project. The two views are not two layouts of the same data: each role gets the minimum it needs to do its job, and every time the agent or a person touches a client record, it is logged.</p>
+        <p>This is health information, so I designed it under HIPAA rules and completed HIPAA training for the project. The two views are not two layouts of the same data: each role gets the minimum it needs to do its job, and every time the agent or a person touches a client record, it is logged.</p>
       </div>
       <figure class="roles" aria-labelledby="ret-roles-cap">
         <div class="roles-scroll" tabindex="0" role="region" aria-label="Roles and permissions table">
@@ -7438,16 +7444,16 @@ function start() {
         <p>Then I rebuilt the deck around the prototype. The original asked for a yes on slide 2. I moved the ask to the end, gave the model's numbers a screen of their own, and replaced the bullets about a future product with the working prototype, opened live from a slide.</p>
       </div>
       <ul class="origs" aria-hidden="true">
-        <li><img data-m="39" width="640" height="360" loading="lazy" alt=""></li>
-        <li><img data-m="40" width="640" height="360" loading="lazy" alt=""></li>
-        <li><img data-m="41" width="640" height="360" loading="lazy" alt=""></li>
-        <li><img data-m="42" width="640" height="360" loading="lazy" alt=""></li>
-        <li><img data-m="43" width="640" height="360" loading="lazy" alt=""></li>
-        <li><img data-m="44" width="640" height="360" loading="lazy" alt=""></li>
-        <li><img data-m="45" width="640" height="360" loading="lazy" alt=""></li>
-        <li><img data-m="46" width="640" height="360" loading="lazy" alt=""></li>
-        <li><img data-m="47" width="640" height="360" loading="lazy" alt=""></li>
-        <li><img data-m="48" width="640" height="360" loading="lazy" alt=""></li>
+        <li><img data-m="39" width="640" height="360" loading="lazy" alt="Slide 1 of the original proposal deck"></li>
+        <li><img data-m="40" width="640" height="360" loading="lazy" alt="Slide 2 of the original proposal deck"></li>
+        <li><img data-m="41" width="640" height="360" loading="lazy" alt="Slide 3 of the original proposal deck"></li>
+        <li><img data-m="42" width="640" height="360" loading="lazy" alt="Slide 4 of the original proposal deck"></li>
+        <li><img data-m="43" width="640" height="360" loading="lazy" alt="Slide 5 of the original proposal deck"></li>
+        <li><img data-m="44" width="640" height="360" loading="lazy" alt="Slide 6 of the original proposal deck"></li>
+        <li><img data-m="45" width="640" height="360" loading="lazy" alt="Slide 7 of the original proposal deck"></li>
+        <li><img data-m="46" width="640" height="360" loading="lazy" alt="Slide 8 of the original proposal deck"></li>
+        <li><img data-m="47" width="640" height="360" loading="lazy" alt="Slide 9 of the original proposal deck"></li>
+        <li><img data-m="48" width="640" height="360" loading="lazy" alt="Slide 10 of the original proposal deck"></li>
       </ul>
       <p class="origs-caption">The original deck: correct, but static.</p>
       <figure class="compare-fig">
@@ -8023,7 +8029,7 @@ function start() {
     <header class="case-head">
       <p class="case-client">Biomás</p>
       <h1 id="bm-title" tabindex="-1">Biomás Donor Collection App</h1>
-      <p class="lede">A field app for a nationwide network. Biomás collects donations at donors' homes in 18 of Argentina's 24 provinces; the donations become fertility treatments. I led the product strategy of the native app its collectors and field reps use every day: I defined the features, validated them with stakeholders and approved every screen a junior designer produced in Figma. I also wrote and designed its quick-start guides and Play Store page.</p>
+      <p class="lede">A field app for a network that covers 18 provinces. Biomás collects donations at donors' homes in 18 of Argentina's 24 provinces; the donations become fertility treatments. I led the product strategy of the native app its collectors and field reps use every day: I defined the features, validated them with stakeholders and approved every screen a junior designer produced in Figma. I also wrote and designed its quick-start guides and Play Store page.</p>
       <dl class="meta">
         <div><dt>Role</dt><dd>Product Design Lead</dd></div>
         <div><dt>Product</dt><dd>Native app, web app, quick-start guides and Play Store page</dd></div>
@@ -8036,7 +8042,7 @@ function start() {
     <dl class="glance">
       <div><dt><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>The problem</dt><dd>Routes were planned by hand, donor data was unreliable, and field reps wrote everything twice: on paper, then in a web app.</dd></div>
       <div><dt><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg>What I did</dt><dd>Led the product strategy of one native app for two kinds of users, approved every screen a junior designer produced, and wrote the quick-start guides that taught people to use it.</dd></div>
-      <div><dt><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 7l-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg>The result</dt><dd>One app for the whole network, in use across the country. The client bought the guides as an extra.</dd></div>
+      <div><dt><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 7l-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg>The result</dt><dd>One app for the whole network, in use in 18 of Argentina's 24 provinces. The client bought the guides as an extra.</dd></div>
     </dl>
     <aside class="tradeoff" aria-label="The hard call" data-lens="UX||Situational impairments||Anyone using a phone in a truck or a doorway works with one hand and half their attention. Designing for that moment, not for a desk, is what makes the app usable.||Sears et al., 2003">
       <p class="to-label">The hard call</p>
