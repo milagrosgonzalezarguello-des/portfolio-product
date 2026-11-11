@@ -1956,9 +1956,9 @@ body .logistics { color: var(--muted); font-size: 0.92rem; }
 body .logistics .i { color: var(--muted); }
 body .lens-hint { color: var(--muted); }
 body .hero-work { aspect-ratio: 1 / 1.02; }
-body .hw img { border: 0; border-radius: 12px; box-shadow: var(--shadow-plate); background: var(--surface); }
-body .hw-3 img { border-radius: 16px; }
-body .hw-1 img, body .hw-2 img { box-shadow: var(--shadow-plate); }
+body .mg-steps img { border: 0; border-radius: 12px; box-shadow: var(--shadow-plate); background: var(--surface); }
+body .pw-3 img { border-radius: 16px; }
+body .pw-1 img, body .pw-2 img { box-shadow: var(--shadow-plate); }
 
 /* the bridge, drawn, not edited */
 body .bk-pill rect { fill: var(--paper); stroke: var(--ink); stroke-width: 1; }
@@ -2236,7 +2236,7 @@ body .hero .actions { margin-top: var(--s4); }
 body .hero .logistics { margin-top: var(--s3); font-size: 0.88rem; gap: 0.35rem 1.25rem; }
 body .lens-hint { margin-top: var(--s2); font-size: 0.92rem; }
 body .hero-work { aspect-ratio: 1 / 0.92; }
-body .hw-1 { width: 86%; } body .hw-2 { width: 66%; top: 38%; } body .hw-3 { width: 54%; }
+body .pw-1 { width: 86%; } body .pw-2 { width: 66%; top: 38%; } body .pw-3 { width: 54%; }
 body #curve { margin-top: var(--s6); }
 body .curve-caption { margin: var(--s3) auto 0; text-align: center; }
 body .facts { margin-top: var(--s5); }
@@ -4665,14 +4665,17 @@ body .tp-wrong li p:last-child { color: var(--ink); } body .tp-wrong li p:last-c
 }
 @media (max-width: 900px) { body .tp-item { margin-bottom: 1.5rem; } body .tp-btn { cursor: default; padding-right: 0; } body .tp-btn b { opacity: 1; } body .tp-proof { margin: 0.5rem 0 0 1.4rem; } }
 @media (prefers-reduced-motion: reduce) { body .tp-proof { transition: none; translate: none; } }
-body .hw { width: 100% !important; max-width: 100% !important; box-sizing: border-box; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 1.75rem; margin: 0; padding: 0; list-style: none; counter-reset: hw; }
-body .hw li { position: relative; padding-top: 2.6rem; counter-increment: hw; }
-body .hw li::before { content: counter(hw); position: absolute; top: 0; left: 0; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: var(--paper); font: 700 0.8rem/1 var(--sans); z-index: 1; }
-body .hw li::after { content: ""; position: absolute; top: 13px; left: 28px; right: -1.75rem; height: 2px; background: var(--line); }
-body .hw li:last-child::after { display: none; }
-body .hw h3 { margin: 0 0 0.45rem; font-size: 1.15rem; line-height: 1.25; letter-spacing: -0.01em; }
-body .hw p { margin: 0; font-size: 0.94rem; line-height: 1.55; color: var(--muted); }
-@media (max-width: 900px) { body .hw { grid-template-columns: 1fr; gap: 1.5rem; } body .hw li { padding: 0 0 0 2.75rem; } body .hw li::after { top: 28px; bottom: -1.5rem; left: 13px; right: auto; width: 2px; height: auto; } }
+body .mg-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 1.75rem; margin: 0; padding: 0; list-style: none; counter-reset: hw; }
+body .mg-steps li { position: relative; padding-top: 2.6rem; counter-increment: hw; }
+body .mg-steps li::before { content: counter(hw); position: absolute; top: 0; left: 0; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: var(--paper); font: 700 0.8rem/1 var(--sans); z-index: 1; }
+body .mg-steps li::after { content: ""; position: absolute; top: 13px; left: 28px; right: -1.75rem; height: 2px; background: var(--line); }
+body .mg-steps li:last-child::after { display: none; }
+body .mg-steps h3 { margin: 0 0 0.45rem; font-size: 1.15rem; line-height: 1.25; letter-spacing: -0.01em; }
+body .mg-steps p { margin: 0; font-size: 0.94rem; line-height: 1.55; color: var(--muted); }
+@media (max-width: 900px) { body .mg-steps { grid-template-columns: 1fr; gap: 1.5rem; } body .mg-steps li { padding: 0 0 0 2.75rem; } body .mg-steps li::after { top: 28px; bottom: -1.5rem; left: 13px; right: auto; width: 2px; height: auto; } }
+/* every hotspot carries its name, so none is a mystery dot */
+@media (hover: hover) and (pointer: fine) { body .desk.is-3d .dk-pin:not(.dk-go) span { opacity: 1; transform: none; } }
+body .dk-pin:not(.dk-go) span { padding: 0.36rem 0.7rem; font-size: 0.76rem; }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -5919,7 +5922,7 @@ function start() {
       <h2 id="how-title">How I work</h2>
       <p>Product design × psychology × making. I don't write production code: I describe, the model writes, and I read, test and ship what it wrote. The judgment of what to keep is the job.</p>
     </div>
-    <ol class="hw"><li><h3>Frame it first</h3><p>The problem in one sentence, the person it is for and what they must be able to do. AI is fast at producing; it cannot tell me what matters.</p></li><li><h3>Prototype in days</h3><p>Claude and Lovable turn the flows into a working prototype with real logic and sample data. Court Funds was seven screens from one recorded call.</p></li><li><h3>Design in Figma, connect to code</h3><p>Components and variables in Figma; the Figma MCP reads them into the prototype, so a token has one name on both sides.</p></li><li><h3>Check, then ship</h3><p>A usability round or a look at PostHog to see where people stall, then a pass against how the work really happens.</p></li></ol>
+    <ol class="mg-steps"><li><h3>Frame it first</h3><p>The problem in one sentence, the person it is for and what they must be able to do. AI is fast at producing; it cannot tell me what matters.</p></li><li><h3>Prototype in days</h3><p>Claude and Lovable turn the flows into a working prototype with real logic and sample data. Court Funds was seven screens from one recorded call.</p></li><li><h3>Design in Figma, connect to code</h3><p>Components and variables in Figma; the Figma MCP reads them into the prototype, so a token has one name on both sides.</p></li><li><h3>Check, then ship</h3><p>A usability round or a look at PostHog to see where people stall, then a pass against how the work really happens.</p></li></ol>
   </section>
 
     <section class="section wrap" id="lead" aria-labelledby="lead-title">
