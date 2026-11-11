@@ -3554,31 +3554,7 @@ body .contact.glow::after { content: ""; position: absolute; z-index: -1; inset:
   background: radial-gradient(520px circle at var(--gx, 70%) var(--gy, 30%), rgba(160, 180, 255, 0.28), transparent 65%); transition: opacity 500ms ease; }
 body .contact.glow:hover::after { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { body .contact.glow::after, body #view-home .feature-media.lit .pm-light { display: none; } }
-/* ===== 2026-11-07: hero sphere, the same universe as the ID page (id.css), scoped to the product hero ===== */
-body .hero-sphere { position: relative; margin: 0; align-self: center; min-width: 0; width: 100%; }
-body .hero-sphere .uni-stage { position: relative; height: clamp(400px, 44vw, 600px); touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
-body .hero-sphere .uni-stage.is-dragging { cursor: grabbing; }
-body .hero-sphere .uni-stage::before { content: ""; position: absolute; inset: 12%; border-radius: 50%; pointer-events: none;
-  background: radial-gradient(closest-side, color-mix(in srgb, #5B7CFF 26%, transparent), color-mix(in srgb, #6A3CF0 10%, transparent) 55%, transparent 75%); filter: blur(8px); }
-body .hero-sphere .uni-stage::after { content: ""; position: absolute; left: 50%; top: 50%; width: 84%; height: 30%; translate: -50% -50%; rotate: -12deg; border-radius: 50%; pointer-events: none;
-  border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent); }
-body .hero-sphere .uni-card { position: absolute; left: 0; top: 0; width: clamp(86px, 8.6vw, 124px); aspect-ratio: 4 / 3; border-radius: 10px; overflow: hidden; display: block;
-  background: var(--paper); text-decoration: none; transform-origin: 50% 50%; will-change: transform, opacity; opacity: 0;
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 12%, transparent), 0 16px 30px -16px rgba(12, 16, 48, 0.55); transition: box-shadow 250ms ease; }
-body .hero-sphere .uni-stage.is-ready .uni-card { opacity: 1; }
-body .hero-sphere .uni-card img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; pointer-events: none; -webkit-user-drag: none; }
-body .hero-sphere .uni-card span { position: absolute; inset: auto 0 0 0; padding: 0.35rem 0.45rem; font: 600 0.6rem/1.25 var(--sans); color: #fff; letter-spacing: 0.01em;
-  background: linear-gradient(transparent, rgba(10, 12, 30, 0.88)); opacity: 0; translate: 0 4px; transition: opacity 200ms ease, translate 200ms ease; }
-body .hero-sphere .uni-card:hover, body .hero-sphere .uni-card:focus-visible { box-shadow: 0 0 0 2px #5B7CFF, 0 22px 40px -16px rgba(35, 56, 184, 0.65); }
-body .hero-sphere .uni-card:hover span, body .hero-sphere .uni-card:focus-visible span { opacity: 1; translate: 0 0; }
-body .hero-sphere .uni-card:focus-visible { outline: none; }
-body .hero-sphere .uni-legend { display: flex; justify-content: center; margin: 0.5rem 0 0; font: 500 0.7rem/1.3 var(--sans); letter-spacing: 0.04em; color: var(--muted); }
-@media (prefers-reduced-motion: reduce) { body .hero-sphere .uni-hint { display: none; } }
-@media (max-width: 900px) {
-  body .hero-sphere { margin-top: 1.5rem; max-width: 620px; justify-self: center; }
-  body .hero-sphere .uni-stage { height: 360px; }
-  body .hero-sphere .uni-card { width: 78px; }
-}
+
 /* ===== 2026-11-07, round 13: after the outside review ===== */
 /* the Psychology lens as a switch you can't miss */
 body .lens-hint { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.85rem; }
@@ -4354,7 +4330,136 @@ body .case .oe-val-list > div { padding-top: 0.75rem; border-top: 1px solid colo
 body .case .oe-val-list dt { margin: 0; font: 600 0.82rem/1.3 var(--sans); color: #5B7CFF; }
 body .case .oe-val-list dd { margin: 0.35rem 0 0; font-size: 0.92rem; line-height: 1.5; color: var(--muted); max-width: 40ch; }
 body .case .prose code { font-family: var(--mono, ui-monospace, monospace); font-size: 0.9em; padding: 0.1em 0.4em; border-radius: 5px; background: color-mix(in srgb, var(--ink) 7%, var(--paper)); }
+/* ===== 2026-11-11: the hero studio. The 3D room from the ID page, on the product hero: me, my studies, my tools; the screen leads to the work ===== */
+body .desk, body .dk-stage.is-fill { --mo-ease: cubic-bezier(0.16, 1, 0.3, 1); }
+body .desk { position: relative; align-self: center; min-width: 0; height: clamp(480px, 46vw, 660px); margin: 0 clamp(-72px, -4vw, -16px) 0 -40px; }
+body .dk-stage { position: absolute; inset: 0; }
+body .dk-canvas { display: block; width: 100%; height: 100%; opacity: 0; transition: opacity 900ms var(--mo-ease); }
+body .desk.is-3d .dk-canvas { opacity: 1; }
+/* pins: a chip and a breathing dot, the way a map marks a place */
+body .dk-pins { position: absolute; inset: 0; pointer-events: none; }
+body .dk-pin { position: absolute; left: 0; top: 0; display: inline-flex; flex-direction: column; align-items: center; gap: 7px; padding: 0; border: 0; background: none; color: var(--ink);
+  cursor: pointer; pointer-events: auto; opacity: 0; transition: opacity 500ms var(--mo-ease); will-change: transform; }
+body .desk.is-3d .dk-pin { opacity: 1; }
+body .dk-pin span { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 0.85rem; border-radius: 999px; white-space: nowrap;
+  background: color-mix(in srgb, var(--paper) 86%, transparent); -webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: 0 10px 24px -14px rgba(20, 23, 40, 0.45), inset 0 0 0 1px color-mix(in srgb, var(--ink) 10%, transparent);
+  font: 600 0.82rem/1 var(--sans); letter-spacing: 0; transition: transform 260ms var(--mo-ease), box-shadow 260ms var(--mo-ease); }
+body .dk-pin i { position: relative; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--paper) 90%, transparent); }
+body .dk-pin i::after { content: ""; position: absolute; inset: -7px; border-radius: 50%; border: 2px solid var(--accent); opacity: 0; animation: dk-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite; }
+@keyframes dk-ping { 0% { transform: scale(0.5); opacity: 0.7; } 80%, 100% { transform: scale(1.6); opacity: 0; } }
+body .dk-pin:hover span, body .dk-pin.is-hot span, body .dk-pin[aria-expanded="true"] span { transform: translateY(-3px) scale(1.04); box-shadow: 0 16px 30px -14px rgba(20, 23, 40, 0.5), inset 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent); }
+body .dk-pin:focus-visible { outline: none; }
+body .dk-pin:focus-visible span { outline: 2px solid var(--accent); outline-offset: 3px; }
+body .dk-pin:active span { transform: scale(0.97); }
+body .dk-go span { background: var(--grad-accent, linear-gradient(120deg, #4A64F0, #6A3CF0)); color: #fff; box-shadow: 0 12px 28px -12px rgba(51, 70, 232, 0.7); }
+body .dk-go span::before { content: ""; width: 0; height: 0; border-style: solid; border-width: 5px 0 5px 8px; border-color: transparent transparent transparent currentColor; }
+body .dk-go i { background: #6A7BFF; }
+body .dk-hint { position: absolute; right: max(24px, calc((100vw - 1240px) / 2)); bottom: 28px; margin: 0; font: 500 0.78rem/1.3 var(--sans); letter-spacing: 0.02em; color: var(--muted);
+  opacity: 0; transition: opacity 400ms var(--mo-ease); }
+body .desk.is-3d .dk-hint { opacity: 1; }
+body .desk.has-card .dk-hint { opacity: 0; }
+/* cards: glass, beside the scene; they arrive with a short slide and a blur that clears */
+body .dk-card { position: absolute; z-index: 5; top: 50%; right: max(24px, calc((100vw - 1240px) / 2)); width: min(370px, calc(100vw - 48px)); padding: 1.5rem 1.5rem 1.4rem; border-radius: 22px;
+  background: color-mix(in srgb, var(--paper) 90%, transparent); -webkit-backdrop-filter: blur(22px) saturate(1.5); backdrop-filter: blur(22px) saturate(1.5);
+  box-shadow: 0 40px 80px -40px rgba(20, 23, 40, 0.55), inset 0 0 0 1px color-mix(in srgb, var(--ink) 10%, transparent);
+  opacity: 0; translate: 14px -50%; filter: blur(6px); transition: opacity 380ms var(--mo-ease), translate 480ms var(--mo-ease), filter 380ms var(--mo-ease); }
+body .dk-card.is-open { opacity: 1; translate: 0 -50%; filter: none; }
+body .dk-card h2 { margin: 0 2.2rem 0.3rem 0; font: 700 1.45rem/1.15 var(--sans); letter-spacing: -0.015em; color: var(--ink); text-wrap: balance; }
+body .dk-card p { margin: 0 0 0.9rem; font-size: 0.95rem; line-height: 1.55; color: var(--muted); }
+body .dk-card .dk-role { font-size: 0.86rem; font-weight: 600; color: var(--accent-text, var(--accent)); margin-bottom: 0.8rem; }
+body .dk-x { position: absolute; top: 14px; right: 14px; display: grid; place-items: center; width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+  background: color-mix(in srgb, var(--ink) 7%, transparent); color: var(--ink); transition: background-color 160ms ease; }
+body .dk-x:hover { background: color-mix(in srgb, var(--ink) 13%, transparent); }
+body .dk-x svg { width: 16px; height: 16px; }
+body .dk-facts, body .dk-edu { display: grid; gap: 0.5rem; margin: 0 0 1.1rem; padding: 0; list-style: none; }
+body .dk-facts li { display: flex; align-items: center; gap: 0.55rem; font-size: 0.9rem; color: var(--ink); }
+body .dk-facts li::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+body .dk-facts .flags { display: inline-flex; gap: 0.2rem; } body .dk-facts .flag { width: 18px; height: auto; border-radius: 2px; }
+body .dk-edu { gap: 0.8rem; margin-bottom: 0.2rem; }
+body .dk-edu li { padding-left: 0.85rem; border-left: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+body .dk-edu b { display: block; font-size: 0.93rem; font-weight: 600; line-height: 1.35; color: var(--ink); }
+body .dk-edu span { font-size: 0.84rem; color: var(--muted); }
+body .dk-actions { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+body .dk-actions .btn { min-height: 42px; padding: 0.6rem 1.05rem; font-size: 0.9rem; }
+/* into the screen: the stage leaves the hero and fills the window; the copy steps aside */
+body .dk-stage.is-fill { background: var(--paper); transition: left 1000ms cubic-bezier(0.65, 0, 0.35, 1), top 1000ms cubic-bezier(0.65, 0, 0.35, 1), width 1000ms cubic-bezier(0.65, 0, 0.35, 1), height 1000ms cubic-bezier(0.65, 0, 0.35, 1); }
+body .dk-stage.is-leaving { opacity: 0; transition: opacity 480ms var(--mo-ease); }
+html.dk-flying { overflow: hidden; }
+html.dk-flying body .dk-pin, html.dk-flying body .dk-hint { opacity: 0 !important; pointer-events: none; }
+body .hero.is-flying .hero-copy { opacity: 0; translate: -28px 0; transition: opacity 420ms var(--mo-ease), translate 600ms var(--mo-ease); }
+/* without WebGL: the pins line up as buttons */
+body .desk.no3d .dk-pins { inset: auto; top: 50%; right: max(24px, calc((100vw - 1240px) / 2)); display: flex; flex-direction: column; align-items: flex-end; gap: 0.7rem; translate: 0 -50%; }
+body .desk.no3d .dk-pin { position: static; transform: none !important; opacity: 1; flex-direction: row; }
+body .desk.no3d .dk-pin i { display: none; }
+@media (prefers-reduced-motion: reduce) { body .dk-pin i::after { animation: none; } body .dk-card { filter: none; translate: 0 -50%; } }
+/* the picked pin steps aside while its card is open: the card already names it */
+body .desk.has-card .dk-pin[aria-expanded="true"] { opacity: 0; pointer-events: none; }
+body #view-home:not([hidden]) { animation-fill-mode: backwards; }
+/* ===== 2026-11-10: the desk, second pass. Close-ups for the diploma and the toolbox, Timón, a back button ===== */
+body .desk.is-zoom .dk-pin, body .desk.is-zoom .dk-hint { opacity: 0 !important; pointer-events: none; }
+body .dk-back { position: absolute; left: 50%; bottom: 28px; z-index: 6; display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.15rem; border: 0; border-radius: 999px; cursor: pointer;
+  background: color-mix(in srgb, var(--paper) 88%, transparent); -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4); color: var(--ink);
+  box-shadow: 0 14px 30px -16px rgba(20, 23, 40, 0.5), inset 0 0 0 1px color-mix(in srgb, var(--ink) 12%, transparent);
+  font: 600 0.88rem/1 var(--sans); translate: -50% 0; animation: dk-up 420ms var(--mo-ease) both; transition: background-color 160ms ease; }
+body .dk-back:hover { background: var(--paper); }
+body .dk-back:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+body .dk-back[hidden] { display: none; }
+@keyframes dk-up { from { opacity: 0; translate: -50% 10px; } to { opacity: 1; translate: -50% 0; } }
+@media (prefers-reduced-motion: reduce) { body .dk-back { animation: none; } }
+/* the tools card is the fallback without WebGL: the list as small chips */
+body .dk-tools { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
+body .dk-tools li { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.3rem 0.6rem; border-radius: 999px; font-size: 0.8rem; color: var(--ink);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 12%, transparent); }
+body .dk-tools svg { width: 14px; height: 14px; fill: currentColor; }
+body .dk-tools b { font-size: 0.66rem; }
+@media (max-width: 600px) { body .dk-pin span { padding: 0.36rem 0.6rem; font-size: 0.7rem; } body .dk-pin { gap: 4px; } body .dk-pin i { width: 8px; height: 8px; } body .dk-go span::before { border-width: 4px 0 4px 6px; } }
+/* ===== 2026-11-10: the pins arrive one by one once the room has settled, with a small spring ===== */
+body .desk.is-3d .dk-pin span { animation: dk-pop 620ms cubic-bezier(0.34, 1.56, 0.64, 1) both; animation-delay: calc(1400ms + var(--n, 0) * 110ms); }
+body .desk.is-3d .dk-pin i { animation: dk-dot 420ms cubic-bezier(0.34, 1.56, 0.64, 1) both; animation-delay: calc(1300ms + var(--n, 0) * 110ms); }
+@keyframes dk-pop { from { opacity: 0; transform: translateY(8px) scale(0.6); } to { opacity: 1; transform: none; } }
+@keyframes dk-dot { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: none; } }
+body .desk.is-3d .dk-pin:hover span, body .desk.is-3d .dk-pin.is-hot span, body .desk.is-3d .dk-pin[aria-expanded="true"] span { animation: none; }
+@media (prefers-reduced-motion: reduce) { body .desk.is-3d .dk-pin span, body .desk.is-3d .dk-pin i { animation: none; } }
+/* ===== 2026-11-10: on the screen, the real Start the course button sits over the drawn one and invites a press ===== */
+body .dk-start { position: absolute; z-index: 6; padding: 0; border: 0; border-radius: 999px; background: transparent; cursor: pointer;
+  box-shadow: 0 0 0 0 rgba(106, 123, 255, 0.55); animation: dk-invite 1.8s ease-out infinite; }
+body .dk-start[hidden] { display: none; }
+body .dk-start:hover { box-shadow: 0 0 0 6px rgba(106, 123, 255, 0.28); animation: none; }
+body .dk-start:active { scale: 0.97; }
+body .dk-start:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 4px; }
+@keyframes dk-invite { 0% { box-shadow: 0 0 0 0 rgba(106, 123, 255, 0.55); } 100% { box-shadow: 0 0 0 22px rgba(106, 123, 255, 0); } }
+@media (prefers-reduced-motion: reduce) { body .dk-start { animation: none; } }
+/* ===== 2026-11-10: quieter hotspots. A breathing dot on each object; its name appears when you point at it.
+   Start the course keeps its label (it is the main action); touch screens keep every label (there is no hover) ===== */
+body .dk-pin i { width: 12px; height: 12px; box-shadow: 0 0 0 3px color-mix(in srgb, var(--paper) 92%, transparent), 0 4px 10px rgba(20, 23, 40, 0.35); }
+@media (hover: hover) and (pointer: fine) {
+  body .desk.is-3d .dk-pin:not(.dk-go) span { animation: none; opacity: 0; transform: translateY(6px) scale(0.92); transition: opacity 240ms ease, transform 360ms cubic-bezier(0.16, 1, 0.3, 1); }
+  body .desk.is-3d .dk-pin:not(.dk-go):hover span, body .desk.is-3d .dk-pin:not(.dk-go).is-hot span, body .desk.is-3d .dk-pin:not(.dk-go):focus-visible span { opacity: 1; transform: none; }
+  body .dk-pin:not(.dk-go) { padding-top: 0; }
+}
+/* the dot is the anchor: a pin's name floats above its dot instead of pushing the dot up off the object */
+body .dk-pin:not(.dk-go) { gap: 0; }
+body .dk-pin:not(.dk-go) span { position: absolute; left: 50%; bottom: calc(100% + 8px); translate: -50% 0; }
+/* product layout: the card sits on the room's right edge, the hint under the room */
+body .dk-card { top: 12px; right: 12px; width: min(340px, calc(100% - 24px)); translate: 14px 0; }
+body .dk-card.is-open { translate: 0 0; }
+body .dk-hint { right: auto; left: 50%; bottom: 10px; translate: -50% 0; white-space: nowrap; width: max-content; max-width: none; text-align: center; }
+/* the room has no frame: the canvas fades out at its edges, and pins never leave it */
+body .dk-stage:not(.is-fill) .dk-canvas { -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent), linear-gradient(to bottom, transparent, #000 5%, #000 93%, transparent); mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent), linear-gradient(to bottom, transparent, #000 5%, #000 93%, transparent); -webkit-mask-composite: source-in; mask-composite: intersect; }
+body .dk-stage:not(.is-fill) .dk-pins { overflow: clip; }
+body .desk.no3d .dk-pins { right: 12px; }
+body .dk-card h2 { font-family: var(--serif, var(--sans)); }
+@media (prefers-reduced-motion: reduce) { body .dk-card { translate: 0 0; } }
+@media (max-width: 900px) {
+  body .desk { height: clamp(340px, 96vw, 540px); margin: 1.25rem -16px 0; }
+  body .dk-hint { bottom: 4px; white-space: normal; width: calc(100% - 32px); max-width: none; text-align: center; }
+  body .dk-card { position: fixed; top: auto; bottom: 12px; left: 12px; right: 12px; width: auto; max-height: 72svh; overflow: auto; translate: 0 24px; z-index: 300; }
+  body .dk-card.is-open { translate: 0 0; }
+  body .desk.no3d .dk-pins { position: absolute; inset: 0; translate: none; justify-content: center; align-items: center; }
+}
 </style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -4402,7 +4507,7 @@ body .case .prose code { font-family: var(--mono, ui-monospace, monospace); font
     <div class="hero-grid">
       <div class="hero-copy">
       <p class="status-pill" data-lens="UX||F-shaped scanning||People scan the top and the left of a page first, so the one thing a recruiter needs to know sits right there.||Nielsen, 2006">Open to remote roles</p>
-      <h1 id="hero-title" data-lens="First impressions||People judge a page in a fraction of a second, so the value comes first, in two short sentences.||Lindgaard et al., 2006"><span class="hl">Complex products,</span> <span class="hl">made simple.</span> <span class="sel-wrap"><span class="sel"><span class="hl">Experiences</span> <span class="hl">people keep using.</span></span><span class="handle h-tl" aria-hidden="true"></span><span class="handle h-tr" aria-hidden="true"></span><span class="handle h-bl" aria-hidden="true"></span><span class="handle h-br" aria-hidden="true"></span><span class="sel-label" aria-hidden="true">Headline · 1 layer</span></span></h1>
+      <h1 id="hero-title" data-lens="First impressions||People judge a page in a fraction of a second, so the value comes first, in two short sentences.||Lindgaard et al., 2006"><span class="hl">Trained in how</span> <span class="hl">people think.</span> <span class="sel-wrap"><span class="sel"><span class="hl">Designing products</span> <span class="hl">they just get.</span></span><span class="handle h-tl" aria-hidden="true"></span><span class="handle h-tr" aria-hidden="true"></span><span class="handle h-bl" aria-hidden="true"></span><span class="handle h-br" aria-hidden="true"></span><span class="sel-label" aria-hidden="true">Headline · 1 layer</span></span></h1>
       <ul class="hero-tags" aria-label="Disciplines" data-lens="Chunking||Three short tags are easier to take in than a sentence. Working memory loves small groups.||Miller, 1956; Cowan, 2001">
         <li>AI and data products</li>
         <li>B2B and B2G platforms</li>
@@ -4422,7 +4527,923 @@ body .case .prose code { font-family: var(--mono, ui-monospace, monospace); font
       </ul>
       <p class="lens-hint"><span class="lens-why">Every choice on this page has a reason from psychology.</span> <button type="button" class="link-btn lens-switch" data-lens-toggle aria-pressed="false">Show the Psychology lens</button></p>
       </div>
-      <aside class="hero-sphere" aria-label="Screens from my work" data-lens="UX||Information scent||People follow cues that promise what they came for. Real screens up front tell a recruiter the work is right here.||Pirolli and Card, 1999"><div class="uni-stage"><a class="uni-card" href="#lg"><img src="img/0050494a918169.webp" alt="" decoding="async"><span>LG Ad Solutions · Analytics home</span></a><a class="uni-card" href="#retention"><img src="img/f19ebe00552e43.webp" alt="" decoding="async"><span>Changent · Nurse view</span></a><a class="uni-card" href="#designsystem"><img src="img/9cccd7433058d6.webp" alt="" decoding="async"><span>Clear Tech · Design system</span></a><a class="uni-card" href="#pengui"><img src="img/84f6977dfcb762.webp" alt="" decoding="async"><span>Pengui · Workspace</span></a><a class="uni-card" href="#banking"><img src="img/b40de36ae2579d.webp" alt="" decoding="async"><span>Court funds · Dashboard</span></a><a class="uni-card" href="#biomas"><img src="img/59c289b7a090d0.webp" alt="" decoding="async"><span>Biomás · Route</span></a><a class="uni-card" href="#cammesa"><img src="img/04d0e561f59b7c.webp" alt="" decoding="async"><span>CAMMESA · Upload</span></a><a class="uni-card" href="#uxguide"><img src="img/75b5bce4661a90.webp" alt="" decoding="async"><span>Power BI standards · Color</span></a><a class="uni-card" href="#rif"><img src="img/1c8b18ff0eb23a.webp" alt="" decoding="async"><span>Workforce reduction · Roster</span></a><a class="uni-card" href="#scoreboard"><img src="img/610213784abef4.webp" alt="" decoding="async"><span>Sales scoreboard · Clients</span></a><a class="uni-card" href="#realestate"><img src="img/51adc8389cdd6f.webp" alt="" decoding="async"><span>Investor site · Track record</span></a><a class="uni-card" href="#lg"><img src="img/994c7f2ec34696.webp" alt="" decoding="async"><span>LG Ad Solutions · Agent marketplace</span></a><a class="uni-card" href="#retention"><img src="img/0c5da834cb10df.webp" alt="" decoding="async"><span>Changent · Prediction to action</span></a><a class="uni-card" href="#designsystem"><img src="img/daa8abf380d816.webp" alt="" decoding="async"><span>Clear Tech · Brand rules</span></a><a class="uni-card" href="#pengui"><img src="img/5955e7314ef4af.webp" alt="" decoding="async"><span>Pengui · Create an agent</span></a><a class="uni-card" href="#banking"><img src="img/58a50695d55b50.webp" alt="" decoding="async"><span>Court funds · Approvals</span></a><a class="uni-card" href="#biomas"><img src="img/82ffa3f784f429.webp" alt="" decoding="async"><span>Biomás · Donor list</span></a><a class="uni-card" href="#cammesa"><img src="img/06c994edf05b2c.webp" alt="" decoding="async"><span>CAMMESA · Upload history</span></a><a class="uni-card" href="#uxguide"><img src="img/372166020f8190.webp" alt="" decoding="async"><span>Power BI standards · Tables</span></a><a class="uni-card" href="#rif"><img src="img/23010c72996a5e.webp" alt="" decoding="async"><span>Workforce reduction · Summary</span></a><a class="uni-card" href="#realestate"><img src="img/38e4cf945fab5b.webp" alt="" decoding="async"><span>Investor site · Calculator</span></a><a class="uni-card" href="#lg"><img src="img/60a34f57ed13d1.webp" alt="" decoding="async"><span>LG Ad Solutions · AI agent</span></a><a class="uni-card" href="#retention"><img src="img/caf405bd5c0cf1.webp" alt="" decoding="async"><span>Changent · Supervisor view</span></a><a class="uni-card" href="#designsystem"><img src="img/89a5a2a9928774.webp" alt="" decoding="async"><span>Clear Tech · AI components</span></a><a class="uni-card" href="#pengui"><img src="img/2bc0e75a443a09.webp" alt="" decoding="async"><span>Pengui · Review and launch</span></a><a class="uni-card" href="#banking"><img src="img/8b7f18dea5d8bc.webp" alt="" decoding="async"><span>Court funds · Case files</span></a><a class="uni-card" href="#biomas"><img src="img/7dbde37856af46.webp" alt="" decoding="async"><span>Biomás · Design system</span></a><a class="uni-card" href="#lg"><img src="img/5456c8064bc110.webp" alt="" decoding="async"><span>LG Ad Solutions · Publish flow</span></a><a class="uni-card" href="#designsystem"><img src="img/b84e91602ec7e8.webp" alt="" decoding="async"><span>Clear Tech · Website</span></a><a class="uni-card" href="#biomas"><img src="img/2bded25a3bbb95.webp" alt="" decoding="async"><span>Biomás · Field guide</span></a></div><p class="uni-legend"><span class="uni-hint">Drag to spin · pick one to open its case</span></p></aside>
+      <div class="desk" id="desk" data-lens="UX||Curiosity gap||A scene to explore opens a small gap the visitor wants to close, and lets them choose where to start: me, my studies or the work.||Loewenstein, 1994"><div class="dk-stage"><canvas class="dk-canvas" aria-hidden="true"></canvas><div class="dk-pins" role="group" aria-label="Explore my studio"><button type="button" class="dk-pin" data-k="me" aria-expanded="false" aria-controls="dk-me"><i aria-hidden="true"></i><span>Me</span></button><button type="button" class="dk-pin" data-k="timon" aria-expanded="false" aria-controls="dk-timon"><i aria-hidden="true"></i><span>Timón</span></button><button type="button" class="dk-pin" data-k="tools" aria-expanded="false" aria-controls="dk-tools"><i aria-hidden="true"></i><span>Toolbox</span></button><button type="button" class="dk-pin" data-k="studies" aria-expanded="false" aria-controls="dk-studies"><i aria-hidden="true"></i><span>Studies</span></button><button type="button" class="dk-pin" data-k="board" aria-expanded="false" aria-controls="dk-board"><i aria-hidden="true"></i><span>My board</span></button><button type="button" class="dk-pin dk-go" data-k="course"><i aria-hidden="true"></i><span>See my work</span></button></div><button type="button" class="dk-start" hidden><span class="visually-hidden">See my work</span></button><button type="button" class="dk-back" hidden><span aria-hidden="true">←</span> Back to the studio</button><p class="dk-hint">Explore my studio. The screen takes you to my work.</p></div><section class="dk-card" id="dk-me" data-k="me" role="dialog" aria-labelledby="dk-me-t" hidden><button type="button" class="dk-x" aria-label="Close"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button><h2 id="dk-me-t">Hi, I'm Milagros</h2><p class="dk-role">Senior Product Designer and Design Lead · Learning psychologist</p><p>I studied how people think and learn before I designed a single screen. Now I turn complex B2B and AI products into tools people adopt, from problem framing to a working prototype.</p><ul class="dk-facts"><li>Product Design Lead at Clear Tech</li><li>Remote, full-time or contract</li><li>English and Spanish</li><li><span class="flags" aria-hidden="true"><svg class="flag" viewBox="0 0 27 18" aria-hidden="true"><rect width="27" height="18" rx="2.5" fill="#FFFFFF"/><path d="M2.5 0h22A2.5 2.5 0 0 1 27 2.5V6H0V2.5A2.5 2.5 0 0 1 2.5 0z" fill="#74ACDF"/><path d="M0 12h27v3.5a2.5 2.5 0 0 1-2.5 2.5h-22A2.5 2.5 0 0 1 0 15.5z" fill="#74ACDF"/><circle cx="13.5" cy="9" r="2.1" fill="#F6B40E"/><rect x="0.4" y="0.4" width="26.2" height="17.2" rx="2.1" fill="none" stroke="currentColor" stroke-opacity="0.28" stroke-width="0.8"/></svg><svg class="flag" viewBox="0 0 27 18" aria-hidden="true"><rect width="27" height="18" rx="2.5" fill="#F4F5F0"/><path d="M2.5 0H9v18H2.5A2.5 2.5 0 0 1 0 15.5v-13A2.5 2.5 0 0 1 2.5 0z" fill="#008C45"/><path d="M18 0h6.5A2.5 2.5 0 0 1 27 2.5v13a2.5 2.5 0 0 1-2.5 2.5H18z" fill="#CD212A"/><rect x="0.4" y="0.4" width="26.2" height="17.2" rx="2.1" fill="none" stroke="currentColor" stroke-opacity="0.28" stroke-width="0.8"/></svg></span>Argentine and Italian (EU) citizen</li></ul><div class="dk-actions"><a class="btn btn-ghost" href="cv.pdf" download="Milagros_Gonzalez_CV.pdf">Download CV<span class="visually-hidden"> (PDF)</span></a></div></section><section class="dk-card" id="dk-timon" data-k="timon" role="dialog" aria-labelledby="dk-ti-t" hidden><button type="button" class="dk-x" aria-label="Close"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button><h2 id="dk-ti-t">Timón</h2><p class="dk-role">Head of quality assurance</p><p>Every prototype goes past him before it ships. If a flow can't hold his attention, it goes back to the whiteboard.</p><p>A lucky dog: rescued from a pile of trash, he now lives like a king. And reviews like one.</p><ul class="dk-facts"><li>Prototypes reviewed: every single one</li><li>Paid in belly rubs</li></ul></section><section class="dk-card" id="dk-tools" data-k="tools" role="dialog" aria-labelledby="dk-to-t" hidden><button type="button" class="dk-x" aria-label="Close"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button><h2 id="dk-to-t">The toolbox</h2><p>What I design and build with.</p><ul class="dk-tools"><li class="tool"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.02 3.019 3.02h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zM8.148 8.981c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h3.117V8.981H8.148zM8.172 24c-2.489 0-4.515-2.014-4.515-4.49s2.014-4.49 4.49-4.49h4.588v4.441c0 2.503-2.047 4.539-4.563 4.539zm-.024-7.51a3.023 3.023 0 0 0-3.019 3.019c0 1.665 1.365 3.019 3.044 3.019 1.705 0 3.093-1.376 3.093-3.068v-2.97H8.148zm7.704 0h-.098c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h.098c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm-.097-7.509c-1.665 0-3.019 1.355-3.019 3.019s1.355 3.019 3.019 3.019h.098c1.665 0 3.019-1.355 3.019-3.019s-1.355-3.019-3.019-3.019h-.098z"/></svg><span>Figma</span></li><li class="tool"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg><span>Claude Code</span></li><li class="tool wm"><b aria-hidden="true">Cu</b><span>Cursor</span></li><li class="tool wm"><b aria-hidden="true">Lo</b><span>Lovable</span></li><li class="tool wm"><b aria-hidden="true">v0</b><span>v0</span></li><li class="tool wm"><b aria-hidden="true">Vc</b><span>Vercel</span></li><li class="tool wm"><b aria-hidden="true">GH</b><span>GitHub</span></li><li class="tool wm"><b aria-hidden="true">BI</b><span>Power BI</span></li><li class="tool"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg><span>ChatGPT</span></li><li class="tool"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg><span>Gemini</span></li><li class="tool wm"><b aria-hidden="true">Mj</b><span>Midjourney</span></li><li class="tool"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.53 10.73c-.1-.31-.19-.61-.29-.92-.1-.31-.19-.6-.27-.89-.08-.28-.15-.54-.22-.78h-.02c-.09.43-.2.86-.34 1.29-.15.48-.3.98-.46 1.48-.14.51-.29.98-.44 1.4h2.54c-.06-.211-.14-.46-.23-.721-.09-.269-.18-.559-.27-.859zM19.75.3H4.25C1.9.3 0 2.2 0 4.55v14.9c0 2.35 1.9 4.25 4.25 4.25h15.5c2.35 0 4.25-1.9 4.25-4.25V4.55C24 2.2 22.1.3 19.75.3zM14.7 16.83h-2.091c-.069.01-.139-.04-.159-.11l-.82-2.38H7.91l-.76 2.35c-.02.09-.1.15-.19.141H5.08c-.11 0-.14-.061-.11-.18L8.19 7.38c.03-.1.06-.21.1-.33.04-.21.06-.43.06-.65-.01-.05.03-.1.08-.11h2.59c.08 0 .12.03.13.08l3.65 10.3c.03.109 0 .16-.1.16zm3.4-.15c0 .11-.039.16-.129.16H16.01c-.1 0-.15-.061-.15-.16v-7.7c0-.1.041-.14.131-.14h1.98c.09 0 .129.05.129.14v7.7zm-.209-9.03c-.231.24-.571.37-.911.35-.33.01-.65-.12-.891-.35-.23-.25-.35-.58-.34-.92-.01-.34.12-.66.359-.89.242-.23.562-.35.892-.35.391 0 .689.12.91.35.22.24.34.56.33.89.01.34-.11.67-.349.92z"/></svg><span>Illustrator</span></li><li class="tool"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 10.665h-7.018l6.078-3.509-1.335-2.312-6.078 3.509 3.508-6.077L16.843.94l-3.508 6.077V0h-2.67v7.018L7.156.94 4.844 2.275l3.509 6.077-6.078-3.508L.94 7.156l6.078 3.509H0v2.67h7.017L.94 16.844l1.335 2.313 6.077-3.508-3.509 6.077 2.312 1.335 3.509-6.078V24h2.67v-7.017l3.508 6.077 2.312-1.335-3.509-6.078 6.078 3.509 1.335-2.313-6.077-3.508h7.017v-2.67H24zm-12 4.966a3.645 3.645 0 1 1 0-7.29 3.645 3.645 0 0 1 0 7.29z"/></svg><span>Loom</span></li><li class="tool"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zM6.962 7.68c.754 0 1.337.549 1.405 1.2.069.583-.171 1.097-.822 1.406-.343.171-.48.172-.549.069-.034-.069 0-.137.069-.206.617-.514.617-.926.548-1.508-.034-.378-.308-.618-.583-.618-1.2 0-2.914 2.674-2.674 4.629.103.754.549 1.646 1.509 1.646.308 0 .65-.103.96-.24.5-.264.799-.47 1.097-.8-.073-.885.704-2.046 1.851-2.046.515 0 .926.205.96.583.068.514-.377.582-.514.582s-.378-.034-.378-.17c-.034-.138.309-.07.275-.378-.035-.206-.24-.274-.446-.274-.72 0-1.131.994-1.029 1.611.035.275.172.549.447.549.205 0 .514-.31.617-.755.068-.308.343-.514.583-.514.102 0 .17.034.205.171v.138c-.034.137-.137.548-.102.651 0 .069.034.171.17.171.092 0 .436-.18.777-.459.117-.59.253-1.298.253-1.357.034-.24.137-.48.617-.48.103 0 .171.034.205.171v.138l-.136.617c.445-.583 1.097-.994 1.508-.994.172 0 .309.102.309.274 0 .103 0 .274-.069.446-.137.377-.309.96-.412 1.474 0 .137.035.274.207.274.171 0 .685-.206 1.096-.754l.007-.004c-.002-.068-.007-.134-.007-.202 0-.411.035-.754.104-.994.068-.274.411-.514.617-.514.103 0 .205.069.205.171 0 .035 0 .103-.034.137-.137.446-.24.857-.24 1.269 0 .24.034.582.102.788 0 .034.035.069.07.069.068 0 .548-.445.89-1.028-.308-.206-.48-.549-.48-.96 0-.72.446-1.097.858-1.097.343 0 .617.24.617.72 0 .308-.103.65-.274.96h.102a.77.77 0 0 0 .584-.24.293.293 0 0 1 .134-.117c.335-.425.83-.74 1.41-.74.48 0 .924.205.959.582.068.515-.378.618-.515.618l-.002-.002c-.138 0-.377-.035-.377-.172 0-.137.309-.068.274-.376-.034-.206-.24-.275-.446-.275-.686 0-1.13.891-1.028 1.611.034.275.171.583.445.583.206 0 .515-.308.652-.754.068-.274.343-.514.583-.514.103 0 .17.034.205.171 0 .069 0 .206-.137.652-.17.308-.171.48-.137.617.034.274.171.48.309.583.034.034.068.102.068.102 0 .069-.034.138-.137.138-.034 0-.068 0-.103-.035-.514-.205-.72-.548-.789-.891-.205.24-.445.377-.72.377-.445 0-.89-.411-.96-.926a1.609 1.609 0 0 1 .075-.649c-.203.13-.422.203-.623.203h-.17c-.447.652-.927 1.098-1.27 1.303a.896.896 0 0 1-.377.104c-.068 0-.171-.035-.205-.104-.095-.152-.156-.392-.193-.667-.481.527-1.145.805-1.453.805-.343 0-.548-.206-.582-.55v-.376c.102-.754.377-1.2.377-1.337a.074.074 0 0 0-.069-.07c-.24 0-1.028.824-1.166 1.373l-.103.445c-.068.309-.377.515-.582.515-.103 0-.172-.035-.206-.172v-.137l.046-.233c-.435.31-.87.508-1.075.508-.308 0-.48-.172-.514-.412-.206.274-.445.412-.754.412-.352 0-.696-.24-.862-.593-.244.275-.523.553-.852.764-.48.309-1.028.549-1.68.549-.582 0-1.097-.309-1.371-.583-.412-.377-.651-.96-.686-1.509-.205-1.68.823-3.84 2.4-4.8.378-.205.755-.343 1.132-.343zm9.77 3.291c-.104 0-.172.172-.172.343 0 .274.137.583.309.755a1.74 1.74 0 0 0 .102-.583c0-.343-.137-.515-.24-.515z"/></svg><span>Canva</span></li><li class="tool wm"><b aria-hidden="true">Tk</b><span>Design tokens</span></li></ul></section><section class="dk-card" id="dk-board" data-k="board" role="dialog" aria-labelledby="dk-bo-t" hidden><button type="button" class="dk-x" aria-label="Close"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button><h2 id="dk-bo-t">My board</h2><ul class="dk-facts"><li>Argentine and Italian (EU) passports</li><li>Remote worker</li><li>When I'm not designing, I'm snowboarding</li><li>English · Español</li></ul><div class="dk-actions"><a class="btn btn-ghost" href="cv.pdf" download="Milagros_Gonzalez_CV.pdf">Download CV<span class="visually-hidden"> (PDF)</span></a></div></section><section class="dk-card" id="dk-studies" data-k="studies" role="dialog" aria-labelledby="dk-st-t" hidden><button type="button" class="dk-x" aria-label="Close"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg></button><h2 id="dk-st-t">Learning psychology first, then design</h2><ul class="dk-edu"><li><b>Postgraduate degree in Adult Learning Psychology</b><span>Pontificia Universidad Católica Argentina · 2017</span></li><li><b>Bachelor's degree in Learning Psychology</b><span>Universidad del Salvador · 2016</span></li><li><b>UX/UI Design</b><span>Coderhouse · 2019</span></li><li><b>Art direction</b><span>Haus Argentina · 2025</span></li><li><b>Branding and Graphic Design</b><span>Coderhouse · 2025</span></li></ul></section></div><script type="module">// The hero studio (2026-11-11, from the ID page's desk). Milagros at her desk in a toy room, lit like a product shot. Click her and she turns around
+// and her card opens; Timón, her dog, has his own card; the diploma and the toolbox bring the camera close (the studies are
+// written on the diploma, the tools come out of the box); the screen flies the camera over her shoulder into the course.
+// The pins are real buttons, so the scene works by keyboard; without WebGL they open the same content as cards.
+// three.js is preloaded in the page and the scene starts right after the first paint.
+const root = document.getElementById('desk');
+if (root) start();
+
+function start() {
+  const hero = root.closest('.hero');
+  const stage = root.querySelector('.dk-stage'), canvas = root.querySelector('.dk-canvas');
+  const pins = Array.from(root.querySelectorAll('.dk-pin'));
+  const cards = Array.from(root.querySelectorAll('.dk-card'));
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let gl = null, openKey = null, lastPin = null, flying = false;
+
+  // ---- cards and the course work with or without 3D
+  function openCard(k, from) {
+    const card = cards.find(c => c.dataset.k === k); if (!card) return;
+    if (openKey && openKey !== k) closeCard(true);
+    openKey = k; lastPin = from || null;
+    card.hidden = false; requestAnimationFrame(() => card.classList.add('is-open'));
+    root.classList.add('has-card');
+    pins.forEach(p => p.setAttribute('aria-expanded', String(p.dataset.k === k)));
+    if (gl) gl.focus(k);
+    setTimeout(() => card.querySelector('.dk-x').focus({ preventScroll: true }), 60);
+  }
+  function closeCard(silent) {
+    const card = cards.find(c => c.dataset.k === openKey); if (!card) return;
+    card.classList.remove('is-open');
+    setTimeout(() => { if (!card.classList.contains('is-open')) card.hidden = true; }, 320);
+    root.classList.remove('has-card');
+    pins.forEach(p => p.setAttribute('aria-expanded', 'false'));
+    if (gl) gl.focus(null);
+    const back = lastPin; openKey = null; lastPin = null;
+    if (!silent && back) back.focus({ preventScroll: true });
+  }
+  cards.forEach(c => c.querySelector('.dk-x').addEventListener('click', () => closeCard()));
+  // close-ups (the diploma, the toolbox): the content is in the scene; its card stays hidden and describes the back button
+  const back = root.querySelector('.dk-back');
+  let zoomKey = null;
+  function zoomIn(k, from) {
+    if (openKey) closeCard(true);
+    zoomKey = k; lastPin = from || null;
+    root.classList.add('is-zoom'); back.hidden = false; back.setAttribute('aria-describedby', 'dk-' + k);
+    pins.forEach(p => p.setAttribute('aria-expanded', String(p.dataset.k === k)));
+    gl.zoom(k);
+    setTimeout(() => back.focus({ preventScroll: true }), 60);
+  }
+  function zoomOut() {
+    if (!zoomKey) return;
+    zoomKey = null; root.classList.remove('is-zoom'); back.hidden = true;
+    pins.forEach(p => p.setAttribute('aria-expanded', 'false'));
+    gl.zoom(null);
+    const b = lastPin; lastPin = null; if (b) b.focus({ preventScroll: true });
+  }
+  back.addEventListener('click', () => { if (onScreen) leaveScreen(false); else zoomOut(); });
+  root.addEventListener('keydown', e => { if (e.key !== 'Escape') return; if (onScreen) { e.preventDefault(); leaveScreen(false); } else if (zoomKey) { e.preventDefault(); zoomOut(); } else if (openKey) { e.preventDefault(); closeCard(); } });
+  document.addEventListener('pointerdown', e => {
+    if (e.target.closest('.dk-card, .dk-pin, .dk-canvas, .dk-back')) return;
+    if (openKey) closeCard(true); if (zoomKey) zoomOut();
+  });
+  pins.forEach(p => p.addEventListener('click', () => act(p.dataset.k, p)));
+  function act(k, from) {
+    if (flying) return;
+    if (zoomKey) { const was = zoomKey; zoomOut(); if (was === k) return; }
+    if (k === 'course') return startCourse();
+    if (gl && (k === 'studies' || k === 'tools' || k === 'board')) return zoomIn(k, from);
+    if (openKey === k) closeCard(); else openCard(k, from);
+  }
+
+  // the course begins: fly into the screen, then hand over to the page at its objectives
+  // Start the course (the pin, or the screen itself): the camera dives into the monitor and stops there. The course
+  // begins only when the visitor presses the Start the course button on that screen; Back or Escape returns to the desk.
+  const startBtn = root.querySelector('.dk-start');
+  let onScreen = false;
+  function startCourse() {
+    if (openKey) closeCard(true);
+    if (zoomKey) zoomOut();
+    if (gl && !reduce) { flying = true; gl.flyIn(atScreen); } else arrive(true);
+  }
+  function atScreen() {
+    onScreen = true; startBtn.hidden = false; back.hidden = false; back.removeAttribute('aria-describedby');
+    setTimeout(() => startBtn.focus({ preventScroll: true }), 80);
+  }
+  function leaveScreen(begin) {
+    if (!onScreen) return;
+    onScreen = false; startBtn.hidden = true; back.hidden = true;
+    if (begin) { arrive(false); return; }
+    stage.classList.add('is-leaving');
+    setTimeout(() => { gl.reset(); stage.classList.remove('is-leaving'); flying = false; const p = pins.find(x => x.dataset.k === 'course'); if (p) p.focus({ preventScroll: true }); }, 480);
+  }
+  startBtn.addEventListener('click', () => leaveScreen(true));
+  function arrive(plain) {
+    const target = document.getElementById('work');
+    const top = target.getBoundingClientRect().top + scrollY - (document.querySelector('.topbar, header')?.offsetHeight || 0) + 1;
+    if (plain) { scrollTo({ top, behavior: reduce ? 'auto' : 'smooth' }); }
+    else {
+      scrollTo({ top, behavior: 'instant' });
+      requestAnimationFrame(() => { stage.classList.add('is-leaving');
+        setTimeout(() => { gl.reset(); stage.classList.remove('is-leaving'); flying = false; }, 520); });
+    }
+    const h = target.querySelector('h2'); if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); }
+  }
+
+  // ---- the 3D desk, once the page is idle
+  const go = () => build().catch(err => { console.warn('hero3d: no 3D, the pins still work', err); root.classList.add('no3d'); root.classList.remove('is-loading'); });
+  requestAnimationFrame(() => setTimeout(go, 0));
+
+  async function build() {
+    root.classList.add('is-loading');
+    const [THREE, { RoundedBoxGeometry }, { RoomEnvironment }] = await Promise.all([import('three'),
+      import('three/addons/geometries/RoundedBoxGeometry.js'), import('three/addons/environments/RoomEnvironment.js')]);
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+    if (!renderer.getContext()) throw new Error('no WebGL');
+    const small = matchMedia('(max-width: 900px)').matches;
+    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, small ? 1.5 : 1.75));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    const scene = new THREE.Scene();
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+    const camera = new THREE.PerspectiveCamera(30, 1, 0.05, 120);
+    const font = getComputedStyle(document.body).fontFamily || 'system-ui, sans-serif';
+    const aniso = renderer.capabilities.getMaxAnisotropy();
+
+    // lights: a soft sky, a warm key with long soft shadows, cool light from the window, the desk lamp
+    const hemi = new THREE.HemisphereLight(0xEAF0FF, 0xD8C3A2, 0.8); scene.add(hemi);
+    const key = new THREE.DirectionalLight(0xFFF1DE, 2.4);
+    key.position.set(7, 12, 9); key.castShadow = true;
+    key.shadow.mapSize.set(small ? 1024 : 1536, small ? 1024 : 1536);
+    Object.assign(key.shadow.camera, { left: -6, right: 6, top: 6, bottom: -6, near: 1, far: 40 });
+    key.shadow.bias = -0.0004; key.shadow.normalBias = 0.025; key.shadow.radius = 6;
+    scene.add(key);
+    const win = new THREE.DirectionalLight(0xCFE0FF, 0.9); win.position.set(2, 5, -9); scene.add(win);
+    const lampLight = new THREE.PointLight(0xFFC77A, 2.2, 5.5, 1.6); scene.add(lampLight);
+
+    // materials: soft toy plastic, cached per colour
+    const mats = {};
+    function mat(c, o = {}) {
+      const k = c + JSON.stringify(o);
+      return mats[k] || (mats[k] = new THREE.MeshPhysicalMaterial(Object.assign({ color: c, roughness: 0.55, clearcoat: 0.25, clearcoatRoughness: 0.4, envMapIntensity: 0.5 }, o)));
+    }
+    function add(mesh, parent, cast = true) { mesh.castShadow = cast; mesh.receiveShadow = true; (parent || scene).add(mesh); return mesh; }
+    function box(w, h, d, c, x, y, z, o = {}) {
+      const r = Math.min(o.r ?? 0.05, w / 2 - 0.001, h / 2 - 0.001, d / 2 - 0.001);
+      const m = new THREE.Mesh(new RoundedBoxGeometry(w, h, d, 4, Math.max(r, 0.001)), o.m || mat(c, o.mat));
+      m.position.set(x, y + h / 2, z); if (o.ry) m.rotation.y = o.ry; if (o.rx) m.rotation.x = o.rx; if (o.rz) m.rotation.z = o.rz;
+      return add(m, o.g, o.cast !== false);
+    }
+    function cyl(rt, rb, h, c, x, y, z, o = {}) {
+      const m = new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, o.seg || 36), o.m || mat(c, o.mat));
+      m.position.set(x, y + h / 2, z); if (o.rx) m.rotation.x = o.rx; if (o.rz) m.rotation.z = o.rz;
+      return add(m, o.g, o.cast !== false);
+    }
+    function ball(r, c, x, y, z, o = {}) {
+      const m = new THREE.Mesh(new THREE.SphereGeometry(r, o.seg || 32, o.seg ? o.seg * 0.75 : 24), o.m || mat(c, o.mat));
+      m.position.set(x, y, z); if (o.s) m.scale.set(o.s[0], o.s[1], o.s[2]);
+      return add(m, o.g, o.cast !== false);
+    }
+    function caps(r, len, c, x, y, z, o = {}) {
+      const m = new THREE.Mesh(new THREE.CapsuleGeometry(r, len, 8, 20), o.m || mat(c, o.mat));
+      m.position.set(x, y, z); if (o.rx) m.rotation.x = o.rx; if (o.rz) m.rotation.z = o.rz; if (o.ry) m.rotation.y = o.ry; if (o.s) m.scale.set(o.s[0], o.s[1], o.s[2]);
+      return add(m, o.g, o.cast !== false);
+    }
+    function tex(w, h, draw) {
+      const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h);
+      const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = aniso; return t;
+    }
+    function plane(w, h, map, x, y, z, o = {}) {
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), o.basic ? new THREE.MeshBasicMaterial({ map, transparent: !!o.transparent, toneMapped: false })
+        : new THREE.MeshStandardMaterial({ map, roughness: o.rough ?? 0.7, transparent: !!o.transparent }));
+      m.position.set(x, y, z); if (o.ry) m.rotation.y = o.ry; if (o.rx) m.rotation.x = o.rx;
+      return add(m, o.g, false);
+    }
+    const T = s => (window.i18nT ? window.i18nT(s) : s);
+
+    // ---- the room: a floor slab and two walls, cut away like a dollhouse
+    const floorTex = tex(1024, 768, (g, w, h) => {
+      g.fillStyle = '#E2C49B'; g.fillRect(0, 0, w, h);
+      for (let y = 0; y < h; y += 64) { g.fillStyle = (y / 64) % 2 ? '#DDBE94' : '#E6C9A1'; g.fillRect(0, y, w, 62); g.fillStyle = 'rgba(120,80,40,0.16)'; g.fillRect(0, y + 62, w, 2);
+        for (let x = ((y / 64) % 3) * 140; x < w; x += 420) g.fillRect(x, y, 2, 62); }
+    });
+    const floor = box(6.6, 0.36, 4.6, null, 0, -0.36, -0.6, { r: 0.12, m: new THREE.MeshPhysicalMaterial({ map: floorTex, roughness: 0.6, clearcoat: 0.3, clearcoatRoughness: 0.5, envMapIntensity: 0.4 }) });
+    const shadowTex = tex(256, 256, (g, w, h) => { const gr = g.createRadialGradient(w / 2, h / 2, 10, w / 2, h / 2, w / 2); gr.addColorStop(0, 'rgba(30,34,60,0.38)'); gr.addColorStop(0.6, 'rgba(30,34,60,0.14)'); gr.addColorStop(1, 'rgba(30,34,60,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    const under = new THREE.Mesh(new THREE.PlaneGeometry(13, 10), new THREE.MeshBasicMaterial({ map: shadowTex, transparent: true, depthWrite: false })); under.rotation.x = -Math.PI / 2; under.position.set(0.3, -0.62, -0.1); under.scale.set(0.85, 0.85, 1); scene.add(under);
+    box(6.64, 0.06, 4.64, '#C9A97E', 0, -0.4, -0.6, { r: 0.03, cast: false });                               // the plinth's edge
+    const wallMat = mat('#EEF0F6', { clearcoat: 0, roughness: 0.9 });
+    box(6.6, 3.5, 0.24, null, 0, -0.36, -2.88, { r: 0.1, m: wallMat });
+    box(0.24, 3.5, 4.6, null, -3.18, -0.36, -0.6, { r: 0.1, m: wallMat });
+    box(6.6, 0.12, 0.05, '#FFFFFF', 0, 0, -2.74, { r: 0.02, cast: false });                              // skirting
+    box(0.05, 0.12, 4.35, '#FFFFFF', -3.04, 0, -0.48, { r: 0.02, cast: false });
+
+    // the window: sky by day, stars by night
+    const skyCanvas = document.createElement('canvas'); skyCanvas.width = 512; skyCanvas.height = 384;
+    const skyTex = new THREE.CanvasTexture(skyCanvas); skyTex.colorSpace = THREE.SRGBColorSpace;
+    let night = false;
+    function drawSky() {
+      // the view from her window: snowy peaks at golden hour by day, the same peaks under the moon by night
+      const g = skyCanvas.getContext('2d'), w = 512, h = 384;
+      const gr = g.createLinearGradient(0, 0, 0, h * 0.62);
+      if (night) { gr.addColorStop(0, '#0B1230'); gr.addColorStop(1, '#2A3366'); } else { gr.addColorStop(0, '#B9C4DE'); gr.addColorStop(0.62, '#F3D9A8'); gr.addColorStop(1, '#F7C77E'); }
+      g.fillStyle = gr; g.fillRect(0, 0, w, h);
+      if (night) { g.fillStyle = '#FFFFFF'; for (let i = 0; i < 60; i++) { g.globalAlpha = 0.3 + ((i * 31) % 10) / 16; g.fillRect((i * 97) % w, (i * 53) % (h * 0.45), 2, 2); }
+        g.globalAlpha = 1; g.fillStyle = '#FFF4D6'; g.beginPath(); g.arc(400, 70, 26, 0, Math.PI * 2); g.fill(); g.fillStyle = '#0B1230'; g.beginPath(); g.arc(412, 62, 23, 0, Math.PI * 2); g.fill(); }
+      const ridge = (pts, fill, snow) => { g.fillStyle = fill; g.beginPath(); g.moveTo(0, h); pts.forEach(([x, y]) => g.lineTo(x, y)); g.lineTo(w, h); g.closePath(); g.fill();
+        if (snow) { g.fillStyle = snow; pts.forEach(([x, y], k) => { if (k && k < pts.length - 1 && y < pts[k - 1][1] && y < pts[k + 1][1]) { g.beginPath(); g.moveTo(x, y); g.lineTo(x - 26, y + 30); g.lineTo(x - 8, y + 24); g.lineTo(x + 4, y + 34); g.lineTo(x + 24, y + 28); g.closePath(); g.fill(); } }); } };
+      ridge([[0, 210], [60, 176], [110, 196], [170, 140], [230, 188], [290, 152], [340, 120], [400, 168], [460, 146], [512, 180]], night ? '#3A4578' : '#8E9BC0', night ? '#C9D3F2' : '#FFFFFF');
+      ridge([[0, 262], [80, 226], [150, 250], [220, 214], [300, 246], [370, 218], [450, 240], [512, 228]], night ? '#2A335E' : '#6F7FA8', night ? '#AEB9E0' : '#F4F6FB');
+      g.fillStyle = night ? '#DCE3F7' : '#FBFBFE'; g.beginPath(); g.moveTo(0, 310); g.quadraticCurveTo(256, 280, 512, 300); g.lineTo(512, h); g.lineTo(0, h); g.fill();
+      g.fillStyle = night ? '#141B3A' : '#2E3B52';
+      [[30, 318, 26], [64, 330, 20], [440, 322, 28], [478, 336, 20], [410, 340, 16]].forEach(([x, y, s2]) => { for (let k = 0; k < 3; k++) { g.beginPath(); g.moveTo(x, y - s2 * 2.2 + k * s2 * 0.6); g.lineTo(x - s2 * 0.6 - k * 4, y - s2 * 0.9 + k * s2 * 0.6); g.lineTo(x + s2 * 0.6 + k * 4, y - s2 * 0.9 + k * s2 * 0.6); g.fill(); } g.fillRect(x - 2, y - 6, 4, 10); });
+      skyTex.needsUpdate = true;
+    }
+    // ---- the big corkboard where the window was: who she is, pinned up (passports, post-its, Timón, languages, mentoring)
+    const corkC = document.createElement('canvas'); corkC.width = 2048; corkC.height = 1490;
+    const corkTex2 = new THREE.CanvasTexture(corkC); corkTex2.colorSpace = THREE.SRGBColorSpace; corkTex2.anisotropy = aniso;
+    const SNOW_PHOTO = 'data:image/webp;base64,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';
+    const HAND = '"Segoe Print", "Bradley Hand", "Comic Sans MS", cursive';
+    const snowImg = new Image(); snowImg.onload = () => drawCork(); snowImg.src = SNOW_PHOTO;
+    function drawCork() {
+      const g = corkC.getContext('2d'), w = corkC.width, h = corkC.height;
+      g.fillStyle = '#C9A06B'; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 9000; i++) { g.fillStyle = i % 3 ? 'rgba(120,80,40,0.16)' : 'rgba(255,236,200,0.22)'; const s = 2 + (i % 4); g.fillRect((i * 7919) % w, (i * 104729) % h, s, s); }
+      const vg = g.createRadialGradient(w / 2, h / 2, h * 0.3, w / 2, h / 2, w * 0.7); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(60,35,10,0.28)'); g.fillStyle = vg; g.fillRect(0, 0, w, h);
+      const item = (x, y, rot, draw) => { g.save(); g.translate(x, y); g.rotate(rot); g.shadowColor = 'rgba(40,25,10,0.38)'; g.shadowBlur = 26; g.shadowOffsetY = 12; draw(); g.restore(); };
+      const pin = (x, y, c) => { g.save(); g.shadowColor = 'rgba(0,0,0,0.35)'; g.shadowBlur = 8; g.shadowOffsetY = 5; g.fillStyle = c; g.beginPath(); g.arc(x, y, 18, 0, 7); g.fill(); g.restore();
+        g.fillStyle = 'rgba(255,255,255,0.55)'; g.beginPath(); g.arc(x - 6, y - 7, 6, 0, 7); g.fill(); };
+      const passport = (col, l1, l2, l3, emblem) => () => {
+        g.fillStyle = col; g.beginPath(); g.roundRect(-190, -265, 380, 530, 22); g.fill(); g.shadowColor = 'transparent';
+        g.fillStyle = 'rgba(255,255,255,0.06)'; g.fillRect(-190, -265, 26, 530);
+        g.fillStyle = '#E3C27A'; g.textAlign = 'center'; g.font = '600 30px Georgia, serif'; g.letterSpacing = '3px';
+        if (l3) { g.font = '600 20px Georgia, serif'; g.fillText(l3, 0, -205, 320); }
+        g.font = '600 24px Georgia, serif'; g.letterSpacing = '2px'; g.fillText(l1, 0, -160, 320); g.letterSpacing = '0px'; emblem(); g.font = '600 30px Georgia, serif'; g.letterSpacing = '5px'; g.fillText(l2, 0, 190, 330); g.letterSpacing = '0px';
+        g.strokeStyle = '#E3C27A'; g.lineWidth = 3; g.strokeRect(-26, 215, 52, 34); g.beginPath(); g.arc(0, 232, 9, 0, 7); g.stroke();
+      };
+      const sun = () => { g.strokeStyle = '#E3C27A'; g.lineWidth = 5; g.beginPath(); g.arc(0, 10, 62, 0, 7); g.stroke(); g.lineWidth = 3;
+        for (let i = 0; i < 16; i++) { const a = i / 16 * Math.PI * 2; g.beginPath(); g.moveTo(Math.cos(a) * 72, 10 + Math.sin(a) * 72); g.lineTo(Math.cos(a) * 92, 10 + Math.sin(a) * 92); g.stroke(); } };
+      const star = () => { g.strokeStyle = '#E3C27A'; g.lineWidth = 5; g.beginPath(); g.arc(0, 10, 78, 0, 7); g.stroke(); g.fillStyle = '#E3C27A'; g.beginPath();
+        for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? 22 : 54; g.lineTo(Math.cos(a) * rr, 10 + Math.sin(a) * rr); } g.closePath(); g.fill(); };
+      item(330, 470, -0.08, passport('#1E3563', 'REPÚBLICA ARGENTINA', 'PASAPORTE', 'MERCOSUR', sun)); pin(330, 230, '#E0504A');
+      item(660, 560, 0.07, passport('#7A1E2C', 'REPUBBLICA ITALIANA', 'PASSAPORTO', 'UNIONE EUROPEA', star)); pin(670, 318, '#4A64F0');
+      const postit = (col, text, doodle) => () => {
+        g.fillStyle = col; g.fillRect(-190, -190, 380, 380); g.shadowColor = 'transparent';
+        g.fillStyle = 'rgba(0,0,0,0.05)'; g.fillRect(-190, -190, 380, 46);
+        g.fillStyle = '#2A2418'; g.font = '700 54px ' + HAND; g.textAlign = 'center'; g.textBaseline = 'middle';
+        const words = text.split(' '), lines = []; let ln = '';
+        words.forEach(wd => { const t2 = ln ? ln + ' ' + wd : wd; if (g.measureText(t2).width > 320 && ln) { lines.push(ln); ln = wd; } else ln = t2; }); lines.push(ln);
+        lines.forEach((l, k) => g.fillText(l, 0, -40 + (k - (lines.length - 1) / 2) * 64)); doodle && doodle(); g.textBaseline = 'alphabetic';
+      };
+      item(1130, 330, 0.05, postit('#FFD65A', T('Remote worker'), () => { g.strokeStyle = '#2A2418'; g.lineWidth = 5; g.beginPath(); g.arc(0, 112, 42, 0, 7); g.stroke();
+        g.beginPath(); g.ellipse(0, 112, 18, 42, 0, 0, 7); g.stroke(); g.beginPath(); g.moveTo(-42, 112); g.lineTo(42, 112); g.stroke(); })); pin(1130, 160, '#3FB37F');
+      // her photo on the board, printed, with a line in her hand
+      item(1590, 470, -0.04, () => { g.fillStyle = '#FBFAF6'; g.fillRect(-250, -300, 500, 600); g.shadowColor = 'transparent';
+        if (snowImg.complete && snowImg.naturalWidth) g.drawImage(snowImg, -228, -278, 456, 425); else { g.fillStyle = '#DCE3EE'; g.fillRect(-228, -278, 456, 425); }
+        g.fillStyle = '#2A2418'; g.textAlign = 'center'; g.font = '700 36px ' + HAND; g.fillText(T("When I'm not designing,"), 0, 205, 470); g.fillText(T("I'm\u2026 snowboarding"), 0, 255, 470); }); pin(1590, 190, '#E0504A');
+      // languages
+      item(430, 1180, 0.05, () => { g.fillStyle = '#FFFFFF'; g.beginPath(); g.roundRect(-170, -120, 340, 240, 18); g.fill(); g.shadowColor = 'transparent';
+        g.fillStyle = '#4A64F0'; g.beginPath(); g.roundRect(-130, -78, 120, 78, 18); g.fill(); g.fillStyle = '#E0504A'; g.beginPath(); g.roundRect(10, -50, 120, 78, 18); g.fill();
+        g.fillStyle = '#FFFFFF'; g.font = '800 40px ' + font; g.textAlign = 'center'; g.fillText('EN', -70, -25); g.fillText('ES', 70, 3);
+        g.fillStyle = '#1C1E2B'; g.font = '600 32px ' + font; g.fillText('English · Español', 0, 88); }); pin(430, 1070, '#4A64F0');
+      // her CV, pinned: click it in the close-up and it downloads
+      item(1300, 1010, 0.03, () => { g.fillStyle = '#FFFFFF'; g.fillRect(-215, -290, 430, 580); g.shadowColor = 'transparent';
+        g.fillStyle = '#3346E8'; g.fillRect(-215, -290, 430, 12);
+        g.textAlign = 'left'; g.fillStyle = '#14161F'; g.font = '700 40px ' + font; g.fillText('Milagros González', -180, -205, 360);
+        g.fillStyle = '#3346E8'; g.font = '600 24px ' + font; g.fillText('Senior Product Designer', -180, -168, 360);
+        g.fillStyle = '#E2E5EE'; g.fillRect(-180, -140, 360, 3);
+        [[-105, 0.95], [-80, 0.8], [-55, 0.9], [-10, 0.5], [15, 0.92], [40, 0.85], [65, 0.7], [110, 0.5], [135, 0.88], [160, 0.76]].forEach(([y, f]) => { g.fillStyle = f === 0.5 ? '#9AA0B6' : '#CDD1DD'; g.fillRect(-180, y, 360 * f, f === 0.5 ? 12 : 9); });
+        g.fillStyle = '#14161F'; g.beginPath(); g.roundRect(-150, 205, 300, 58, 29); g.fill();
+        g.fillStyle = '#FFFFFF'; g.font = '700 26px ' + font; g.textAlign = 'center'; g.fillText('\u2193  ' + T('Download CV'), 0, 243, 270); }); pin(1300, 735, '#E0504A');
+      corkTex2.needsUpdate = true;
+    }
+    drawCork();
+    document.addEventListener('lang:change', drawCork);
+    const corkG = new THREE.Group(); scene.add(corkG);
+    const CW = 2.24, CH = 1.63, CX = 1.95, CY = 2.06, CZ = -2.705;
+    box(CW + 0.12, CH + 0.12, 0.07, '#B0834F', CX, CY - CH / 2 - 0.06, CZ - 0.04, { r: 0.03, g: corkG, mat: { clearcoat: 0.5, roughness: 0.4 } });
+    const corkPlane = plane(CW, CH, corkTex2, CX, CY, CZ + 0.002, { g: corkG, rough: 0.9 });
+    const CV_BOX = [1080 / 2048, 1520 / 2048, 1 - 1300 / 1490, 1 - 720 / 1490];                     // the CV on the board, in uv
+
+    // the pinboard: storyboard frames, sticky notes and pins, the work on the wall
+    const corkTex = tex(640, 480, (g, w, h) => {
+      g.fillStyle = '#D9B98B'; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 1400; i++) { g.fillStyle = i % 2 ? 'rgba(150,105,55,0.18)' : 'rgba(255,240,210,0.2)'; g.fillRect((i * 137) % w, (i * 71) % h, 3, 3); }
+      const card = (x, y, ww, hh, rot, fill, draw) => { g.save(); g.translate(x, y); g.rotate(rot); g.shadowColor = 'rgba(60,40,20,0.3)'; g.shadowBlur = 8; g.shadowOffsetY = 3;
+        g.fillStyle = fill; g.fillRect(-ww / 2, -hh / 2, ww, hh); g.shadowColor = 'transparent'; draw && draw(ww, hh); g.restore(); };
+      const frame = (ww, hh) => { g.fillStyle = '#DDE3F5'; g.fillRect(-ww / 2 + 10, -hh / 2 + 10, ww - 20, hh * 0.52); g.fillStyle = '#5B7CFF'; g.beginPath(); g.arc(-ww / 2 + 30, -hh / 2 + 30, 9, 0, 7); g.fill();
+        g.fillStyle = '#9AA3C2'; [0, 1, 2].forEach(k => g.fillRect(-ww / 2 + 10, hh * 0.1 + k * 14, ww - 20 - k * 22, 6)); };
+      card(110, 120, 150, 120, -0.04, '#FFFFFF', frame); card(290, 112, 150, 120, 0.03, '#FFFFFF', frame); card(470, 124, 150, 120, -0.02, '#FFFFFF', frame);
+      g.strokeStyle = '#E0504A'; g.lineWidth = 3; g.beginPath(); g.moveTo(185, 120); g.lineTo(215, 114); g.moveTo(365, 114); g.lineTo(395, 122); g.stroke();
+      card(150, 330, 110, 110, 0.05, '#F6C445', (ww, hh) => { g.fillStyle = 'rgba(70,50,10,0.55)'; [0, 1, 2].forEach(k => g.fillRect(-36, -26 + k * 18, 72 - k * 14, 5)); });
+      card(290, 340, 110, 110, -0.06, '#9BE1C2', (ww, hh) => { g.fillStyle = 'rgba(20,70,50,0.55)'; [0, 1].forEach(k => g.fillRect(-36, -18 + k * 18, 72 - k * 18, 5)); });
+      card(470, 330, 170, 120, 0.02, '#FFFFFF', (ww, hh) => { g.fillStyle = '#1C1E2B'; g.font = '700 22px ' + font; g.textAlign = 'center'; g.fillText('Tokens', 0, -18);
+        ['A', 'D', 'D', 'I', 'E'].forEach((l, k) => { g.fillStyle = ['#5B7CFF', '#7C5BF0', '#E0504A', '#F6A23C', '#3FB37F'][k]; g.beginPath(); g.arc(-60 + k * 30, 22, 11, 0, 7); g.fill(); }); });
+      [[110, 66], [290, 58], [470, 70], [150, 282], [290, 292], [470, 278]].forEach(([x, y], k) => { g.fillStyle = ['#E0504A', '#5B7CFF', '#3FB37F'][k % 3]; g.beginPath(); g.arc(x, y, 8, 0, 7); g.fill(); g.fillStyle = 'rgba(255,255,255,0.6)'; g.beginPath(); g.arc(x - 2, y - 3, 3, 0, 7); g.fill(); });
+    });
+    // a window on the back wall, left of the desk, with the mountains outside
+    const WX = -2.28, WY = 2.08, WW = 1.15, WH = 1.2;
+    plane(WW, WH, skyTex, WX, WY, -2.756, { basic: true });
+    const winM = mat('#F7F7F4', { clearcoat: 0.4 });
+    box(WW + 0.14, 0.07, 0.1, null, WX, WY - WH / 2 - 0.07, -2.71, { m: winM, r: 0.02 }); box(WW + 0.14, 0.07, 0.1, null, WX, WY + WH / 2, -2.71, { m: winM, r: 0.02 });
+    box(0.07, WH + 0.14, 0.1, null, WX - WW / 2 - 0.035, WY - WH / 2 - 0.07, -2.71, { m: winM, r: 0.02 }); box(0.07, WH + 0.14, 0.1, null, WX + WW / 2 + 0.035, WY - WH / 2 - 0.07, -2.71, { m: winM, r: 0.02 });
+    box(0.035, WH, 0.06, null, WX, WY - WH / 2, -2.73, { m: winM, r: 0.01 }); box(WW, 0.035, 0.06, null, WX, WY + 0.08, -2.73, { m: winM, r: 0.01 });
+    box(WW + 0.3, 0.05, 0.22, '#F7F7F4', WX, WY - WH / 2 - 0.12, -2.66, { r: 0.02 });                       // the sill
+    cyl(0.07, 0.055, 0.1, '#E7795C', WX + 0.38, WY - WH / 2 - 0.07, -2.64); caps(0.04, 0.1, '#5BAE7D', WX + 0.38, WY - WH / 2 + 0.1, -2.64); caps(0.024, 0.05, '#5BAE7D', WX + 0.43, WY - WH / 2 + 0.09, -2.64, { rz: -0.9 });
+
+    // the diploma on the side wall: the studies are written on it, legible once the camera comes close
+    const dipCanvas = document.createElement('canvas'); dipCanvas.width = 1600; dipCanvas.height = 1200;
+    const dipTex = new THREE.CanvasTexture(dipCanvas); dipTex.colorSpace = THREE.SRGBColorSpace; dipTex.anisotropy = aniso;
+    function wrapC(g, text, x, y, maxW, lh) {
+      const words = text.split(' '); let line = '', yy = y;
+      words.forEach(wd => { const t = line ? line + ' ' + wd : wd; if (g.measureText(t).width > maxW && line) { g.fillText(line, x, yy); yy += lh; line = wd; } else line = t; });
+      if (line) g.fillText(line, x, yy); return yy;
+    }
+    function drawDiploma() {
+      // an editorial sheet, not a certificate: a label, one line of thesis, then the studies as a dated list on hairlines
+      const g = dipCanvas.getContext('2d'), w = 1600, h = 1200, L = 130, R = w - 130;
+      const bg = g.createLinearGradient(0, 0, 0, h); bg.addColorStop(0, '#FFFFFF'); bg.addColorStop(1, '#F4F5F9'); g.fillStyle = bg; g.fillRect(0, 0, w, h);
+      g.textAlign = 'left'; g.textBaseline = 'alphabetic';
+      g.fillStyle = '#3346E8'; g.font = '700 28px ' + font; g.letterSpacing = '6px'; g.fillText(T('EDUCATION'), L, 178); g.letterSpacing = '0px';
+      // a quiet monogram, top right
+      g.strokeStyle = '#3346E8'; g.lineWidth = 3; g.beginPath(); g.arc(R - 44, 160, 44, 0, Math.PI * 2); g.stroke();
+      g.fillStyle = '#3346E8'; g.font = '700 30px ' + font; g.textAlign = 'center'; g.fillText('MG', R - 44, 171); g.textAlign = 'left';
+      g.fillStyle = '#14161F'; g.font = '700 68px ' + font; g.letterSpacing = '-1.5px';
+      const y0 = wrapC(g, T('Learning psychology first, then design'), L, 290, R - L - 120, 76); g.letterSpacing = '0px';
+      const EDU = [['2017', 'Postgraduate degree in Adult Learning Psychology', 'Pontificia Universidad Católica Argentina'], ['2016', "Bachelor's degree in Learning Psychology", 'Universidad del Salvador'],
+        ['2019', 'UX/UI Design', 'Coderhouse'], ['2025', 'Art direction', 'Haus Argentina'], ['2025', 'Branding and Graphic Design', 'Coderhouse']];
+      const top = y0 + 80, row = Math.min(140, (h - 90 - top) / EDU.length);
+      EDU.forEach(([yr, t1, t2], k) => {
+        const y = top + k * row;
+        g.fillStyle = '#E2E5EE'; g.fillRect(L, y, R - L, 2);
+        g.fillStyle = '#8A90A6'; g.font = '600 32px ' + font; g.fillText(yr, L, y + 58);
+        g.fillStyle = '#14161F'; g.font = '600 42px ' + font; g.fillText(T(t1), L + 190, y + 58, R - L - 190);
+        g.fillStyle = '#6A6F84'; g.font = '500 30px ' + font; g.fillText(t2, L + 190, y + 100, R - L - 190);
+      });
+      dipTex.needsUpdate = true;
+    }
+    drawDiploma();
+    const dipG = new THREE.Group(); scene.add(dipG);
+    box(0.05, 0.955, 1.26, '#1C1E2B', -3.035, 1.543, -1.65, { r: 0.012, g: dipG, mat: { clearcoat: 0.8, roughness: 0.3 } });   // a slim float frame
+    plane(1.22, 0.915, dipTex, -2.995, 2.02, -1.65, { ry: Math.PI / 2, g: dipG, rough: 0.85 });
+    // a shelf of books
+    box(0.42, 0.06, 1.3, '#FFFFFF', -2.85, 1.75, 0.6, { r: 0.02 });
+    // her favourite books, titles on the spines (read top to bottom, like an English shelf)
+    const spine = (title, author, bg, fg) => tex(1024, 160, (g, w, h) => { g.fillStyle = bg; g.fillRect(0, 0, w, h);
+      g.fillStyle = fg; g.textBaseline = 'middle'; g.font = '700 62px ' + font; g.textAlign = 'left'; g.fillText(title, 46, h / 2, 640);
+      g.font = '500 40px ' + font; g.textAlign = 'right'; g.globalAlpha = 0.75; g.fillText(author, w - 40, h / 2, 300); g.globalAlpha = 1; });
+    [['Behave', 'Sapolsky', '#F3EFE6', '#1C1E2B', 0.42, 0.14], ['Predictably Irrational', 'Ariely', '#E4572E', '#FFFFFF', 0.4, 0.13], ['The Four Agreements', 'Ruiz', '#3B3F8F', '#F6D58E', 0.36, 0.12]]
+      .reduce((z, [t1, au, bg, fg, h, th]) => {
+        box(0.27, h, th, bg, -2.86, 1.81, z + th / 2, { r: 0.012 });
+        const sp2 = plane(h - 0.03, th - 0.02, spine(t1, au, bg, fg), -2.722, 1.81 + h / 2, z + th / 2, { rough: 0.6 }); sp2.rotation.set(0, Math.PI / 2, -Math.PI / 2);
+        return z + th + 0.006; }, -0.02);
+    box(0.24, 0.3, 0.08, '#5B7CFF', -2.86, 1.81, 0.42, { r: 0.012 }); box(0.24, 0.34, 0.07, '#3FB37F', -2.86, 1.81, 0.5, { r: 0.012 });
+    box(0.24, 0.33, 0.08, '#F6C445', -2.86, 1.81, 0.6, { r: 0.012, rz: 0.22 });
+
+    // her snowboard, white with a teal wave, leaning on the left wall under the shelf
+    const boardG = new THREE.Group(); boardG.position.set(-2.93, 0.02, 1.32); boardG.rotation.set(0, 0, -0.16); scene.add(boardG);
+    const deck = caps(0.14, 1.16, '#F4F6F8', 0, 0.73, 0, { g: boardG, s: [0.11, 1, 1], mat: { clearcoat: 0.9, roughness: 0.3 } });
+    const waveTex = tex(160, 800, (g, w, h) => { g.clearRect(0, 0, w, h); g.fillStyle = '#5EC4C8';
+      for (let y = 60; y < h - 60; y += 70) { g.beginPath(); g.moveTo(0, y); g.bezierCurveTo(w * 0.3, y - 30, w * 0.7, y + 30, w, y); g.lineTo(w, y + 22); g.bezierCurveTo(w * 0.7, y + 52, w * 0.3, y - 8, 0, y + 22); g.fill(); }
+      g.fillStyle = '#2E8C97'; g.beginPath(); g.arc(w / 2, h * 0.5, 34, 0, 7); g.fill(); });
+    plane(0.22, 1.12, waveTex, 0.017, 0.73, 0, { g: boardG, ry: Math.PI / 2, transparent: true, rough: 0.35 });
+    [0.42, 1.04].forEach(y => box(0.05, 0.05, 0.2, '#1C1E2B', 0.03, y, 0, { g: boardG, r: 0.015 }));
+    // the rug
+    const rugTex = tex(512, 384, (g, w, h) => {
+      g.fillStyle = '#DDE2F3'; g.beginPath(); g.roundRect(0, 0, w, h, 60); g.fill();
+      g.strokeStyle = '#C3CBE8'; g.lineWidth = 14; g.beginPath(); g.roundRect(28, 28, w - 56, h - 56, 40); g.stroke();
+      g.fillStyle = '#C9D0EC'; for (let x = 70; x < w - 50; x += 46) for (let y = 70; y < h - 50; y += 46) { g.beginPath(); g.arc(x, y, 5, 0, 7); g.fill(); }
+    });
+    const rug = plane(3.4, 2.55, rugTex, -0.35, 0.012, -0.55, { rx: -Math.PI / 2, transparent: true }); rug.receiveShadow = true;
+
+    // ---- the desk
+    const oak = mat('#D9A86C', { clearcoat: 0.55, clearcoatRoughness: 0.3, roughness: 0.45 });
+    box(2.7, 0.07, 1.15, null, -0.6, 0.84, -2.15, { m: oak, r: 0.03 });
+    [[-1.88, -1.66], [0.68, -1.66], [-1.88, -2.64], [0.68, -2.64]].forEach(([x, z]) => box(0.07, 0.84, 0.07, '#F2F2F4', x, 0, z, { r: 0.03 }));
+    box(0.62, 0.42, 0.98, '#F2F2F4', 0.32, 0.36, -2.18, { r: 0.04 });                                     // drawers
+    box(0.5, 0.02, 0.02, '#B9BFCE', 0.32, 0.6, -1.68, { r: 0.01, cast: false }); box(0.5, 0.02, 0.02, '#B9BFCE', 0.32, 0.42, -1.68, { r: 0.01, cast: false });
+    const deskTop = 0.91;
+
+    // the monitor and its screen (the course)
+    const monG = new THREE.Group(); scene.add(monG);
+    const SW = 1.56, SH = 0.98, SX = -0.75, SY = deskTop + 0.38 + SH / 2, SZ = -2.36;
+    box(SW + 0.08, SH + 0.16, 0.06, '#E9EBF0', SX, SY - SH / 2 - 0.1, SZ - 0.035, { r: 0.04, g: monG, mat: { clearcoat: 0.6, metalness: 0.2 } });
+    box(SW + 0.03, SH + 0.03, 0.012, '#15161C', SX, SY - SH / 2 - 0.015, SZ, { r: 0.012, g: monG, cast: false });
+    box(0.36, 0.42, 0.05, '#DCDFE6', SX, deskTop, SZ - 0.16, { r: 0.02, g: monG, rx: -0.18, mat: { metalness: 0.3 } });
+    box(0.5, 0.02, 0.32, '#DCDFE6', SX, deskTop, SZ - 0.08, { r: 0.01, g: monG, mat: { metalness: 0.3 } });
+    const scr = document.createElement('canvas'); scr.width = 2048; scr.height = 1286;
+    const scrTex = new THREE.CanvasTexture(scr); scrTex.colorSpace = THREE.SRGBColorSpace; scrTex.anisotropy = aniso;
+    const screen = new THREE.Mesh(new THREE.PlaneGeometry(SW, SH), new THREE.MeshBasicMaterial({ map: scrTex, toneMapped: false }));
+    screen.position.set(SX, SY, SZ + 0.008); monG.add(screen);
+    const btnBox = { x: 0, y: 0, w: 0, h: 0 };
+    function drawScreen() {
+      const g = scr.getContext('2d'), w = scr.width, h = scr.height, A = '#3346E8';
+      const bg = g.createLinearGradient(0, 0, w, h); bg.addColorStop(0, '#FFFFFF'); bg.addColorStop(1, '#ECEFFC');
+      g.fillStyle = bg; g.fillRect(0, 0, w, h);
+      // window chrome
+      g.fillStyle = '#F3F4F8'; g.fillRect(0, 0, w, 86); g.fillStyle = '#E2E5EE'; g.fillRect(0, 86, w, 2);
+      ['#FF6159', '#FFBD2E', '#28C941'].forEach((c, k) => { g.fillStyle = c; g.beginPath(); g.arc(48 + k * 40, 43, 13, 0, 7); g.fill(); });
+      g.fillStyle = '#FFFFFF'; g.beginPath(); g.roundRect(w / 2 - 300, 22, 600, 44, 22); g.fill();
+      g.fillStyle = '#8A90A6'; g.font = '500 24px ' + font; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('milagros.design/work', w / 2, 45);
+      // the course card
+      g.textAlign = 'left'; g.textBaseline = 'alphabetic';
+      g.fillStyle = A; g.font = '700 30px ' + font; g.fillText('SELECTED WORK', 150, 250);
+      let fs = 118; g.font = '800 ' + fs + 'px ' + font;
+      while (g.measureText('The work').width > 1040 && fs > 70) { fs -= 4; g.font = '800 ' + fs + 'px ' + font; }
+      g.fillStyle = '#1C1E2B'; g.fillText('The work', 144, 380);
+      g.fillStyle = '#5A6078'; g.font = '500 42px ' + font;
+      wrap(g, 'Complex B2B and AI products, made simple to use.', 150, 460, 960, 56);
+      g.fillStyle = '#8A90A6'; g.font = '500 32px ' + font; g.fillText('Senior Product Designer · Design Lead', 150, 600);
+      // the start button
+      g.font = '700 44px ' + font; const bw = Math.max(430, g.measureText('See my work').width + 200);
+      Object.assign(btnBox, { x: 150, y: 680, w: bw, h: 120 });
+      const gb = g.createLinearGradient(150, 680, 150 + bw, 800); gb.addColorStop(0, '#4A64F0'); gb.addColorStop(1, '#6A3CF0');
+      g.shadowColor = 'rgba(51,70,232,0.35)'; g.shadowBlur = 40; g.shadowOffsetY = 14;
+      g.fillStyle = gb; g.beginPath(); g.roundRect(150, 680, bw, 120, 60); g.fill(); g.shadowColor = 'transparent';
+      g.fillStyle = '#FFFFFF'; g.beginPath(); g.moveTo(216, 712); g.lineTo(216, 768); g.lineTo(262, 740); g.closePath(); g.fill();
+      g.font = '700 44px ' + font; g.fillText('See my work', 296, 756);
+      g.fillStyle = '#8A90A6'; g.font = '500 28px ' + font; g.fillText('AI and data products · B2B and B2G · Design systems', 150, 880);
+      // the modules
+      const mods = ['LG Ad Solutions', 'Pengui', 'Clear Tech design system', 'Changent', 'Court funds', 'Biomás'];
+      g.fillStyle = '#FFFFFF'; g.shadowColor = 'rgba(28,30,43,0.08)'; g.shadowBlur = 50; g.shadowOffsetY = 20;
+      g.beginPath(); g.roundRect(1250, 200, 650, 880, 40); g.fill(); g.shadowColor = 'transparent';
+      g.fillStyle = '#8A90A6'; g.font = '700 26px ' + font; g.fillText('CASES', 1310, 280);
+      mods.forEach((m, k) => {
+        const y = 370 + k * 118;
+        g.strokeStyle = k ? '#D3D8E6' : A; g.lineWidth = 5; g.beginPath(); g.arc(1335, y - 14, 26, 0, 7); g.stroke();
+        g.fillStyle = k ? '#8A90A6' : A; g.font = '700 26px ' + font; g.textAlign = 'center'; g.fillText(String(k + 1), 1335, y - 4);
+        g.textAlign = 'left'; g.fillStyle = k ? '#3A3F55' : '#1C1E2B'; g.font = (k ? '500' : '700') + ' 36px ' + font; g.fillText(m, 1390, y, 440);
+        if (k < mods.length - 1) { g.fillStyle = '#E6E9F2'; g.fillRect(1310, y + 46, 530, 2); }
+      });
+      scrTex.needsUpdate = true;
+    }
+    function wrap(g, text, x, y, maxW, lh) {
+      const words = text.split(' '); let line = '';
+      words.forEach(wd => { const t = line ? line + ' ' + wd : wd; if (g.measureText(t).width > maxW && line) { g.fillText(line, x, y); y += lh; line = wd; } else line = t; });
+      if (line) g.fillText(line, x, y);
+    }
+    drawScreen();
+    document.addEventListener('lang:change', () => { drawScreen(); drawDiploma(); });
+    // a soft glow ring that breathes around the start button
+    const glowTex = tex(256, 128, (g, w, h) => { const gr = g.createRadialGradient(w / 2, h / 2, 10, w / 2, h / 2, w / 2); gr.addColorStop(0, 'rgba(110,130,255,0.55)'); gr.addColorStop(1, 'rgba(110,130,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, w, h); });
+    const glow = new THREE.Mesh(new THREE.PlaneGeometry(1, 0.5), new THREE.MeshBasicMaterial({ map: glowTex, transparent: true, depthWrite: false, toneMapped: false, blending: THREE.AdditiveBlending }));
+    monG.add(glow);
+    function placeGlow() { const u = (btnBox.x + btnBox.w / 2) / scr.width, v = (btnBox.y + btnBox.h / 2) / scr.height;
+      glow.position.set(SX - SW / 2 + u * SW, SY + SH / 2 - v * SH, SZ + 0.012); glow.scale.set(btnBox.w / scr.width * SW * 1.6, btnBox.h / scr.height * SH * 2.6, 1); }
+    placeGlow();
+    // keyboard, mouse, mug with steam, books, the lamp
+    const keyTex = tex(512, 160, (g, w, h) => { g.fillStyle = '#F4F5F8'; g.fillRect(0, 0, w, h); g.fillStyle = '#E1E4EC';
+      for (let r = 0; r < 4; r++) for (let c = 0; c < 14; c++) { g.beginPath(); g.roundRect(14 + c * 35, 14 + r * 34, 29, 27, 6); g.fill(); } g.beginPath(); g.roundRect(120, 14 + 4 * 34 - 4, 260, 0, 6); g.fill(); });
+    box(0.62, 0.025, 0.2, '#F4F5F8', -0.72, deskTop, -1.86, { r: 0.012, mat: { clearcoat: 0.6 } });
+    plane(0.6, 0.18, keyTex, -0.72, deskTop + 0.027, -1.86, { rx: -Math.PI / 2 });
+    box(0.08, 0.03, 0.13, '#F4F5F8', -0.22, deskTop, -1.86, { r: 0.03 });
+    // her mate: a black leather gourd on three little feet, a wide engraved silver band, yerba, a long steel bombilla
+    const gourdProf = [[0.001, 0.02], [0.05, 0.022], [0.074, 0.05], [0.08, 0.085], [0.077, 0.115], [0.07, 0.13], [0.001, 0.13]].map(([x, y]) => new THREE.Vector2(x, y));
+    const leather = mat('#1B1B1F', { roughness: 0.62, clearcoat: 0.35, clearcoatRoughness: 0.5, sheen: 0.5, sheenColor: new THREE.Color('#5A5A66') });
+    const gourd = add(new THREE.Mesh(new THREE.LatheGeometry(gourdProf, 40), leather)); gourd.position.set(0.12, deskTop, -1.9);
+    [0, 1, 2].forEach(k => { const a = k / 3 * Math.PI * 2 + 0.4; caps(0.018, 0.02, null, 0.12 + Math.cos(a) * 0.045, deskTop + 0.022, -1.9 + Math.sin(a) * 0.045, { m: leather }); });
+    caps(0.004, 0.06, '#9A9AA4', 0.12 - 0.077, deskTop + 0.075, -1.9 + 0.012, { cast: false });           // the stitching
+    const bandTex = tex(512, 96, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#E9ECF1'); gr.addColorStop(0.5, '#A9AEB9'); gr.addColorStop(1, '#D9DCE3'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
+      g.strokeStyle = 'rgba(60,64,76,0.55)'; g.lineWidth = 3;
+      for (let x = 20; x < w; x += 64) { g.beginPath(); g.ellipse(x, h / 2, 16, 26, 0.5, 0, 7); g.stroke(); g.beginPath(); g.ellipse(x + 30, h / 2, 10, 18, -0.6, 0, 7); g.stroke(); }
+      g.fillStyle = 'rgba(60,64,76,0.4)'; for (let i = 0; i < 160; i++) g.fillRect((i * 37) % w, 8 + (i * 13) % (h - 16), 2, 2); });
+    const band = add(new THREE.Mesh(new THREE.CylinderGeometry(0.074, 0.08, 0.052, 48, 1, true), new THREE.MeshStandardMaterial({ map: bandTex, metalness: 0.85, roughness: 0.32 })), null, false);
+    band.position.set(0.12, deskTop + 0.156, -1.9);
+    const silver = mat('#D7DBE3', { metalness: 0.85, roughness: 0.25 });
+    const lip = new THREE.Mesh(new THREE.TorusGeometry(0.071, 0.008, 10, 40), silver); lip.rotation.x = Math.PI / 2; lip.position.set(0.12, deskTop + 0.183, -1.9); add(lip, null, false);
+    cyl(0.064, 0.064, 0.006, '#7A8A45', 0.12, deskTop + 0.172, -1.9, { cast: false, mat: { roughness: 0.95, clearcoat: 0 } });
+    const bombilla = cyl(0.005, 0.005, 0.3, null, 0, 0, 0, { m: silver }); bombilla.position.set(0.155, deskTop + 0.29, -1.93); bombilla.rotation.set(0.12, 0, -0.5);
+    // her thermos: violet, a steel base, a side handle, stickers like hers
+    const stickers = tex(1024, 512, (g, w, h) => { g.fillStyle = '#5A2D7C'; g.fillRect(0, 0, w, h);
+      const tag = (x, y, rot, draw) => { g.save(); g.translate(x, y); g.rotate(rot); draw(); g.restore(); };
+      tag(170, 150, -0.05, () => { g.fillStyle = '#FFFFFF'; g.beginPath(); g.roundRect(-120, -80, 240, 160, 40); g.fill();
+        g.fillStyle = '#1C1E2B'; g.font = 'italic 600 40px "Segoe Print", "Bradley Hand", cursive'; g.textAlign = 'center'; g.fillText('Hacé tu', -10, -18); g.fillText('magia', -10, 26);
+        ['#F05A8A', '#F6A23C', '#4AA3F0'].forEach((c, k) => { g.strokeStyle = c; g.lineWidth = 8; g.beginPath(); g.moveTo(-90, 58 + k * 9); g.lineTo(40, 30 + k * 9); g.stroke(); });
+        g.fillStyle = '#F6D23C'; g.beginPath(); for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? 12 : 28; g.lineTo(70 + Math.cos(a) * rr, 26 + Math.sin(a) * rr); } g.closePath(); g.fill(); });
+      tag(470, 120, 0.08, () => { const hg = g.createLinearGradient(-110, -60, 110, 60); ['#D6E4F0', '#F3D6EE', '#D8F3E6', '#E9E2F7'].forEach((c, k) => hg.addColorStop(k / 3, c)); g.fillStyle = hg;
+        g.beginPath(); g.moveTo(-110, -40); g.lineTo(60, -60); g.lineTo(115, 10); g.lineTo(30, 60); g.lineTo(-100, 45); g.closePath(); g.fill(); });
+      tag(720, 250, -0.06, () => { g.fillStyle = '#FFFFFF'; g.beginPath(); g.roundRect(-110, -130, 220, 260, 36); g.fill();
+        g.fillStyle = '#B8A6E8'; g.beginPath(); g.ellipse(0, 0, 50, 46, 0, 0, 7); g.fill(); g.beginPath(); g.moveTo(-44, -24); g.lineTo(-34, -66); g.lineTo(-12, -40); g.fill(); g.beginPath(); g.moveTo(44, -24); g.lineTo(34, -66); g.lineTo(12, -40); g.fill();
+        g.fillStyle = '#E0504A'; g.beginPath(); g.arc(0, -52, 22, Math.PI, 0); g.fill();
+        g.fillStyle = '#1C1E2B'; g.beginPath(); g.arc(-17, -2, 7, 0, 7); g.arc(17, -2, 7, 0, 7); g.fill();
+        g.fillStyle = '#2F5FB0'; g.font = '800 34px ' + font; g.textAlign = 'center'; g.fillText('Nice', 0, 92); });
+      tag(300, 380, 0.1, () => { g.fillStyle = '#F05AA8'; g.beginPath(); g.moveTo(0, -70); g.bezierCurveTo(50, -20, 60, 40, 0, 70); g.bezierCurveTo(-60, 40, -40, -10, -10, -30); g.bezierCurveTo(0, -10, 10, -40, 0, -70); g.fill(); });
+      tag(620, 430, 0, () => { g.fillStyle = '#C8F03C'; g.strokeStyle = '#1C1E2B'; g.lineWidth = 6; g.font = '900 84px ' + font; g.textAlign = 'center'; g.strokeText('MATE', 0, 30); g.fillText('MATE', 0, 30); });
+    });
+    const thermos = add(new THREE.Mesh(new THREE.CylinderGeometry(0.056, 0.056, 0.32, 48, 1, true), new THREE.MeshStandardMaterial({ map: stickers, roughness: 0.6, metalness: 0.05 })));
+    thermos.position.set(0.32, deskTop + 0.2, -2.08); thermos.rotation.y = -1.7;
+    cyl(0.057, 0.057, 0.04, '#C9CED9', 0.32, deskTop, -2.08, { mat: { metalness: 0.85, roughness: 0.28 } });
+    cyl(0.048, 0.056, 0.05, '#4A2466', 0.32, deskTop + 0.36, -2.08, { mat: { clearcoat: 0.5 } });
+    cyl(0.03, 0.04, 0.03, '#4A2466', 0.32, deskTop + 0.41, -2.08, { mat: { clearcoat: 0.5 } });
+    box(0.02, 0.2, 0.026, '#4A2466', 0.405, deskTop + 0.1, -2.08, { r: 0.008, mat: { clearcoat: 0.5 } });
+    box(0.03, 0.008, 0.01, '#C9CED9', 0.385, deskTop + 0.29, -2.08, { r: 0.003, mat: { metalness: 0.8 } }); box(0.03, 0.008, 0.01, '#C9CED9', 0.385, deskTop + 0.1, -2.08, { r: 0.003, mat: { metalness: 0.8 } });
+    const steamTex = tex(64, 64, (g) => { const gr = g.createRadialGradient(32, 32, 2, 32, 32, 30); gr.addColorStop(0, 'rgba(255,255,255,0.75)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, 64, 64); });
+    const steam = [0, 1, 2].map(k => { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: steamTex, transparent: true, depthWrite: false })); s.scale.setScalar(0.09); scene.add(s); return s; });
+    [['#E0504A', 0.07], ['#F6C445', 0.06], ['#5B7CFF', 0.08]].reduce((y, [c, h], k) => { box(0.42 - k * 0.03, h, 0.3, c, -1.62, y, -2.3, { r: 0.015, ry: k * 0.12 - 0.1 }); return y + h; }, deskTop);
+    // the toolbox on the desk: open it and the tools come out
+    const tbG = new THREE.Group(); tbG.position.set(-2.84, 1.81, 1.0); tbG.rotation.y = Math.PI / 2 - 0.12; tbG.scale.setScalar(0.92); scene.add(tbG);
+    const tbM = mat('#F2B53A', { clearcoat: 0.6, roughness: 0.4 }), tbDark = mat('#1C1E2B', { clearcoat: 0.6 });
+    box(0.44, 0.17, 0.28, null, 0, 0, 0, { g: tbG, m: tbM, r: 0.03 });
+    box(0.452, 0.014, 0.292, null, 0, 0.13, 0, { g: tbG, m: tbDark, r: 0.006, cast: false });
+    const lid = new THREE.Group(); lid.position.set(0, 0.17, -0.14); tbG.add(lid);
+    box(0.45, 0.055, 0.29, null, 0, 0, 0.145, { g: lid, m: tbM, r: 0.025 });
+    const tbHandle = new THREE.Mesh(new THREE.TorusGeometry(0.07, 0.013, 10, 24, Math.PI), tbDark); tbHandle.position.set(0, 0.055, 0.145); add(tbHandle, lid);
+    box(0.07, 0.045, 0.02, '#C9CED9', 0, -0.03, 0.29, { g: lid, r: 0.008, mat: { metalness: 0.6, roughness: 0.3 } });
+    // the tools, one tile each, drawn from the list in the page (logo or monogram, and the name)
+    const toolLis = Array.from(document.querySelectorAll('#dk-tools .dk-tools li'));
+    const icons = toolLis.map((li, i) => {
+      const t = tex(512, 608, (g, w) => {
+        g.shadowColor = 'rgba(20,23,40,0.14)'; g.shadowBlur = 28; g.shadowOffsetY = 10;
+        const card = g.createLinearGradient(0, 40, 0, 424); card.addColorStop(0, '#FFFFFF'); card.addColorStop(1, '#F2F4F9');
+        g.fillStyle = card; g.beginPath(); g.roundRect(48, 24, 416, 416, 104); g.fill(); g.shadowColor = 'transparent';
+        g.strokeStyle = 'rgba(20,23,40,0.07)'; g.lineWidth = 3; g.beginPath(); g.roundRect(49.5, 25.5, 413, 413, 103); g.stroke();
+        const path = li.querySelector('path');
+        if (path) { g.save(); g.translate(w / 2 - 108, 232 - 108); g.scale(9, 9); g.fillStyle = '#1C1E2B'; g.fill(new Path2D(path.getAttribute('d'))); g.restore(); }
+        else { const gr = g.createLinearGradient(160, 136, 352, 312); gr.addColorStop(0, '#4A64F0'); gr.addColorStop(1, '#6A3CF0'); g.fillStyle = gr; g.beginPath(); g.roundRect(160, 136, 192, 176, 48); g.fill();
+          g.fillStyle = '#FFFFFF'; g.font = '700 76px ' + font; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(li.querySelector('b').textContent, w / 2, 228); }
+        g.fillStyle = '#1C1E2B'; g.font = '600 58px ' + font; g.textAlign = 'center'; g.textBaseline = 'alphabetic';
+        g.fillText(li.querySelector('span').textContent, w / 2, 540, 500);
+      });
+      const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, transparent: true, depthWrite: false, toneMapped: false })); sp.visible = false; sp.renderOrder = 5; scene.add(sp);
+      const rows = [6, 6, Math.max(1, toolLis.length - 12)], r = i < 6 ? 0 : i < 12 ? 1 : 2, n = rows[r], c = i - (r ? (r === 1 ? 6 : 12) : 0);
+      return { s: sp, p: 0, gx: (c - (n - 1) / 2) * 0.36, gy: (1 - r) * 0.48 - 0.14, to: new THREE.Vector3() };
+    });
+    // a frosted panel behind the tiles, so they read on any background
+    const pc = document.createElement('canvas'); pc.width = 1180; pc.height = 960;
+    const panelTex = new THREE.CanvasTexture(pc); panelTex.colorSpace = THREE.SRGBColorSpace; panelTex.anisotropy = aniso;
+    function drawPanel() {
+      const g = pc.getContext('2d'), w = pc.width, h = pc.height; g.clearRect(0, 0, w, h);
+      g.fillStyle = '#FFFFFF'; g.beginPath(); g.roundRect(6, 6, w - 12, h - 12, 64); g.fill();
+      g.textAlign = 'left'; g.fillStyle = '#3346E8'; g.font = '700 26px ' + font; g.letterSpacing = '5px'; g.fillText(T('THE TOOLBOX'), 70, 92); g.letterSpacing = '0px';
+      g.fillStyle = '#14161F'; g.font = '700 44px ' + font; g.fillText(T('What I ship with.'), 70, 146);
+      panelTex.needsUpdate = true;
+    }
+    drawPanel(); document.addEventListener('lang:change', drawPanel);
+    const panel = new THREE.Mesh(new THREE.PlaneGeometry(2.42, 2.08), new THREE.MeshBasicMaterial({ map: panelTex, transparent: true, opacity: 0, depthWrite: false, toneMapped: false }));
+    panel.renderOrder = 4; panel.visible = false; scene.add(panel);
+    // the lamp
+    const lampM = mat('#2E3142', { clearcoat: 0.6 });
+    cyl(0.11, 0.13, 0.03, null, 0.42, deskTop, -2.45, { m: lampM });
+    cyl(0.014, 0.014, 0.56, null, 0.42, deskTop + 0.02, -2.45, { m: lampM, rz: 0.22 });
+    const arm2 = cyl(0.014, 0.014, 0.42, null, 0, 0, 0, { m: lampM }); arm2.position.set(0.24, deskTop + 0.66, -2.45); arm2.rotation.z = -1.0;
+    const shade = new THREE.Mesh(new THREE.ConeGeometry(0.12, 0.17, 32, 1, true), mat('#2E3142', { side: THREE.DoubleSide, clearcoat: 0.6 }));
+    shade.position.set(0.05, deskTop + 0.78, -2.32); shade.rotation.set(0.35, 0, 0.55); add(shade);
+    const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.045, 16, 12), new THREE.MeshBasicMaterial({ color: 0xFFE2A8, toneMapped: false })); bulb.position.set(0.03, deskTop + 0.72, -2.29); scene.add(bulb);
+    lampLight.position.copy(bulb.position).add(new THREE.Vector3(0, -0.06, 0.05));
+    // the plant
+    const plantG = new THREE.Group(); plantG.position.set(2.95, 0, -0.55); scene.add(plantG);
+    cyl(0.26, 0.2, 0.48, '#EDE7DD', 0, 0, 0, { g: plantG, mat: { clearcoat: 0.5 } });
+    cyl(0.24, 0.24, 0.02, '#6B4A32', 0, 0.45, 0, { g: plantG, cast: false });
+    const leaves = [];
+    [[0.1, 1.35, 0.1, 0.3, 0.3], [-0.12, 1.15, 0.12, -0.5, 0.2], [0.18, 0.95, -0.05, 0.9, -0.1], [-0.05, 1.55, -0.08, -0.2, -0.3], [-0.2, 0.85, 0.15, -1.1, 0.4], [0.2, 1.2, 0.18, 0.6, 0.6]].forEach(([x, y, z, rz, rx], k) => {
+      const stem = cyl(0.012, 0.016, y - 0.4, '#3E8A5C', x * 0.3, 0.45, z * 0.3, { g: plantG, cast: false }); stem.rotation.z = -x * 0.6; stem.rotation.x = z * 0.6;
+      const leaf = ball(0.24, k % 2 ? '#4FA374' : '#3F9468', x, y, z, { g: plantG, s: [1.1, 0.12, 0.75], mat: { clearcoat: 0.5, roughness: 0.45 } });
+      leaf.rotation.set(rx, k, rz); leaves.push({ m: leaf, rz, ph: k });
+    });
+
+    // ---- Timón: a medium black dog, sitting on his royal bed. He reviews every prototype
+    const dogG = new THREE.Group(); dogG.position.set(2.15, 0, 0.75); dogG.rotation.y = 0.15; scene.add(dogG);
+    const bedM = mat('#6E2A3A', { roughness: 0.7, clearcoat: 0, sheen: 1, sheenColor: new THREE.Color('#D9707F'), sheenRoughness: 0.4 });
+    const gold = mat('#D8A93E', { metalness: 0.8, roughness: 0.3, clearcoat: 0.6 });
+    const bedBase = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.42, 0.1, 48), bedM); bedBase.position.y = 0.05; add(bedBase, dogG);
+    const bedRim = new THREE.Mesh(new THREE.TorusGeometry(0.36, 0.075, 18, 48), bedM); bedRim.rotation.x = Math.PI / 2; bedRim.position.y = 0.13; add(bedRim, dogG);
+    const piping = new THREE.Mesh(new THREE.TorusGeometry(0.425, 0.012, 8, 64), gold); piping.rotation.x = Math.PI / 2; piping.position.y = 0.1; add(piping, dogG, false);
+    [0, 1, 2, 3].forEach(k => { const a = k * Math.PI / 2 + Math.PI / 4; ball(0.03, null, Math.cos(a) * 0.42, 0.1, Math.sin(a) * 0.42, { g: dogG, m: gold, seg: 12, cast: false }); });
+    const fur = mat('#1B1B20', { roughness: 0.55, clearcoat: 0.15, sheen: 1, sheenColor: new THREE.Color('#6A6C82'), sheenRoughness: 0.45 });
+    const dog = new THREE.Group(); dog.position.y = 0.1; dogG.add(dog);
+    // sitting: haunches, a tall chest, straight front legs
+    [-1, 1].forEach(sd => {
+      ball(0.13, null, sd * 0.1, 0.13, -0.08, { g: dog, m: fur, s: [0.75, 1, 1.15] });
+      caps(0.04, 0.24, null, sd * 0.07, 0.17, 0.11, { g: dog, m: fur });
+      ball(0.047, null, sd * 0.07, 0.03, 0.14, { g: dog, m: fur, s: [1, 0.6, 1.35] });
+      ball(0.05, null, sd * 0.13, 0.04, 0.02, { g: dog, m: fur, s: [1, 0.6, 1.5] });
+    });
+    const dogBody = caps(0.14, 0.2, null, 0, 0.27, -0.02, { g: dog, m: fur, rx: -0.45, s: [1, 1, 0.95] });
+    ball(0.125, null, 0, 0.38, 0.06, { g: dog, m: fur, s: [0.95, 1.1, 0.85] });
+    const dogHead = new THREE.Group(); dogHead.position.set(0, 0.56, 0.1); dog.add(dogHead);
+    ball(0.11, null, 0, 0, 0, { g: dogHead, m: fur, s: [1, 0.95, 1.05] });
+    caps(0.052, 0.06, null, 0, -0.035, 0.1, { g: dogHead, m: fur, rx: Math.PI / 2, s: [1, 0.85, 1] });
+    ball(0.024, '#08080B', 0, -0.012, 0.17, { g: dogHead, mat: { clearcoat: 1, roughness: 0.15 }, seg: 16 });
+    [-1, 1].forEach(sd => {
+      ball(0.017, '#3B2414', sd * 0.048, 0.03, 0.09, { g: dogHead, mat: { clearcoat: 1, roughness: 0.1 }, seg: 16, cast: false });
+      ball(0.005, '#FFFFFF', sd * 0.048 + 0.006, 0.038, 0.105, { g: dogHead, seg: 8, cast: false, mat: { emissive: '#FFFFFF', emissiveIntensity: 0.6 } });
+      caps(0.032, 0.07, null, sd * 0.1, -0.02, -0.01, { g: dogHead, m: fur, s: [1.35, 1, 0.5], rz: sd * 0.35 });
+    });
+    const tongue = ball(0.022, '#E07A86', 0, -0.075, 0.13, { g: dogHead, s: [1, 0.4, 1.3], cast: false });
+    const collar = new THREE.Mesh(new THREE.TorusGeometry(0.075, 0.015, 10, 32), mat('#4A64F0', { clearcoat: 0.6 })); collar.position.set(0, 0.47, 0.07); collar.rotation.x = Math.PI / 2 - 0.35; add(collar, dog);
+    ball(0.02, null, 0, 0.42, 0.15, { g: dog, m: gold, seg: 16 });                                             // his tag
+    const dogTail = new THREE.Group(); dogTail.position.set(0, 0.1, -0.2); dog.add(dogTail);
+    caps(0.03, 0.17, null, 0, 0.055, -0.11, { g: dogTail, m: fur, rx: -1.1 });
+
+    // ---- Milagros: a designer figure with adult proportions and clean, sculpted forms
+    const SKIN = '#F1D3C0', HAIR = '#33241D', TOP = '#3E4A86', TROUSER = '#2A2E3A';
+    const skin = mat(SKIN, { clearcoat: 0.15, roughness: 0.62, sheen: 0.25, sheenColor: new THREE.Color('#FFE0D2') });
+    const hairM = mat(HAIR, { roughness: 0.42, clearcoat: 0.3, clearcoatRoughness: 0.5, sheen: 0.9, sheenColor: new THREE.Color('#7A5644'), sheenRoughness: 0.3, side: THREE.DoubleSide });
+    const knit = mat(TOP, { roughness: 0.82, clearcoat: 0, sheen: 0.6, sheenColor: new THREE.Color('#9AA6E6') });
+    const denim = mat(TROUSER, { roughness: 0.75, clearcoat: 0 });
+    const CHAIR0 = new THREE.Vector3(-0.58, 0, -1.22);
+    const chairG = new THREE.Group(); chairG.position.copy(CHAIR0); chairG.rotation.y = Math.PI; scene.add(chairG);
+    const chairM = mat('#2C2F3F', { clearcoat: 0.5 }), cushion = mat('#454A63', { roughness: 0.8, clearcoat: 0 });
+    for (let k = 0; k < 5; k++) { const a = k / 5 * Math.PI * 2, leg = box(0.05, 0.04, 0.4, null, Math.sin(a) * 0.18, 0.05, Math.cos(a) * 0.18, { m: chairM, g: chairG, r: 0.015 }); leg.rotation.y = a;
+      ball(0.04, '#1C1E2B', Math.sin(a) * 0.36, 0.04, Math.cos(a) * 0.36, { g: chairG }); }
+    cyl(0.035, 0.035, 0.36, '#9AA0B4', 0, 0.08, 0, { g: chairG, mat: { metalness: 0.6, roughness: 0.3 } });
+    box(0.62, 0.11, 0.58, null, 0, 0.44, 0.02, { m: cushion, g: chairG, r: 0.05 });
+    box(0.05, 0.42, 0.05, null, 0, 0.5, -0.27, { m: chairM, g: chairG, r: 0.02 });
+    box(0.56, 0.5, 0.09, null, 0, 0.66, -0.3, { m: cushion, g: chairG, r: 0.06, rx: -0.1 });
+
+    const girl = new THREE.Group(); girl.position.set(0, 0.55, 0.04); chairG.add(girl);
+    box(0.36, 0.16, 0.3, null, 0, 0, -0.02, { m: denim, g: girl, r: 0.07 });
+    [-0.09, 0.09].forEach(dx => {
+      caps(0.078, 0.3, null, dx, 0.075, 0.2, { m: denim, g: girl, rx: Math.PI / 2 });
+      caps(0.066, 0.36, null, dx, -0.19, 0.36, { m: denim, g: girl, rx: 0.06 });
+      box(0.11, 0.07, 0.24, '#1E1F25', dx, -0.56, 0.41, { g: girl, r: 0.035, mat: { clearcoat: 0.7 } });
+    });
+    const torso = new THREE.Group(); torso.position.set(0, 0.14, -0.02); torso.rotation.x = 0.1; girl.add(torso);
+    // the torso is turned on a lathe: hips, a waist, the chest, a soft shoulder line
+    const prof = [[0.001, 0], [0.16, 0], [0.165, 0.05], [0.147, 0.15], [0.151, 0.24], [0.172, 0.33], [0.18, 0.4], [0.168, 0.45], [0.115, 0.49], [0.05, 0.51], [0.001, 0.51]].map(([x, y]) => new THREE.Vector2(x, y));
+    const chest = add(new THREE.Mesh(new THREE.LatheGeometry(prof, 48), knit), torso); chest.scale.z = 0.72;
+    cyl(0.062, 0.066, 0.075, null, 0, 0.475, 0, { m: knit, g: torso });                                    // a fine turtleneck
+    cyl(0.042, 0.046, 0.08, null, 0, 0.54, 0.004, { m: skin, g: torso });
+    const headG = new THREE.Group(); headG.position.set(0, 0.73, 0.012); torso.add(headG);
+    const HS = [0.94, 1.1, 1.0];
+    const headM = ball(0.165, null, 0, 0, 0, { g: headG, m: skin, s: HS, seg: 48 });
+    // a quiet face: small eyes, fine brows, a soft mouth (seen when she turns)
+    const dark = mat('#2A1E1A', { clearcoat: 1, roughness: 0.25 });
+    [-1, 1].forEach(sd => {
+      ball(0.017, null, sd * 0.055, 0.004, 0.157, { g: headG, m: dark, s: [1, 1.25, 0.6], cast: false, seg: 16 });
+      ball(0.005, '#FFFFFF', sd * 0.055 + 0.006, 0.012, 0.166, { g: headG, cast: false, seg: 8, mat: { emissive: '#FFFFFF', emissiveIntensity: 0.5 } });
+      caps(0.0055, 0.04, HAIR, sd * 0.057, 0.056, 0.157, { g: headG, rz: Math.PI / 2 + sd * 0.09, cast: false });
+    });
+    ball(0.014, null, 0, -0.028, 0.166, { g: headG, m: mat('#E7BFA9', { roughness: 0.6 }), cast: false, seg: 16 });
+    const smile = new THREE.Mesh(new THREE.TorusGeometry(0.024, 0.0055, 8, 24, Math.PI), mat('#A85A55', { roughness: 0.45 })); smile.position.set(0, -0.07, 0.151); smile.rotation.set(-0.2, 0, Math.PI); headG.add(smile);
+    // hair: a crown, a fringe parted in the middle that lies on the forehead, long hair down the back, strands framing the face
+    const crown = new THREE.Mesh(new THREE.SphereGeometry(0.172, 48, 32, 0, Math.PI * 2, 0, Math.PI * 0.6), hairM);
+    crown.scale.set(HS[0] * 1.03, HS[1] * 1.02, HS[2] * 1.06); crown.rotation.x = -0.4; crown.position.set(0, 0.01, -0.012); add(crown, headG);
+    [1, -1].forEach(sd => {
+      const fr = new THREE.Mesh(new THREE.SphereGeometry(0.171, 32, 12, sd > 0 ? Math.PI / 2 + 0.035 : Math.PI / 2 - 1.135, 1.1, Math.PI * 0.1, Math.PI * 0.27), hairM);
+      fr.scale.set(HS[0] * 1.02, HS[1] * 1.0, HS[2] * 1.02); add(fr, headG);
+    });
+    caps(0.152, 0.36, null, 0, -0.25, -0.07, { m: hairM, g: headG, s: [1.13, 1, 0.45], rx: 0.08 });
+    [-1, 1].forEach(sd => {
+      caps(0.038, 0.32, null, sd * 0.142, -0.17, 0.035, { m: hairM, g: headG, s: [0.95, 1, 0.8], rz: sd * 0.06 });
+      caps(0.036, 0.15, null, sd * 0.152, -0.38, 0.07, { m: hairM, g: headG, s: [0.95, 1, 0.75], rx: -0.22 });
+    });
+    // arms: shoulder and elbow pivots, solved each frame so the hands land on the keyboard or rest in her lap
+    const L1 = 0.28, L2 = 0.27;
+    const arms = [-1, 1].map(sd => {
+      const sh = new THREE.Group(); sh.position.set(sd * 0.185, 0.42, 0.0); torso.add(sh);
+      caps(0.055, L1 - 0.05, null, 0, -L1 / 2, 0, { m: knit, g: sh });
+      ball(0.062, null, 0, 0, 0, { m: knit, g: sh });
+      const el = new THREE.Group(); el.position.y = -L1; sh.add(el);
+      caps(0.05, L2 - 0.06, null, 0, -L2 / 2, 0, { m: knit, g: el });
+      const hand = ball(0.042, null, 0, -L2 - 0.02, 0.008, { m: skin, g: el, s: [0.9, 1.15, 0.7] });
+      return { sd, sh, el, hand };
+    });
+    function solve(arm, ty, tz) {                                                                          // 2-bone IK in the arm's sagittal plane (torso space)
+      const dy = ty - arm.sh.position.y, dz = tz - arm.sh.position.z;
+      const dist = Math.min(Math.hypot(dy, dz), L1 + L2 - 0.002), a = Math.atan2(dz, -dy);
+      const B = Math.acos(Math.min(1, Math.max(-1, (L1 * L1 + dist * dist - L2 * L2) / (2 * L1 * dist))));
+      const C = Math.acos(Math.min(1, Math.max(-1, (L1 * L1 + L2 * L2 - dist * dist) / (2 * L1 * L2))));
+      arm.sh.rotation.x = -(a - B); arm.el.rotation.x = -(Math.PI - C);
+    }
+    const girlParts = []; chairG.traverse(o => { if (o.isMesh) girlParts.push(o); });
+    const monParts = []; monG.traverse(o => { if (o.isMesh) monParts.push(o); });
+    const dipParts = []; dipG.traverse(o => { if (o.isMesh) dipParts.push(o); });
+    const dogParts = []; dogG.traverse(o => { if (o.isMesh) dogParts.push(o); });
+    const corkParts = []; corkG.traverse(o => { if (o.isMesh) corkParts.push(o); });
+    const tbParts = []; tbG.traverse(o => { if (o.isMesh) tbParts.push(o); });
+
+    // ---- theme: day or night
+    function readTheme() {
+      const t = document.documentElement.dataset.theme;
+      night = t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      hemi.intensity = night ? 0.28 : 0.8; hemi.color.set(night ? 0x8C9BE0 : 0xEAF0FF);
+      key.intensity = night ? 0.55 : 2.4; key.color.set(night ? 0xA9B8FF : 0xFFF1DE);
+      win.intensity = night ? 0.5 : 0.9; lampLight.intensity = night ? 9 : 2.2;
+      renderer.toneMappingExposure = night ? 1.05 : 1.08;
+      wallMat.color.set(night ? '#C9CDE0' : '#EEF0F6');
+      drawSky();
+    }
+    readTheme();
+    new MutationObserver(readTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    // ---- camera, layout, picking
+    const HOME = { pos: new THREE.Vector3(9.9, 8.0, 12.6), look: new THREE.Vector3(-0.15, 0.85, -0.75), fov: 30 };
+    const look = HOME.look.clone();
+    camera.position.copy(HOME.pos); camera.lookAt(look);
+    let W = 0, H = 0, wide = false, fit = 1;
+    function resize() {
+      W = stage.clientWidth; H = stage.clientHeight; if (!W || !H) return;
+      wide = innerWidth > 900;
+      // the room fills the stage: about 85% of its height on wide screens (full-width band under the title), the full width on phones
+      fit = wide ? Math.max(0.82, 0.97 * H / W) : Math.max(0.7, (H / W) * 0.85);   // the room fills its column
+      renderer.setSize(W, H, false); camera.aspect = W / H; camera.updateProjectionMatrix();
+    }
+    new ResizeObserver(() => loop()).observe(stage); resize();
+    let visible = true;
+    new IntersectionObserver(en => { visible = en[0].isIntersecting; if (visible) loop(); }).observe(stage);
+
+    const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), pointer = { x: 0, y: 0, tx: 0, ty: 0 };
+    let hovered = null;
+    function pick(e) {
+      const r = canvas.getBoundingClientRect(); ndc.set((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1);
+      ray.setFromCamera(ndc, camera);
+      const hit = ray.intersectObjects([...girlParts, ...monParts, ...dipParts, ...dogParts, ...tbParts, ...corkParts], false)[0];
+      if (!hit) return null;
+      const o = hit.object;
+      return girlParts.includes(o) ? 'me' : monParts.includes(o) ? 'course' : dipParts.includes(o) ? 'studies' : dogParts.includes(o) ? 'timon' : corkParts.includes(o) ? 'board' : 'tools';
+    }
+    canvas.addEventListener('pointermove', e => {
+      const r = canvas.getBoundingClientRect(); pointer.tx = (e.clientX - r.left) / r.width - 0.5; pointer.ty = (e.clientY - r.top) / r.height - 0.5;
+      if (zoomK) { canvas.style.cursor = onCV(e) ? 'pointer' : 'zoom-out'; return; }
+      if (state !== 'idle') return;
+      hovered = pick(e); canvas.style.cursor = hovered ? 'pointer' : '';
+      pins.forEach(p => p.classList.toggle('is-hot', p.dataset.k === hovered));
+    });
+    canvas.addEventListener('pointerleave', () => { hovered = null; pointer.tx = pointer.ty = 0; canvas.style.cursor = ''; pins.forEach(p => p.classList.remove('is-hot')); });
+    function onCV(e) {
+      if (zoomK !== 'board') return false;
+      const r = canvas.getBoundingClientRect(); ndc.set((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1);
+      ray.setFromCamera(ndc, camera); const hit = ray.intersectObject(corkPlane, false)[0];
+      return !!(hit && hit.uv && hit.uv.x > CV_BOX[0] && hit.uv.x < CV_BOX[1] && hit.uv.y > CV_BOX[2] && hit.uv.y < CV_BOX[3]);
+    }
+    canvas.addEventListener('click', e => {
+      if (zoomK) { if (onCV(e)) { const a = document.querySelector('a[download]'); if (a) a.click(); return; } zoomOut(); return; }
+      const k = pick(e); if (k) act(k, pins.find(p => p.dataset.k === k)); });
+
+    // ---- states: idle (with a focus: her card or Timón's), zoom (the diploma, the toolbox), flight (into the screen)
+    let state = 'idle', turn = 0, turnT = 0, focusK = null, fl = null, introT0 = null, introDone = reduce;
+    let zoomK = null, zk = 0, Z = null, toolsOpen = false, toolsT0 = 0, lidA = 0;
+    const ease = k => k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+    const easeBack = k => { const c = 1.5; return 1 + (c + 1) * Math.pow(k - 1, 3) + c * Math.pow(k - 1, 2); };
+    const TURN = 0.62 - Math.PI;                                                                           // from facing the desk to facing the camera
+    function focus(k) { focusK = k; turnT = k === 'me' ? 1 : 0; hero.classList.toggle('is-focus', !!k || !!zoomK); }
+    // the close-ups: the whole diploma, or every tool tile, in view at any window shape
+    function zoomPose(k) {
+      const A = W / H;
+      if (k === 'board') { const d = 1.75, half = Math.max(CH / 2 / 0.86, CW / 2 / (0.9 * A));
+        return { pos: new THREE.Vector3(CX, CY, CZ + d), look: new THREE.Vector3(CX, CY, CZ), fov: THREE.MathUtils.radToDeg(2 * Math.atan(half / d)) }; }
+      if (k === 'studies') { const d = 1.6, half = Math.max(0.915 / 2 / 0.74, 1.22 / 2 / (0.84 * A));
+        return { pos: new THREE.Vector3(-2.995 + d, 2.02, -1.65), look: new THREE.Vector3(-2.995, 2.02, -1.65), fov: THREE.MathUtils.radToDeg(2 * Math.atan(half / d)) }; }
+      const lookP = new THREE.Vector3(-0.78, 2.45, -1.55), fov = 34, half = Math.max(2.08 / 2 / 0.86, 2.42 / 2 / (0.9 * A)), d = half / Math.tan(THREE.MathUtils.degToRad(fov / 2));
+      return { pos: lookP.clone().add(new THREE.Vector3(0.3, 0.2, 0.93).normalize().multiplyScalar(d)), look: lookP, fov };
+    }
+    // the wall of tiles faces the close-up camera: every tile the same size, rows straight
+    function layoutTools() {
+      const P = zoomPose('tools'), f = v4.subVectors(P.look, P.pos).normalize(), right = new THREE.Vector3().crossVectors(f, new THREE.Vector3(0, 1, 0)).normalize(), up = new THREE.Vector3().crossVectors(right, f);
+      icons.forEach(ic => ic.to.copy(P.look).addScaledVector(right, ic.gx).addScaledVector(up, ic.gy));
+      panel.position.copy(P.look).addScaledVector(f, 0.04); panel.lookAt(P.pos);
+    }
+    function zoom(k) {
+      if (k) { Z = zoomPose(k); zoomK = k; if (k === 'tools') layoutTools(); } else zoomK = null;
+      hero.classList.toggle('is-focus', !!k || !!focusK);
+      const open = k === 'tools'; if (open !== toolsOpen) { toolsOpen = open; toolsT0 = clock.getElapsedTime(); }
+    }
+    function flyIn(done) {
+      state = 'flight'; hovered = null; canvas.style.cursor = '';
+      const r = stage.getBoundingClientRect();
+      // the stage lifts out of the hero and grows to fill the window while the camera dives
+      stage.style.cssText = 'position:fixed;left:' + r.left + 'px;top:' + r.top + 'px;width:' + r.width + 'px;height:' + r.height + 'px;z-index:200';
+      document.documentElement.classList.add('dk-flying'); hero.classList.add('is-flying');
+      stage.getBoundingClientRect();
+      requestAnimationFrame(() => { stage.classList.add('is-fill'); stage.style.left = '0px'; stage.style.top = '0px'; stage.style.width = innerWidth + 'px'; stage.style.height = innerHeight + 'px'; });
+      // a wide lens at the end lets the camera stop in front of her head, so the screen fills the window and nothing blocks it
+      const A = innerWidth / innerHeight, d = 0.82, half = Math.max(SH / 2, SW / (2 * A)) * 1.02;
+      const fov = THREE.MathUtils.radToDeg(2 * Math.atan(half / d));
+      const C = new THREE.Vector3(SX, SY, SZ);
+      fl = { t0: performance.now(), dur: 1800, from: camera.position.clone(), fromLook: look.clone(), fromFov: camera.fov, fov,
+             to: C.clone().add(new THREE.Vector3(0, 0, d)), toLook: C.clone(),
+             via: new THREE.Vector3(SX + 0.15, 3.25, -0.95), off0: offS, done };                               // over her head, then down into the screen
+    }
+    function reset() {
+      state = 'idle'; fl = null; focusK = null; turnT = 0; turn = 0; zoomK = null; zk = 0; toolsOpen = false;
+      stage.classList.remove('is-fill'); stage.style.cssText = '';
+      document.documentElement.classList.remove('dk-flying'); hero.classList.remove('is-flying', 'is-focus');
+      homeCam.copy(HOME.pos); homeLook.copy(HOME.look);
+      camera.position.copy(HOME.pos); look.copy(HOME.look); camera.fov = HOME.fov; camera.updateProjectionMatrix(); resize();
+    }
+
+    // pins follow their anchors
+    const v3 = new THREE.Vector3(), v4 = new THREE.Vector3();
+    const anchors = {
+      me: () => headM.getWorldPosition(v3).add(new THREE.Vector3(0, 0.22, 0)),
+      course: () => v3.set(SX, SY + SH / 2 + 0.06, SZ),
+      studies: () => v3.set(-2.97, 2.38, -1.65),
+      board: () => v3.set(CX, CY + CH / 2 - 0.06, CZ),
+      timon: () => dogHead.getWorldPosition(v3).add(new THREE.Vector3(0, 0.1, 0)),
+      tools: () => tbG.getWorldPosition(v3).add(new THREE.Vector3(0, 0.16, 0)),
+    };
+
+    const FOC = { me: new THREE.Vector3(-0.45, 1.45, -0.85), timon: new THREE.Vector3(2.15, 0.62, 0.75) };
+    const lookT = HOME.look.clone(), homeCam = HOME.pos.clone(), homeLook = HOME.look.clone();
+    let offS = 0, offY = 0;
+    const startEl = root.querySelector('.dk-start'); let startHot = false;
+    startEl.addEventListener('pointerenter', () => { startHot = true; }); startEl.addEventListener('pointerleave', () => { startHot = false; });
+    startEl.addEventListener('focus', () => { startHot = true; }); startEl.addEventListener('blur', () => { startHot = false; });
+    const clock = new THREE.Clock();
+    let running = false;
+    function loop() { if (running) return; running = true; requestAnimationFrame(frame); }
+    function frame(now) {
+      if ((!visible && state !== 'flight') || document.hidden) { running = false; frame.last = 0; return; }
+      requestAnimationFrame(frame);
+      const t = clock.getElapsedTime(), dt = Math.min(0.05, frame.last ? (now - frame.last) / 1000 : 0.016); frame.last = now;
+      if (stage.clientWidth !== W || stage.clientHeight !== H) { resize(); if (zoomK) Z = zoomPose(zoomK); if (zoomK === 'tools') layoutTools(); }
+      // camera
+      const offT = state === 'flight' || !wide || zoomK ? 0 : focusK ? 0.26 : 0;   // the card covers the right half of the column: she steps left
+      if (state === 'flight') offS = fl.off0 * (1 - ease(Math.min(1, (now - fl.t0) / fl.dur))); else offS += (offT - offS) * (reduce ? 1 : 0.07);
+      if (state === 'flight') {
+        const k = Math.min(1, (now - fl.t0) / fl.dur), e = ease(k), u = 1 - e;
+        camera.position.set(u * u * fl.from.x + 2 * u * e * fl.via.x + e * e * fl.to.x, u * u * fl.from.y + 2 * u * e * fl.via.y + e * e * fl.to.y, u * u * fl.from.z + 2 * u * e * fl.via.z + e * e * fl.to.z);
+        look.lerpVectors(fl.fromLook, fl.toLook, Math.min(1, e * 1.25));
+        camera.fov = fl.fromFov + (fl.fov - fl.fromFov) * e;
+        if (k >= 1 && fl.done) { const done = fl.done; fl.done = null; done(); }
+      } else {
+        if (!introDone) { if (introT0 === null) introT0 = now; const k = Math.min(1, (now - introT0) / 2200), e = 1 - Math.pow(1 - k, 4);
+          homeCam.copy(HOME.pos).sub(HOME.look).multiplyScalar((1.22 - 0.22 * e) * fit).add(HOME.look); homeCam.y += (1 - e) * 1.2; if (k >= 1) introDone = true; }
+        else {
+          pointer.x += (pointer.tx - pointer.x) * 0.05; pointer.y += (pointer.ty - pointer.y) * 0.05;
+          const sph = new THREE.Spherical().setFromVector3(v3.copy(HOME.pos).sub(HOME.look));
+          if (!reduce && !zoomK) { sph.theta += pointer.x * 0.12 + Math.sin(t * 0.25) * 0.015; sph.phi += pointer.y * 0.06; }
+          // focus: come closer to her or to Timón and keep them beside the card
+          const fp = focusK ? FOC[focusK] : null;
+          lookT.copy(HOME.look); if (fp) lookT.lerp(fp, 0.85);
+          sph.radius *= fit; if (fp) sph.radius *= focusK === 'me' ? 0.64 : 0.58;
+          homeCam.lerp(v3.setFromSpherical(sph).add(lookT), reduce ? 1 : 0.06);
+        }
+        homeLook.lerp(lookT, reduce ? 1 : 0.06);
+        // close-ups blend from wherever the camera is to the diploma or the toolbox
+        zk = reduce ? (zoomK ? 1 : 0) : Math.min(1, Math.max(0, zk + (zoomK ? dt : -dt) / 1.1));
+        const ez = ease(zk);
+        if (ez > 0 && Z) { camera.position.lerpVectors(homeCam, Z.pos, ez); look.lerpVectors(homeLook, Z.look, ez); camera.fov = HOME.fov + (Z.fov - HOME.fov) * ez; }
+        else { camera.position.copy(homeCam); look.copy(homeLook); camera.fov = HOME.fov; }
+      }
+      camera.lookAt(look);
+      // on wide screens the room sits a little high in its band, close to the title; close-ups and the flight center it
+      offY += ((wide && state !== 'flight' && !zoomK && !focusK ? 0.07 : 0) - offY) * (reduce ? 1 : 0.07);
+      if (Math.abs(offS) > 0.001 || Math.abs(offY) > 0.001) camera.setViewOffset(W, H, offS * W, offY * H, W, H); else camera.clearViewOffset();
+      camera.updateProjectionMatrix();
+
+      // her: typing, a breath, a glance over the shoulder on hover, the turn when her card opens
+      turn += (turnT - turn) * (reduce ? 1 : 0.07);
+      const tk = ease(Math.min(1, Math.max(0, turn)));
+      chairG.rotation.y = Math.PI + TURN * tk;
+      chairG.position.set(CHAIR0.x + 0.12 * tk, 0, CHAIR0.z + 0.42 * tk);
+      const breathe = reduce ? 0 : Math.sin(t * 1.7) * 0.006;
+      chest.scale.set(1 + breathe, 1 + breathe, 0.72);
+      torso.rotation.x = 0.1 * (1 - tk) - 0.03 * tk;
+      arms.forEach((arm, i) => {
+        const typing = reduce ? 0 : Math.max(0, Math.sin(t * 11 + i * 2.1)) * 0.02;
+        solve(arm, (0.22 + typing) * (1 - tk) + 0.01 * tk, 0.5 * (1 - tk) + 0.3 * tk);
+        arm.sh.rotation.z = arm.sd * (0.05 + 0.08 * tk);
+      });
+      const glance = state === 'idle' && hovered === 'me' && !focusK ? 1 : 0;
+      headG.userData.g = (headG.userData.g || 0) + (glance - (headG.userData.g || 0)) * 0.08;
+      headG.rotation.y = (reduce ? 0 : Math.sin(t * 0.5) * 0.08) * (1 - tk) - headG.userData.g * 0.9;
+      headG.rotation.x = (reduce ? 0 : 0.1 + Math.sin(t * 0.8) * 0.03) * (1 - tk) - 0.04 * tk;
+      headG.rotation.z = tk * (reduce ? 0 : 0.06);
+      // Timón: a wagging tail, a head tilt when called, a breath
+      const dogHot = (state === 'idle' && hovered === 'timon') || focusK === 'timon' ? 1 : 0;
+      dogTail.rotation.y = reduce ? 0 : Math.sin(t * (6 + dogHot * 7)) * (0.35 + dogHot * 0.25);
+      dogHead.rotation.z += ((dogHot ? 0.26 : 0) + (reduce ? 0 : Math.sin(t * 0.6) * 0.04) - dogHead.rotation.z) * 0.08;
+      dogHead.rotation.y += ((dogHot ? 0 : -0.25 + (reduce ? 0 : Math.sin(t * 0.4) * 0.15)) - dogHead.rotation.y) * 0.05;
+      dogBody.scale.y = 1 + (reduce ? 0 : Math.sin(t * 2.2) * 0.02);
+      tongue.visible = !!dogHot;
+      // the toolbox: the lid opens and the tools rise out of it into a wall of tiles
+      const tbHot = state === 'idle' && hovered === 'tools' && !toolsOpen;
+      lidA += ((toolsOpen ? -1.95 : tbHot ? -0.32 + (reduce ? 0 : Math.sin(t * 9) * 0.05) : 0) - lidA) * (reduce ? 1 : 0.12); lid.rotation.x = lidA;
+      const dipHot = state === 'idle' && hovered === 'studies' && !zoomK ? 1 : 0;
+      dipG.position.x += (dipHot * 0.04 - dipG.position.x) * 0.12;
+      corkG.position.z += ((state === 'idle' && hovered === 'board' && !zoomK ? 0.035 : 0) - corkG.position.z) * 0.12;
+      const tt = t - toolsT0, mouth = tbG.getWorldPosition(v4).add(new THREE.Vector3(0, 0.22, 0));
+      icons.forEach((ic, i) => {
+        ic.p = reduce ? (toolsOpen ? 1 : 0) : toolsOpen ? Math.min(1, Math.max(0, (tt - 0.15 - i * 0.035) / 0.6))
+          : Math.max(0, Math.min(ic.p, 1 - (tt - (icons.length - 1 - i) * 0.012) / 0.35));
+        ic.s.visible = ic.p > 0.001;
+        if (!ic.s.visible) return;
+        ic.s.position.lerpVectors(mouth, ic.to, ease(ic.p));
+        ic.s.position.y += Math.sin(Math.PI * ic.p) * 0.3 + (reduce || ic.p < 1 ? 0 : Math.sin(t * 1.3 + i * 0.7) * 0.006);
+        ic.s.material.rotation = reduce ? 0 : (1 - ease(ic.p)) * (i % 2 ? 0.5 : -0.5);
+        const sc = Math.max(0.001, ic.p >= 1 ? 1 : easeBack(ic.p)); ic.s.scale.set(0.34 * sc, 0.404 * sc, 1);
+      });
+      const pv = icons.reduce((a, ic) => a + ic.p, 0) / icons.length;
+      panel.visible = pv > 0.01; panel.material.opacity = Math.min(1, pv * 1.3) * 0.97; panel.scale.setScalar(0.94 + 0.06 * ease(Math.min(1, pv * 1.4)));
+      // the room breathes too
+      if (!reduce) {
+        steam.forEach((s, k) => { const p = (t * 0.35 + k / 3) % 1; s.position.set(0.12 + Math.sin(t * 2 + k) * 0.025, deskTop + 0.22 + p * 0.34, -1.9); s.material.opacity = Math.sin(p * Math.PI) * 0.6; s.scale.setScalar(0.06 + p * 0.1); });
+        leaves.forEach(l => { l.m.rotation.z = l.rz + Math.sin(t * 0.7 + l.ph) * 0.03; });
+      }
+      const hot = (state === 'idle' && hovered === 'course') || startHot ? 1 : 0;
+      glow.material.opacity = 0.55 + (reduce ? 0 : Math.sin(t * 2.4) * 0.3) + hot * 0.4;
+      glow.scale.x = btnBox.w / scr.width * SW * (1.6 + hot * 0.15);
+
+      renderer.render(scene, camera);
+      if (!startEl.hidden) {
+        const x0 = SX - SW / 2 + btnBox.x / scr.width * SW, x1 = x0 + btnBox.w / scr.width * SW, y0 = SY + SH / 2 - btnBox.y / scr.height * SH, y1 = y0 - btnBox.h / scr.height * SH;
+        const a = v3.set(x0, y0, SZ + 0.01).project(camera), ax = (a.x * 0.5 + 0.5) * W, ay = (-a.y * 0.5 + 0.5) * H;
+        const b2 = v4.set(x1, y1, SZ + 0.01).project(camera), bx = (b2.x * 0.5 + 0.5) * W, by = (-b2.y * 0.5 + 0.5) * H;
+        startEl.style.cssText = 'left:' + ax.toFixed(1) + 'px;top:' + ay.toFixed(1) + 'px;width:' + (bx - ax).toFixed(1) + 'px;height:' + (by - ay).toFixed(1) + 'px';
+      }
+
+      pins.forEach(p => {
+        anchors[p.dataset.k]().project(camera);
+        const x = (v3.x * 0.5 + 0.5) * W, y = (-v3.y * 0.5 + 0.5) * H;
+        p.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) translate(-50%, -100%)';
+      });
+    }
+    gl = { focus, flyIn, reset, zoom };
+    if (openKey) focus(openKey);
+    // compile every shader in parallel before the first frame (KHR_parallel_shader_compile), so the page never freezes while the scene warms up
+    resize(); camera.lookAt(look);
+    try { if (renderer.compileAsync) await renderer.compileAsync(scene, camera); } catch (e) { /* first render compiles instead */ }
+    pins.forEach((p, i) => p.style.setProperty('--n', i));
+    root.classList.remove('is-loading'); root.classList.add('is-3d');
+    loop();
+  }
+}
+</script>
     </div>
     </div>
     </div>
@@ -9010,83 +10031,6 @@ body .case .prose code { font-family: var(--mono, ui-monospace, monospace); font
       contact.style.setProperty('--gy', (e.clientY - r.top).toFixed(0) + 'px');
     });
   }
-})();
-// Hero sphere (2026-11-07): the ID page's universe (id/id.js) on the product hero, 30 case screens on a slowly turning sphere. The positions are
-// projected by hand (one transform per card per frame), so the motion stays on the compositor. Drag spins it, hover slows it,
-// a card is a link to its case. Reduced motion: the sphere is drawn once and stays still.
-(function () {
-  var stage = document.querySelector('#view-home .hero-sphere .uni-stage');
-  if (!stage) return;
-  var cards = Array.prototype.slice.call(stage.querySelectorAll('.uni-card'));
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var n = cards.length, pts = [], golden = Math.PI * (3 - Math.sqrt(5));
-  for (var i = 0; i < n; i++) {
-    var y = 1 - (i + 0.5) / n * 2, rr = Math.sqrt(1 - y * y), th = i * golden;
-    pts.push([Math.cos(th) * rr, y, Math.sin(th) * rr]);
-  }
-  var rotY = 0.6, rotX = -0.18, tiltX = 0, aimX = 0, speed = 0.0026, slow = 1, W = 0, H = 0, R = 0, RX = 0, CW = 0, CH = 0;
-  var visible = true, running = false, drag = null;
-  function size() {
-    W = stage.clientWidth; H = stage.clientHeight; R = Math.min(W, H) * 0.42;
-    CW = cards[0] ? cards[0].offsetWidth : 100; CH = cards[0] ? cards[0].offsetHeight : 75;
-    // the sphere is wider than tall; on a narrow column it narrows so no card leaves the stage
-    RX = Math.min(R * 1.18, Math.max(0, (W - CW * 1.12) / 2));
-  }
-  function draw() {
-    var cy = Math.cos(rotY), sy = Math.sin(rotY), ax = rotX + tiltX, cx = Math.cos(ax), sx = Math.sin(ax);
-    for (var i = 0; i < n; i++) {
-      var p = pts[i], x1 = p[0] * cy + p[2] * sy, z1 = -p[0] * sy + p[2] * cy;
-      var y2 = p[1] * cx - z1 * sx, z2 = p[1] * sx + z1 * cx, d = (z2 + 1) / 2;
-      var s = 0.5 + 0.62 * d, px = W / 2 + x1 * RX - CW / 2, py = H / 2 + y2 * R * 0.92 - CH / 2;
-      var c = cards[i];
-      c.style.transform = 'translate3d(' + px.toFixed(1) + 'px,' + py.toFixed(1) + 'px,0) scale(' + s.toFixed(3) + ')';
-      c.style.opacity = (0.18 + 0.82 * d).toFixed(3);
-      c.style.zIndex = String(Math.round(d * 100));
-      c.tabIndex = d > 0.45 ? 0 : -1;
-    }
-  }
-  function tick() {
-    if (!visible || reduce) { running = false; return; }
-    if (!drag) rotY += speed * slow;
-    tiltX += (aimX - tiltX) * 0.06;
-    draw();
-    requestAnimationFrame(tick);
-  }
-  function start() { if (!running && !reduce && visible) { running = true; requestAnimationFrame(tick); } }
-  size(); draw();
-  stage.classList.add('is-ready');
-  window.addEventListener('resize', function () { size(); draw(); });
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (visible) start(); }).observe(stage);
-  }
-  stage.addEventListener('pointerenter', function () { slow = 0.25; });
-  stage.addEventListener('pointerleave', function () { slow = 1; aimX = 0; });
-  stage.addEventListener('pointermove', function (e) {
-    var b = stage.getBoundingClientRect();
-    aimX = ((e.clientY - b.top) / b.height - 0.5) * -0.5;
-    if (drag) {
-      var dx = e.clientX - drag.x; drag.x = e.clientX;
-      if (Math.abs(e.clientX - drag.x0) > 4) drag.moved = true;
-      rotY += dx * 0.006;
-      if (reduce) draw();
-    }
-  });
-  stage.addEventListener('pointerdown', function (e) {
-    if (e.pointerType === 'touch') return;
-    drag = { x: e.clientX, x0: e.clientX, moved: false };
-    stage.classList.add('is-dragging');
-  });
-  window.addEventListener('pointerup', function () {
-    if (!drag) return;
-    var moved = drag.moved; drag = null; stage.classList.remove('is-dragging');
-    if (moved) { stage.dataset.dragged = '1'; setTimeout(function () { delete stage.dataset.dragged; }, 0); }
-  });
-  cards.forEach(function (c) {
-    c.addEventListener('click', function (e) { if (stage.dataset.dragged) e.preventDefault(); });
-    c.addEventListener('focus', function () { slow = 0; });
-    c.addEventListener('blur', function () { slow = 1; });
-  });
-  start();
 })();
 // Round 13: the case nav's height as --cnav-h, so a case title never sits under it (it wraps to two rows on phones)
 (function () {
