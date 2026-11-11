@@ -5193,6 +5193,14 @@ body .ret-t td:first-child { width: 28%; font-weight: 600; color: var(--ink); }
 body .ret-t td:nth-child(2), body .ret-t td:nth-child(3) { font-weight: 400; color: var(--muted); }
 body .ret-t td b { color: var(--ink); }
 body .ret-opt tr:last-child td { background: color-mix(in srgb, var(--accent) 7%, transparent); }
+
+/* Changent: the component spec */
+body .ret-spec { max-width: 820px; margin: 1.25rem 0 2rem; border-top: 2px solid var(--ink); }
+body .ret-spec > div { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 0.3rem 1.5rem; padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
+body .ret-spec dt { font-weight: 600; font-size: 0.92rem; color: var(--ink); }
+body .ret-spec dd { margin: 0; font-size: 0.92rem; line-height: 1.5; color: var(--muted); }
+body .ret-spec code { font-size: 0.86em; padding: 0.1em 0.35em; border-radius: 5px; background: color-mix(in srgb, var(--ink) 7%, transparent); color: var(--ink); }
+@media (max-width: 560px) { body .ret-spec > div { grid-template-columns: 1fr; } }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -7485,6 +7493,15 @@ function start() {
       <div class="table-scroll"><table class="impact ret-t "><thead><tr><th scope="col">State</th><th scope="col">What the nurse sees</th><th scope="col">What is logged</th></tr></thead><tbody><tr><td>Drafted</td><td>Four steps from the program's own guidance, labelled "Draft · by the agent".</td><td>That the agent read the record, and which guidance it used.</td></tr><tr><td>Edited</td><td>Her text replaces step 2. The label changes to "Edited by you".</td><td>Her version and the original, side by side.</td></tr><tr><td>Used</td><td>"Outreach logged. Undo", for 10 minutes.</td><td>Who, when and which plan.</td></tr><tr><td>Snoozed</td><td>Back in 7 days, with a required reason from a list of four.</td><td>The supervisor sees "snoozed: family travelling", not "ignored".</td></tr><tr><td>"This flag is wrong"</td><td>One tap, then one reason: data out of date, already handled, or doesn't fit this family.</td><td>It goes to the data team weekly. Three reports with the same reason trigger a model review.</td></tr></tbody></table></div>
       <p class="source">This is the full specification. The live prototype shows three of these states: drafted, used and snoozed, plus Edit. The rest ("Edited by you", the 10-minute Undo and "This flag is wrong") are specified for Phase 2.</p>
       <p class="source">What I'd watch: if "this flag is wrong" passes 20% of flags, the problem is the model, not the nurses.</p>
+      <h3>The AI draft card: the spec</h3>
+      <div class="prose"><p>The card that carries the suggestion, written up for engineering.</p></div>
+      <dl class="ret-spec">
+        <div><dt>Anatomy</dt><dd>Header with a status chip, reasons (1 to 3 lines), editable steps, and an action row.</dd></div>
+        <div><dt>States</dt><dd>Draft, edited, used and snoozed. Loading is a skeleton, never a spinner over the text. Error reads: "Couldn't load the suggestion. The client's record is unchanged. Retry."</dd></div>
+        <div><dt>By role</dt><dd>The nurse sees all three actions. The supervisor gets the same card with no buttons and a "Read only" label.</dd></div>
+        <div><dt>Accessibility</dt><dd>One tab stop per action, in reading order. Status changes are announced with <code>aria-live="polite"</code>. Text contrast 7.2:1, chip 4.8:1. Targets of 44 px.</dd></div>
+        <div><dt>Tokens</dt><dd><code>color/status/draft-bg</code>, <code>color/action/primary</code>, <code>space/3</code>, <code>radius/2</code>.</dd></div>
+      </dl>
       <h3 id="ret-roles">Who sees what</h3>
       <div class="prose">
         <p>This is health information, so I designed it under HIPAA rules and completed HIPAA training for the project. The two views are not two layouts of the same data: each role gets the minimum it needs to do its job, and every time the agent or a person touches a client record, it is logged.</p>
