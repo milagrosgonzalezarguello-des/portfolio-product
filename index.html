@@ -7272,6 +7272,27 @@ function start() {
         <p>Clients ship agents as their own product: logo, colors, name and domain change the whole interface from one set of settings. Each client gets its own environment, and its customers never meet Pengui. There is no screen of it here: the white-label page linked below lets you pick a brand preset and watch the product change.</p>
       </div>
       <p class="why"><strong>The design choice:</strong> a white-label product only works if every brand looks intentional. So color, type and identity are variables in a token system, and the experience never changes.</p>
+      <h3>How one product takes any brand</h3>
+      <div class="prose">
+        <p>We set this up together with the developers, because white label is decided in the code as much as in the design. The rule is simple: components never know which client they belong to. They ask for a role, such as "the colour of the main action", and each client's theme answers with its own value.</p>
+      </div>
+      <div class="table-scroll">
+        <table class="impact">
+          <thead><tr><th scope="col">Layer</th><th scope="col">Example</th><th scope="col">Per client</th></tr></thead>
+          <tbody>
+            <tr><td>Primitive</td><td>The client's raw palette, typeface and logo</td><td>Changes. This is the brand</td></tr>
+            <tr><td>Semantic</td><td><code>color.action.primary</code>, <code>color.surface.default</code>, <code>text.default</code></td><td>The name never changes. The value it points to does</td></tr>
+            <tr><td>Component</td><td>A button reads <code>color.action.primary</code></td><td>Never changes. One component for every client</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="prose">
+        <ul>
+          <li><strong>The semantic layer is the contract.</strong> Design and code share the same names. A new client is a new set of values behind those names, not a new interface.</li>
+          <li><strong>No component uses a raw colour.</strong> One hard-coded hex and that screen keeps the old brand when the client changes.</li>
+          <li><strong>Structure is not themeable.</strong> Layout, spacing, states and behaviour stay the same for everyone, which is why the product feels finished under any logo.</li>
+        </ul>
+      </div>
 
     </section>
 
