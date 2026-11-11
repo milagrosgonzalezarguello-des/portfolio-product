@@ -5201,6 +5201,9 @@ body .ret-spec dt { font-weight: 600; font-size: 0.92rem; color: var(--ink); }
 body .ret-spec dd { margin: 0; font-size: 0.92rem; line-height: 1.5; color: var(--muted); }
 body .ret-spec code { font-size: 0.86em; padding: 0.1em 0.35em; border-radius: 5px; background: color-mix(in srgb, var(--ink) 7%, transparent); color: var(--ink); }
 @media (max-width: 560px) { body .ret-spec > div { grid-template-columns: 1fr; } }
+
+body .ret-code { max-width: 820px; margin: 0 0 0.75rem; padding: 1.1rem 1.25rem; border-radius: 14px; overflow-x: auto; background: #14161F; color: #E6E9F5; font: 500 0.84rem/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+body .ret-code:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -6973,6 +6976,10 @@ function start() {
       <div class="prose">
         <p><strong>One iteration that failed.</strong> Version 1 of the change card listed every property the agent touched. Nobody read it. Version 2 shows only what was removed and what was added.</p>
       </div>
+      <h3>Reviewing what was built</h3>
+      <div class="prose"><p>Before each release I sit with the developer for twenty minutes and use the build. Three things from one of those reviews:</p></div>
+      <div class="table-scroll"><table class="impact ret-t "><thead><tr><th scope="col">In the build</th><th scope="col">In my ticket</th></tr></thead><tbody><tr><td>Undo reverted everything since the last save.</td><td>"Undo reverts only the agent's change on that card. Edits made by hand after it stay."</td></tr><tr><td>The missing-data warning sat under the chart.</td><td>"The warning comes before the answer. If you have to scroll to see it, it fails."</td></tr><tr><td>The locked dataset looked like a broken dropdown.</td><td>"Show a lock and the advertiser's name. A screen reader says 'locked', not 'disabled'."</td></tr></tbody></table></div>
+      <p class="source">Nine tickets that sprint, all closed before release.</p>
     </section>
 
     <section aria-labelledby="lg-s4">
@@ -7409,7 +7416,7 @@ function start() {
     <div class="oe-val"><p class="tldr-label">How I checked it</p>
       <dl class="oe-val-list">
         <div><dt>Expert walkthroughs</dt><dd>Every part of the prototype reviewed one by one with the Clear Tech experts who work with Changent's data.</dd></div>
-        <div><dt>What comes first in Phase 2</dt><dd>A task-based test with 5 nurses. So far they have seen static screens, not the working prototype.</dd></div>
+        <div><dt>What comes first in Phase 2</dt><dd>A task-based test with 5 nurses. No nurse has used the working prototype yet.</dd></div>
         <div><dt>Measurement</dt><dd>12-week retention and days from flag to first contact, nurses with the agent against nurses without, over one quarter.</dd></div>
       </dl>
     </div>
@@ -7429,7 +7436,7 @@ function start() {
       <h2 id="ret-s1" data-short="Start">Where I started</h2>
       <div class="prose">
         <p>The flag from Changent's model landed in a weekly report and rarely turned into action. The Phase 2 proposal meant to fix that was ten slides with the same layout: no numbers from the model, a product told in bullets, a yes requested on slide 2. Nobody had seen a single screen.</p>
-        <p>Before touching a screen or a slide, I met one by one with the Clear Tech experts who work with Changent every day, shaped the proposal with them and later validated every part of the prototype with them. I also ran six remote interviews with home-visit nurses, 40 minutes each. Three insights changed the pitch:</p>
+        <p>Before touching a screen or a slide, I met one by one with the Clear Tech experts who work with Changent every day, shaped the proposal with them and later validated every part of the prototype with them. I also talked with two nurse supervisors and one nurse. Three insights changed the pitch:</p>
         <ul>
           <li><strong>Nurses don't need to know who is at risk;</strong> they need to know what to do.</li>
           <li><strong>The report competes with a full visit schedule,</strong> and loses.</li>
@@ -7442,10 +7449,13 @@ function start() {
         <div><dt>~100 days</dt><dd>between the first flag and drop-out: three months to act</dd></div>
         <div><dt>57%</dt><dd>of upcoming drop-outs sat inside the riskiest 30%</dd></div>
       </dl>
-      <h3>What I learned, from whom, and what it changed</h3>
-      <div class="table-scroll"><table class="impact ret-t "><thead><tr><th scope="col">What I heard</th><th scope="col">From whom, how</th><th scope="col">What it changed on screen</th></tr></thead><tbody><tr><td>"I don't need to know she's at risk. I've known for weeks. Tell me what to try."</td><td>A home-visit nurse, 9 years in the program. One of 6 remote interviews, 40 minutes each.</td><td>The suggested approach, marked as a draft, became the centre of the screen. The risk score moved to second place.</td></tr><tr><td>The report arrives Monday; visits are planned Friday.</td><td>5 of 6 nurses, plus the scheduling data.</td><td>The nurse opens on today's priority list, not a weekly report.</td></tr><tr><td>Nurses distrust a score without a reason.</td><td>6 of 6. Two said they ignore flags they "can't explain to the family".</td><td>"Why it flagged" in plain words, on every flag.</td></tr><tr><td>The model never learns what happened after the flag.</td><td>Clear Tech's two data scientists.</td><td>Every outcome is logged; supervisors see flags acted on.</td></tr><tr><td>Not validated yet.</td><td>No nurse has used the working prototype, only static screens.</td><td>First step of Phase 2: a task-based test with 5 nurses.</td></tr></tbody></table></div>
+      <h3>What I heard, from whom, and what it changed</h3>
+      <div class="prose"><p>I ran seven conversations in two weeks: four with the Clear Tech analysts who work on Changent's data, two with nurse supervisors and one with a nurse. All remote, 30 to 45 minutes.</p></div>
+      <div class="table-scroll"><table class="impact ret-t "><thead><tr><th scope="col">What I heard</th><th scope="col">From whom</th><th scope="col">What it changed on screen</th></tr></thead><tbody><tr><td>"I already know who's struggling. Tell me what to try."</td><td>A nurse with eleven years in the program.</td><td>The suggested approach became the centre of the screen. The risk score moved to second place.</td></tr><tr><td>"A number with no reason is a number I can't take to a family."</td><td>A nurse supervisor.</td><td>Every flag has a "Why it flagged" panel in plain words.</td></tr><tr><td>Flags and outcomes live in different systems.</td><td>Clear Tech's data team.</td><td>Each action is logged on the flag, so the model can learn from what happened next.</td></tr></tbody></table></div>
+      <div class="prose"><p><strong>What I haven't validated.</strong> One nurse is not research. No nurse has used the working prototype yet. That test, with five nurses, is the first step of Phase 2.</p></div>
       <h3>Three ways to turn a flag into action</h3>
-      <div class="table-scroll"><table class="impact ret-t ret-opt"><thead><tr><th scope="col">Option</th><th scope="col">What it was</th><th scope="col">Why it lost or won</th></tr></thead><tbody><tr><td>A. A better weekly report</td><td>The same flags, ranked, emailed to supervisors on Mondays.</td><td><b>Ruled out.</b> 4 of the 6 nurses told us they open the report "when there's time", which is Friday. A better report loses to the visit schedule the same way.</td></tr><tr><td>B. The agent texts the family</td><td>An automatic check-in when risk rises two weeks in a row.</td><td><b>Ruled out.</b> The clinical lead stopped it in one sentence: "If a mother in crisis gets a robot text, we lose her." The relationship belongs to the nurse.</td></tr><tr><td>C. The agent drafts, the nurse decides</td><td>A priority list, a reason for every flag, a plan she can use, edit or snooze.</td><td><b>Chosen.</b> It keeps clinical judgment with the nurse and removes the blank page. It costs more to build than A; we accepted that.</td></tr></tbody></table></div>
+      <div class="prose"><p>Before designing a screen, I sketched three answers to the same question: what should happen when the model flags a client?</p></div>
+      <div class="table-scroll"><table class="impact ret-t ret-opt"><thead><tr><th scope="col">Option</th><th scope="col">What it was</th><th scope="col">Why it lost or won</th></tr></thead><tbody><tr><td>A. A better weekly report</td><td>The same flags, ranked and colour-coded, sent to supervisors on Monday.</td><td><b>Ruled out.</b> The report already arrived on Monday and visits were planned the Friday before. A prettier report is late in the same way.</td></tr><tr><td>B. The agent contacts the family</td><td>An automatic check-in message when risk rises two weeks in a row.</td><td><b>Ruled out.</b> The program's clinical lead ended it in one line: "If a mother in a bad week gets a message from a system, we lose her." The relationship belongs to the nurse.</td></tr><tr><td>C. The agent drafts, the nurse decides</td><td>A list for today, a reason for every flag, a plan she can use, edit or snooze.</td><td><b>Chosen.</b> It was the most expensive to build. It was also the only one where a wrong prediction costs the nurse ten seconds and costs the family nothing.</td></tr></tbody></table></div>
     </section>
 
     <section aria-labelledby="ret-s2">
@@ -7492,7 +7502,7 @@ function start() {
       <h3>One suggestion, five endings</h3>
       <div class="table-scroll"><table class="impact ret-t "><thead><tr><th scope="col">State</th><th scope="col">What the nurse sees</th><th scope="col">What is logged</th></tr></thead><tbody><tr><td>Drafted</td><td>Four steps from the program's own guidance, labelled "Draft · by the agent".</td><td>That the agent read the record, and which guidance it used.</td></tr><tr><td>Edited</td><td>Her text replaces step 2. The label changes to "Edited by you".</td><td>Her version and the original, side by side.</td></tr><tr><td>Used</td><td>"Outreach logged. Undo", for 10 minutes.</td><td>Who, when and which plan.</td></tr><tr><td>Snoozed</td><td>Back in 7 days, with a required reason from a list of four.</td><td>The supervisor sees "snoozed: family travelling", not "ignored".</td></tr><tr><td>"This flag is wrong"</td><td>One tap, then one reason: data out of date, already handled, or doesn't fit this family.</td><td>It goes to the data team weekly. Three reports with the same reason trigger a model review.</td></tr></tbody></table></div>
       <p class="source">This is the full specification. The live prototype shows three of these states: drafted, used and snoozed, plus Edit. The rest ("Edited by you", the 10-minute Undo and "This flag is wrong") are specified for Phase 2.</p>
-      <p class="source">What I'd watch: if "this flag is wrong" passes 20% of flags, the problem is the model, not the nurses.</p>
+      <p class="source">The fifth state wasn't in the first prototype. I added it after asking what a nurse does when she disagrees with the model; before, the only answer was "ignore it". What I'd watch: if "this flag is wrong" passes 20% of flags, the problem is the model, not the nurses.</p>
       <h3>The AI draft card: the spec</h3>
       <div class="prose"><p>The card that carries the suggestion, written up for engineering.</p></div>
       <dl class="ret-spec">
@@ -7502,6 +7512,16 @@ function start() {
         <div><dt>Accessibility</dt><dd>One tab stop per action, in reading order. Status changes are announced with <code>aria-live="polite"</code>. Text contrast 7.2:1, chip 4.8:1. Targets of 44 px.</dd></div>
         <div><dt>Tokens</dt><dd><code>color/status/draft-bg</code>, <code>color/action/primary</code>, <code>space/3</code>, <code>radius/2</code>.</dd></div>
       </dl>
+      <pre class="ret-code" tabindex="0" aria-label="The card's props in TypeScript"><code>type AIDraftCardProps = {
+  status: 'draft' | 'edited' | 'used' | 'snoozed';
+  reasons: string[];
+  steps: string[];
+  canAct: boolean;   // false for supervisors
+  onUse(): void;
+  onEdit(steps: string[]): void;
+  onSnooze(reason: SnoozeReason): void;
+};</code></pre>
+      <p class="source">One of five components I built in React and TypeScript with Claude Code, reviewed by a front-end developer. He renamed two of my props. His names were better.</p>
       <h3 id="ret-roles">Who sees what</h3>
       <div class="prose">
         <p>This is health information, so I designed it under HIPAA rules and completed HIPAA training for the project. The two views are not two layouts of the same data: each role gets the minimum it needs to do its job, and every time the agent or a person touches a client record, it is logged.</p>
@@ -7719,6 +7739,13 @@ function start() {
         </button>
         <figcaption>The case files list, in Spanish. On the left, every court case with its balance and status. On the right, the selected case bound to its account: account number, bank, beneficiary tax ID, alias and the movements on it.</figcaption>
       </figure>
+    </section>
+
+    <section aria-labelledby="bank-week">
+      <h2 id="bank-week" data-short="The week">One recorded call, seven screens, five days</h2>
+      <dl class="ret-spec"><div><dt>Monday</dt><dd>I read the transcript and spent two hours learning how court funds move.</dd></div><div><dt>Tuesday</dt><dd>I wrote one page the model could follow: three roles, five flows, eight rules.</dd></div><div><dt>Wednesday</dt><dd>Claude and Lovable built seven screens with working logic, using the Figma variables through the MCP. I read every screen and found eleven problems. Three were serious: one signature could release money, a made-up "auto-approve" switch, and a balance that didn't add up.</dd></div><div><dt>Thursday</dt><dd>A former court clerk walked through it for half an hour. She reordered the approvals board.</dd></div><div><dt>Friday</dt><dd>The bank saw it.</dd></div></dl>
+      <h3>What I check on every screen the AI draws</h3>
+      <div class="prose"><ol><li>Does it break a rule of the domain?</li><li>Did it invent a number, a field or a feature?</li><li>Do the words promise something the product can't do?</li><li>Can it be read and used with a keyboard?</li><li>Did any real data go into the prompt? It never should.</li></ol></div>
     </section>
 
     <section aria-labelledby="bank-s4">
