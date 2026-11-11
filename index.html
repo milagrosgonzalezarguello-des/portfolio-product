@@ -5113,6 +5113,10 @@ body .jf-close { max-width: 24ch; margin-top: clamp(2.5rem, 5vw, 4rem); font-siz
   body .hero .hero-grid h1, body .hero h1 { font-size: clamp(2.4rem, 4.4vw, 4.6rem); line-height: 1.02; margin-bottom: clamp(1.9rem, 2.6vw, 3rem) !important; }
   body .hero .hero-copy .intro { margin-top: 0; margin-bottom: clamp(2.1rem, 2.8vw, 3.1rem) !important; max-width: 44ch; line-height: 1.6; }
 }
+/* hero: descenders of the gradient lines are no longer clipped; the studio sits further left */
+body .hero h1 .hl { padding-bottom: 0.16em; margin-bottom: -0.16em; }
+body .hero h1 .sel, body .hero h1 .sel-wrap { overflow: visible; }
+@media (min-width: 901px) { body .desk { margin: 0 34px 0 -144px; } body .desk.is-zoom { margin-left: 20px; } }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
