@@ -5253,6 +5253,15 @@ function start() {
       g.textAlign = 'left'; g.textBaseline = 'alphabetic';
       g.fillStyle = '#14161F'; g.font = '700 104px ' + font; g.letterSpacing = '-3px'; g.fillText('Selected work', 150, 262); g.letterSpacing = '0px';
       g.fillStyle = '#5A6078'; g.font = '500 38px ' + font; g.fillText('Five case files. Pull one out.', 154, 330);
+      // a small window in the corner: Figma talking to Claude, the way she works
+      const logo = name => Array.from(document.querySelectorAll('#dk-tools .dk-tools li')).find(li => li.querySelector('span').textContent === name);
+      const wx = w - 650, wy = 150, ww2 = 500, wh = 190;
+      g.shadowColor = 'rgba(28,30,43,0.14)'; g.shadowBlur = 40; g.shadowOffsetY = 14; g.fillStyle = '#FFFFFF'; g.beginPath(); g.roundRect(wx, wy, ww2, wh, 30); g.fill(); g.shadowColor = 'transparent';
+      [['Figma', wx + 34], ['Claude Code', wx + ww2 - 34 - 104]].forEach(([n, x]) => { const li = logo(n); g.fillStyle = '#F3F4F8'; g.beginPath(); g.roundRect(x, wy + 28, 104, 104, 26); g.fill();
+        if (li && li.querySelector('path')) { g.save(); g.translate(x + 22, wy + 50); g.scale(2.5, 2.5); g.fillStyle = li.dataset.c || '#1C1E2B'; g.fill(new Path2D(li.querySelector('path').getAttribute('d'))); g.restore(); } });
+      g.strokeStyle = '#B9BFCE'; g.lineWidth = 5; g.setLineDash([10, 12]); g.beginPath(); g.moveTo(wx + 156, wy + 80); g.lineTo(wx + ww2 - 156, wy + 80); g.stroke(); g.setLineDash([]);
+      g.fillStyle = '#28C941'; g.beginPath(); g.arc(wx + ww2 / 2, wy + 80, 13, 0, 7); g.fill();
+      g.fillStyle = '#5A6078'; g.font = '600 24px ' + font; g.textAlign = 'center'; g.fillText('Figma MCP \u00B7 connected', wx + ww2 / 2, wy + 166); g.textAlign = 'left';
       const files = Array.from(document.querySelectorAll('#fx .fx-file')).map(li => ({ c: getComputedStyle(li).getPropertyValue('--c').trim() || '#3346E8',
         client: (li.querySelector('.fx-client') || {}).textContent || '', kpi: ((li.querySelector('.fx-kpi') || {}).firstChild || {}).textContent || '' }));
       const n = files.length, step = 148, top = 440;
