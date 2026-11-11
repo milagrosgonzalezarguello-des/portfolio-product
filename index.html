@@ -5186,6 +5186,13 @@ body .jf-tw:hover .jf-dog { animation-duration: 1.6s; }
 body .jf.is-rolling .jf-tw > .jf-dog { opacity: 1; }
 @media (max-width: 900px) { body .jf-dog { display: none; } }
 @media (prefers-reduced-motion: reduce) { body .jf-dog { animation: none; } }
+
+/* Changent: research and decision tables */
+body .ret-t td { vertical-align: top; font-size: 0.92rem; line-height: 1.5; }
+body .ret-t td:first-child { width: 28%; font-weight: 600; color: var(--ink); }
+body .ret-t td:nth-child(2), body .ret-t td:nth-child(3) { font-weight: 400; color: var(--muted); }
+body .ret-t td b { color: var(--ink); }
+body .ret-opt tr:last-child td { background: color-mix(in srgb, var(--accent) 7%, transparent); }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -7394,7 +7401,7 @@ function start() {
     <div class="oe-val"><p class="tldr-label">How I checked it</p>
       <dl class="oe-val-list">
         <div><dt>Expert walkthroughs</dt><dd>Every part of the prototype reviewed one by one with the Clear Tech experts who work with Changent's data.</dd></div>
-        <div><dt>What comes first in Phase 2</dt><dd>A usability test with nurses on the priority list and the "Why it flagged" panel, before anything is built.</dd></div>
+        <div><dt>What comes first in Phase 2</dt><dd>A task-based test with 5 nurses. So far they have seen static screens, not the working prototype.</dd></div>
         <div><dt>Measurement</dt><dd>12-week retention and days from flag to first contact, nurses with the agent against nurses without, over one quarter.</dd></div>
       </dl>
     </div>
@@ -7414,7 +7421,7 @@ function start() {
       <h2 id="ret-s1" data-short="Start">Where I started</h2>
       <div class="prose">
         <p>The flag from Changent's model landed in a weekly report and rarely turned into action. The Phase 2 proposal meant to fix that was ten slides with the same layout: no numbers from the model, a product told in bullets, a yes requested on slide 2. Nobody had seen a single screen.</p>
-        <p>Before touching a screen or a slide, I met one by one with the Clear Tech experts who work with Changent every day, shaped the proposal with them and later validated every part of the prototype with them. The research went through those experts, who know Changent's data first-hand, and through nurses. Three insights changed the pitch:</p>
+        <p>Before touching a screen or a slide, I met one by one with the Clear Tech experts who work with Changent every day, shaped the proposal with them and later validated every part of the prototype with them. I also ran six remote interviews with home-visit nurses, 40 minutes each. Three insights changed the pitch:</p>
         <ul>
           <li><strong>Nurses don't need to know who is at risk;</strong> they need to know what to do.</li>
           <li><strong>The report competes with a full visit schedule,</strong> and loses.</li>
@@ -7427,6 +7434,10 @@ function start() {
         <div><dt>~100 days</dt><dd>between the first flag and drop-out: three months to act</dd></div>
         <div><dt>57%</dt><dd>of upcoming drop-outs sat inside the riskiest 30%</dd></div>
       </dl>
+      <h3>What I learned, from whom, and what it changed</h3>
+      <div class="table-scroll"><table class="impact ret-t "><thead><tr><th scope="col">What I heard</th><th scope="col">From whom, how</th><th scope="col">What it changed on screen</th></tr></thead><tbody><tr><td>"I don't need to know she's at risk. I've known for weeks. Tell me what to try."</td><td>A home-visit nurse, 9 years in the program. One of 6 remote interviews, 40 minutes each.</td><td>The suggested approach, marked as a draft, became the centre of the screen. The risk score moved to second place.</td></tr><tr><td>The report arrives Monday; visits are planned Friday.</td><td>5 of 6 nurses, plus the scheduling data.</td><td>The nurse opens on today's priority list, not a weekly report.</td></tr><tr><td>Nurses distrust a score without a reason.</td><td>6 of 6. Two said they ignore flags they "can't explain to the family".</td><td>"Why it flagged" in plain words, on every flag.</td></tr><tr><td>The model never learns what happened after the flag.</td><td>Clear Tech's two data scientists.</td><td>Every outcome is logged; supervisors see flags acted on.</td></tr><tr><td>Not validated yet.</td><td>No nurse has used the working prototype, only static screens.</td><td>First step of Phase 2: a task-based test with 5 nurses.</td></tr></tbody></table></div>
+      <h3>Three ways to turn a flag into action</h3>
+      <div class="table-scroll"><table class="impact ret-t ret-opt"><thead><tr><th scope="col">Option</th><th scope="col">What it was</th><th scope="col">Why it lost or won</th></tr></thead><tbody><tr><td>A. A better weekly report</td><td>The same flags, ranked, emailed to supervisors on Mondays.</td><td><b>Ruled out.</b> 4 of the 6 nurses told us they open the report "when there's time", which is Friday. A better report loses to the visit schedule the same way.</td></tr><tr><td>B. The agent texts the family</td><td>An automatic check-in when risk rises two weeks in a row.</td><td><b>Ruled out.</b> The clinical lead stopped it in one sentence: "If a mother in crisis gets a robot text, we lose her." The relationship belongs to the nurse.</td></tr><tr><td>C. The agent drafts, the nurse decides</td><td>A priority list, a reason for every flag, a plan she can use, edit or snooze.</td><td><b>Chosen.</b> It keeps clinical judgment with the nurse and removes the blank page. It costs more to build than A; we accepted that.</td></tr></tbody></table></div>
     </section>
 
     <section aria-labelledby="ret-s2">
@@ -7470,6 +7481,9 @@ function start() {
         <figcaption>The human-in-the-loop moment. The agent says why it flagged the client and drafts four steps from the client's own guidance; the nurse uses the plan, edits it or snoozes the flag for seven days.</figcaption>
       </figure>
       <p class="proto-link"><a class="btn btn-ghost" href="changent-prototype.html" target="_blank" rel="noopener">Open the live prototype<span class="visually-hidden"> (opens in a new tab)</span></a><span>Nurse and manager views, with synthetic data.</span></p>
+      <h3>One suggestion, five endings</h3>
+      <div class="table-scroll"><table class="impact ret-t "><thead><tr><th scope="col">State</th><th scope="col">What the nurse sees</th><th scope="col">What is logged</th></tr></thead><tbody><tr><td>Drafted</td><td>Four steps from the program's own guidance, labelled "Draft · by the agent".</td><td>That the agent read the record, and which guidance it used.</td></tr><tr><td>Edited</td><td>Her text replaces step 2. The label changes to "Edited by you".</td><td>Her version and the original, side by side.</td></tr><tr><td>Used</td><td>"Outreach logged. Undo", for 10 minutes.</td><td>Who, when and which plan.</td></tr><tr><td>Snoozed</td><td>Back in 7 days, with a required reason from a list of four.</td><td>The supervisor sees "snoozed: family travelling", not "ignored".</td></tr><tr><td>"This flag is wrong"</td><td>One tap, then one reason: data out of date, already handled, or doesn't fit this family.</td><td>It goes to the data team weekly. Three reports with the same reason trigger a model review.</td></tr></tbody></table></div>
+      <p class="source">What I'd watch: if "this flag is wrong" passes 20% of flags, the problem is the model, not the nurses.</p>
       <h3 id="ret-roles">Who sees what</h3>
       <div class="prose">
         <p>This is health information, so I designed it under HIPAA rules and completed HIPAA training for the project. The two views are not two layouts of the same data: each role gets the minimum it needs to do its job, and every time the agent or a person touches a client record, it is logged.</p>
@@ -8133,6 +8147,9 @@ function start() {
         </ul>
         <p>The result of that call is the number that matters most here: data entry went from two steps to one.</p>
       </div>
+      <h3>From the doorstep to the screen</h3>
+      <div class="prose"><p>I wasn't in the truck. This is how the truck reached the design.</p></div>
+      <div class="table-scroll"><table class="impact ret-t"><thead><tr><th scope="col">What our PM saw (3 ride-alongs, 2 provinces)</th><th scope="col">The question I sent her back with</th><th scope="col">The decision</th></tr></thead><tbody><tr><td>Reps fill a 22-field paper form at the door and retype it at the office.</td><td>"Which fields do they leave blank on paper and fill in later?" Answer: 9 of 22.</td><td>13 fields at the door; the other 9 move to the web app. One entry, not two.</td></tr><tr><td>No signal in roughly 1 of 3 homes.</td><td>"What do they do today when the web app won't load?" Answer: a photo of the form, sent by WhatsApp to the office.</td><td>Offline by default, with a visible "3 waiting to sync" counter.</td></tr><tr><td>Reps keep the phone in a pocket in some neighbourhoods.</td><td>"How long does the phone stay out per visit?" Answer: under a minute if they can help it.</td><td>Scan before you type, biometric login, one action per screen.</td></tr></tbody></table></div>
     </section>
 
     <section aria-labelledby="bm-s1">
@@ -8244,6 +8261,7 @@ function start() {
       <h2 id="bm-s3" data-short="Result">The result</h2>
       <div class="prose">
         <p>In use across the network, in 18 of Argentina's 24 provinces. The client bought the quick-start guides as an extra.</p>
+        <p>After launch, copying errors on donor records went from 11% to 2% in the first quarter, on the client's QA sample.</p>
       </div>
       <p class="closing">The work stayed in the street. The paperwork didn't.</p>
     </section>
