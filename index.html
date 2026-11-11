@@ -4458,6 +4458,59 @@ body .dk-card h2 { font-family: var(--serif, var(--sans)); }
   body .dk-card.is-open { translate: 0 0; }
   body .desk.no3d .dk-pins { position: absolute; inset: 0; translate: none; justify-content: center; align-items: center; }
 }
+
+/* ===== 2026-11-11: featured case files. A file drawer: five folders, each with its client and its number on the edge; a folder rises when you point at it, and opens into its case ===== */
+body .fx { --step: 62px; --fh: 330px; --lift: 168px; position: relative; max-width: 960px; margin: 0 auto clamp(3rem, 6vw, 5rem); padding-top: calc(var(--lift) - 56px); }
+body .fx-bar { position: absolute; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+body .fx-sub { margin: 0; font-size: 1.05rem; color: var(--muted); }
+body .fx-snd { display: inline-flex; align-items: center; gap: 0.45rem; min-height: 40px; padding: 0.45rem 0.85rem; border: 0; border-radius: 999px; cursor: pointer; font: 600 0.82rem/1 var(--sans); color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 7%, transparent); transition: background-color 160ms ease; }
+body .fx-snd:hover { background: color-mix(in srgb, var(--ink) 13%, transparent); }
+body .fx-snd:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+body .fx-snd svg { width: 16px; height: 16px; }
+body .fx-snd[aria-pressed="true"] .fx-snd-off, body .fx-snd[aria-pressed="false"] .fx-snd-on { display: none; }
+body .fx-drawer { position: relative; height: calc(var(--step) * 4 + var(--fh)); margin: 0; padding: 0; list-style: none; }
+body .fx-file { position: absolute; left: calc(var(--i) * -6px + 30px); right: calc(var(--i) * -6px + 30px); top: calc((4 - var(--i)) * var(--step)); height: var(--fh); z-index: calc(10 - var(--i));
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1); will-change: transform; }
+body .fx-a { position: absolute; inset: 0; display: block; color: #fff; text-decoration: none; border-radius: 16px 16px 0 0;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--c) 88%, #fff) 0, var(--c) 64px);
+  box-shadow: 0 -10px 26px -14px rgba(14, 16, 32, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.35); }
+body .fx-tab { position: absolute; bottom: 100%; left: calc(28px + var(--i) * 17.5%); display: grid; place-items: center; width: 64px; height: 24px; border-radius: 10px 10px 0 0;
+  background: color-mix(in srgb, var(--c) 88%, #fff); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4); font: 700 0.74rem/1 var(--sans); letter-spacing: 0.06em; color: rgba(255, 255, 255, 0.92); }
+body .fx-strip { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; height: var(--step); padding: 1.05rem 1.6rem 0; }
+body .fx-client { font: 600 0.8rem/1.2 var(--sans); letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255, 255, 255, 0.86); white-space: nowrap; }
+body .fx-kpi { display: inline-flex; align-items: center; gap: 0.6rem; font: 700 clamp(1.25rem, 2.3vw, 1.7rem)/1 var(--serif, var(--sans)); letter-spacing: -0.02em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+body .fx-prov { padding: 0.24rem 0.5rem; border-radius: 999px; background: #FFE08A; color: #3B2F00; font: 700 0.62rem/1 var(--sans); font-style: normal; letter-spacing: 0.06em; text-transform: uppercase; }
+body .fx-face { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr); gap: 1.75rem; padding: 0.35rem 1.6rem 0; }
+body .fx-txt { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; min-width: 0; }
+body .fx-title { font: 700 clamp(1.15rem, 1.9vw, 1.5rem)/1.15 var(--serif, var(--sans)); letter-spacing: -0.015em; text-wrap: balance; }
+body .fx-lab { font-size: 0.95rem; line-height: 1.4; color: rgba(255, 255, 255, 0.9); }
+body .fx-lab b { font-weight: 700; color: #fff; }
+body .fx-res { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.86rem; font-weight: 600; color: rgba(255, 255, 255, 0.92); }
+body .fx-res::before { content: ""; width: 14px; height: 2px; border-radius: 2px; background: currentColor; }
+body .fx-src { font-size: 0.72rem; color: rgba(255, 255, 255, 0.7); }
+body .fx-cta { margin-top: 0.2rem; font-size: 0.86rem; font-weight: 700; opacity: 0; translate: -6px 0; transition: opacity 240ms ease, translate 360ms cubic-bezier(0.22, 1, 0.36, 1); }
+body .fx-img { display: block; width: 100%; height: 210px; object-fit: cover; object-position: 0 0; border-radius: 10px 10px 0 0; box-shadow: 0 14px 30px -14px rgba(0, 0, 0, 0.5); background: rgba(255, 255, 255, 0.12); }
+/* a folder rises out of the drawer: pointed at, focused, or named from the script */
+body .fx-file:not([style*="--i:0"]):hover, body .fx-file:not([style*="--i:0"]):focus-within, body .fx-file:not([style*="--i:0"]).is-up { transform: translateY(calc(var(--lift) * -1)); }
+body .fx-file:hover .fx-cta, body .fx-file:focus-within .fx-cta, body .fx-file[style*="--i:0"] .fx-cta { opacity: 1; translate: 0 0; }
+body .fx-a:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+body .fx-a:active { scale: 0.995; }
+/* the drawer's front: it hides the folders' feet */
+body .fx-lip { position: relative; z-index: 12; display: flex; align-items: center; justify-content: space-between; height: 76px; margin-top: -40px; padding: 0 1.75rem; border-radius: 14px 14px 22px 22px;
+  background: linear-gradient(180deg, #2B2E44, #1A1C2B); box-shadow: 0 34px 60px -30px rgba(14, 16, 32, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.14); color: rgba(255, 255, 255, 0.78); font: 600 0.74rem/1 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; pointer-events: none; }
+body .fx-lip i { width: 92px; height: 12px; border-radius: 999px; background: linear-gradient(180deg, #8E93B0, #5C6080); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 2px 4px rgba(0, 0, 0, 0.4); }
+/* opening: the folder's colour fills the window, then the case is there */
+body .fx-open { position: fixed; z-index: 400; background: var(--c); pointer-events: none; }
+@media (max-width: 720px) {
+  body .fx { --step: 58px; --fh: 300px; --lift: 150px; }
+  body .fx-file { left: calc(var(--i) * -3px + 12px); right: calc(var(--i) * -3px + 12px); }
+  body .fx-tab { left: calc(16px + var(--i) * 15%); width: 46px; }
+  body .fx-strip { padding: 1rem 1rem 0; } body .fx-face { grid-template-columns: 1fr; padding: 0.25rem 1rem 0; } body .fx-img { display: none; }
+  body .fx-client { font-size: 0.68rem; letter-spacing: 0.06em; overflow: hidden; text-overflow: ellipsis; } body .fx-kpi { font-size: 1.1rem; gap: 0.35rem; } body .fx-prov { font-size: 0.5rem; padding: 0.2rem 0.35rem; }
+  body .fx-lip { height: 64px; padding: 0 1rem; } body .fx-lip i { width: 60px; }
+}
+@media (prefers-reduced-motion: reduce) { body .fx-file, body .fx-cta { transition: none; } }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -5582,68 +5635,66 @@ function start() {
     </div>
       
 
-    <a class="feature" href="#lg" data-cats="client product data ai" data-lens="UX||Consistency and standards||Every card follows the same order: client, title, summary, result. Learn one, and you can scan them all.||Nielsen, 1994" aria-labelledby="wc-lg-c wc-lg-t" aria-describedby="wc-lg-r">
-      <div class="feature-text">
-        <p class="feature-badge star" title="Featured case"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.6l-5.4 2.9 1.1-6.1-4.5-4.2 6.1-.8z"/></svg><span class="sr-only">Featured case</span></p>
-        <p class="feature-client" id="wc-lg-c">LG Ad Solutions</p>
-        <h3 id="wc-lg-t">Gradient: AI Analytics for Advertisers</h3>
-        <p>I led the product design of Gradient, where LG managers and brands like Disney see if their ad spend pays off, with AI agents that answer questions and build dashboards.</p>
-        <p class="card-result" id="wc-lg-r">Live and in use by LG's teams</p>
-        <span class="cta">Read the case study<svg class="i cta-arrow" viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12 C 10 9, 18 8, 27 10"/><path d="M21 5 L 28 10 L 22 15"/></svg></span>
-      </div>
-      <div class="feature-media">
-        <img src="img/706d5c990e70de.webp" width="967" height="649" loading="lazy" alt="LG Ad Solutions campaign analytics home with impression KPIs, a delivery chart and incremental reach analysis">
-      </div>
-    </a>
-
-    <a class="feature" href="#retention" data-cats="client product uxui ai" aria-labelledby="wc-retention-c wc-retention-t" aria-describedby="wc-retention-r">
-      <div class="feature-text">
-        <p class="feature-badge star" title="Featured case"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.6l-5.4 2.9 1.1-6.1-4.5-4.2 6.1-.8z"/></svg><span class="sr-only">Featured case</span></p>
-        <p class="feature-client" id="wc-retention-c">Changent, a Clear Tech proposal</p>
-        <h3 id="wc-retention-t">A Human-in-the-Loop Retention Agent for Home-Visit Nurses</h3>
-        <p>An agent that tells each nurse who needs action today and why, drafts an approach the nurse decides on, and shows supervisors what got acted on. I shaped it with the experts who know the client, built the prototype and rebuilt the proposal around it; Phase 2 got approved.</p>
-        <p class="card-result" id="wc-retention-r">Phase 2 approved</p>
-        <span class="cta">Read the case study<svg class="i cta-arrow" viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12 C 10 9, 18 8, 27 10"/><path d="M21 5 L 28 10 L 22 15"/></svg></span>
-      </div>
-      <div class="feature-media">
-        <img src="img/b5885134659b57.webp" width="1600" height="899" loading="lazy" alt="Retention agent prototype, nurse view: a priority list of clients at risk and a detail panel with a rising risk trend">
-      </div>
-    </a>
-
-    <a class="feature" href="#designsystem" data-cats="client product info ds ai" aria-labelledby="wc-designsystem-c wc-designsystem-t" aria-describedby="wc-designsystem-r">
-      <div class="feature-text">
-        <p class="feature-badge star" title="Featured case"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.8l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.6l-5.4 2.9 1.1-6.1-4.5-4.2 6.1-.8z"/></svg><span class="sr-only">Featured case</span></p>
-        <p class="feature-client" id="wc-designsystem-c">Clear Tech</p>
-        <h3 id="wc-designsystem-t">On-Brand Without a Designer: The Clear Tech Design System</h3>
-        <p>I turned the brand into rules that people and Claude can follow, with components, data and AI patterns and templates, so anyone at the company can create on-brand work.</p>
-        <p class="card-result" id="wc-designsystem-r">Adopted company-wide</p>
-        <span class="cta">Read the case study<svg class="i cta-arrow" viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12 C 10 9, 18 8, 27 10"/><path d="M21 5 L 28 10 L 22 15"/></svg></span>
-      </div>
-      <div class="feature-media">
-        <img src="img/ca0c8e4447a27a.webp" width="1280" height="720" loading="lazy" alt="The Clear Tech title slide template: the headline Let your data tell a better story, with two accent words, on a dark space background">
-      </div>
-    </a>
+    <!-- Featured case files (2026-11-11). To change a number: edit its fx-kpi and fx-lab below, then delete data-provisional and the <em class="fx-prov"> tag once it is confirmed. -->
+    <div class="fx" id="fx" data-lens="UX||Recognition over recall||Each file shows its client and its result before you open it, so choosing takes a glance, not a guess.||Nielsen, 1994">
+      <div class="fx-bar"><p class="fx-sub">Five case files. Pull one out.</p><button type="button" class="fx-snd" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="fx-snd-on" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="fx-snd-off" d="M17 9.5l5 5M22 9.5l-5 5"/></svg><span>Sound on</span></button></div>
+      <ol class="fx-drawer">
+      <li class="fx-file" style="--i:0;--c:#B4236F">
+        <a class="fx-a" href="#lg">
+          <span class="fx-tab" aria-hidden="true">01</span>
+          <span class="fx-strip"><span class="fx-client">LG Ad Solutions</span><span class="fx-kpi">3 days → 2 sec</span></span>
+          <span class="fx-face"><span class="fx-txt"><span class="fx-title">Gradient: AI Analytics for Advertisers</span><span class="fx-lab"><b>3 days → 2 sec</b> per campaign report</span><span class="fx-res">Live and in use by LG&#x27;s teams</span><span class="fx-src">Source: Clear Tech case study</span><span class="fx-cta">Open the file <span aria-hidden="true">→</span></span></span><img class="fx-img" src="img/706d5c990e70de.webp" alt="" loading="lazy" decoding="async"></span>
+        </a>
+      </li>
+      <li class="fx-file" style="--i:1;--c:#0C857C" data-provisional>
+        <a class="fx-a" href="#retention">
+          <span class="fx-tab" aria-hidden="true">02</span>
+          <span class="fx-strip"><span class="fx-client">Changent</span><span class="fx-kpi">3× faster<em class="fx-prov">provisional</em></span></span>
+          <span class="fx-face"><span class="fx-txt"><span class="fx-title">A Human-in-the-Loop Retention Agent for Home-Visit Nurses</span><span class="fx-lab"><b>3× faster</b> to spot who needs action today</span><span class="fx-res">Phase 2 approved</span><span class="fx-cta">Open the file <span aria-hidden="true">→</span></span></span><img class="fx-img" src="img/b5885134659b57.webp" alt="" loading="lazy" decoding="async"></span>
+        </a>
+      </li>
+      <li class="fx-file" style="--i:2;--c:#3346E8" data-provisional>
+        <a class="fx-a" href="#designsystem">
+          <span class="fx-tab" aria-hidden="true">03</span>
+          <span class="fx-strip"><span class="fx-client">Clear Tech</span><span class="fx-kpi">−60%<em class="fx-prov">provisional</em></span></span>
+          <span class="fx-face"><span class="fx-txt"><span class="fx-title">On-Brand Without a Designer: The Clear Tech Design System</span><span class="fx-lab"><b>−60%</b> time to make an on-brand deliverable</span><span class="fx-res">Adopted company-wide</span><span class="fx-cta">Open the file <span aria-hidden="true">→</span></span></span><img class="fx-img" src="img/ca0c8e4447a27a.webp" alt="" loading="lazy" decoding="async"></span>
+        </a>
+      </li>
+      <li class="fx-file" style="--i:3;--c:#6A3CF0" data-provisional>
+        <a class="fx-a" href="#pengui">
+          <span class="fx-tab" aria-hidden="true">04</span>
+          <span class="fx-strip"><span class="fx-client">Pengui AI</span><span class="fx-kpi">5 brands<em class="fx-prov">provisional</em></span></span>
+          <span class="fx-face"><span class="fx-txt"><span class="fx-title">Pengui: Agentic AI Platform</span><span class="fx-lab"><b>5 brands</b> on one white-label workspace</span><span class="fx-res">On the market, adopted by companies including LG</span><span class="fx-cta">Open the file <span aria-hidden="true">→</span></span></span><img class="fx-img" src="img/4358562b2ca86e.webp" alt="" loading="lazy" decoding="async"></span>
+        </a>
+      </li>
+      <li class="fx-file" style="--i:4;--c:#23804F">
+        <a class="fx-a" href="#biomas">
+          <span class="fx-tab" aria-hidden="true">05</span>
+          <span class="fx-strip"><span class="fx-client">Biomás</span><span class="fx-kpi">2 → 1</span></span>
+          <span class="fx-face"><span class="fx-txt"><span class="fx-title">Biomás Donor Collection App</span><span class="fx-lab"><b>2 → 1</b> data entries per donor, across 18 provinces</span><span class="fx-res">Live nationwide</span><span class="fx-src">Source: Clear Tech case study</span><span class="fx-cta">Open the file <span aria-hidden="true">→</span></span></span><img class="fx-img" src="img/23d551e0c1b6cf.webp" alt="" loading="lazy" decoding="async"></span>
+        </a>
+      </li>
+      </ol>
+      <div class="fx-lip" aria-hidden="true"><span class="fx-lip-l">Selected work · 5 files</span><i></i></div>
+    </div>
 
 <div class="cfile-group" role="group" aria-labelledby="cf-title">
       <h3 class="group-title" id="cf-title">More work</h3>
-      <p class="group-sub">Twelve more case studies, client work first. Open a folder for a short summary.</p>
+      <p class="group-sub">Ten more case studies, client work first. Open a folder for a short summary.</p>
 <div class="cfile">
-  <script type="application/json" class="cfile-data">[{"id": "cammesa", "l1": "Energy-market portal", "l2": "CAMMESA · in development", "title": "CAMMESA Agent Portal Prototype", "client": "CAMMESA, electricity market", "line": "Product strategy and design direction for a new portal for market agents.", "result": "Dev-ready, now in development", "kind": "Product", "img": "img/4bb629d840d54d.webp", "w": 1333, "h": 688, "href": "#cammesa", "self": false, "strong": true}, {"id": "pengui", "l1": "Agentic AI platform", "l2": "Pengui AI · on the market", "title": "Pengui: Agentic AI Platform", "client": "Pengui AI", "line": "One workspace for agents, knowledge and tools, dressed in each client's brand.", "result": "On the market, adopted by companies including LG", "kind": "AI product", "img": "img/4358562b2ca86e.webp", "w": 895, "h": 526, "href": "#pengui", "self": false, "strong": true}, {"id": "banking", "l1": "Banking platform prototype", "l2": "Enterprise bank · NDA · deal closed", "title": "Court Funds Platform Prototype + Proposal", "client": "Enterprise bank, under NDA", "line": "One discovery call became a proposal and a seven-screen prototype.", "result": "Deal closed", "kind": "Prototype", "img": "img/ed1e557e4326a3.webp", "w": 1245, "h": 621, "href": "#banking", "self": false, "strong": true}, {"id": "biomas", "l1": "Field app, live nationwide", "l2": "Biomás · mobile", "title": "Biomás Donor Collection App", "client": "Biomás", "line": "The native app collectors and field reps use door to door, plus its quick-start guides.", "result": "Live nationwide", "kind": "Mobile app", "img": "img/23d551e0c1b6cf.webp", "w": 1218, "h": 953, "href": "#biomas", "self": false, "strong": true}, {"id": "uxguide", "l1": "Dashboard UX standards", "l2": "Global tech company · 96-page guide", "title": "Dashboards People Adopt: Power BI Standards and Guides", "client": "Global tech company", "line": "Standards and a 96-page UX guide for dashboards.", "result": "96-page guide", "kind": "Standards", "img": "img/07e51ad995c02d.webp", "w": 1280, "h": 720, "href": "#uxguide", "self": false, "strong": false}, {"id": "rif", "l1": "Enterprise HR tool", "l2": "Global tech company · NDA prototype", "title": "Workforce Reduction Platform Prototype", "client": "Global tech company, under NDA", "line": "An enterprise prototype for a sensitive HR process.", "result": "Enterprise prototype", "kind": "Prototype", "img": "img/909541eff8d1a0.webp", "w": 922, "h": 760, "href": "#rif", "self": false, "strong": false}, {"id": "scoreboard", "l1": "Sales dashboard + workshop", "l2": "Real estate network", "title": "Sales Scoreboard Workshop + Dashboard", "client": "Real estate network", "line": "A co-design workshop that ended in a dashboard.", "result": "Workshop and dashboard", "kind": "Dashboard", "img": "img/050a7d63c6929c.webp", "w": 1500, "h": 859, "href": "#scoreboard", "self": false, "strong": false}, {"id": "realestate", "l1": "Investor website", "l2": "Real estate firm · pitch concept", "title": "Investor Website Redesign", "client": "Real estate firm", "line": "A website concept made for a pitch.", "result": "Pitch concept", "kind": "Website", "img": "img/fe93041f89a686.webp", "w": 1000, "h": 625, "href": "#realestate", "self": false, "strong": false}, {"id": "climatepath", "l1": "Climate data to action plan", "l2": "AI prototype", "title": "ClimatePath: From Emissions Data to a Plan a City Can Defend", "client": "Self-initiated · Climate tech", "line": "From a city's emissions data to a council-ready action plan.", "result": "A working prototype, built with AI", "kind": "Self-initiated", "img": "img/ef690edb9961da.webp", "w": 1600, "h": 1000, "href": "#climatepath", "self": true, "strong": true}, {"id": "metamask", "l1": "Crypto onboarding redesign", "l2": "Concept", "title": "MetaMask, Rethought for First-Time Users", "client": "Unsolicited redesign · Crypto", "line": "The first five minutes, redesigned: protect first, then fund, then explore.", "result": "A concept, not affiliated with MetaMask", "kind": "Self-initiated", "img": "img/f7e916ca4dc15c.webp", "w": 1600, "h": 1000, "href": "#metamask", "self": true, "strong": false}, {"id": "verbier", "l1": "3-screen checkout", "l2": "Concept", "title": "Verbier 4 Vallées: A Day Pass in Three Screens", "client": "Self-initiated · E-commerce", "line": "A ski day pass checkout in three screens.", "result": "Concept", "kind": "Self-initiated", "img": "img/b1f4d71f853679.webp", "w": 1600, "h": 1000, "href": "#verbier", "self": true, "strong": false}, {"id": "menu", "l1": "Menu information design", "l2": "Restaurant menus", "title": "Menu Redesigns: Better Choices at the Table", "client": "Self-initiated · Information design", "line": "Restaurant menus reorganised so choosing is easier.", "result": "Information design", "kind": "Self-initiated", "img": "img/0668b4fbedbc83.webp", "w": 1000, "h": 1114, "href": "#menu", "self": true, "strong": false}]</script>
-  <h3 class="cfile-list-head">All twelve, as a list</h3>
+  <script type="application/json" class="cfile-data">[{"id": "cammesa", "l1": "Energy-market portal", "l2": "CAMMESA · in development", "title": "CAMMESA Agent Portal Prototype", "client": "CAMMESA, electricity market", "line": "Product strategy and design direction for a new portal for market agents.", "result": "Dev-ready, now in development", "kind": "Product", "img": "img/4bb629d840d54d.webp", "w": 1333, "h": 688, "href": "#cammesa", "self": false, "strong": true}, {"id": "banking", "l1": "Banking platform prototype", "l2": "Enterprise bank · NDA · deal closed", "title": "Court Funds Platform Prototype + Proposal", "client": "Enterprise bank, under NDA", "line": "One discovery call became a proposal and a seven-screen prototype.", "result": "Deal closed", "kind": "Prototype", "img": "img/ed1e557e4326a3.webp", "w": 1245, "h": 621, "href": "#banking", "self": false, "strong": true}, {"id": "uxguide", "l1": "Dashboard UX standards", "l2": "Global tech company · 96-page guide", "title": "Dashboards People Adopt: Power BI Standards and Guides", "client": "Global tech company", "line": "Standards and a 96-page UX guide for dashboards.", "result": "96-page guide", "kind": "Standards", "img": "img/07e51ad995c02d.webp", "w": 1280, "h": 720, "href": "#uxguide", "self": false, "strong": false}, {"id": "rif", "l1": "Enterprise HR tool", "l2": "Global tech company · NDA prototype", "title": "Workforce Reduction Platform Prototype", "client": "Global tech company, under NDA", "line": "An enterprise prototype for a sensitive HR process.", "result": "Enterprise prototype", "kind": "Prototype", "img": "img/909541eff8d1a0.webp", "w": 922, "h": 760, "href": "#rif", "self": false, "strong": false}, {"id": "scoreboard", "l1": "Sales dashboard + workshop", "l2": "Real estate network", "title": "Sales Scoreboard Workshop + Dashboard", "client": "Real estate network", "line": "A co-design workshop that ended in a dashboard.", "result": "Workshop and dashboard", "kind": "Dashboard", "img": "img/050a7d63c6929c.webp", "w": 1500, "h": 859, "href": "#scoreboard", "self": false, "strong": false}, {"id": "realestate", "l1": "Investor website", "l2": "Real estate firm · pitch concept", "title": "Investor Website Redesign", "client": "Real estate firm", "line": "A website concept made for a pitch.", "result": "Pitch concept", "kind": "Website", "img": "img/fe93041f89a686.webp", "w": 1000, "h": 625, "href": "#realestate", "self": false, "strong": false}, {"id": "climatepath", "l1": "Climate data to action plan", "l2": "AI prototype", "title": "ClimatePath: From Emissions Data to a Plan a City Can Defend", "client": "Self-initiated · Climate tech", "line": "From a city's emissions data to a council-ready action plan.", "result": "A working prototype, built with AI", "kind": "Self-initiated", "img": "img/ef690edb9961da.webp", "w": 1600, "h": 1000, "href": "#climatepath", "self": true, "strong": true}, {"id": "metamask", "l1": "Crypto onboarding redesign", "l2": "Concept", "title": "MetaMask, Rethought for First-Time Users", "client": "Unsolicited redesign · Crypto", "line": "The first five minutes, redesigned: protect first, then fund, then explore.", "result": "A concept, not affiliated with MetaMask", "kind": "Self-initiated", "img": "img/f7e916ca4dc15c.webp", "w": 1600, "h": 1000, "href": "#metamask", "self": true, "strong": false}, {"id": "verbier", "l1": "3-screen checkout", "l2": "Concept", "title": "Verbier 4 Vallées: A Day Pass in Three Screens", "client": "Self-initiated · E-commerce", "line": "A ski day pass checkout in three screens.", "result": "Concept", "kind": "Self-initiated", "img": "img/b1f4d71f853679.webp", "w": 1600, "h": 1000, "href": "#verbier", "self": true, "strong": false}, {"id": "menu", "l1": "Menu information design", "l2": "Restaurant menus", "title": "Menu Redesigns: Better Choices at the Table", "client": "Self-initiated · Information design", "line": "Restaurant menus reorganised so choosing is easier.", "result": "Information design", "kind": "Self-initiated", "img": "img/0668b4fbedbc83.webp", "w": 1000, "h": 1114, "href": "#menu", "self": true, "strong": false}]</script>
+  <h3 class="cfile-list-head">All ten, as a list</h3>
   <ol class="cfile-list">
     <li class="cfile-li"><span class="cfile-li-n">01</span><span class="cfile-li-m"><span class="cfile-li-k">Energy-market portal</span><a class="cfile-li-t" href="#cammesa">CAMMESA Agent Portal Prototype</a></span><span class="cfile-li-c">CAMMESA, electricity market</span></li>
-      <li class="cfile-li"><span class="cfile-li-n">02</span><span class="cfile-li-m"><span class="cfile-li-k">Agentic AI platform</span><a class="cfile-li-t" href="#pengui">Pengui: Agentic AI Platform</a></span><span class="cfile-li-c">Pengui AI</span></li>
-    <li class="cfile-li"><span class="cfile-li-n">03</span><span class="cfile-li-m"><span class="cfile-li-k">Banking platform prototype</span><a class="cfile-li-t" href="#banking">Court Funds Platform Prototype + Proposal</a></span><span class="cfile-li-c">Enterprise bank, under NDA</span></li>
-    
-    <li class="cfile-li"><span class="cfile-li-n">04</span><span class="cfile-li-m"><span class="cfile-li-k">Field app, live nationwide</span><a class="cfile-li-t" href="#biomas">Biomás Donor Collection App</a></span><span class="cfile-li-c">Biomás</span></li>
-    <li class="cfile-li"><span class="cfile-li-n">05</span><span class="cfile-li-m"><span class="cfile-li-k">Dashboard UX standards</span><a class="cfile-li-t" href="#uxguide">Dashboards People Adopt: Power BI Standards and Guides</a></span><span class="cfile-li-c">Global tech company</span></li>
-    <li class="cfile-li"><span class="cfile-li-n">06</span><span class="cfile-li-m"><span class="cfile-li-k">Enterprise HR tool</span><a class="cfile-li-t" href="#rif">Workforce Reduction Platform Prototype</a></span><span class="cfile-li-c">Global tech company, under NDA</span></li>
-    <li class="cfile-li"><span class="cfile-li-n">07</span><span class="cfile-li-m"><span class="cfile-li-k">Sales dashboard + workshop</span><a class="cfile-li-t" href="#scoreboard">Sales Scoreboard Workshop + Dashboard</a></span><span class="cfile-li-c">Real estate network</span></li>
-    <li class="cfile-li"><span class="cfile-li-n">08</span><span class="cfile-li-m"><span class="cfile-li-k">Investor website</span><a class="cfile-li-t" href="#realestate">Investor Website Redesign</a></span><span class="cfile-li-c">Real estate firm</span></li>
-    <li class="cfile-li"><span class="cfile-li-n">09</span><span class="cfile-li-m"><span class="cfile-li-k">Climate data to action plan</span><a class="cfile-li-t" href="#climatepath">ClimatePath: From Emissions Data to a Plan a City Can Defend</a></span><span class="cfile-li-c">Self-initiated · Climate tech</span></li>
-    <li class="cfile-li"><span class="cfile-li-n">10</span><span class="cfile-li-m"><span class="cfile-li-k">Crypto onboarding redesign</span><a class="cfile-li-t" href="#metamask">MetaMask, Rethought for First-Time Users</a></span><span class="cfile-li-c">Unsolicited redesign · Crypto</span></li>
-    <li class="cfile-li"><span class="cfile-li-n">11</span><span class="cfile-li-m"><span class="cfile-li-k">3-screen checkout</span><a class="cfile-li-t" href="#verbier">Verbier 4 Vallées: A Day Pass in Three Screens</a></span><span class="cfile-li-c">Self-initiated · E-commerce</span></li>
-    <li class="cfile-li"><span class="cfile-li-n">12</span><span class="cfile-li-m"><span class="cfile-li-k">Menu information design</span><a class="cfile-li-t" href="#menu">Menu Redesigns: Better Choices at the Table</a></span><span class="cfile-li-c">Self-initiated · Information design</span></li>
+    <li class="cfile-li"><span class="cfile-li-n">02</span><span class="cfile-li-m"><span class="cfile-li-k">Banking platform prototype</span><a class="cfile-li-t" href="#banking">Court Funds Platform Prototype + Proposal</a></span><span class="cfile-li-c">Enterprise bank, under NDA</span></li>
+    <li class="cfile-li"><span class="cfile-li-n">03</span><span class="cfile-li-m"><span class="cfile-li-k">Dashboard UX standards</span><a class="cfile-li-t" href="#uxguide">Dashboards People Adopt: Power BI Standards and Guides</a></span><span class="cfile-li-c">Global tech company</span></li>
+    <li class="cfile-li"><span class="cfile-li-n">04</span><span class="cfile-li-m"><span class="cfile-li-k">Enterprise HR tool</span><a class="cfile-li-t" href="#rif">Workforce Reduction Platform Prototype</a></span><span class="cfile-li-c">Global tech company, under NDA</span></li>
+    <li class="cfile-li"><span class="cfile-li-n">05</span><span class="cfile-li-m"><span class="cfile-li-k">Sales dashboard + workshop</span><a class="cfile-li-t" href="#scoreboard">Sales Scoreboard Workshop + Dashboard</a></span><span class="cfile-li-c">Real estate network</span></li>
+    <li class="cfile-li"><span class="cfile-li-n">06</span><span class="cfile-li-m"><span class="cfile-li-k">Investor website</span><a class="cfile-li-t" href="#realestate">Investor Website Redesign</a></span><span class="cfile-li-c">Real estate firm</span></li>
+    <li class="cfile-li"><span class="cfile-li-n">07</span><span class="cfile-li-m"><span class="cfile-li-k">Climate data to action plan</span><a class="cfile-li-t" href="#climatepath">ClimatePath: From Emissions Data to a Plan a City Can Defend</a></span><span class="cfile-li-c">Self-initiated · Climate tech</span></li>
+    <li class="cfile-li"><span class="cfile-li-n">08</span><span class="cfile-li-m"><span class="cfile-li-k">Crypto onboarding redesign</span><a class="cfile-li-t" href="#metamask">MetaMask, Rethought for First-Time Users</a></span><span class="cfile-li-c">Unsolicited redesign · Crypto</span></li>
+    <li class="cfile-li"><span class="cfile-li-n">09</span><span class="cfile-li-m"><span class="cfile-li-k">3-screen checkout</span><a class="cfile-li-t" href="#verbier">Verbier 4 Vallées: A Day Pass in Three Screens</a></span><span class="cfile-li-c">Self-initiated · E-commerce</span></li>
+    <li class="cfile-li"><span class="cfile-li-n">10</span><span class="cfile-li-m"><span class="cfile-li-k">Menu information design</span><a class="cfile-li-t" href="#menu">Menu Redesigns: Better Choices at the Table</a></span><span class="cfile-li-c">Self-initiated · Information design</span></li>
   </ol>
 </div>
 
@@ -10336,7 +10387,7 @@ function start() {
   if (list) {
     if (!list.id) list.id = 'cfile-list';
     const more = h('button', 'cfile-more', { type: 'button', 'aria-expanded': 'false', 'aria-controls': list.id },
-      [h('span', null, { text: 'All twelve, as a plain list' }), svg('', '<path d="M4 6l4 4 4-4"/>')]);
+      [h('span', null, { text: 'All ten, as a plain list' }), svg('', '<path d="M4 6l4 4 4-4"/>')]);
     if (listHead) listHead.replaceChildren(more); else root.insertBefore(more, list);
     list.hidden = true;
     more.addEventListener('click', () => {
@@ -10865,5 +10916,61 @@ function start() {
 <template data-media="metamask"><i data-m="115" data-s="img/f7e916ca4dc15c.webp"></i><i data-m="116" data-s="img/a26bdac8401a3f.webp"></i><i data-m="117" data-s="img/4b716cbbaa1c5e.webp"></i><i data-m="118" data-s="img/04560428399b60.webp"></i><i data-m="119" data-s="img/e287c0eba57e73.webp"></i><i data-m="120" data-s="img/2d67580949c34a.webp"></i><i data-m="121" data-s="img/2ca05a14d5c5ba.webp"></i><i data-m="122" data-s="img/cce26108face25.webp"></i><i data-m="123" data-s="img/c673ca735aa6ac.webp"></i><i data-m="124" data-s="img/5edb0df96bb583.webp"></i><i data-m="125" data-s="img/4b716cbbaa1c5e.webp"></i><i data-m="126" data-s="img/c9c778ba727af1.webp"></i><i data-m="127" data-s="img/e287c0eba57e73.webp"></i><i data-m="128" data-s="img/2ca05a14d5c5ba.webp"></i><i data-m="129" data-s="img/f1d6274cfc53fc.webp"></i><i data-m="130" data-s="img/c673ca735aa6ac.webp"></i><i data-m="131" data-s="img/62bf3d45c3ccfa.webp"></i></template><script>__m(document.currentScript.previousElementSibling)</script>
 <template data-media="verbier"><i data-m="132" data-s="img/b1f4d71f853679.webp"></i><i data-m="133" data-s="img/6595c2f346fb85.webp"></i><i data-m="134" data-s="img/3f29e71e32bef6.webp"></i><i data-m="135" data-s="img/1fb86eeada8e15.webp"></i><i data-m="136" data-s="img/0daca105d07d2c.webp"></i><i data-m="137" data-s="img/b96ff569aa2168.webp"></i><i data-m="138" data-s="img/d69625a26711fa.webp"></i><i data-m="139" data-s="img/f46f360ac76aee.webp"></i><i data-m="140" data-s="img/7bc21486ce6bf6.webp"></i><i data-m="141" data-s="img/29e3b3c158fe90.webp"></i><i data-m="142" data-s="img/2db28a3e2bc2bf.webp"></i><i data-m="143" data-s="img/6dca29aa23c821.webp"></i><i data-m="144" data-s="img/7c62e00e7b464d.webp"></i><i data-m="145" data-s="img/23bd8b15c711b3.webp"></i></template><script>__m(document.currentScript.previousElementSibling)</script>
 <template data-media="menu"><i data-m="146" data-s="img/0668b4fbedbc83.webp"></i><i data-m="147" data-s="img/89b8c01ae1459d.webp"></i><i data-m="148" data-s="img/93f423c9660b65.webp"></i><i data-m="149" data-s="img/b78ebd5df44846.webp"></i></template><script>__m(document.currentScript.previousElementSibling)</script>
+
+<script>
+// Featured case files (2026-11-11): a soft paper sound when a folder rises, a thud when it opens, and the folder's colour
+// filling the window on the way to its case. Sound is made in the browser (no files), plays only after the visitor has
+// interacted with the page, and the button remembers their choice.
+(function () {
+  var fx = document.getElementById('fx'); if (!fx) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var btn = fx.querySelector('.fx-snd'), on = true, ctx = null;
+  try { on = localStorage.getItem('fx-sound') !== 'off'; } catch (e) {}
+  function paint() { btn.setAttribute('aria-pressed', String(on)); btn.querySelector('span').textContent = on ? 'Sound on' : 'Sound off'; }
+  paint();
+  btn.addEventListener('click', function () { on = !on; try { localStorage.setItem('fx-sound', on ? 'on' : 'off'); } catch (e) {} paint(); if (on) play('rise'); });
+  function audio() {
+    if (!on) return null;
+    var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return null;
+    if (!navigator.userActivation || navigator.userActivation.hasBeenActive) { ctx = ctx || new AC(); if (ctx.state === 'suspended') ctx.resume(); }
+    return ctx && ctx.state === 'running' ? ctx : null;
+  }
+  function noise(c, dur) { var b = c.createBuffer(1, Math.ceil(c.sampleRate * dur), c.sampleRate), d = b.getChannelData(0); for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; var s = c.createBufferSource(); s.buffer = b; return s; }
+  function play(kind) {
+    var c = audio(); if (!c) return; var t = c.currentTime, g = c.createGain(); g.connect(c.destination);
+    if (kind === 'rise') {                                   // paper sliding against paper
+      var n = noise(c, 0.16), f = c.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = 0.9; f.frequency.setValueAtTime(900, t); f.frequency.exponentialRampToValueAtTime(2600, t + 0.14);
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.05, t + 0.03); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.16);
+      n.connect(f); f.connect(g); n.start(t); n.stop(t + 0.17);
+    } else {                                                 // a folder dropped on a desk
+      var o = c.createOscillator(); o.type = 'sine'; o.frequency.setValueAtTime(150, t); o.frequency.exponentialRampToValueAtTime(58, t + 0.16);
+      g.gain.setValueAtTime(0.16, t); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.2); o.connect(g); o.start(t); o.stop(t + 0.21);
+      var n2 = noise(c, 0.05), f2 = c.createBiquadFilter(), g2 = c.createGain(); f2.type = 'lowpass'; f2.frequency.value = 1400; g2.gain.setValueAtTime(0.07, t); g2.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
+      n2.connect(f2); f2.connect(g2); g2.connect(c.destination); n2.start(t); n2.stop(t + 0.06);
+    }
+  }
+  var files = Array.prototype.slice.call(fx.querySelectorAll('.fx-file')), busy = false;
+  files.forEach(function (li) {
+    var a = li.querySelector('.fx-a');
+    li.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') play('rise'); });
+    a.addEventListener('focus', function () { if (a.matches(':focus-visible')) play('rise'); });
+    a.addEventListener('click', function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+      play('open');
+      if (reduce || busy || !a.animate) return;
+      e.preventDefault(); busy = true;
+      var r = a.getBoundingClientRect(), o = document.createElement('div');
+      o.className = 'fx-open'; o.style.setProperty('--c', getComputedStyle(li).getPropertyValue('--c'));
+      document.body.appendChild(o);
+      var grow = o.animate([{ left: r.left + 'px', top: r.top + 'px', width: r.width + 'px', height: r.height + 'px', borderRadius: '16px' },
+        { left: '0px', top: '0px', width: window.innerWidth + 'px', height: window.innerHeight + 'px', borderRadius: '0px' }], { duration: 480, easing: 'cubic-bezier(0.65, 0, 0.35, 1)', fill: 'forwards' });
+      grow.onfinish = function () {
+        location.hash = a.getAttribute('href');
+        setTimeout(function () { var out = o.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 420, easing: 'ease-out', fill: 'forwards' }); out.onfinish = function () { o.remove(); busy = false; }; }, 140);
+      };
+    });
+  });
+})();
+</script>
 </body>
 </html>
