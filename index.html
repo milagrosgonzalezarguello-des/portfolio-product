@@ -5336,8 +5336,8 @@ function start() {
           g.fillStyle = li.dataset.c || '#1C1E2B'; g.fill(new Path2D(path.getAttribute('d'))); g.restore(); }   // each logo in its brand colour
         else { const gr = g.createLinearGradient(160, 136, 352, 312); gr.addColorStop(0, li.dataset.c || '#4A64F0'); gr.addColorStop(1, li.dataset.c || '#6A3CF0'); g.fillStyle = gr; g.beginPath(); g.roundRect(160, 136, 192, 176, 48); g.fill();
           g.fillStyle = '#FFFFFF'; g.font = '700 76px ' + font; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(li.querySelector('b').textContent, w / 2, 228); }
-        g.fillStyle = '#1C1E2B'; g.font = '600 58px ' + font; g.textAlign = 'center'; g.textBaseline = 'alphabetic';
-        g.fillText(li.querySelector('span').textContent, w / 2, 540, 500);
+        g.fillStyle = '#14161F'; g.font = '700 84px ' + font; g.textAlign = 'center'; g.textBaseline = 'alphabetic';
+        g.fillText(li.querySelector('span').textContent, w / 2, 556, 508);
       });
       const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, transparent: true, depthWrite: false, toneMapped: false })); sp.visible = false; sp.renderOrder = 5; scene.add(sp);
       const rows = [6, Math.max(1, Math.min(6, toolLis.length - 6)), Math.max(1, toolLis.length - 12)], r = i < 6 ? 0 : i < 12 ? 1 : 2, n = rows[r], c = i - (r ? (r === 1 ? 6 : 12) : 0);
@@ -5393,6 +5393,26 @@ function start() {
     shade.position.set(0.05, deskTop + 0.78, -2.32); shade.rotation.set(0.35, 0, 0.55); add(shade);
     const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.045, 16, 12), new THREE.MeshBasicMaterial({ color: 0xFFE2A8, toneMapped: false })); bulb.position.set(0.03, deskTop + 0.72, -2.29); scene.add(bulb);
     lampLight.position.copy(bulb.position).add(new THREE.Vector3(0, -0.06, 0.05));
+    let lampOn = true, lampBase = 2.2, plantKick = 0;
+    const setLamp = () => { lampLight.intensity = lampOn ? lampBase : 0; bulb.material.color.set(lampOn ? 0xFFE2A8 : 0x6B6E7C); };
+    // her glasses, folded open on the desk, and her iPhone lying next to them (it lights up with a message now and then)
+    const glG = new THREE.Group(); glG.position.set(0.52, deskTop + 0.03, -1.74); glG.rotation.set(0, -0.35, 0); scene.add(glG);
+    const frameM = mat('#3A2A22', { clearcoat: 0.8, roughness: 0.3 }), lensM = new THREE.MeshPhysicalMaterial({ color: 0xDCEBFF, transparent: true, opacity: 0.35, roughness: 0.05, clearcoat: 1 });
+    [-0.046, 0.046].forEach(x => { const rim = new THREE.Mesh(new THREE.TorusGeometry(0.036, 0.006, 10, 32), frameM); rim.position.set(x, 0.012, 0); rim.rotation.x = -0.12; add(rim, glG, true);
+      const lens = new THREE.Mesh(new THREE.CircleGeometry(0.034, 28), lensM); lens.position.set(x, 0.012, 0); lens.rotation.x = -0.12; glG.add(lens);
+      const temple = cyl(0.004, 0.004, 0.13, null, x * 1.85, -0.026, -0.065, { m: frameM, g: glG, cast: false }); temple.rotation.x = Math.PI / 2; temple.position.y = -0.008; });
+    const bridge = cyl(0.004, 0.004, 0.024, null, 0, 0.02, 0, { m: frameM, g: glG, cast: false }); bridge.rotation.z = Math.PI / 2; bridge.position.set(0, 0.022, 0);
+    const iphG = new THREE.Group(); iphG.position.set(0.3, deskTop, -1.7); iphG.rotation.y = 0.28; scene.add(iphG);
+    box(0.078, 0.009, 0.16, '#2B2D36', 0, 0, 0, { r: 0.004, g: iphG, mat: { metalness: 0.5, roughness: 0.3, clearcoat: 0.8 } });
+    const iphC = document.createElement('canvas'); iphC.width = 200; iphC.height = 420; const iphT = new THREE.CanvasTexture(iphC); iphT.colorSpace = THREE.SRGBColorSpace;
+    const drawIph = on => { const g = iphC.getContext('2d'); const bg = g.createLinearGradient(0, 0, 200, 420); bg.addColorStop(0, on ? '#3B2F8F' : '#0D0E14'); bg.addColorStop(1, on ? '#B4236F' : '#14151C'); g.fillStyle = bg; g.fillRect(0, 0, 200, 420);
+      g.fillStyle = '#000'; g.beginPath(); g.roundRect(70, 12, 60, 18, 9); g.fill();
+      if (on) { g.fillStyle = '#fff'; g.textAlign = 'center'; g.font = '600 54px ' + font; g.fillText('10:00', 100, 120); g.fillStyle = 'rgba(255,255,255,0.92)'; g.beginPath(); g.roundRect(14, 170, 172, 74, 16); g.fill();
+        g.fillStyle = '#14161F'; g.font = '700 17px ' + font; g.textAlign = 'left'; g.fillText('Tim\u00F3n', 28, 198); g.font = '500 15px ' + font; g.fillText('Walk? Now? Please?', 28, 224); }
+      iphT.needsUpdate = true; };
+    drawIph(false);
+    const iphS = new THREE.Mesh(new THREE.PlaneGeometry(0.072, 0.152), new THREE.MeshBasicMaterial({ map: iphT, toneMapped: false })); iphS.rotation.x = -Math.PI / 2; iphS.position.y = 0.0096; iphG.add(iphS);
+    let iphOn = false;
     // the plant
     const plantG = new THREE.Group(); plantG.position.set(2.95, 0, -0.55); scene.add(plantG);
     cyl(0.26, 0.2, 0.48, '#EDE7DD', 0, 0, 0, { g: plantG, mat: { clearcoat: 0.5 } });
@@ -5527,7 +5547,7 @@ function start() {
       night = t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
       hemi.intensity = night ? 0.2 : 0.8; hemi.color.set(night ? 0x8C9BE0 : 0xEAF0FF);
       key.intensity = night ? 0.38 : 2.4; key.color.set(night ? 0xA9B8FF : 0xFFF1DE);
-      win.intensity = night ? 0.5 : 0.9; lampLight.intensity = night ? 13 : 2.2;
+      win.intensity = night ? 0.5 : 0.9; lampBase = night ? 13 : 2.2; setLamp();
       renderer.toneMappingExposure = night ? 1.05 : 1.08;
       wallMat.color.set(night ? '#4B5078' : '#EEF0F6'); screenLight.intensity = night ? 5 : 0;
       drawSky();
@@ -5575,7 +5595,7 @@ function start() {
       if (zoomK === 'tools') { const ic = toolAt(e); if (ic !== hotTool) showTool(ic); canvas.style.cursor = ic ? 'help' : 'zoom-out'; return; }
       if (zoomK) { canvas.style.cursor = onCV(e) ? 'pointer' : 'zoom-out'; return; }
       if (state !== 'idle') return;
-      hovered = pick(e); canvas.style.cursor = hovered ? 'pointer' : '';
+      hovered = pick(e); const tk2 = hovered ? null : touch(e); if (tk2 === 'plant' && plantKick < 0.3) plantKick = 0.6; canvas.style.cursor = hovered || tk2 ? 'pointer' : '';
       pins.forEach(p => p.classList.toggle('is-hot', p.dataset.k === hovered));
     });
     canvas.addEventListener('pointerleave', () => { hovered = null; pointer.tx = pointer.ty = 0; canvas.style.cursor = ''; pins.forEach(p => p.classList.remove('is-hot')); });
@@ -5585,8 +5605,12 @@ function start() {
       ray.setFromCamera(ndc, camera); const hit = ray.intersectObject(corkPlane, false)[0];
       return !!(hit && hit.uv && hit.uv.x > CV_BOX[0] && hit.uv.x < CV_BOX[1] && hit.uv.y > CV_BOX[2] && hit.uv.y < CV_BOX[3]);
     }
+    const extras = () => [shade, bulb, ...leaves.map(l => l.m), iphS];
+    function touch(e) { const r = canvas.getBoundingClientRect(); ndc.set((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1); ray.setFromCamera(ndc, camera);
+      const hit = ray.intersectObjects(extras(), false)[0]; if (!hit) return null; const o = hit.object; return o === shade || o === bulb ? 'lamp' : o === iphS ? 'phone' : 'plant'; }
     canvas.addEventListener('click', e => {
       if (dragged) { dragged = false; return; }
+      if (state === 'idle' && !zoomK && !focusK && !pick(e)) { const k = touch(e); if (k === 'lamp') { lampOn = !lampOn; setLamp(); return; } if (k === 'plant') { plantKick = 1; return; } if (k === 'phone') { iphOn = !iphOn; drawIph(iphOn); return; } }
       if (zoomK === 'tools') { const ic = toolAt(e); if (ic) { showTool(ic); return; } }
       if (zoomK) { if (onCV(e)) { const a = document.querySelector('a[download]'); if (a) a.click(); return; } zoomOut(); return; }
       const k = pick(e); if (k) act(k, pins.find(p => p.dataset.k === k)); });
@@ -5783,7 +5807,9 @@ function start() {
       // the room breathes too
       if (!reduce) {
         steam.forEach((s, k) => { const p = (t * 0.35 + k / 3) % 1; s.position.set(0.12 + Math.sin(t * 2 + k) * 0.025, deskTop + 0.22 + p * 0.34, -1.9); s.material.opacity = Math.sin(p * Math.PI) * 0.6; s.scale.setScalar(0.06 + p * 0.1); });
-        leaves.forEach(l => { l.m.rotation.z = l.rz + Math.sin(t * 0.7 + l.ph) * 0.03; });
+        plantKick *= 0.965;
+        leaves.forEach(l => { l.m.rotation.z = l.rz + Math.sin(t * 0.7 + l.ph) * 0.03 + Math.sin(t * 9 + l.ph * 1.7) * 0.22 * plantKick; });
+        const ion = (t % 16) > 9 && (t % 16) < 14; if (ion !== iphOn) { iphOn = ion; drawIph(ion); }
       }
       const hot = (state === 'idle' && hovered === 'course') || startHot ? 1 : 0;
       glow.material.opacity = 0.55 + (reduce ? 0 : Math.sin(t * 2.4) * 0.3) + hot * 0.4;
