@@ -4848,6 +4848,31 @@ body .ag-a { display: flex; align-items: flex-end; gap: 4px; height: 26px; paddi
 body .ag-a b { width: 6px; border-radius: 2px; background: currentColor; } body .ag-a b:nth-child(1) { height: 50%; } body .ag-a b:nth-child(2) { height: 100%; } body .ag-a b:nth-child(3) { height: 72%; }
 @keyframes ag-in { 0%, 8% { opacity: 0; transform: translateY(6px); } 16%, 88% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(6px); } }
 @media (prefers-reduced-motion: reduce) { body .ag-v *, body .agent .ag-eye { animation: none !important; } body .ag-line, body .ag-check { stroke-dashoffset: 0; } }
+
+/* ===== How I work, third pass: the slogan sits under the heading, the panel takes the brand indigo, rows arrive and take turns ===== */
+body .jf { margin-top: -0.5rem; }
+body .jf-line { max-width: none; margin-bottom: 0.9rem; font-size: clamp(1.35rem, 2.1vw, 1.8rem); line-height: 1.2; letter-spacing: -0.015em; }
+body .jf-line span { background: var(--grad-accent, linear-gradient(120deg, #4A64F0, #6A3CF0)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+body .jf-lede { font-size: 1rem; margin-bottom: 2rem; }
+body .jf-t { max-width: 1000px; }
+body .jf-t th:last-child, body .jf-t td:last-child { background: #1A2163 !important; }
+body .jf-t th:last-child { padding: 1.15rem 1.6rem 0.8rem; color: #B9C5FF; background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent) !important; }
+body .jf-t td { padding: 0.9rem 0; }
+body .jf-t td:first-child { font-size: 0.93rem; }
+body .jf-t td:last-child { padding: 0.9rem 1.6rem; font: 600 1rem/1.4 var(--sans); letter-spacing: 0; border-top-color: rgba(255, 255, 255, 0.1); }
+body .jf-t tbody tr:last-child td:last-child { padding-bottom: 1.3rem; }
+body .jf-t tbody tr:hover td:last-child, body .jf-t tbody tr.is-hot td:last-child { background: #2A3190 !important; }
+body .jf-t tbody tr.is-hot td:first-child { color: var(--ink); }
+body .jf-t tbody tr.is-hot td:first-child::after { translate: 8px -50%; opacity: 1; }
+body .jf-t td:last-child { position: relative; }
+body .jf-t td:last-child::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: #8FA2FF; scale: 1 0; transform-origin: 50% 0; transition: scale 420ms cubic-bezier(0.16, 1, 0.3, 1); }
+body .jf-t tbody tr:hover td:last-child::before, body .jf-t tbody tr.is-hot td:last-child::before { scale: 1 1; }
+/* arrival: each pair slides in, the left a beat before the right */
+body .jf-t.will-in tbody td { opacity: 0; }
+body .jf-t.will-in tbody td:first-child { translate: -14px 0; } body .jf-t.will-in tbody td:last-child { translate: 14px 0; }
+body .jf-t.is-in tbody td { opacity: 1; translate: 0 0; transition: opacity 520ms ease, translate 700ms cubic-bezier(0.16, 1, 0.3, 1), color 200ms ease, background-color 240ms ease; transition-delay: calc(var(--r, 0) * 90ms), calc(var(--r, 0) * 90ms), 0s, 0s; }
+body .jf-t.is-in tbody td:last-child { transition-delay: calc(var(--r, 0) * 90ms + 120ms), calc(var(--r, 0) * 90ms + 120ms), 0s, 0s; }
+@media (prefers-reduced-motion: reduce) { body .jf-t.will-in tbody td { opacity: 1; translate: none; } body .jf-t td:last-child::before { transition: none; } }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -6192,7 +6217,7 @@ function start() {
       <h2 id="how-title">How I work</h2>
     </div>
     <div class="jf">
-      <p class="jf-line">Judgment-first design, accelerated by AI.</p>
+      <p class="jf-line">Judgment-first design, <span>accelerated by AI.</span></p>
       <p class="jf-lede">AI exposes the designer who only makes screens. Fast and good-looking is not the same as right.</p>
       <table class="jf-t"><thead><tr><th scope="col">What AI does</th><th scope="col">What I decide</th></tr></thead><tbody><tr><td>Makes screens and artifacts in minutes</td><td>Decide what should exist in the first place</td></tr><tr><td>Generates ten options</td><td>Define what success looks like, and pick the one that gets there</td></tr><tr><td>Automates whatever it is pointed at</td><td>Decide when automation builds trust and when it destroys it, and what should never be personalized</td></tr><tr><td>Follows the prompt</td><td>Read what is behind it: the business context, how users feel, what the organization can carry, the trade-offs</td></tr><tr><td>Behaves the same when it is unsure</td><td>Design how the product should behave when things are uncertain</td></tr><tr><td>Executes</td><td>Frame the problem, shape how the system behaves, and answer for the decision</td></tr></tbody></table>
       <p class="jf-base">The second column comes from my base in learning psychology: knowing how people think, trust and decide.</p>
@@ -11488,6 +11513,24 @@ document.addEventListener('click', function (e) {
     var go = function () { mw.classList.toggle('is-closed', !open); b.setAttribute('aria-expanded', String(open)); b.textContent = open ? 'Close the stack' : 'Open all 10'; };
     if (document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.startViewTransition(go); else go();
   });
+})();
+</script>
+
+<script>
+// How I work: the comparison arrives row by row, then each pair takes a turn until the visitor points at one.
+(function () {
+  var t = document.querySelector('.jf-t'); if (!t) return;
+  var rows = Array.prototype.slice.call(t.querySelectorAll('tbody tr')), reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  rows.forEach(function (r, i) { r.style.setProperty('--r', i); });
+  if (reduce || !('IntersectionObserver' in window)) return;
+  t.classList.add('will-in');
+  var i = -1, timer = null, paused = false;
+  function tick() { if (paused) return; rows.forEach(function (r) { r.classList.remove('is-hot'); }); i = (i + 1) % rows.length; rows[i].classList.add('is-hot'); }
+  new IntersectionObserver(function (en) { var on = en[0].isIntersecting;
+    if (on) { t.classList.add('is-in'); t.classList.remove('will-in'); if (!timer) timer = setInterval(tick, 2400); } else { clearInterval(timer); timer = null; }
+  }, { threshold: 0.25 }).observe(t);
+  t.addEventListener('pointerenter', function () { paused = true; rows.forEach(function (r) { r.classList.remove('is-hot'); }); });
+  t.addEventListener('pointerleave', function () { paused = false; });
 })();
 </script>
 </body>
