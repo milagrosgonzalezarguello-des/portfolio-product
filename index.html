@@ -5106,6 +5106,18 @@ body .jf-t .jf-v { display: inline-block; min-width: 4.6em; font-weight: 700; co
 body .jf-t td:first-child { white-space: nowrap; }
 @media (max-width: 760px) { body .jf-t td:first-child { white-space: normal; } body .jf-t .jf-v { min-width: 0; } }
 @media (min-width: 761px) { body .jf-t tbody td:last-child { padding-left: calc(1.6rem + 4.9em); text-indent: -4.9em; } body .jf-t .jf-v { min-width: 4.9em; text-indent: 0; } }
+/* AI vs me, told apart at a glance: a big name heads each column, the AI side is set in mono like machine output, mine in bold sans */
+body .jf-t .jf-hd { display: grid; gap: 0.3rem; text-align: left; }
+body .jf-t .jf-hd b { font: 700 clamp(1.3rem, 2.2vw, 1.75rem)/1 var(--sans); letter-spacing: -0.02em; text-transform: none; color: var(--ink); }
+body .jf-t .jf-hd small { font: 600 0.7rem/1.2 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+body .jf-t th:last-child .jf-hd b { color: #fff; }
+body .jf-t th:last-child .jf-hd small { color: #B9C5FF; }
+body .jf-t th:first-child .jf-hd b, body .jf-t td:first-child { font-family: var(--mono, ui-monospace, "SF Mono", Menlo, Consolas, monospace); }
+body .jf-t td:first-child { font-size: 0.86rem; letter-spacing: -0.01em; }
+body .jf-t .jf-th { gap: 0.9rem; }
+@media (min-width: 761px) { body .jf-t tbody td:last-child { padding-left: 1.6rem; text-indent: 0; } body .jf-t .jf-r { display: grid; grid-template-columns: 5.2rem minmax(0, 1fr); align-items: baseline; } body .jf-t .jf-v { min-width: 0; } }
+@media (max-width: 760px) { body .jf-t .jf-v { margin-right: 0.3em; } }
+@media (max-width: 640px) { body .jf-t td:first-child { font-size: 0.78rem; } body .jf-t .jf-th { gap: 0.55rem; } body .jf-t th:first-child .jf-th { gap: 0.95rem; } body .jf-t .jf-hd b { font-size: 1.15rem; } body .jf-t .jf-hd small { font-size: 0.62rem; letter-spacing: 0.08em; } }
 /* the closing line of How I work, as a statement */
 body .jf-close { max-width: 24ch; margin-top: clamp(2.5rem, 5vw, 4rem); font-size: clamp(1.7rem, 3.4vw, 2.9rem); line-height: 1.12; letter-spacing: -0.025em; font-weight: 700; text-wrap: balance; }
 /* ===== hero, more air: a larger headline, then room before the paragraph and before the actions ===== */
@@ -6611,7 +6623,7 @@ function start() {
     <div class="jf">
       <p class="jf-line">Judgment-first design, <span>accelerated by AI.</span></p>
       <p class="jf-lede">AI exposes the designer who only makes screens. Fast and good-looking is not the same as right.</p>
-      <div class="jf-tw"><img class="jf-dog" src="img/timon-figma.webp" width="305" height="300" alt="" loading="lazy" decoding="async" aria-hidden="true"><table class="jf-t"><thead><tr><th scope="col"><span class="jf-th"><span class="jf-av jf-bot" aria-hidden="true"><svg viewBox="0 0 64 56" shape-rendering="crispEdges"><rect x="2" y="16" width="8" height="12" fill="#E8793A"/><rect x="54" y="16" width="8" height="12" fill="#D9662A"/><rect x="8" y="4" width="48" height="34" fill="#F08A45"/><rect x="8" y="4" width="48" height="4" fill="#F9A462"/><rect x="50" y="8" width="6" height="30" fill="#DE6E30"/><g class="jf-eyes" fill="#16110D"><rect x="20" y="16" width="7" height="9"/><rect x="38" y="16" width="7" height="9"/></g><rect x="16" y="38" width="8" height="12" fill="#D9662A"/><rect x="40" y="38" width="8" height="12" fill="#D9662A"/><rect x="12" y="50" width="14" height="4" fill="#C2571F"/><rect x="38" y="50" width="14" height="4" fill="#C2571F"/></svg></span><span>What AI does</span></span></th><th scope="col"><span class="jf-th"><span class="jf-av jf-me" aria-hidden="true"><img src="img/f6135957f80444.webp" alt="" loading="lazy" decoding="async"></span><span>What I decide</span></span></th></tr></thead><tbody><tr><td>Makes screens in minutes</td><td><b class="jf-v">Decide</b> what should exist</td></tr><tr><td>Generates ten options</td><td><b class="jf-v">Define</b> success, then pick the one that gets there</td></tr><tr><td>Automates anything</td><td><b class="jf-v">Judge</b> when automation builds trust, when it breaks it, and what never gets personalized</td></tr><tr><td>Follows the prompt</td><td><b class="jf-v">Read</b> what is behind it: business, users, constraints, trade-offs</td></tr><tr><td>Acts the same when unsure</td><td><b class="jf-v">Design</b> how the product behaves under uncertainty</td></tr><tr><td>Executes</td><td><b class="jf-v">Own</b> the problem framing, the system behavior and the decision</td></tr></tbody></table></div>
+      <div class="jf-tw"><img class="jf-dog" src="img/timon-figma.webp" width="305" height="300" alt="" loading="lazy" decoding="async" aria-hidden="true"><table class="jf-t"><thead><tr><th scope="col"><span class="jf-th"><span class="jf-av jf-bot" aria-hidden="true"><svg viewBox="0 0 64 56" shape-rendering="crispEdges"><rect x="2" y="16" width="8" height="12" fill="#E8793A"/><rect x="54" y="16" width="8" height="12" fill="#D9662A"/><rect x="8" y="4" width="48" height="34" fill="#F08A45"/><rect x="8" y="4" width="48" height="4" fill="#F9A462"/><rect x="50" y="8" width="6" height="30" fill="#DE6E30"/><g class="jf-eyes" fill="#16110D"><rect x="20" y="16" width="7" height="9"/><rect x="38" y="16" width="7" height="9"/></g><rect x="16" y="38" width="8" height="12" fill="#D9662A"/><rect x="40" y="38" width="8" height="12" fill="#D9662A"/><rect x="12" y="50" width="14" height="4" fill="#C2571F"/><rect x="38" y="50" width="14" height="4" fill="#C2571F"/></svg></span><span class="jf-hd"><b>AI</b><small>What it does</small></span></span></th><th scope="col"><span class="jf-th"><span class="jf-av jf-me" aria-hidden="true"><img src="img/f6135957f80444.webp" alt="" loading="lazy" decoding="async"></span><span class="jf-hd"><b>Me</b><small>What I do</small></span></span></th></tr></thead><tbody><tr><td>Makes screens in minutes</td><td><span class="jf-r"><b class="jf-v">Decide</b><span>what should exist</span></span></td></tr><tr><td>Generates ten options</td><td><span class="jf-r"><b class="jf-v">Define</b><span>success, then pick the one that gets there</span></span></td></tr><tr><td>Automates anything</td><td><span class="jf-r"><b class="jf-v">Judge</b><span>when automation builds trust, when it breaks it, and what never gets personalized</span></span></td></tr><tr><td>Follows the prompt</td><td><span class="jf-r"><b class="jf-v">Read</b><span>what is behind it: business, users, constraints, trade-offs</span></span></td></tr><tr><td>Acts the same when unsure</td><td><span class="jf-r"><b class="jf-v">Design</b><span>how the product behaves under uncertainty</span></span></td></tr><tr><td>Executes</td><td><span class="jf-r"><b class="jf-v">Own</b><span>the problem framing, the system behavior and the decision</span></span></td></tr></tbody></table></div>
       <p class="jf-base">The second column comes from my base in learning psychology: knowing how people think, trust and decide.</p>
       <p class="jf-close">The market does not need more interfaces. It needs <b>better decisions</b> about which experiences deserve to exist.</p>
     </div>
@@ -6852,7 +6864,8 @@ function start() {
         <figcaption>Ask for a change, or open the properties panel and make it yourself.</figcaption>
       </figure>
       <h3>Publish on purpose</h3>
-      <div class="prose"><p>Before publishing, a dialog says exactly what will happen and who will see it, and lets you note what changed. The library then shows every dashboard's status, owner and last edit.</p></div>
+      <div class="prose"><p><strong>A user changed my mind here.</strong> I saw Publish as the end of the task: the dashboard is done, one click, live. In the usability sessions, 4 of 5 account managers stopped at that button, and one asked "who's going to see this?" For them it was the riskiest moment: an unfinished number in front of an advertiser. I had designed for finishing; they needed to know the audience first.</p>
+      <p>So before publishing, a dialog says exactly what will happen and who will see it, and lets you note what changed. The library then shows every dashboard's status, owner and last edit.</p></div>
       <figure class="shot wide">
         <button type="button" data-zoom aria-label="Enlarge: publish dialog">
           <img data-m="5" width="1522" height="1024" loading="lazy" alt="Publish dialog with a summary of what will happen, a viewer access selector and an optional publish note">
@@ -8539,6 +8552,7 @@ function start() {
         <div><dt>Role</dt><dd>Product Design Lead</dd></div>
         <div><dt>Product</dt><dd>Native app, web app, quick-start guides and Play Store page</dd></div>
         <div><dt>Users</dt><dd>Collectors and field reps</dd></div>
+        <div><dt>Research</dt><dd>Weekly calls with field reps, phone interviews with collectors, one field visit</dd></div>
         <div><dt>Reading time</dt><dd>3 minutes</dd></div>
       </dl>
       <p class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span><strong>Early version.</strong> These screens come from the first version of the app, and all donor names and data are fictional.</span></p>
@@ -8546,7 +8560,7 @@ function start() {
 
     <dl class="glance">
       <div><dt><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>The problem</dt><dd>Routes were planned by hand, donor data was unreliable, and field reps wrote everything twice: on paper, then in a web app.</dd></div>
-      <div><dt><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg>What I did</dt><dd>Led the product strategy of one native app for two kinds of users, approved every screen a junior designer produced, and wrote the quick-start guides that taught people to use it.</dd></div>
+      <div><dt><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.6 7.6"/><circle cx="11" cy="11" r="2"/></svg>What I did</dt><dd>Talked with field reps every week and with collectors by phone, led the product strategy of one native app for both, approved every screen a junior designer produced, and wrote the quick-start guides that taught people to use it.</dd></div>
       <div><dt><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 7l-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg>The result</dt><dd>One app for the whole network, in use in 18 of Argentina's 24 provinces. The client bought the guides as an extra.</dd></div>
     </dl>
     <aside class="tradeoff" aria-label="The hard call" data-lens="UX||Situational impairments||Anyone using a phone in a truck or a doorway works with one hand and half their attention. Designing for that moment, not for a desk, is what makes the app usable.||Sears et al., 2003">
@@ -8558,7 +8572,13 @@ function start() {
       <h2 id="bm-frame" data-short="Framing">How I framed the problem</h2>
       <div class="prose">
         <p>Field reps visit donors at home. With no app, they filled in a paper form at the door and typed it all again into a web app back at the office: double work, late data and copying errors on records the final product's quality depends on.</p>
-        <p><strong>Where the learning came from.</strong> I did not go to the field myself. Our PM did: she went out with field reps and talked with them about their rounds. I worked from her notes, the business requirements and the PRD, and checked each decision back with her and the client's stakeholders.</p>
+        <p><strong>Where the learning came from.</strong> From the people who use it, in three ways:</p>
+        <ul>
+          <li><strong>Weekly video calls with field reps.</strong> I met them every week, first to understand their rounds, then to put each flow in front of them before it was built.</li>
+          <li><strong>Phone interviews with collectors.</strong> They are on the road all day, so a video call was never going to happen. I called them between stops.</li>
+          <li><strong>A field visit in Buenos Aires.</strong> The junior designer on my team lived there, so she went out with the field reps. I did not go: we prepared the visit together, what to watch and what to ask, and debriefed it together afterwards.</li>
+        </ul>
+        <p>We sorted what we heard into empathy maps and a matrix of mental models: how each group already thought about a donor, a route and a visit. That matrix is how a need became a feature, and why the app uses their words and their order of steps, not the back office's.</p>
         <p>Three things from the field set the brief:</p>
         <ul>
           <li><strong>No signal, often.</strong> Many homes are in areas with poor coverage, so nothing could depend on a connection.</li>
@@ -8574,8 +8594,8 @@ function start() {
         <p>The result of that call is the number that matters most here: data entry went from two steps to one.</p>
       </div>
       <h3>From the doorstep to the screen</h3>
-      <div class="prose"><p>I wasn't in the truck. This is how the truck reached the design.</p></div>
-      <div class="table-scroll"><table class="impact ret-t"><thead><tr><th scope="col">What our PM saw (3 ride-alongs, 2 provinces)</th><th scope="col">The question I sent her back with</th><th scope="col">The decision</th></tr></thead><tbody><tr><td>Reps fill a 22-field paper form at the door and retype it at the office.</td><td>"Which fields do they leave blank on paper and fill in later?" Answer: 9 of 22.</td><td>13 fields at the door; the other 9 move to the web app. One entry, not two.</td></tr><tr><td>No signal in roughly 1 of 3 homes.</td><td>"What do they do today when the web app won't load?" Answer: a photo of the form, sent by WhatsApp to the office.</td><td>Offline by default, with a visible "3 waiting to sync" counter.</td></tr><tr><td>Reps keep the phone in a pocket in some neighbourhoods.</td><td>"How long does the phone stay out per visit?" Answer: under a minute if they can help it.</td><td>Scan before you type, biometric login, one action per screen.</td></tr></tbody></table></div>
+      <div class="prose"><p>I wasn't on the doorstep. This is how the doorstep reached the design.</p></div>
+      <div class="table-scroll"><table class="impact ret-t"><thead><tr><th scope="col">What we saw and heard</th><th scope="col">The follow-up question</th><th scope="col">The decision</th></tr></thead><tbody><tr><td>Reps fill a 22-field paper form at the door and retype it at the office.</td><td>"Which fields do they leave blank on paper and fill in later?" Answer: 9 of 22.</td><td>13 fields at the door; the other 9 move to the web app. One entry, not two.</td></tr><tr><td>No signal in roughly 1 of 3 homes.</td><td>"What do they do today when the web app won't load?" Answer: a photo of the form, sent by WhatsApp to the office.</td><td>Offline by default, with a visible "3 waiting to sync" counter.</td></tr><tr><td>Reps keep the phone in a pocket in some neighbourhoods.</td><td>"How long does the phone stay out per visit?" Answer: under a minute if they can help it.</td><td>Scan before you type, biometric login, one action per screen.</td></tr></tbody></table></div>
     </section>
 
     <section aria-labelledby="bm-s1">
