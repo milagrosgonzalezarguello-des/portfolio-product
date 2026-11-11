@@ -6921,6 +6921,31 @@ function start() {
       <div class="prose"><p>Answers that failed went back into the next sprint as a design or prompt fix, and the wording of every error state came out of that review.</p></div>
     </section>
 
+    <section aria-labelledby="lg-acr">
+      <h2 id="lg-acr" data-short="Dashboards">Dashboards that explain themselves</h2>
+      <div class="prose">
+        <p>The agent builds dashboards, so the dashboards had to be worth building. ACR Insights is one of five in Gradient: what people watch on TV, and who advertises around it. An account manager opens it minutes before a client call, so each card has to work without training.</p>
+      </div>
+      <ul class="deck-grid">
+        <li><figure><button type="button" data-zoom aria-label="Enlarge: ACR Insights, advertising activity"><img src="img/lg-acr-1.webp" width="1864" height="982" loading="lazy" decoding="async" alt="ACR Insights in Gradient: a stacked bar chart of weekly impressions for five brands, and a ranked list of advertising categories with a bar and a percentage each"></button><figcaption>Each card states what it shows and what a click does.</figcaption></figure></li>
+        <li><figure><button type="button" data-zoom aria-label="Enlarge: ACR Insights, performance trends"><img src="img/lg-acr-2.webp" width="1861" height="996" loading="lazy" decoding="async" alt="Two tables of annual change by category and by program. One row is open and lists its top five advertisers. Each change has an arrow, a sign and a colour"></button><figcaption>A row opens in place: the top five advertisers, without leaving the page.</figcaption></figure></li>
+        <li><figure><button type="button" data-zoom aria-label="Enlarge: ACR Insights, network viewership"><img src="img/lg-acr-3.webp" width="1863" height="979" loading="lazy" decoding="async" alt="A line chart of daily viewing for five networks, with a tooltip listing each network's value for one day and a switch between top 5 and top 10"></button><figcaption>One tooltip for the whole day, so nobody traces five lines by eye.</figcaption></figure></li>
+        <li><figure><button type="button" data-zoom aria-label="Enlarge: ACR Insights, program viewership"><img src="img/lg-acr-4.webp" width="1861" height="970" loading="lazy" decoding="async" alt="Program viewership table with total viewers and share, one row open showing the top five advertisers for that program, next to a viewing type table"></button><figcaption>The same pattern again: total, share, then who advertises there.</figcaption></figure></li>
+      </ul>
+      <div class="table-scroll">
+        <table class="impact">
+          <thead><tr><th scope="col">Decision</th><th scope="col">What you see</th><th scope="col">Why</th></tr></thead>
+          <tbody>
+            <tr><td>A sentence under every title</td><td>"Weekly impressions by category · click a row to drill down"</td><td>The card says what it measures and what it does. No legend to decode, no hidden interaction</td></tr>
+            <tr><td>Rows open in place</td><td>Top 5 advertisers under the category or program you clicked</td><td>The next question is always "who?". The answer stays next to the number that raised it</td></tr>
+            <tr><td>Start with five</td><td>A Top 5 / Top 10 switch on the busy charts</td><td>Five lines can be read. Ten are there when someone asks</td></tr>
+            <tr><td>Change is never colour alone</td><td>An arrow, a plus or minus sign, and green or red</td><td>It still reads in a greyscale export or for a colour-blind reader</td></tr>
+            <tr><td>One pattern, repeated</td><td>Category, program and viewing type share the same table</td><td>Learn one card and you can read the page. The same rule the agents follow</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
     <section aria-labelledby="lg-sys">
       <h2 id="lg-sys" data-short="System">One system under every agent</h2>
       <div class="prose">
