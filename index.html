@@ -4942,14 +4942,61 @@ body:has(article.case:not([hidden])) .rv-bar { display: none; }
 /* a thin line at the top of the page fills as you read */
 .rv-bar { position: fixed; left: 0; top: 0; z-index: 500; height: 3px; width: 100%; transform-origin: 0 50%; scale: 0 1; background: linear-gradient(90deg, #5B7CFF, #4A2FD6 60%, #7B4DFF); pointer-events: none; }
 @supports (animation-timeline: scroll()) { .rv-bar { animation: rv-line linear both; animation-timeline: scroll(root); } }
-/* images in a case grow into place as they pass (browsers with scroll-driven animations) */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    article.case figure.shot img, article.case .deck-grid img { animation: rv-zoom linear both; animation-timeline: view(); animation-range: entry 0% cover 32%; }
-    @keyframes rv-zoom { from { opacity: 0.35; scale: 0.94; clip-path: inset(6% 4% round 14px); } to { opacity: 1; scale: 1; clip-path: inset(0 round 0); } }
-  }
-}
 @media (prefers-reduced-motion: reduce) { .rv-wait > .rv-i, .rv-wait.rv-self, .rv-wait.mw.is-closed .mw-card, .rv-wait.mg-steps > li::before { opacity: 1 !important; } .rv-wait.mg-steps > li::after { scale: 1 1 !important; } .rv-go > .rv-i, .rv-go.rv-self, .rv-go .mw-card, .rv-go.mg-steps > li::before, .rv-go.mg-steps > li::after { animation: none !important; } .rv-bar { display: none; } }
+
+/* ===== calmer page: the lock and the portrait move only when pointed at ===== */
+body .note svg:has(rect[x="4"][y="11"]), body .note svg:has(rect[x="4"][y="11"]) path, body .jf-me img { animation: none; }
+body .note:hover svg:has(rect[x="4"][y="11"]) { animation: nda-tilt 2.4s ease-in-out infinite; }
+body .note:hover svg:has(rect[x="4"][y="11"]) path { animation: nda-shackle 2.4s cubic-bezier(0.34, 1.56, 0.64, 1) infinite; }
+body .jf-t thead:hover .jf-me img { animation: jf-turn 3s ease-in-out infinite; }
+/* ===== less dead air above the work and above How I work ===== */
+body #view-home #work, body #view-home #how { padding-top: clamp(2.5rem, 5vw, 4.5rem); }
+body #view-home .clients { margin-bottom: 0; padding-bottom: clamp(1rem, 2vw, 2rem); }
+/* ===== the process: one small scene per step ===== */
+body .mg-steps { margin-top: clamp(2.5rem, 5vw, 4rem); }
+body .mg-steps h3 { font-size: 1.2rem; }
+body .mg-steps p { font-size: 0.95rem; max-width: 30ch; }
+body .ps { position: relative; display: block; height: 128px; margin: 0 0 1.1rem; border-radius: 16px; overflow: hidden; color: var(--accent);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 10%, var(--surface)), color-mix(in srgb, var(--accent) 3%, var(--surface))); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 14%, transparent); }
+body .ps i, body .ps b, body .ps em, body .ps u { display: block; font-style: normal; text-decoration: none; }
+/* 1. frame: many loose things, a frame closes on the one that matters */
+body .ps-frame i { position: absolute; height: 12px; border-radius: 6px; background: color-mix(in srgb, currentColor 26%, transparent); animation: ps-dim 6s ease-in-out infinite; }
+body .ps-frame i:nth-child(1) { left: 10%; top: 18%; width: 22%; } body .ps-frame i:nth-child(2) { left: 58%; top: 14%; width: 30%; } body .ps-frame i:nth-child(4) { left: 14%; top: 72%; width: 30%; } body .ps-frame i:nth-child(5) { left: 62%; top: 76%; width: 20%; }
+body .ps-frame i.on { left: 36%; top: 45%; width: 28%; background: currentColor; animation: none; }
+body .ps-frame b { position: absolute; border: 2px solid currentColor; border-radius: 10px; animation: ps-frame 6s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+@keyframes ps-frame { 0%, 12% { inset: 6% 5%; opacity: 0; } 22% { inset: 6% 5%; opacity: 1; } 52%, 86% { inset: 34% 31% 37% 31%; opacity: 1; } 100% { inset: 34% 31% 37% 31%; opacity: 0; } }
+@keyframes ps-dim { 0%, 30% { opacity: 1; } 52%, 86% { opacity: 0.22; } 100% { opacity: 1; } }
+/* 2. prototype: a wireframe fills in, then gets clicked */
+body .ps-scr { position: absolute; inset: 16px 28% 0; padding: 12px 12px 0; border-radius: 12px 12px 0 0; background: var(--surface); box-shadow: 0 10px 20px -12px rgba(20, 23, 40, 0.5); }
+body .ps-scr i { height: 11px; margin-bottom: 8px; border-radius: 5px; border: 1.5px dashed color-mix(in srgb, currentColor 55%, transparent); animation: ps-fill 5.5s ease infinite; }
+body .ps-scr i:nth-child(1) { width: 62%; } body .ps-scr i:nth-child(2) { animation-delay: 0.35s; } body .ps-scr i:nth-child(3) { width: 80%; animation-delay: 0.7s; }
+body .ps-scr b { width: 54%; height: 20px; margin-top: 4px; border-radius: 10px; background: currentColor; animation: ps-press 5.5s ease infinite; }
+@keyframes ps-fill { 0%, 14% { background: transparent; border-style: dashed; } 26%, 90% { background: color-mix(in srgb, currentColor 30%, transparent); border-style: solid; border-color: transparent; } 100% { background: transparent; } }
+@keyframes ps-press { 0%, 40% { opacity: 0.25; scale: 1; } 50%, 62% { opacity: 1; scale: 1; } 68% { scale: 0.9; } 74%, 92% { scale: 1; opacity: 1; } 100% { opacity: 0.25; } }
+body .ps-proto em { position: absolute; left: 44%; top: 86%; width: 0; height: 0; border-left: 8px solid var(--ink); border-top: 5px solid transparent; border-bottom: 5px solid transparent; rotate: 55deg; animation: ps-cur 5.5s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+@keyframes ps-cur { 0%, 36% { translate: 60px 30px; opacity: 0; } 46% { opacity: 1; } 62%, 92% { translate: 0 0; opacity: 1; } 100% { translate: 0 0; opacity: 0; } }
+/* 3. figma to code: variables travel along the wire */
+body .ps-link { display: flex; align-items: center; justify-content: center; gap: 0; }
+body .ps-fg { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; width: 44px; height: 44px; padding: 9px; border-radius: 12px; background: var(--surface); box-shadow: 0 8px 16px -10px rgba(20, 23, 40, 0.5); }
+body .ps-fg u { border-radius: 50%; } body .ps-fg u:nth-child(1) { background: #F24E1E; } body .ps-fg u:nth-child(2) { background: #A259FF; } body .ps-fg u:nth-child(3) { background: #1ABCFE; } body .ps-fg u:nth-child(4) { background: #0ACF83; }
+body .ps-wire { position: relative; width: 34%; height: 2px; background: repeating-linear-gradient(90deg, color-mix(in srgb, currentColor 45%, transparent) 0 6px, transparent 6px 12px); }
+body .ps-wire b { position: absolute; top: -5px; left: 0; width: 12px; height: 12px; border-radius: 4px; background: currentColor; animation: ps-go 2.8s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+@keyframes ps-go { 0% { left: 0; opacity: 0; scale: 0.4; } 15% { opacity: 1; scale: 1; } 85% { opacity: 1; scale: 1; } 100% { left: calc(100% - 12px); opacity: 0; scale: 0.4; } }
+body .ps-cd { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--ink); color: var(--paper); font: 700 0.8rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; animation: ps-recv 2.8s ease infinite; }
+@keyframes ps-recv { 0%, 80% { scale: 1; } 90% { scale: 1.12; } 100% { scale: 1; } }
+/* 4. check, then ship: three ticks, then it goes out */
+body .ps-ship { display: flex; flex-direction: column; justify-content: center; gap: 9px; padding: 0 22% 0 16%; }
+body .ps-ship i { position: relative; height: 10px; margin-left: 24px; border-radius: 5px; background: color-mix(in srgb, currentColor 22%, transparent); }
+body .ps-ship i:nth-child(2) { width: 70%; } body .ps-ship i:nth-child(3) { width: 85%; }
+body .ps-ship i::before { content: ""; position: absolute; left: -24px; top: -3px; width: 16px; height: 16px; border-radius: 50%; background: #2BB673; scale: 0; animation: ps-tick 5.5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite; }
+body .ps-ship i:nth-child(2)::before { animation-delay: 0.5s; } body .ps-ship i:nth-child(3)::before { animation-delay: 1s; }
+@keyframes ps-tick { 0%, 10% { scale: 0; } 20%, 88% { scale: 1; } 100% { scale: 0; } }
+body .ps-ship b { position: absolute; right: 9%; top: 50%; padding: 6px 10px; border-radius: 999px; background: var(--ink); color: var(--paper); font: 700 0.68rem/1 var(--sans); letter-spacing: 0.04em; translate: 0 -50%; animation: ps-out 5.5s cubic-bezier(0.34, 1.56, 0.64, 1) infinite; }
+@keyframes ps-out { 0%, 42% { opacity: 0; scale: 0.5; } 54%, 88% { opacity: 1; scale: 1; } 100% { opacity: 0; scale: 0.5; } }
+@media (prefers-reduced-motion: reduce) { body .ps * , body .ps i::before { animation: none !important; } body .ps-frame b { inset: 34% 31% 37% 31%; } body .ps-ship i::before { scale: 1; } body .ps-scr i { background: color-mix(in srgb, currentColor 30%, transparent); border-color: transparent; } }
+body #view-home .section-head h2 { padding-top: clamp(1rem, 2.5vw, 2.25rem); }
+body #view-home .clients { margin-top: clamp(2.5rem, 5vw, 4.5rem); }
+body .ps .ps-fg { display: grid; } body .ps .ps-cd { display: grid; }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -6300,7 +6347,7 @@ function start() {
       <p class="jf-base">The second column comes from my base in learning psychology: knowing how people think, trust and decide.</p>
       <p class="jf-close">The market does not need more interfaces. It needs <b>better decisions</b> about which experiences deserve to exist.</p>
     </div>
-    <ol class="mg-steps"><li><h3>Frame it first</h3><p>The problem in one sentence, the person it is for and what they must be able to do. AI is fast at producing; it cannot tell me what matters.</p></li><li><h3>Prototype in days</h3><p>Claude and Lovable turn the flows into a working prototype with real logic and sample data. Court Funds was seven screens from one recorded call.</p></li><li><h3>Design in Figma, connect to code</h3><p>Components and variables in Figma; the Figma MCP reads them into the prototype, so a token has one name on both sides.</p></li><li><h3>Check, then ship</h3><p>A usability round or a look at PostHog to see where people stall, then a pass against how the work really happens.</p></li></ol>
+    <ol class="mg-steps"><li><span class="ps ps-frame" aria-hidden="true"><i></i><i></i><i class="on"></i><i></i><i></i><b></b></span><h3>Frame it first</h3><p>One sentence for the problem. One person it is for. One thing they must be able to do. AI can't tell me which of those matters.</p></li><li><span class="ps ps-proto" aria-hidden="true"><span class="ps-scr"><i></i><i></i><i></i><b></b></span><em></em></span><h3>Prototype in days</h3><p>Claude and Lovable turn the flow into something people can click, with real logic. Court Funds: seven screens from one recorded call.</p></li><li><span class="ps ps-link" aria-hidden="true"><i class="ps-fg"><u></u><u></u><u></u><u></u></i><span class="ps-wire"><b></b></span><i class="ps-cd">&lt;/&gt;</i></span><h3>Design in Figma, connect to code</h3><p>Components and variables live in Figma. The Figma MCP reads them, so the prototype uses the real ones.</p></li><li><span class="ps ps-ship" aria-hidden="true"><i></i><i></i><i></i><b>Shipped</b></span><h3>Check, then ship</h3><p>A usability round, or PostHog to see where people stall. If AI drew a screen, I still read it before it goes out.</p></li></ol>
     <p class="jf-note">I don't write production code: I describe, the model writes, and I read, test and ship what it wrote.</p>
   </section>
 
@@ -11616,15 +11663,14 @@ document.addEventListener('click', function (e) {
 // Scroll reveals: groups wait until they are reached, then their parts arrive in order.
 (function () {
   if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var groups = ['#fx .fx-drawer', '.tp', '.mg-steps', '.lead-steps', '.cw-list', '.agents .agent-list', '.roles-t tbody', '.deck-grid', '.handoff', '.jf-t ~ .jf-base'];
-  var selfs = ['.fx-bar', '.jf-line', '.jf-lede', '.jf-close', '.jf-note', '.mw-bar', '.clients', '.qc', '.cw-main', '.contact-copy', '.fmap', '.tradeoff', '.proto-link', '.lead-more'];
+  var groups = ['#fx .fx-drawer', '.mg-steps'];
+  var selfs = [];
   var io = new IntersectionObserver(function (en) { en.forEach(function (e) { if (!e.isIntersecting) return; var t = e.target; t.classList.add('rv-go'); t.classList.remove('rv-wait'); io.unobserve(t);
     setTimeout(function () { t.classList.remove('rv-go'); Array.prototype.forEach.call(t.children, function (c) { c.classList.remove('rv-i'); }); }, 2600); }); }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
   function arm(el, self) { if (el.dataset.rv) return; el.dataset.rv = '1'; var r = el.getBoundingClientRect(); if (r.top < innerHeight * 0.9 && r.bottom > 0 && !el.closest('[hidden]')) return;
     if (self) el.classList.add('rv-self'); else Array.prototype.forEach.call(el.children, function (c, i) { c.classList.add('rv-i'); c.style.setProperty('--rv', i); });
     el.classList.add('rv-wait'); io.observe(el); }
-  function scan() { groups.forEach(function (s) { document.querySelectorAll(s).forEach(function (el) { arm(el, false); }); }); selfs.forEach(function (s) { document.querySelectorAll(s).forEach(function (el) { arm(el, true); }); });
-    var mw = document.getElementById('mw'); if (mw && !mw.dataset.rv) { mw.dataset.rv = '1'; var k = 0; mw.querySelectorAll('.mw-card').forEach(function (c) { c.style.setProperty('--rv', k++); }); if (mw.getBoundingClientRect().top > innerHeight * 0.9) { mw.classList.add('rv-wait'); io.observe(mw); } } }
+  function scan() { groups.forEach(function (s) { document.querySelectorAll(s).forEach(function (el) { arm(el, false); }); }); selfs.forEach(function (s) { document.querySelectorAll(s).forEach(function (el) { arm(el, true); }); }); }
   scan(); window.addEventListener('hashchange', function () { setTimeout(scan, 120); });
   var bar = document.createElement('div'); bar.className = 'rv-bar'; bar.setAttribute('aria-hidden', 'true'); document.body.appendChild(bar);
   if (!(window.CSS && CSS.supports && CSS.supports('animation-timeline: scroll()'))) { var on = function () { var m = document.documentElement.scrollHeight - innerHeight; bar.style.scale = (m > 0 ? Math.min(1, scrollY / m) : 0) + ' 1'; }; addEventListener('scroll', on, { passive: true }); on(); }
