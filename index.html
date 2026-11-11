@@ -4624,6 +4624,7 @@ body .contact-v2 a:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 3
 @media (max-width: 860px) { body .contact-v2 { grid-template-columns: 1fr; align-items: start; } body .contact-v2 h2 { max-width: none; } }
 @media (prefers-reduced-motion: reduce) { body .cw-main, body .cw-go { transition: none; } }
 body .cw-list li:first-child .cw-v { font-size: 0.78rem; letter-spacing: -0.005em; }
+body .roles-next { margin: 0.7rem 0 0; padding-left: 1.1rem; display: grid; gap: 0.4rem; font-size: 0.92rem; line-height: 1.5; color: var(--muted); }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -6791,24 +6792,26 @@ function start() {
       <figure class="roles" aria-labelledby="ret-roles-cap">
         <div class="roles-scroll" tabindex="0" role="region" aria-label="Roles and permissions table">
         <table class="roles-t">
-          <thead><tr><th scope="col">In the product</th><th scope="col">Nurse</th><th scope="col">Supervisor</th><th scope="col">Agent</th></tr></thead>
+          <thead><tr><th scope="col">In the prototype</th><th scope="col">Nurse</th><th scope="col">Supervisor</th><th scope="col">Agent</th></tr></thead>
           <tbody>
-            <tr><th scope="row">Client names and visit notes</th><td><span class="rp rp-y">Own caseload</span></td><td><span class="rp rp-l">Hidden by default</span>Opens one client with a reason, and the access is logged</td><td><span class="rp rp-l">Reads only</span>To explain a flag; never shown to other roles</td></tr>
-            <tr><th scope="row">Why it flagged</th><td><span class="rp rp-y">Full explanation</span></td><td><span class="rp rp-l">Counts by nurse</span></td><td><span class="rp rp-y">Writes it</span></td></tr>
-            <tr><th scope="row">Suggested approach</th><td><span class="rp rp-y">Review, edit, accept or dismiss</span>Undo until the client is contacted</td><td><span class="rp rp-l">Acted on or not</span>Not the text of the draft</td><td><span class="rp rp-l">Drafts only</span></td></tr>
+            <tr><th scope="row">Clients</th><td><span class="rp rp-y">Own caseload</span>A priority list of who needs action today</td><td><span class="rp rp-l">Flagged clients, team-wide</span>Opens a case to see the flag, the guidance used and the action taken</td><td><span class="rp rp-l">Reads only</span>To explain a flag</td></tr>
+            <tr><th scope="row">Why it flagged</th><td><span class="rp rp-y">Full explanation</span></td><td><span class="rp rp-l">Per case</span></td><td><span class="rp rp-y">Writes it</span></td></tr>
+            <tr><th scope="row">Suggested approach</th><td><span class="rp rp-y">Use it, edit it or snooze it</span>Nothing happens until the nurse decides</td><td><span class="rp rp-l">Sees the action taken</span></td><td><span class="rp rp-l">Drafts only</span></td></tr>
             <tr><th scope="row">Contacting a client</th><td><span class="rp rp-y">Yes</span></td><td><span class="rp rp-n">No</span></td><td><span class="rp rp-n">Never</span></td></tr>
-            <tr><th scope="row">Team numbers</th><td><span class="rp rp-l">Own only</span></td><td><span class="rp rp-y">Whole team</span>Flags acted on, response time, 12-week retention</td><td><span class="rp rp-n">No</span></td></tr>
-            <tr><th scope="row">Activity log</th><td><span class="rp rp-l">Own actions</span></td><td><span class="rp rp-y">Team actions</span></td><td><span class="rp rp-l">Every action logged</span></td></tr>
+            <tr><th scope="row">Team numbers</th><td><span class="rp rp-l">Own list</span></td><td><span class="rp rp-y">Whole team</span>Flags acted on, response time, 12-week retention and the weekly report</td><td><span class="rp rp-n">No</span></td></tr>
           </tbody>
         </table>
         </div>
-        <div class="roles-state" aria-label="Example of a permission state in the supervisor view">
-          <p class="roles-state-k">Supervisor view · permission state</p>
-          <p class="roles-state-t">Client details are hidden for your role</p>
-          <p class="roles-state-d">You can see that this flag has waited 9 days. To open the client's record, give a reason. The nurse is notified and the access is logged.</p>
-          <p class="roles-state-a"><span class="roles-btn">Request access</span><span class="roles-link">Message the nurse instead</span></p>
+        <div class="roles-state">
+          <p class="roles-state-k">Before real client data goes in</p>
+          <p class="roles-state-t">What I would tighten in Phase 2</p>
+          <ul class="roles-next">
+            <li>A supervisor opens a client's record with a reason, and that access is logged.</li>
+            <li>Every read and every draft by the agent is logged against the client.</li>
+            <li>Prototypes and AI tools only ever see synthetic data, as this one does.</li>
+          </ul>
         </div>
-        <figcaption id="ret-roles-cap">Roles and permissions as proposed for Phase 2, with the state a supervisor sees at the edge of their access. A design proposal; all data is synthetic.</figcaption>
+        <figcaption id="ret-roles-cap">Who sees what in the prototype, and what I would add before it handles real client data. All data shown is synthetic.</figcaption>
       </figure>
       <div class="prose">
         <p>That view is also the measurement plan: 12-week retention and time from flag to first contact, compared between nurses who use the agent and nurses who don't, over one quarter.</p>
