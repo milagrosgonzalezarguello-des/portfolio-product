@@ -5012,6 +5012,29 @@ body .mg-steps p { font-size: 0.875rem; line-height: 1.5; }
 body .jf-note { font-size: 0.82rem; }
 @media (max-width: 900px) { body .mg-steps li::after { top: 32px; left: 15px; background: color-mix(in srgb, #5B7CFF 35%, transparent); } }
 @media (prefers-reduced-motion: reduce) { body .ps { transition: none; } }
+
+/* ===== the characters from the studio, three times on the page ===== */
+body .fx { position: relative; }
+body .fx-timon { position: absolute; z-index: 0; right: 20%; top: calc(var(--lift) - 56px - 84px); width: 128px; height: auto; pointer-events: none; transform-origin: 50% 100%; transition: translate 420ms cubic-bezier(0.34, 1.56, 0.64, 1), rotate 420ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+body .fx:has(.fx-file:hover) .fx-timon, body .fx:has(.fx-a:focus-visible) .fx-timon { translate: 0 -16px; rotate: -5deg; }
+body .jf-tw { position: relative; max-width: 1000px; isolation: isolate; }
+body .jf-char { position: absolute; z-index: -1; right: 44px; top: -168px; width: 118px; aspect-ratio: 286 / 620; pointer-events: none; }
+body .jf-char img { position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity 260ms ease; }
+body .jf-char .sip { opacity: 0; }
+body .jf-tw:hover .jf-char .sip, body .ct-duo:hover .sip, body #contact:hover .ct-duo .sip { opacity: 1; }
+body .jf-tw:hover .jf-char img:first-child, body #contact:hover .ct-duo .jf-char img:first-child { opacity: 0; }
+body .jf-tw { margin-top: 5.5rem; }
+body #contact { position: relative; isolation: isolate; }
+body .ct-duo { position: absolute; z-index: -1; right: clamp(48px, 15%, 260px); top: -150px; display: flex; align-items: flex-end; gap: 6px; pointer-events: none; }
+body .ct-duo .jf-char { position: relative; right: auto; top: auto; z-index: auto; width: 124px; }
+body .ct-timon { width: 104px; height: auto; margin-bottom: 96px; transform-origin: 50% 100%; transition: rotate 420ms cubic-bezier(0.34, 1.56, 0.64, 1), translate 420ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+body #contact:hover .ct-timon { rotate: 6deg; translate: 0 -8px; }
+body #contact { margin-top: 150px; }
+@media (max-width: 900px) { body .fx-timon, body .jf-tw > .jf-char { display: none; } body .jf-tw { margin-top: 0; } body .ct-duo { right: 20px; top: -128px; } body .ct-duo .jf-char { width: 104px; } body .ct-timon { width: 86px; margin-bottom: 82px; } }
+@media (prefers-reduced-motion: reduce) { body .fx-timon, body .ct-timon, body .jf-char img { transition: none; } }
+/* the pixel robot */
+body .jf-bot svg { width: 50px; height: 44px; filter: drop-shadow(0 8px 8px rgba(190, 90, 30, 0.35)); }
+body .jf-bot .jf-eyes { transform-origin: 32px 20px; }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -6278,6 +6301,7 @@ function start() {
     <!-- Featured case files (2026-11-11). To change a number: edit its fx-kpi and fx-lab below, then delete data-provisional and the <em class="fx-prov"> tag once it is confirmed. -->
     <div class="fx" id="fx" data-lens="UX||Recognition over recall||Each file shows its client and its result before you open it, so choosing takes a glance, not a guess.||Nielsen, 1994">
       <div class="fx-bar"><p class="fx-sub">Five case files. Pull one out.</p><button type="button" class="fx-snd" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="fx-snd-on" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="fx-snd-off" d="M17 9.5l5 5M22 9.5l-5 5"/></svg><span>Sound on</span></button></div>
+      <img class="fx-timon" src="img/timon-3d.webp" width="306" height="300" alt="" loading="lazy" decoding="async" aria-hidden="true">
       <ol class="fx-drawer">
       <li class="fx-file" style="--i:0;--c:#2A2A9E">
         <a class="fx-a" href="#lg">
@@ -6358,7 +6382,7 @@ function start() {
     <div class="jf">
       <p class="jf-line">Judgment-first design, <span>accelerated by AI.</span></p>
       <p class="jf-lede">AI exposes the designer who only makes screens. Fast and good-looking is not the same as right.</p>
-      <table class="jf-t"><thead><tr><th scope="col"><span class="jf-th"><span class="jf-av jf-bot" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M24 6v6" stroke="#8FA2FF" stroke-width="2.4" stroke-linecap="round"/><circle class="jf-ant" cx="24" cy="5" r="3" fill="#FFC46B"/><rect x="8" y="12" width="32" height="26" rx="10" fill="url(#jfb)"/><rect x="4" y="21" width="4" height="9" rx="2" fill="#8FA2FF"/><rect x="40" y="21" width="4" height="9" rx="2" fill="#8FA2FF"/><g class="jf-eyes" fill="#fff"><rect x="16" y="20" width="5" height="8" rx="2.5"/><rect x="27" y="20" width="5" height="8" rx="2.5"/></g><path d="M19 32h10" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity="0.85"/><defs><linearGradient id="jfb" x1="8" y1="12" x2="40" y2="38"><stop stop-color="#7C8CFF"/><stop offset="1" stop-color="#4A2FD6"/></linearGradient></defs></svg></span><span>What AI does</span></span></th><th scope="col"><span class="jf-th"><span class="jf-av jf-me" aria-hidden="true"><img src="img/f6135957f80444.webp" alt="" loading="lazy" decoding="async"></span><span>What I decide</span></span></th></tr></thead><tbody><tr><td>Makes screens and artifacts in minutes</td><td>Decide what should exist in the first place</td></tr><tr><td>Generates ten options</td><td>Define what success looks like, and pick the one that gets there</td></tr><tr><td>Automates whatever it is pointed at</td><td>Decide when automation builds trust and when it destroys it, and what should never be personalized</td></tr><tr><td>Follows the prompt</td><td>Read what is behind it: the business context, how users feel, what the organization can carry, the trade-offs</td></tr><tr><td>Behaves the same when it is unsure</td><td>Design how the product should behave when things are uncertain</td></tr><tr><td>Executes</td><td>Frame the problem, shape how the system behaves, and answer for the decision</td></tr></tbody></table>
+      <div class="jf-tw"><span class="jf-char" aria-hidden="true"><img src="img/me-3d.webp" width="286" height="620" alt="" loading="lazy" decoding="async"><img class="sip" src="img/me-3d-sip.webp" width="286" height="620" alt="" loading="lazy" decoding="async"></span><table class="jf-t"><thead><tr><th scope="col"><span class="jf-th"><span class="jf-av jf-bot" aria-hidden="true"><svg viewBox="0 0 64 56" shape-rendering="crispEdges"><rect x="2" y="16" width="8" height="12" fill="#E8793A"/><rect x="54" y="16" width="8" height="12" fill="#D9662A"/><rect x="8" y="4" width="48" height="34" fill="#F08A45"/><rect x="8" y="4" width="48" height="4" fill="#F9A462"/><rect x="50" y="8" width="6" height="30" fill="#DE6E30"/><g class="jf-eyes" fill="#16110D"><rect x="20" y="16" width="7" height="9"/><rect x="38" y="16" width="7" height="9"/></g><rect x="16" y="38" width="8" height="12" fill="#D9662A"/><rect x="40" y="38" width="8" height="12" fill="#D9662A"/><rect x="12" y="50" width="14" height="4" fill="#C2571F"/><rect x="38" y="50" width="14" height="4" fill="#C2571F"/></svg></span><span>What AI does</span></span></th><th scope="col"><span class="jf-th"><span class="jf-av jf-me" aria-hidden="true"><img src="img/f6135957f80444.webp" alt="" loading="lazy" decoding="async"></span><span>What I decide</span></span></th></tr></thead><tbody><tr><td>Makes screens and artifacts in minutes</td><td>Decide what should exist in the first place</td></tr><tr><td>Generates ten options</td><td>Define what success looks like, and pick the one that gets there</td></tr><tr><td>Automates whatever it is pointed at</td><td>Decide when automation builds trust and when it destroys it, and what should never be personalized</td></tr><tr><td>Follows the prompt</td><td>Read what is behind it: the business context, how users feel, what the organization can carry, the trade-offs</td></tr><tr><td>Behaves the same when it is unsure</td><td>Design how the product should behave when things are uncertain</td></tr><tr><td>Executes</td><td>Frame the problem, shape how the system behaves, and answer for the decision</td></tr></tbody></table></div>
       <p class="jf-base">The second column comes from my base in learning psychology: knowing how people think, trust and decide.</p>
       <p class="jf-close">The market does not need more interfaces. It needs <b>better decisions</b> about which experiences deserve to exist.</p>
     </div>
@@ -6428,6 +6452,7 @@ function start() {
     </div>
   </section>
     <section class="wrap" id="contact" aria-labelledby="contact-title">
+    <div class="ct-duo" aria-hidden="true"><span class="jf-char"><img src="img/me-3d.webp" width="286" height="620" alt="" loading="lazy" decoding="async"><img class="sip" src="img/me-3d-sip.webp" width="286" height="620" alt="" loading="lazy" decoding="async"></span><img class="ct-timon" src="img/timon-3d.webp" width="306" height="300" alt="" loading="lazy" decoding="async"></div>
     <div class="contact contact-v2" data-lens="Peak-end rule||People remember an experience by its peak and its end, so the page closes with a warm, easy next step.||Kahneman et al., 1993">
       <div class="contact-copy">
         <div class="contact-who">
