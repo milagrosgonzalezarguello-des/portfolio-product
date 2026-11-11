@@ -4916,6 +4916,40 @@ body .jf-t th { vertical-align: bottom; } body .jf-t th:first-child { padding-bo
 body .jf-t th:last-child { padding-top: 1rem; padding-bottom: 0.9rem; }
 @media (max-width: 640px) { body .jf-av, body .jf-me img { width: 38px; height: 38px; } body .jf-bot svg { width: 34px; height: 34px; } body .jf-th { gap: 0.5rem; } }
 @media (prefers-reduced-motion: reduce) { body .jf-bot svg, body .jf-bot .jf-eyes, body .jf-bot .jf-ant, body .jf-me img { animation: none; } }
+
+/* ===== scroll reveals: things arrive as you reach them, each group in its own way ===== */
+@keyframes rv-up { from { opacity: 0; translate: 0 34px; filter: blur(6px); } to { opacity: 1; translate: 0 0; filter: blur(0); } }
+@keyframes rv-rise { 0% { opacity: 0; translate: 0 120px; } 12% { opacity: 1; } 100% { opacity: 1; translate: 0 0; } }
+body:has(article.case:not([hidden])) .rv-bar { display: none; }
+@keyframes rv-side { from { opacity: 0; translate: -28px 0; } to { opacity: 1; translate: 0 0; } }
+@keyframes rv-pop { from { opacity: 0; scale: 0.4; } to { opacity: 1; scale: 1; } }
+@keyframes rv-line { from { scale: 0 1; } to { scale: 1 1; } }
+.rv-wait > .rv-i, .rv-wait.rv-self { opacity: 0; }
+.rv-go > .rv-i, .rv-go.rv-self { animation: rv-up 800ms cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(var(--rv, 0) * 90ms); }
+/* the drawer: folders rise out of it, back one first */
+.rv-go.fx-drawer > .rv-i { animation-name: rv-rise; animation-duration: 900ms; animation-delay: calc((4 - var(--rv, 0)) * 110ms); }
+.rv-wait.fx-lip, .rv-go.fx-lip { opacity: 1; }
+/* trust rules slide in from the left, one after another */
+.rv-go.tp > .rv-i { animation-name: rv-side; }
+/* process: the numbers pop, the connecting line draws itself across */
+.rv-wait.mg-steps > li::before { opacity: 0; } .rv-wait.mg-steps > li::after { scale: 0 1; }
+.rv-go.mg-steps > li::before { animation: rv-pop 520ms cubic-bezier(0.34, 1.56, 0.64, 1) both; animation-delay: calc(var(--rv, 0) * 180ms); }
+.rv-go.mg-steps > li::after { transform-origin: 0 50%; animation: rv-line 700ms cubic-bezier(0.65, 0, 0.35, 1) both; animation-delay: calc(var(--rv, 0) * 180ms + 200ms); }
+.rv-go.mg-steps > .rv-i { animation-delay: calc(var(--rv, 0) * 180ms + 80ms); }
+/* the stack of ten: edges drop in from the top down */
+.rv-go.mw.is-closed .mw-card { animation: rv-up 620ms cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(var(--rv, 0) * 55ms); }
+.rv-wait.mw.is-closed .mw-card { opacity: 0; }
+/* a thin line at the top of the page fills as you read */
+.rv-bar { position: fixed; left: 0; top: 0; z-index: 500; height: 3px; width: 100%; transform-origin: 0 50%; scale: 0 1; background: linear-gradient(90deg, #5B7CFF, #4A2FD6 60%, #7B4DFF); pointer-events: none; }
+@supports (animation-timeline: scroll()) { .rv-bar { animation: rv-line linear both; animation-timeline: scroll(root); } }
+/* images in a case grow into place as they pass (browsers with scroll-driven animations) */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    article.case figure.shot img, article.case .deck-grid img { animation: rv-zoom linear both; animation-timeline: view(); animation-range: entry 0% cover 32%; }
+    @keyframes rv-zoom { from { opacity: 0.35; scale: 0.94; clip-path: inset(6% 4% round 14px); } to { opacity: 1; scale: 1; clip-path: inset(0 round 0); } }
+  }
+}
+@media (prefers-reduced-motion: reduce) { .rv-wait > .rv-i, .rv-wait.rv-self, .rv-wait.mw.is-closed .mw-card, .rv-wait.mg-steps > li::before { opacity: 1 !important; } .rv-wait.mg-steps > li::after { scale: 1 1 !important; } .rv-go > .rv-i, .rv-go.rv-self, .rv-go .mw-card, .rv-go.mg-steps > li::before, .rv-go.mg-steps > li::after { animation: none !important; } .rv-bar { display: none; } }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -11575,6 +11609,25 @@ document.addEventListener('click', function (e) {
 (function () {
   var map = { 'work-title': 1, 'ai-title': 3, 'how-title': 1, 'lead-title': 1, 'proof-title': 1, 'contact-title': 3 };
   Object.keys(map).forEach(function (id) { var h2 = document.getElementById(id); if (!h2) return; var w = h2.querySelectorAll('.wd'); for (var i = Math.max(0, w.length - map[id]); i < w.length; i++) w[i].classList.add('gw'); });
+})();
+</script>
+
+<script>
+// Scroll reveals: groups wait until they are reached, then their parts arrive in order.
+(function () {
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var groups = ['#fx .fx-drawer', '.tp', '.mg-steps', '.lead-steps', '.cw-list', '.agents .agent-list', '.roles-t tbody', '.deck-grid', '.handoff', '.jf-t ~ .jf-base'];
+  var selfs = ['.fx-bar', '.jf-line', '.jf-lede', '.jf-close', '.jf-note', '.mw-bar', '.clients', '.qc', '.cw-main', '.contact-copy', '.fmap', '.tradeoff', '.proto-link', '.lead-more'];
+  var io = new IntersectionObserver(function (en) { en.forEach(function (e) { if (!e.isIntersecting) return; var t = e.target; t.classList.add('rv-go'); t.classList.remove('rv-wait'); io.unobserve(t);
+    setTimeout(function () { t.classList.remove('rv-go'); Array.prototype.forEach.call(t.children, function (c) { c.classList.remove('rv-i'); }); }, 2600); }); }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+  function arm(el, self) { if (el.dataset.rv) return; el.dataset.rv = '1'; var r = el.getBoundingClientRect(); if (r.top < innerHeight * 0.9 && r.bottom > 0 && !el.closest('[hidden]')) return;
+    if (self) el.classList.add('rv-self'); else Array.prototype.forEach.call(el.children, function (c, i) { c.classList.add('rv-i'); c.style.setProperty('--rv', i); });
+    el.classList.add('rv-wait'); io.observe(el); }
+  function scan() { groups.forEach(function (s) { document.querySelectorAll(s).forEach(function (el) { arm(el, false); }); }); selfs.forEach(function (s) { document.querySelectorAll(s).forEach(function (el) { arm(el, true); }); });
+    var mw = document.getElementById('mw'); if (mw && !mw.dataset.rv) { mw.dataset.rv = '1'; var k = 0; mw.querySelectorAll('.mw-card').forEach(function (c) { c.style.setProperty('--rv', k++); }); if (mw.getBoundingClientRect().top > innerHeight * 0.9) { mw.classList.add('rv-wait'); io.observe(mw); } } }
+  scan(); window.addEventListener('hashchange', function () { setTimeout(scan, 120); });
+  var bar = document.createElement('div'); bar.className = 'rv-bar'; bar.setAttribute('aria-hidden', 'true'); document.body.appendChild(bar);
+  if (!(window.CSS && CSS.supports && CSS.supports('animation-timeline: scroll()'))) { var on = function () { var m = document.documentElement.scrollHeight - innerHeight; bar.style.scale = (m > 0 ? Math.min(1, scrollY / m) : 0) + ' 1'; }; addEventListener('scroll', on, { passive: true }); on(); }
 })();
 </script>
 </body>
