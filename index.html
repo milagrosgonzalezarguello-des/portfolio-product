@@ -4332,7 +4332,7 @@ body .case .oe-val-list dd { margin: 0.35rem 0 0; font-size: 0.92rem; line-heigh
 body .case .prose code { font-family: var(--mono, ui-monospace, monospace); font-size: 0.9em; padding: 0.1em 0.4em; border-radius: 5px; background: color-mix(in srgb, var(--ink) 7%, var(--paper)); }
 /* ===== 2026-11-11: the hero studio. The 3D room from the ID page, on the product hero: me, my studies, my tools; the screen leads to the work ===== */
 body .desk, body .dk-stage.is-fill { --mo-ease: cubic-bezier(0.16, 1, 0.3, 1); }
-body .desk { position: relative; align-self: center; min-width: 0; height: clamp(480px, 46vw, 660px); margin: 0 clamp(-72px, -4vw, -16px) 0 -40px; }
+body .desk { position: relative; align-self: center; min-width: 0; height: clamp(480px, 46vw, 660px); margin: 0 0 0 -32px; }
 body .dk-stage { position: absolute; inset: 0; }
 body .dk-canvas { display: block; width: 100%; height: 100%; opacity: 0; transition: opacity 900ms var(--mo-ease); }
 body .desk.is-3d .dk-canvas { opacity: 1; }
@@ -4534,6 +4534,19 @@ body .roles-state-d { margin-top: 0.4rem !important; font-size: 0.92rem; line-he
 body .roles-state-a { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1rem !important; }
 body .roles-btn { padding: 0.55rem 1rem; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 0.86rem; font-weight: 600; }
 body .roles-link { font-size: 0.86rem; font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 0.25em; }
+
+/* ===== 2026-11-11: hero, second pass. The actions fit the first screen; the room glows at night; two pins keep their names ===== */
+body .hero .hero-grid h1, body .hero h1 { font-size: clamp(2.3rem, 3.9vw, 3.9rem); line-height: 1.03; }
+body .hero .hero-tags { margin-top: 1.5rem; margin-bottom: 0.75rem; }
+body .dk-hint { top: 0; bottom: auto; }
+@media (max-width: 900px) { body .dk-hint { top: auto; bottom: 4px; } }
+@media (hover: hover) and (pointer: fine) {
+  body .desk.is-3d .dk-pin[data-k="me"]:not(.dk-go) span, body .desk.is-3d .dk-pin[data-k="studies"]:not(.dk-go) span { opacity: 1; transform: none; }
+}
+body .desk::before { content: ""; position: absolute; inset: 12% 4% 4%; border-radius: 50%; pointer-events: none; opacity: 0; transition: opacity 600ms ease;
+  background: radial-gradient(closest-side, rgba(110, 124, 255, 0.34), rgba(110, 124, 255, 0) 72%); }
+:root[data-theme="dark"] body .desk::before { opacity: 1; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body .desk::before { opacity: 1; } }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -4584,17 +4597,17 @@ body .roles-link { font-size: 0.86rem; font-weight: 600; color: var(--ink); text
       <div class="hero-copy">
       <p class="status-pill" data-lens="UX||F-shaped scanning||People scan the top and the left of a page first, so the one thing a recruiter needs to know sits right there.||Nielsen, 2006">Open to remote roles</p>
       <h1 id="hero-title" data-lens="First impressions||People judge a page in a fraction of a second, so the value comes first, in two short sentences.||Lindgaard et al., 2006"><span class="hl">Trained in how</span> <span class="hl">people think.</span> <span class="sel-wrap"><span class="sel"><span class="hl">Designing products</span> <span class="hl">they just get.</span></span><span class="handle h-tl" aria-hidden="true"></span><span class="handle h-tr" aria-hidden="true"></span><span class="handle h-bl" aria-hidden="true"></span><span class="handle h-br" aria-hidden="true"></span><span class="sel-label" aria-hidden="true">Headline · 1 layer</span></span></h1>
-      <ul class="hero-tags" aria-label="Disciplines" data-lens="Chunking||Three short tags are easier to take in than a sentence. Working memory loves small groups.||Miller, 1956; Cowan, 2001">
-        <li>AI and data products</li>
-        <li>B2B and B2G platforms</li>
-        <li>Design systems</li>
-      </ul>
-      <p class="intro" data-lens="Content design||Front-load the label||Skimmers read the first words of a line and move on, so the role comes first, in bold, before what I do with it.||Nielsen, 2009"><strong>Senior Product Designer and Design Lead.</strong> I turn complex, data-heavy B2B and AI products into tools people adopt, end to end: problem framing, flows, UI and a working prototype built with AI before engineering time goes in. I'm also a learning psychologist, so I design for how people think.</p>
+      <p class="intro" data-lens="Content design||Front-load the label||Skimmers read the first words of a line and move on, so the role comes first, in bold, before what I do with it.||Nielsen, 2009"><strong>Senior Product Designer and Design Lead.</strong> I turn complex, data-heavy B2B and AI products into tools people adopt, from problem framing to a working prototype built with AI.</p>
       <div class="actions" data-lens="Hick's law||The more options, the slower the decision. One action is loud and two are quiet, so the eye knows where to go first.||Hick, 1952">
         <a class="btn btn-primary btn-grad btn-icon" href="https://calendly.com/milagros-gonzalezarguello/30min" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><path d="M9 15l2 2 4-4"/></svg>Book a 30-min call<span class="visually-hidden"> (opens in a new tab)</span></a>
         <a class="btn btn-ghost btn-icon" href="#work">See my work<svg class="i bob" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M6 13l6 6 6-6"/></svg></a>
       <a class="btn btn-ghost btn-icon btn-cv" href="cv.pdf" download="Milagros_Gonzalez_CV.pdf"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg>Download CV<span class="visually-hidden"> (PDF)</span></a>
       </div>
+      <ul class="hero-tags" aria-label="Disciplines" data-lens="Chunking||Three short tags are easier to take in than a sentence. Working memory loves small groups.||Miller, 1956; Cowan, 2001">
+        <li>AI and data products</li>
+        <li>B2B and B2G platforms</li>
+        <li>Design systems</li>
+      </ul>
       <ul class="logistics with-icons" aria-label="Work details" data-lens="Content design||Answer the next question||Current role, citizenship, language and work setup are what recruiters check right after the headline, so they're answered before anyone has to ask.||">
         <li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>Product Design Lead at Clear Tech</li>
         <li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M15 8h2"/><path d="M15 12h2"/><path d="M7 16h10"/></svg>Italian (EU) and Argentine citizen</li>
@@ -5272,15 +5285,16 @@ function start() {
     const corkParts = []; corkG.traverse(o => { if (o.isMesh) corkParts.push(o); });
     const tbParts = []; tbG.traverse(o => { if (o.isMesh) tbParts.push(o); });
 
-    // ---- theme: day or night
+    // ---- theme: day or night (at night the screen lights her and the desk)
+    const screenLight = new THREE.PointLight(0x9FB4FF, 0, 4.5, 1.4); screenLight.position.set(SX, SY, SZ + 0.7); scene.add(screenLight);
     function readTheme() {
       const t = document.documentElement.dataset.theme;
       night = t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-      hemi.intensity = night ? 0.28 : 0.8; hemi.color.set(night ? 0x8C9BE0 : 0xEAF0FF);
-      key.intensity = night ? 0.55 : 2.4; key.color.set(night ? 0xA9B8FF : 0xFFF1DE);
-      win.intensity = night ? 0.5 : 0.9; lampLight.intensity = night ? 9 : 2.2;
+      hemi.intensity = night ? 0.2 : 0.8; hemi.color.set(night ? 0x8C9BE0 : 0xEAF0FF);
+      key.intensity = night ? 0.38 : 2.4; key.color.set(night ? 0xA9B8FF : 0xFFF1DE);
+      win.intensity = night ? 0.5 : 0.9; lampLight.intensity = night ? 13 : 2.2;
       renderer.toneMappingExposure = night ? 1.05 : 1.08;
-      wallMat.color.set(night ? '#C9CDE0' : '#EEF0F6');
+      wallMat.color.set(night ? '#4B5078' : '#EEF0F6'); screenLight.intensity = night ? 5 : 0;
       drawSky();
     }
     readTheme();
@@ -5295,7 +5309,7 @@ function start() {
       W = stage.clientWidth; H = stage.clientHeight; if (!W || !H) return;
       wide = innerWidth > 900;
       // the room fills the stage: about 85% of its height on wide screens (full-width band under the title), the full width on phones
-      fit = wide ? Math.max(0.82, 0.97 * H / W) : Math.max(0.7, (H / W) * 0.85);   // the room fills its column
+      fit = wide ? Math.max(0.82, 1.02 * H / W) : Math.max(0.7, (H / W) * 0.85);   // the room fills its column
       renderer.setSize(W, H, false); camera.aspect = W / H; camera.updateProjectionMatrix();
     }
     new ResizeObserver(() => loop()).observe(stage); resize();
