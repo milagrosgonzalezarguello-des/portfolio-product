@@ -5140,6 +5140,13 @@ body .cm-shot img { display: block; width: 100%; height: auto; }
 @media (min-width: 1100px) { body article.case .cm-moments { width: min(1100px, 71vw); max-width: none; } }
 @media (max-width: 820px) { body .cm-moments > li { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { body .cm-shot button { transition: none; } }
+
+/* CAMMESA: the scale of the market, two figures */
+body .cm-scale { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 2.5rem; max-width: 760px; margin: 1.75rem 0; padding: 1.25rem 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); }
+body .cm-scale dt { font: 700 clamp(1.7rem, 3vw, 2.4rem)/1.05 var(--sans); letter-spacing: -0.03em; font-variant-numeric: tabular-nums; background-image: linear-gradient(100deg, #5B7CFF, #2338B8 45%, #7B4DFF); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding-bottom: 0.08em; }
+body .cm-scale dd { margin: 0.4rem 0 0; font-size: 0.9rem; line-height: 1.45; color: var(--muted); }
+:root[data-theme="dark"] body .cm-scale dt { background-image: linear-gradient(100deg, #B9CCFF, #86A8FF 45%, #C3A6FF); }
+@media (max-width: 560px) { body .cm-scale { grid-template-columns: 1fr; } }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -8404,7 +8411,14 @@ function start() {
     <section aria-labelledby="cm-s1">
       <h2 id="cm-s1" data-short="Stakes">Why the stakes were high</h2>
       <div class="prose">
-        <p>The system behind the portal settles 95% of Argentina's electricity. Its engine was migrated one process at a time, each one run side by side with the original until every number matched: a team of four, twelve months from first meeting to stage 1 delivered. A settlement error here isn't a typo; it's a payment to the wrong company, across an entire market. The portal was the part the market would actually see.</p>
+        <p>CAMMESA runs Argentina's wholesale electricity market. It monitors the national grid, the SADI, which carries 95% of the country's power, and settles the accounts: who generated, who consumed, who gets paid. Every number in that settlement starts as a reading of power and energy taken at a node of the grid, combined with the generation data each producer reports. Get one wrong, and the wrong company gets paid.</p>
+      </div>
+      <dl class="cm-scale">
+        <div><dt>30,200+ MW</dt><dd>record instantaneous power, on weekdays of high thermal demand</dd></div>
+        <div><dt>~US$ 8B</dt><dd>a year: the cost of Argentina's electricity system (it varies with gas and imported-fuel prices)</dd></div>
+      </dl>
+      <div class="prose">
+        <p>The engine behind the portal was migrated one process at a time, each one run side by side with the original until every number matched: a team of four, twelve months from first meeting to stage 1 delivered. The portal was the part the market would actually see.</p>
       </div>
     </section>
 
