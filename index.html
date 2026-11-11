@@ -4677,6 +4677,10 @@ body .mg-steps p { margin: 0; font-size: 0.94rem; line-height: 1.55; color: var(
 @media (hover: hover) and (pointer: fine) { body .desk.is-3d .dk-pin:not(.dk-go) span { opacity: 1; transform: none; } }
 body .dk-pin:not(.dk-go) span { padding: 0.36rem 0.7rem; font-size: 0.76rem; }
 body .topnav a[data-open-me][aria-current] { box-shadow: none; color: inherit; background: none; }
+body .tok th i { display: inline-block; width: 18px; height: 18px; margin-right: 0.6rem; border-radius: 5px; vertical-align: -4px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12); }
+body .tok code { font-size: 0.86em; }
+body table.tok td:last-child { font-weight: 400 !important; color: var(--muted) !important; }
+body table.tok th[scope="row"] { color: var(--ink); font-weight: 600; }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -6628,23 +6632,17 @@ function start() {
         <p>The handoff was a set of Markdown files, not a component library. I gave them to Clear Tech's director of technology, who loaded them into a Clear Tech agent that adapts content to the brand automatically. The system now works without me, or anyone, in the loop for a first draft.</p>
       </div>
       <figure class="shot wide">
-        <button type="button" data-zoom aria-label="Enlarge: Rules"><img data-m="27" width="1713" height="866" loading="lazy" alt="On-brand and off-brand copy examples, logo do and don't cards, a WCAG contrast table and the design tokens file"></button>
-        <figcaption>Rules: voice with on-brand and off-brand lines, logo do's and don'ts, contrast pairings and the tokens file.</figcaption>
+        <button type="button" data-zoom aria-label="Enlarge: Rules"><img data-m="27" width="1713" height="866" loading="lazy" alt="On-brand and off-brand copy examples, logo do and don't cards, a WCAG contrast table and the token list"></button>
+        <figcaption>Rules: voice with on-brand and off-brand lines, logo do's and don'ts, contrast pairings and the token list.</figcaption>
       </figure>
     </section>
 
     <section aria-labelledby="ds-s7">
-      <h2 id="ds-s7" data-short="Variables">Variables in Figma, tokens in the skill</h2>
+      <h2 id="ds-s7" data-short="Variables">Variables in Figma</h2>
       <div class="prose">
-        <p>The system lives in two places that have to agree: Figma variables for the people who design, and a tokens file inside the skill for Claude and the agent. Each semantic token has a light and a dark value and the same name on both sides: <code>color/brand/primary</code> in Figma is <code>--color-brand-primary</code> in the file, with no mapping document. It has not been built into a product codebase by developers; the handoff was the Markdown and the skill.</p>
-        <p>Figma MCP keeps the two honest: when I prototype with Claude, it reads the variables straight from the file, so the prototype uses the real tokens and a change in Figma shows up in the next prototype.</p>
+        <p>The system's decisions live as Figma variables: each semantic color has a light and a dark value and a name that says what it is for, like <code>color/brand/primary</code>. When I prototype with Claude, the Figma MCP reads those variables straight from the file, so the prototype uses the real values and a change in Figma shows up in the next prototype.</p>
+        <p>There is no tokens file in a product codebase: the handoff was the Markdown and the skill. For tokens handed to developers, see the <a href="#biomas">Biomás app</a>.</p>
       </div>
-      <figure class="shot wide">
-        <button type="button" data-zoom aria-label="Enlarge: Figma variables and the tokens file">
-          <img data-m="28" width="1522" height="760" loading="lazy" alt="Figma's local variables panel with semantic color and radius tokens in light and dark modes, linked by Figma MCP to a tokens.css file that declares the same names for :root and dark theme">
-        </button>
-        <figcaption>Semantic variables in Figma, the generated tokens file next to them: one name per token on both sides, light and dark.</figcaption>
-      </figure>
     </section>
 
     <section aria-labelledby="ds-s3">
@@ -7543,6 +7541,17 @@ function start() {
         <button type="button" data-zoom aria-label="Enlarge: component sheet"><img data-m="79" width="976" height="915" loading="lazy" alt="Design system page with status colors, date pickers, bottom and top app bars, modal bottom sheets and buttons"></button>
         <figcaption>The component sheet, as it sits in Figma: status colors, date pickers, app bars, bottom sheets and buttons.</figcaption>
       </figure>
+      <h3>Tokens before screens</h3>
+      <div class="prose">
+        <p>Color is named by what it means, not by how it looks. Each status has a role color and a background to pair it with (Error BG, Warning BG, Info BG, Success), so a status reads the same on the donor list, in a message and on a button. The components sit on top of those roles and follow Material, the native Android kit the developers built with, so what they received matched what they already had in code.</p>
+      </div>
+      <div class="table-scroll">
+        <table class="impact tok">
+          <thead><tr><th scope="col">Role, as named in Figma</th><th scope="col">Value</th><th scope="col">Used for</th></tr></thead>
+          <tbody><tr><th scope="row"><i style="background:#B50E0E"></i>Error</th><td><code>#B50E0E</code></td><td>Errors and actions that cannot be undone</td></tr><tr><th scope="row"><i style="background:#AB4905"></i>Advertencia</th><td><code>#AB4905</code></td><td>Warnings that need a look before going on</td></tr><tr><th scope="row"><i style="background:#1365BB"></i>Información</th><td><code>#1365BB</code></td><td>Neutral notices and the main action</td></tr><tr><th scope="row"><i style="background:#6D7599"></i>Íconos</th><td><code>#6D7599</code></td><td>Icons and secondary marks</td></tr></tbody>
+        </table>
+      </div>
+      <p class="source">Values read from the component sheet above, from the first version of the app.</p>
     </section>
 
     <section aria-labelledby="bm-guides">
