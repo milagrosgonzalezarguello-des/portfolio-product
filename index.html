@@ -5640,6 +5640,13 @@ function start() {
      ['', '', '#2E4A3F', '#E9DFC6', 0.41, 0.06, 0.27], ['', '', '#B9A27E', '#3A2C1A', 0.37, 0.045, 0.25], ['', '', '#7C2D3A', '#F0CF85', 0.39, 0.055, 0.26, 0.2]]
       .reduce((z, [t1, au, bg, fg, h, th, dp, lean]) => book(z, t1, au, bg, fg, h, th, dp, lean), -0.02);
 
+    // a small orange pixel robot on the shelf, between the books and the toolbox (a nod to Claude Code)
+    const botG = new THREE.Group(); botG.position.set(-2.84, 1.81, 0.74); botG.rotation.y = Math.PI / 2 - 0.25; scene.add(botG);
+    const bo = c => mat(c, { clearcoat: 0.15, roughness: 0.6 }), px = { r: 0.003, g: botG };
+    box(0.03, 0.05, 0.035, null, -0.045, 0, 0, Object.assign({ m: bo('#D9662A') }, px)); box(0.03, 0.05, 0.035, null, 0.045, 0, 0, Object.assign({ m: bo('#D9662A') }, px));   // legs
+    box(0.2, 0.13, 0.11, null, 0, 0.05, 0, Object.assign({ m: bo('#F08A45') }, px));                           // body
+    box(0.03, 0.05, 0.05, null, -0.115, 0.085, 0, Object.assign({ m: bo('#E8793A') }, px)); box(0.03, 0.05, 0.05, null, 0.115, 0.085, 0, Object.assign({ m: bo('#E8793A') }, px));   // arms
+    box(0.028, 0.036, 0.006, null, -0.04, 0.105, 0.055, { r: 0.001, g: botG, m: bo('#16110D'), cast: false }); box(0.028, 0.036, 0.006, null, 0.04, 0.105, 0.055, { r: 0.001, g: botG, m: bo('#16110D'), cast: false });   // eyes
     // her snowboard, white with a teal wave, leaning on the left wall under the shelf
     const boardG = new THREE.Group(); boardG.position.set(-2.93, 0.02, 1.32); boardG.rotation.set(0, 0, -0.16); scene.add(boardG);
     const deck = caps(0.14, 1.16, '#F4F6F8', 0, 0.73, 0, { g: boardG, s: [0.11, 1, 1], mat: { clearcoat: 0.9, roughness: 0.3 } });
@@ -6284,6 +6291,7 @@ function start() {
       // the room breathes too
       if (!reduce) {
         steam.forEach((s, k) => { const p = (t * 0.35 + k / 3) % 1; s.position.set(0.12 + Math.sin(t * 2 + k) * 0.025, deskTop + 0.22 + p * 0.34, -1.9); s.material.opacity = Math.sin(p * Math.PI) * 0.6; s.scale.setScalar(0.06 + p * 0.1); });
+        botG.position.y = 1.81 + Math.max(0, Math.sin(t * 2.4)) * 0.012; botG.rotation.z = Math.sin(t * 1.2) * 0.04;
         plantKick *= 0.965;
         leaves.forEach(l => { l.m.rotation.z = l.rz + Math.sin(t * 0.7 + l.ph) * 0.03 + Math.sin(t * 9 + l.ph * 1.7) * 0.22 * plantKick; });
         const ion = (t % 16) > 9 && (t % 16) < 14; if (ion !== iphOn) { iphOn = ion; drawIph(ion); }
