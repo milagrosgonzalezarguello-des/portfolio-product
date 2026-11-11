@@ -5123,6 +5123,23 @@ body .dk-pin { min-width: 0; } body .dk-pin::before { content: ""; position: abs
 body .fx-client { font-size: max(0.75rem, 12px); } body .fx-tab, body .mw-tab { font-size: 0.75rem; }
 body .fx-src, body .roles-state-k, body .jf-t th, body .mwl-c { font-size: max(0.75rem, 12px); }
 @media (max-width: 720px) { body .fx-client { font-size: 12px; } }
+
+/* ===== CAMMESA: five moments, each with its before, its now and the real screen at a readable size ===== */
+body .cm-moments { margin: 2rem 0 1.25rem; padding: 0; list-style: none; counter-reset: cm; display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
+body .cm-moments > li { counter-increment: cm; display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 1.5rem clamp(1.5rem, 3vw, 3rem); align-items: start; }
+body .cm-txt h3 { margin: 0 0 0.9rem; font-size: 1.2rem; line-height: 1.25; letter-spacing: -0.015em; }
+body .cm-txt h3::before { content: counter(cm); display: grid; place-items: center; width: 30px; height: 30px; margin-bottom: 0.8rem; border-radius: 50%; color: #fff; font: 700 0.8rem/1 var(--sans); background: linear-gradient(140deg, #5B7CFF, #4A2FD6); box-shadow: 0 8px 16px -6px rgba(51, 70, 232, 0.6); }
+body .cm-txt p { margin: 0 0 0.7rem; font-size: 0.92rem; line-height: 1.5; color: var(--muted); }
+body .cm-txt p span { display: block; margin-bottom: 0.15rem; font: 600 0.75rem/1.3 var(--sans); letter-spacing: 0.09em; text-transform: uppercase; }
+body .cm-txt .cm-n { color: var(--ink); } body .cm-txt .cm-n span { color: var(--accent-text, var(--accent)); }
+body .cm-pics { display: grid; gap: 1rem; min-width: 0; }
+body .cm-shot { margin: 0; }
+body .cm-shot button { display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); cursor: zoom-in; box-shadow: 0 24px 40px -28px rgba(20, 23, 40, 0.45); transition: translate 420ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 420ms cubic-bezier(0.16, 1, 0.3, 1); }
+body .cm-shot button:hover { translate: 0 -4px; box-shadow: 0 32px 48px -28px rgba(20, 23, 40, 0.55); }
+body .cm-shot img { display: block; width: 100%; height: auto; }
+@media (min-width: 1100px) { body article.case .cm-moments { width: min(1100px, 71vw); max-width: none; } }
+@media (max-width: 820px) { body .cm-moments > li { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { body .cm-shot button { transition: none; } }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -8370,7 +8387,7 @@ function start() {
     </header>
       <figure class="shot wide">
         <button type="button" data-zoom aria-label="Enlarge: the upload screen">
-          <img loading="lazy" data-m="100" width="1333" height="688" alt="The SMEC Measurement Upload screen: accepted formats, a file selected with its format auto-detected, and a green confirmation that the file was validated">
+          <img loading="lazy" decoding="async" src="img/cm-upload.webp" width="1594" height="795" alt="The SMEC Measurement Upload screen: accepted formats, a file selected with its format auto-detected, and a green confirmation that the file was validated">
         </button>
         <figcaption>Upload a file, see it validated. The one thing agents do most, made obvious.</figcaption>
       </figure>
@@ -8407,32 +8424,10 @@ function start() {
     <section aria-labelledby="cm-s3">
       <h2 id="cm-s3" data-short="Five moments">Five moments in an agent's month, before and now</h2>
       <div class="prose">
-        <p>We designed around what an agent actually goes through: a reading that misses the normal run, a file that may or may not have arrived, a rejection, a gap nobody noticed, and CAMMESA chasing what's missing. Each one got its screen, shown below as a before-and-now board; open a board to see it larger.</p>
+        <p>We designed around what an agent actually goes through: a reading that misses the normal run, a file that may or may not have arrived, a rejection, a gap nobody noticed, and CAMMESA chasing what's missing. Each one got its screen.</p>
       </div>
-      <div class="duo natural">
-        <figure>
-          <button type="button" data-zoom aria-label="Enlarge: moment one"><img data-m="102" width="1400" height="681" loading="lazy" alt="Before: emergency readings went through the old portal. Now: an emergency file upload in a few clicks, with the format auto-detected"></button>
-          <figcaption>1. The reading misses the normal run: an emergency upload in a few clicks.</figcaption>
-        </figure>
-        <figure>
-          <button type="button" data-zoom aria-label="Enlarge: moment two"><img data-m="103" width="1400" height="701" loading="lazy" alt="Before: no way to see whether CAMMESA got the file. Now: an upload history with every file, its status and its detail"></button>
-          <figcaption>2. Did CAMMESA get it? Every file, its status, its detail.</figcaption>
-        </figure>
-        <figure>
-          <button type="button" data-zoom aria-label="Enlarge: moment three"><img data-m="104" width="1400" height="597" loading="lazy" alt="Before: agents found out about rejections late, without the reason. Now: operation logs show the rejection and the reason right away"></button>
-          <figcaption>3. A rejected reading, with the reason, right away.</figcaption>
-        </figure>
-        <figure>
-          <button type="button" data-zoom aria-label="Enlarge: moment four"><img data-m="105" width="1400" height="686" loading="lazy" alt="Before: missing readings surfaced when a claim arrived. Now: a missing measurements view flags the gap before anyone asks"></button>
-          <figcaption>4. What's missing, before anyone has to ask.</figcaption>
-        </figure>
-      </div>
-      <figure class="shot wide">
-        <button type="button" data-zoom aria-label="Enlarge: moment five">
-          <img data-m="106" width="1400" height="550" loading="lazy" alt="Before: CAMMESA chased missing data agent by agent. Now: daily and monthly claims configured once, exclusions and manual claims for special cases, and a log of everything sent">
-        </button>
-        <figcaption>5. Chasing what's missing: automatic claims, configured once, with a log of everything sent.</figcaption>
-      </figure>
+      <ol class="cm-moments"><li><div class="cm-txt"><h3>The reading misses the normal run</h3><p class="cm-b"><span>Before</span>Through the old portal.</p><p class="cm-n"><span>Now</span>An emergency upload in a few clicks. The format is detected, and the file is validated on the spot.</p></div><div class="cm-pics"><figure class="cm-shot"><button type="button" data-zoom aria-label="Enlarge: measurement upload"><img src="img/cm-upload.webp" width="1594" height="795" loading="lazy" decoding="async" alt="SMEC Measurement Upload: accepted formats, one file selected with its format auto-detected, and a green File validated confirmation"></button></figure></div></li><li><div class="cm-txt"><h3>Did CAMMESA get it?</h3><p class="cm-b"><span>Before</span>No way to see. Ask and wait.</p><p class="cm-n"><span>Now</span>An upload history: every file, who sent it and when, and whether it is pending or loaded.</p></div><div class="cm-pics"><figure class="cm-shot"><button type="button" data-zoom aria-label="Enlarge: uploaded files history"><img src="img/cm-history.webp" width="1597" height="796" loading="lazy" decoding="async" alt="Uploaded Files History: filters by file name, period, month, grouping and status, and a list of files by date with Pending and Loaded labels"></button></figure></div></li><li><div class="cm-txt"><h3>A reading is rejected</h3><p class="cm-b"><span>Before</span>Agents found out late, and without the reason.</p><p class="cm-n"><span>Now</span>Operation logs show the rejection and its reason right away.</p></div><div class="cm-pics"><figure class="cm-shot"><button type="button" data-zoom aria-label="Enlarge: operation logs"><img data-m="104" width="1400" height="597" loading="lazy" alt="Before: agents found out about rejections late, without the reason. Now: operation logs show the rejection and the reason right away"></button></figure></div></li><li><div class="cm-txt"><h3>Something is missing</h3><p class="cm-b"><span>Before</span>It surfaced when a claim arrived, or when the settlement looked wrong.</p><p class="cm-n"><span>Now</span>A missing measurements view, by collection center, agent and meter, with a total per meter and an Excel export.</p></div><div class="cm-pics"><figure class="cm-shot"><button type="button" data-zoom aria-label="Enlarge: missing measurements"><img src="img/cm-missing.webp" width="1597" height="790" loading="lazy" decoding="async" alt="Missing Measurements: filters by period, meter, agent and collection center, and a table with missing readings per day and a grand total per meter"></button></figure></div></li><li><div class="cm-txt"><h3>CAMMESA chases what is missing</h3><p class="cm-b"><span>Before</span>Agent by agent.</p><p class="cm-n"><span>Now</span>Claims go out on a schedule set once, morning and afternoon for each day, and every claim sent is logged.</p></div><div class="cm-pics"><figure class="cm-shot"><button type="button" data-zoom aria-label="Enlarge: daily claims settings"><img src="img/cm-daily.webp" width="1596" height="793" loading="lazy" decoding="async" alt="Daily Claims Settings: one card per day of the week, each with a morning and an afternoon send time, a switch and a maximum number of meters"></button></figure><figure class="cm-shot"><button type="button" data-zoom aria-label="Enlarge: sent claims"><img src="img/cm-sent.webp" width="1600" height="792" loading="lazy" decoding="async" alt="Sent Claims: search filters and a log grouped by date and agent, with time, recipients, meters, shift, frequency and a Sent status"></button></figure></div></li></ol>
+      <p class="source">Screens recreated in English with demo data: the originals are in Spanish and under NDA.</p>
       <p class="psy"><span class="psy-label">The psychology behind it</span><strong>Visibility of system status.</strong> People trust a system that tells them what's happening. Every file has a status, every rejection its reason, every gap its own view.<cite>Nielsen, 1994</cite></p>
     </section>
 
