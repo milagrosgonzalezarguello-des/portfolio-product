@@ -4568,7 +4568,7 @@ body .dk-tip.is-below::after { top: 0; }
 @media (min-width: 901px) {
   body .hero-grid { grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr); }
   body .hero .hero-copy { position: relative; z-index: 2; }
-  body .desk { height: min(clamp(540px, 52vw, 780px), calc(100svh - 96px)); margin: 0 -24px 0 -150px; }
+  body .desk { height: min(clamp(540px, 52vw, 780px), calc(100svh - 96px)); margin: 0 -40px 0 -70px; }
 }
 
 /* toolbox close-up: the fixed note sits at the very bottom, the back button in the top right corner */
@@ -4693,6 +4693,9 @@ body .lens-coach::before { content: ""; position: absolute; right: 22px; bottom:
 body .lens-toggle.is-coaching .lens-coach { opacity: 1; visibility: visible; translate: 0 0; transition-delay: 0s; }
 body .lens-toggle.is-coaching .lens-tip { display: none; }
 @media (prefers-reduced-motion: reduce) { body .lens-coach { transition: none; translate: none; } }
+/* the hero grid takes the full width of the page column, so the studio sits against the right edge */
+@media (min-width: 901px) { body .canvas-intro > .canvas-stage { flex: 1 1 100%; width: 100%; min-width: 0; } }
+@media (min-width: 901px) { body .dk-hint { top: auto; bottom: 4px; } }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
