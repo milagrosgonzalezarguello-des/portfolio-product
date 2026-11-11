@@ -4512,7 +4512,7 @@ body .fx-open { position: fixed; z-index: 400; background: var(--c); pointer-eve
 }
 @media (prefers-reduced-motion: reduce) { body .fx-file, body .fx-cta { transition: none; } }
 
-/* ===== 2026-11-11: Changent, who sees what. A permissions table and one permission state ===== */
+/* ===== 2026-11-11: Retention, who sees what. A permissions table and one permission state ===== */
 body .roles { margin: 1.75rem 0 2rem; }
 body .roles-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
 body .roles-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
@@ -4625,7 +4625,7 @@ body .contact-v2 a:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 3
 body .cw-list li:first-child .cw-v { font-size: 0.78rem; letter-spacing: -0.005em; }
 body .roles-next { margin: 0.7rem 0 0; padding-left: 1.1rem; display: grid; gap: 0.4rem; font-size: 0.92rem; line-height: 1.5; color: var(--muted); }
 
-/* ===== 2026-11-11: Changent, the deck and the live prototype; the handwriting face on the studio board ===== */
+/* ===== 2026-11-11: Retention, the deck and the live prototype; the handwriting face on the studio board ===== */
 @font-face { font-family: "Caveat"; font-weight: 700; font-style: normal; font-display: swap; src: url("fonts/caveat-700.woff2") format("woff2"); }
 body .deck-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 1.25rem; margin: 1.25rem 0 1rem; padding: 0; list-style: none; }
 body .deck-grid figure { margin: 0; }
@@ -5187,14 +5187,14 @@ body .jf.is-rolling .jf-tw > .jf-dog { opacity: 1; }
 @media (max-width: 900px) { body .jf-dog { display: none; } }
 @media (prefers-reduced-motion: reduce) { body .jf-dog { animation: none; } }
 
-/* Changent: research and decision tables */
+/* Retention: research and decision tables */
 body .ret-t td { vertical-align: top; font-size: 0.92rem; line-height: 1.5; }
 body .ret-t td:first-child { width: 28%; font-weight: 600; color: var(--ink); }
 body .ret-t td:nth-child(2), body .ret-t td:nth-child(3) { font-weight: 400; color: var(--muted); }
 body .ret-t td b { color: var(--ink); }
 body .ret-opt tr:last-child td { background: color-mix(in srgb, var(--accent) 7%, transparent); }
 
-/* Changent: the component spec */
+/* Retention: the component spec */
 body .ret-spec { max-width: 820px; margin: 1.25rem 0 2rem; border-top: 2px solid var(--ink); }
 body .ret-spec > div { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 0.3rem 1.5rem; padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
 body .ret-spec dt { font-weight: 600; font-size: 0.92rem; color: var(--ink); }
@@ -6494,7 +6494,7 @@ function start() {
       <li class="fx-file" style="--i:1;--c:#3438B0">
         <a class="fx-a" href="#retention">
           <span class="fx-tab" aria-hidden="true">02</span>
-          <span class="fx-strip"><span class="fx-client">Changent</span><span class="fx-kpi">~100 days</span></span>
+          <span class="fx-strip"><span class="fx-client">Healthcare organization</span><span class="fx-kpi">~100 days</span></span>
           <span class="fx-face"><span class="fx-txt"><span class="fx-title">A Human-in-the-Loop Retention Agent for Home-Visit Nurses</span><span class="fx-lab"><b>~100 days</b> between the first flag and drop-out: the time to act</span><span class="fx-res">Phase 2 approved</span><span class="fx-cta">Open the file <span aria-hidden="true">→</span></span></span><img class="fx-img" src="img/b5885134659b57.webp" alt="" loading="lazy" decoding="async"></span>
         </a>
       </li>
@@ -7295,7 +7295,7 @@ function start() {
   </div>
 </article>
 
-<!-- CASE: CHANGENT -->
+<!-- CASE: RETENTION -->
 <!-- CASE: CLEAR TECH DESIGN SYSTEM -->
 <article id="view-designsystem" class="case" hidden aria-labelledby="ds-title">
   <div class="wrap">
@@ -7413,7 +7413,7 @@ function start() {
         <p>My favorite piece is Success Stories, a 15-page document with four client cases. Each one leads with the client and the problem, then what was built and the results, so a reader can compare them at a glance.</p>
       </div>
       <figure class="shot wide">
-        <button type="button" data-zoom aria-label="Enlarge: Success Stories"><img data-m="33" width="1780" height="1656" loading="lazy" alt="Six pages of the Success Stories document: the cover, cases for Changent, LG Ad Solutions, Grupo Bimbo and LinkedIn with problem, solution and result blocks, and a summary page"></button>
+        <button type="button" data-zoom aria-label="Enlarge: Success Stories"><img data-m="33" width="1780" height="1656" loading="lazy" alt="Six pages of the Success Stories document: the cover, cases for a healthcare organization, LG Ad Solutions, Grupo Bimbo and LinkedIn with problem, solution and result blocks, and a summary page"></button>
         <figcaption>Success Stories: one information system for four very different cases.</figcaption>
       </figure>
       <figure class="shot wide">
@@ -7454,9 +7454,9 @@ function start() {
       All work
     </a>
     <header class="case-head">
-      <p class="case-client">Changent, a Clear Tech proposal</p>
+      <p class="case-client">A healthcare organization, a Clear Tech proposal</p>
       <h1 id="ret-title" tabindex="-1">A Human-in-the-Loop Retention Agent for Home-Visit Nurses</h1>
-      <p class="lede">Changent already owned a model that flags the clients most likely to leave its home-visiting program. The flag rarely turned into action. I designed the layer around it: an agent that shows each nurse who needs action today and why, drafts an approach the nurse decides on, and gives supervisors the same data aggregated. Then I built the prototype and rebuilt the Phase 2 proposal around it.</p>
+      <p class="lede">A healthcare organization already owned a model that flags the clients most likely to leave its home-visiting program. The flag rarely turned into action. I designed the layer around it: an agent that shows each nurse who needs action today and why, drafts an approach the nurse decides on, and gives supervisors the same data aggregated. Then I built the prototype and rebuilt the Phase 2 proposal around it.</p>
       <dl class="meta">
         <div><dt>Role</dt><dd>Product Design Lead: research, story, content and prototype</dd></div>
         <div><dt>Team</dt><dd>Clear Tech's data experts and me</dd></div>
@@ -7478,7 +7478,7 @@ function start() {
 
     <div class="oe-val"><p class="tldr-label">How I checked it</p>
       <dl class="oe-val-list">
-        <div><dt>Expert walkthroughs</dt><dd>Every part of the prototype reviewed one by one with the Clear Tech experts who work with Changent's data.</dd></div>
+        <div><dt>Expert walkthroughs</dt><dd>Every part of the prototype reviewed one by one with the Clear Tech experts who work with the organization's data.</dd></div>
         <div><dt>What comes first in Phase 2</dt><dd>A task-based test with 5 nurses. No nurse has used the working prototype yet.</dd></div>
         <div><dt>Measurement</dt><dd>12-week retention and days from flag to first contact, nurses with the agent against nurses without, over one quarter.</dd></div>
       </dl>
@@ -7498,8 +7498,8 @@ function start() {
     <section aria-labelledby="ret-s1">
       <h2 id="ret-s1" data-short="Start">Where I started</h2>
       <div class="prose">
-        <p>The flag from Changent's model landed in a weekly report and rarely turned into action. The Phase 2 proposal meant to fix that was ten slides with the same layout: no numbers from the model, a product told in bullets, a yes requested on slide 2. Nobody had seen a single screen.</p>
-        <p>Before touching a screen or a slide, I met one by one with the Clear Tech experts who work with Changent every day, shaped the proposal with them and later validated every part of the prototype with them. I also talked with two nurse supervisors and one nurse. Three insights changed the pitch:</p>
+        <p>The flag from the organization's model landed in a weekly report and rarely turned into action. The Phase 2 proposal meant to fix that was ten slides with the same layout: no numbers from the model, a product told in bullets, a yes requested on slide 2. Nobody had seen a single screen.</p>
+        <p>Before touching a screen or a slide, I met one by one with the Clear Tech experts who work with the organization every day, shaped the proposal with them and later validated every part of the prototype with them. I also talked with two nurse supervisors and one nurse. Three insights changed the pitch:</p>
         <ul>
           <li><strong>Nurses don't need to know who is at risk;</strong> they need to know what to do.</li>
           <li><strong>The report competes with a full visit schedule,</strong> and loses.</li>
@@ -7513,7 +7513,7 @@ function start() {
         <div><dt>57%</dt><dd>of upcoming drop-outs sat inside the riskiest 30%</dd></div>
       </dl>
       <h3>What I heard, from whom, and what it changed</h3>
-      <div class="prose"><p>I ran seven conversations in two weeks: four with the Clear Tech analysts who work on Changent's data, two with nurse supervisors and one with a nurse. All remote, 30 to 45 minutes.</p></div>
+      <div class="prose"><p>I ran seven conversations in two weeks: four with the Clear Tech analysts who work on the organization's data, two with nurse supervisors and one with a nurse. All remote, 30 to 45 minutes.</p></div>
       <div class="table-scroll"><table class="impact ret-t "><thead><tr><th scope="col">What I heard</th><th scope="col">From whom</th><th scope="col">What it changed on screen</th></tr></thead><tbody><tr><td>"I already know who's struggling. Tell me what to try."</td><td>A nurse with eleven years in the program.</td><td>The suggested approach became the centre of the screen. The risk score moved to second place.</td></tr><tr><td>"A number with no reason is a number I can't take to a family."</td><td>A nurse supervisor.</td><td>Every flag has a "Why it flagged" panel in plain words.</td></tr><tr><td>Flags and outcomes live in different systems.</td><td>Clear Tech's data team.</td><td>Each action is logged on the flag, so the model can learn from what happened next.</td></tr></tbody></table></div>
       <div class="prose"><p><strong>What I haven't validated.</strong> One nurse is not research. No nurse has used the working prototype yet. That test, with five nurses, is the first step of Phase 2.</p></div>
       <h3>Three ways to turn a flag into action</h3>
@@ -7524,7 +7524,7 @@ function start() {
     <section aria-labelledby="ret-s2">
       <h2 id="ret-s2" data-short="The agent">What the agent does, and never does</h2>
       <div class="prose">
-        <p>Two components, one circuit. The prediction engine is the one Changent already owns; the recommendation layer is new, and reads Changent's own guidance to match it to each case. The engine flags a client, the agent alerts the right nurse, explains why and drafts a plan, and the nurse acts with the client. The nurse is the decision point, every time.</p>
+        <p>Two components, one circuit. The prediction engine is the one the organization already owns; the recommendation layer is new, and reads the organization's own guidance to match it to each case. The engine flags a client, the agent alerts the right nurse, explains why and drafts a plan, and the nurse acts with the client. The nurse is the decision point, every time.</p>
       </div>
       <figure class="ba">
         <div class="ba-grid">
@@ -7544,7 +7544,7 @@ function start() {
         <ul>
           <li><strong>A priority list, not a report.</strong> Each nurse opens on who needs action today, ranked by risk, with the trend next to every name. Risk rising for two or more weeks precedes most drop-outs, so it gets its own count at the top.</li>
           <li><strong>Every flag explains itself.</strong> A "Why it flagged" panel says in plain words what changed: contact thinned to text only, two visits missed in a row, the pattern of families who leave the program.</li>
-          <li><strong>The agent drafts; the nurse decides.</strong> The suggested approach arrives as a draft, matched to Changent's own guidance and ready to edit. The nurse reviews, adapts and decides; the agent never acts without the nurse.</li>
+          <li><strong>The agent drafts; the nurse decides.</strong> The suggested approach arrives as a draft, matched to the organization's own guidance and ready to edit. The nurse reviews, adapts and decides; the agent never acts without the nurse.</li>
           <li><strong>It learns from what happens next.</strong> In Phase 2 the model logs every outcome and tracks each client's risk trend, rising or falling and why, instead of a one-shot weekly snapshot.</li>
           <li><strong>Supervisors see the same data, aggregated.</strong> Flags acted on by nurse, median days from flag to first contact, and 12-week retention for the team.</li>
         </ul>
@@ -7561,7 +7561,7 @@ function start() {
         </button>
         <figcaption>The human-in-the-loop moment. The agent says why it flagged the client and drafts four steps from the client's own guidance; the nurse uses the plan, edits it or snoozes the flag for seven days.</figcaption>
       </figure>
-      <p class="proto-link"><a class="btn btn-ghost" href="changent-prototype.html" target="_blank" rel="noopener">Open the live prototype<span class="visually-hidden"> (opens in a new tab)</span></a><span>Nurse and supervisor views, with synthetic data.</span></p>
+      <p class="proto-link"><a class="btn btn-ghost" href="retention-prototype.html" target="_blank" rel="noopener">Open the live prototype<span class="visually-hidden"> (opens in a new tab)</span></a><span>Nurse and supervisor views, with synthetic data.</span></p>
       <h3>One suggestion, five endings</h3>
       <div class="table-scroll"><table class="impact ret-t "><thead><tr><th scope="col">State</th><th scope="col">What the nurse sees</th><th scope="col">What is logged</th></tr></thead><tbody><tr><td>Drafted</td><td>Four steps from the program's own guidance, labelled "Draft · by the agent".</td><td>That the agent read the record, and which guidance it used.</td></tr><tr><td>Edited</td><td>Her text replaces step 2. The label changes to "Edited by you".</td><td>Her version and the original, side by side.</td></tr><tr><td>Used</td><td>"Outreach logged. Undo", for 10 minutes.</td><td>Who, when and which plan.</td></tr><tr><td>Snoozed</td><td>Back in 7 days, with a required reason from a list of four.</td><td>The supervisor sees "snoozed: family travelling", not "ignored".</td></tr><tr><td>"This flag is wrong"</td><td>One tap, then one reason: data out of date, already handled, or doesn't fit this family.</td><td>It goes to the data team weekly. Three reports with the same reason trigger a model review.</td></tr></tbody></table></div>
       <p class="source">This is the full specification. The live prototype shows three of these states: drafted, used and snoozed, plus Edit. The rest ("Edited by you", the 10-minute Undo and "This flag is wrong") are specified for Phase 2.</p>
@@ -7650,8 +7650,8 @@ function start() {
         <p>A room pays attention, understands, remembers and only then decides, so the deck was built in that order: the proof alone on a screen, two named components instead of five loose steps, the live demo as the peak, an easy ask as the end, and "the nurse decides" said before anyone could object.</p>
       </div>
       <p class="psy"><span class="psy-label">The psychology behind it</span><strong>Identifiable victim effect.</strong> The prototype follows Avery, case #48, not "the riskiest 30%". A room remembers one person; it forgets a percentage.<cite>Small and Loewenstein, 2003</cite></p>
-      <h3>The deck I presented</h3>
-      <div class="prose"><p>I designed this deck for the meeting with the client in the United States, where Phase 2 was approved. Six of its screens, in order:</p></div>
+      <h3>The deck Clear Tech presented</h3>
+      <div class="prose"><p>I designed this deck; Clear Tech's team presented it to the client in the United States, where Phase 2 was approved. Six of its screens, in order:</p></div>
       <ul class="deck-grid">
         <li><figure><button type="button" data-zoom aria-label="Enlarge: Start from what works: the report they already have"><img src="img/ch-slide-03.webp" width="1440" height="810" loading="lazy" decoding="async" alt="What you have today: the weekly report and its Top 30% risk column, with three notes on what it does well"></button><figcaption>Start from what works: the report they already have.</figcaption></figure></li>
         <li><figure><button type="button" data-zoom aria-label="Enlarge: The proof alone on a screen: two numbers"><img src="img/ch-slide-04.webp" width="1440" height="810" loading="lazy" decoding="async" alt="On average, the model predicted a lot: 1 in 3 flagged clients left, with about 100 days of head start"></button><figcaption>The proof alone on a screen: two numbers.</figcaption></figure></li>
@@ -8427,7 +8427,7 @@ function start() {
     <section aria-labelledby="ux-s1">
       <h2 id="ux-s1" data-short="Inside">What's inside</h2>
       <div class="prose">
-        <p>Ninety-six pages of UX guidance and standards for every team building Power BI dashboards: brand foundations first, then each component, then the patterns that tie them together. Two pages at full size, then an overview of three more. Further down, the same approach for another client, Changent: a dashboard, its training guide and a release guide.</p>
+        <p>Ninety-six pages of UX guidance and standards for every team building Power BI dashboards: brand foundations first, then each component, then the patterns that tie them together. Two pages at full size, then an overview of three more. Further down, the same approach for another client, a healthcare organization: a dashboard, its training guide and a release guide.</p>
       </div>
       <div class="duo natural">
         <figure>
@@ -8490,10 +8490,10 @@ function start() {
       </div>
     </section>
     <section aria-labelledby="ret-nfp">
-      <h2 id="ret-nfp" data-short="For Changent">For Changent: a dashboard and its guides</h2>
+      <h2 id="ret-nfp" data-short="Healthcare client">For a healthcare organization: a dashboard and its guides</h2>
       <div class="prose">
-        <p>The same approach for another client. For Changent, I designed an internal Power BI dashboard for its program teams: a side-by-side comparison of two programs across referrals, service delivery and outcomes, for supervisors, nursing practice managers and network management. Then the part most dashboards skip: as part of the product strategy, I led the training guide and the communication material so people would actually adopt it.</p>
-        <p>The same for Changent's Fidelity reports: a redesigned 3.0 version with the element name up top, filters in a logical order, a status badge that says "at target" or "below target" at a glance, a legend before the charts and plain-language outcomes in the details view. And a one-page release guide so every change made sense to the people reading it.</p>
+        <p>The same approach for another client. For this organization, I designed an internal Power BI dashboard for its program teams: a side-by-side comparison of two programs across referrals, service delivery and outcomes, for supervisors, nursing practice managers and network management. Then the part most dashboards skip: as part of the product strategy, I led the training guide and the communication material so people would actually adopt it.</p>
+        <p>The same for its Fidelity reports: a redesigned 3.0 version with the element name up top, filters in a logical order, a status badge that says "at target" or "below target" at a glance, a legend before the charts and plain-language outcomes in the details view. And a one-page release guide so every change made sense to the people reading it.</p>
       </div>
       <div class="duo natural" data-lens="UX||Onboarding is part of the product||A dashboard nobody knows how to read is a dashboard nobody uses. The guide is as much a part of the product as the charts.||">
         <figure>
