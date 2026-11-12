@@ -6794,26 +6794,6 @@ function start() {
         </button>
         <figcaption>The campaign home answers "is it working?" first, and shows the proof below.</figcaption>
       </figure>
-
-    <aside class="tradeoff" aria-label="The hard call" data-lens="Psychology||Trust in automation||People rely on automation only as much as they trust it, and trust grows when the system shows its work. Explaining each change is how the agent earns use.||Lee and See, 2004">
-      <p class="to-label">The hard call</p>
-      <p><strong>Trust over speed.</strong> Engineering wanted silent edits: 3 fewer clicks per change. I ran both versions with 5 managers. With silent edits, 3 of them rebuilt the chart by hand to check it. Confirmation cost 4 seconds and saved the rebuild.</p>
-    </aside>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
     <nav class="cpath" aria-label="The path of this project"><p class="cpath-k">The path of this project</p><ol><li><a href="#lg-why" data-jump><span class="cpath-n">1</span><span class="cpath-t">Why</span></a></li><li><a href="#lg-people" data-jump><span class="cpath-n">2</span><span class="cpath-t">People</span></a></li><li><a href="#lg-flow" data-jump><span class="cpath-n">3</span><span class="cpath-t">Workflow</span></a></li><li><a href="#lg-opt" data-jump><span class="cpath-n">4</span><span class="cpath-t">Options</span></a></li><li><a href="#lg-test" data-jump><span class="cpath-n">5</span><span class="cpath-t">Prototype and test</span></a></li><li><a href="#lg-s1" data-jump><span class="cpath-n">6</span><span class="cpath-t">Design</span></a></li><li><a href="#lg-sys" data-jump><span class="cpath-n">7</span><span class="cpath-t">Build and ship</span></a></li><li><a href="#lg-s4" data-jump><span class="cpath-n">8</span><span class="cpath-t">What moved</span></a></li></ol></nav>
 <section aria-labelledby="lg-why">
       <p class="cstep"><span>1</span>Why</p><h2 id="lg-why" data-short="Why">Why LG needed it</h2>
@@ -6920,13 +6900,12 @@ function start() {
     </section>
 
     <section aria-labelledby="lg-opt">
-      <p class="cstep"><span>4</span>Options</p><h2 id="lg-opt" data-short="Options">Three decisions where the other option was real</h2>
+      <p class="cstep"><span>4</span>Options</p><h2 id="lg-opt" data-short="Options">Two decisions where the other option was real</h2>
       <div class="table-scroll">
         <table class="impact">
           <thead><tr><th scope="col">The question</th><th scope="col">The other option</th><th scope="col">What we chose, and why</th></tr></thead>
           <tbody>
             <tr><td>How does someone start a dashboard?</td><td>From templates: pick one and fill it in</td><td>From a question to the agent. Templates stayed in the library as a starting point, not as the only way in</td></tr>
-            <tr><td>Should the agent ask before it edits?</td><td>Silent edits. Engineering proposed them: three fewer clicks per change</td><td>Confirmation. I ran both with five managers. With silent edits, three of them rebuilt the chart by hand to check it. Confirming cost four seconds and saved the rebuild</td></tr>
             <tr><td>What does the change card show?</td><td>Version 1: every property the agent touched</td><td>Version 2: only what was removed and what was added. Nobody read version 1</td></tr>
           </tbody>
         </table>
@@ -6941,7 +6920,6 @@ function start() {
           <tbody>
             <tr><td>Four of five managers hesitated before Publish. One asked: "who's going to see this?"</td><td>The screen didn't say who the audience was</td><td>That question became the publish dialog: it names who will see the dashboard before you confirm</td></tr>
             <tr><td>41% of drafts were abandoned at the first empty slot</td><td>Session replays showed managers didn't know they could ask the agent</td><td>A prompt suggestion inside every empty slot. Abandonment dropped to 17% in the next release</td></tr>
-            <tr><td>With silent edits, three of five managers rebuilt the chart by hand</td><td>They couldn't see what the agent had changed</td><td>The agent shows its plan and confirms before it changes anything</td></tr>
           </tbody>
         </table>
       </div>
