@@ -5118,6 +5118,7 @@ body .jf-t .jf-th { gap: 0.9rem; }
 @media (min-width: 761px) { body .jf-t tbody td:last-child { padding-left: 1.6rem; text-indent: 0; } body .jf-t .jf-r { display: grid; grid-template-columns: 5.2rem minmax(0, 1fr); align-items: baseline; } body .jf-t .jf-v { min-width: 0; } }
 @media (max-width: 760px) { body .jf-t .jf-v { margin-right: 0.3em; } }
 @media (max-width: 640px) { body .jf-t td:first-child { font-size: 0.78rem; } body .jf-t .jf-th { gap: 0.55rem; } body .jf-t th:first-child .jf-th { gap: 0.95rem; } body .jf-t .jf-hd b { font-size: 1.15rem; } body .jf-t .jf-hd small { font-size: 0.62rem; letter-spacing: 0.08em; } }
+@media (min-width: 901px) { body #view-lg .handoff.three[aria-label="Accessibility checks"] { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 680px; } }
 /* the closing line of How I work, as a statement */
 body .jf-close { max-width: 24ch; margin-top: clamp(2.5rem, 5vw, 4rem); font-size: clamp(1.7rem, 3.4vw, 2.9rem); line-height: 1.12; letter-spacing: -0.025em; font-weight: 700; text-wrap: balance; }
 /* ===== hero, more air: a larger headline, then room before the paragraph and before the actions ===== */
@@ -7008,15 +7009,14 @@ function start() {
         <p>Each agent has its own accent, always from the brand palette, so you know which agent you are in. <code>color.brand.accent</code> is a single token with one mode per agent. Components never use the colour directly, so the same button or header takes each agent's colour on its own. Adding an agent means adding a mode and a theme file, not designing an interface.</p>
         <p>Behaviour is shared too. Every agent looks the same while it works, when it answers, when it fails or hits a limit, and when it asks you to confirm before it acts.</p>
       </div>
-      <h3>Accessibility, checked in design and in code</h3>
+      <h3>Accessibility, checked in Figma and by hand</h3>
       <ul class="handoff three" aria-label="Accessibility checks">
         <li><strong>Stark, in Figma</strong><span>Contrast for every token pair, light and dark. Some accents failed 4.5:1 under white text, so text and buttons use a darker step of the same brand scale, agreed with LG's brand team. Errors and successes always carry an icon and text, never colour alone.</span></li>
-        <li><strong>axe, in Storybook and the browser</strong><span>It found what Figma can't show: inputs with no label, icon-only buttons with no accessible name, a modal that didn't return focus when it closed. Fixed once in the base component, fixed in every agent.</span></li>
         <li><strong>Keyboard, by hand</strong><span>Every flow walked without a mouse.</span></li>
       </ul>
       <div class="prose"><p>The target was WCAG 2.2 AA. What we did not do: test with VoiceOver or NVDA, or with people who use them every day. In a chat, where an answer arrives bit by bit, that is the next test.</p></div>
       <h3>From Figma to code</h3>
-      <pre class="ret-code" style="white-space:pre-wrap" tabindex="0" aria-label="The token pipeline"><code>Figma Variables &rarr; Tokens Studio &rarr; JSON in the repo &rarr; Style Dictionary &rarr; CSS per agent &rarr; Storybook + axe</code></pre>
+      <pre class="ret-code" style="white-space:pre-wrap" tabindex="0" aria-label="The token pipeline"><code>Figma Variables &rarr; Tokens Studio &rarr; JSON in the repo &rarr; Style Dictionary &rarr; CSS per agent &rarr; Storybook</code></pre>
       <div class="prose">
         <p>The tokens leave Figma as JSON in the W3C format (DTCG), versioned in the repository with one theme file per agent. With the developers we set up Style Dictionary to generate each agent's CSS variables from that file, so no developer types a colour or a spacing value by hand.</p>
         <p>Storybook holds every component, state and theme. Reviews stopped comparing a mockup to a screen: we open the real component.</p>
@@ -7028,7 +7028,7 @@ function start() {
           <li><strong>Colours that aren't LG's.</strong> Asked for scales, it invented in-between tones. The manual is the source, so they went out.</li>
           <li><strong>Mixed naming.</strong> <code>color.action.primary</code> next to <code>blue-button</code>. One wrong name multiplies across every agent.</li>
           <li><strong>Broken JSON.</strong> Drafts missing <code>$value</code> and <code>$type</code>, which Style Dictionary can't read.</li>
-          <li><strong>Contrast it never measured.</strong> The docs said pairs passed. Every claim was re-checked with Stark and axe.</li>
+          <li><strong>Contrast it never measured.</strong> The docs said pairs passed. Every claim was re-checked with Stark.</li>
           <li><strong>ARIA nobody needed.</strong> <code>role="button"</code> on a <code>&lt;button&gt;</code>, which can make a screen reader worse.</li>
         </ul>
       </div>
@@ -7141,7 +7141,6 @@ function start() {
           <li><strong>Privacy has to be visible too.</strong> Permissions protect the data; clear cues about whose data you're seeing make people believe it.</li>
           <li><strong>Instrument before launch, not after.</strong> I'd set up analytics on the builder before it went live: we lost 6 weeks of baseline data.</li>
           <li><strong>Name tokens with the developers on day one.</strong> We renamed some later because they didn't match how the code was organised.</li>
-          <li><strong>Put axe in the pipeline.</strong> The check lived in Storybook, so it depended on someone looking. In CI, an accessibility failure would block the change.</li>
           <li><strong>One accent per agent runs out.</strong> A brand palette has a limit. Next time: colour by category, plus an icon per agent.</li>
         </ul>
       </div>
