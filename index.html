@@ -6800,8 +6800,23 @@ function start() {
       <p><strong>Trust over speed.</strong> Engineering wanted silent edits: 3 fewer clicks per change. I ran both versions with 5 managers. With silent edits, 3 of them rebuilt the chart by hand to check it. Confirmation cost 4 seconds and saved the rebuild.</p>
     </aside>
 
-    <section aria-labelledby="lg-why">
-      <h2 id="lg-why" data-short="Context">Why LG needed it</h2>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <nav class="cpath" aria-label="The path of this project"><p class="cpath-k">The path of this project</p><ol><li><a href="#lg-why" data-jump><span class="cpath-n">1</span><span class="cpath-t">Why</span></a></li><li><a href="#lg-people" data-jump><span class="cpath-n">2</span><span class="cpath-t">People</span></a></li><li><a href="#lg-flow" data-jump><span class="cpath-n">3</span><span class="cpath-t">Workflow</span></a></li><li><a href="#lg-opt" data-jump><span class="cpath-n">4</span><span class="cpath-t">Options</span></a></li><li><a href="#lg-test" data-jump><span class="cpath-n">5</span><span class="cpath-t">Prototype and test</span></a></li><li><a href="#lg-s1" data-jump><span class="cpath-n">6</span><span class="cpath-t">Design</span></a></li><li><a href="#lg-sys" data-jump><span class="cpath-n">7</span><span class="cpath-t">Build and ship</span></a></li><li><a href="#lg-s4" data-jump><span class="cpath-n">8</span><span class="cpath-t">What moved</span></a></li></ol></nav>
+<section aria-labelledby="lg-why">
+      <p class="cstep"><span>1</span>Why</p><h2 id="lg-why" data-short="Why">Why LG needed it</h2>
       <div class="prose">
         <p>LG Ad Solutions was growing faster than its operations could sustain. Gradient is the analytics side of Agentiv, the agentic platform Clear Tech built for LG: more than 29 AI agents in production, some serving clients and others running the business from the inside. Three pressures set the brief:</p>
         <ul>
@@ -6821,10 +6836,119 @@ function start() {
           </tbody>
         </table>
       </div>
+    <h3>Where the brief came from</h3>
+      <div class="prose"><p>We meet with LG's teams often, and the brief came out of those meetings: AI, and a way for people to build their own dashboards.</p></div>
+      
+      <div class="prose">
+        <p>For the dashboard builder, I first wrote down what it is and what it isn't: the pages, the flows, who owns and edits a dashboard, and what goes into the first version.</p>
+      </div>
+      <ul class="handoff four" aria-label="Scope of the first version">
+        <li><strong>Navigation</strong><span>A dashboard library with drafts, templates, favorites and shared dashboards.</span></li>
+        <li><strong>Builder</strong><span>Grid drag and drop, resizable components, filters, tabs, undo, redo and autosave.</span></li>
+        <li><strong>AI agent</strong><span>One chat per dashboard that proposes changes, shows what they affect and can be undone.</span></li>
+        <li><strong>Publishing</strong><span>Draft and published versions, sharing, ownership and collaborator permissions.</span></li>
+      </ul>
+      <div class="duo natural">
+        <figure>
+          <button type="button" data-zoom aria-label="Enlarge: product definition boards"><img data-m="8" width="1060" height="921" loading="lazy" alt="Product definition boards for the dashboard builder: landing page, workspace, creation flow, collaboration and ownership, user flows and initial scope"></button>
+          <figcaption>The product definition: landing, workspace, creation flow, roles, user flows and scope.</figcaption>
+        </figure>
+        <figure>
+          <button type="button" data-zoom aria-label="Enlarge: initial scope for version one"><img data-m="9" width="978" height="853" loading="lazy" alt="Initial scope for version one, grouped into navigation, builder, AI agent, and publishing and permissions"></button>
+          <figcaption>The first version's scope, area by area.</figcaption>
+        </figure>
+      </div>
+      </section>
+
+    <section aria-labelledby="lg-people">
+      <p class="cstep"><span>2</span>People</p><h2 id="lg-people" data-short="People">Who I designed for, and how I listened</h2>
+      <div class="prose">
+        <p>The people who open Gradient are LG's account managers and team leads, and the advertisers they serve. They are not analysts. They open it to answer a client, often minutes before a call.</p>
+      </div>
+      <ul class="handoff three" aria-label="How I learned from users">
+        <li><strong>Sessions before each release</strong><span>Five remote sessions with LG account managers, thinking aloud over a real task.</span></li>
+        <li><strong>What they did, not what they said</strong><span>PostHog and session replays, to see where a draft was abandoned and why.</span></li>
+        <li><strong>Their real questions</strong><span>Collected into a review set, and run against every agent answer before release.</span></li>
+      </ul>
     </section>
 
-    <section aria-labelledby="lg-s1">
-      <h2 id="lg-s1" data-short="Views">One platform, the right view for each user</h2>
+    <section aria-labelledby="lg-flow">
+      <p class="cstep"><span>3</span>Workflow</p><h2 id="lg-flow" data-short="Workflow">Every flow, end to end</h2>
+      <div class="prose"><p>Then I mapped the journey: every report flow from request to delivery, for an advertiser with one brand and for one with several. The Figma file follows the same logic, one section per kind of user. To move faster, we used Figma's AI agents for production work throughout the project.</p></div>
+      
+      <div class="duo natural" data-lens="Product design||Show the thinking||Working files prove the polished screens didn't happen by accident: they show how decisions were made.||">
+        <figure>
+          <button type="button" data-zoom aria-label="Enlarge: delivery report flows"><img data-m="10" width="1030" height="903" loading="lazy" alt="Working board mapping the delivery report flow screen by screen, once for single-brand and once for multibrand advertisers, with the full request forms below"></button>
+          <figcaption>Every report flow mapped end to end, for single-brand and multibrand advertisers.</figcaption>
+        </figure>
+        <figure>
+          <button type="button" data-zoom aria-label="Enlarge: post-campaign wrap report flow"><img data-m="11" width="1077" height="946" loading="lazy" alt="Working board for the post-campaign wrap report: from the reports list to the request form, the scheduler and the standard and optional report tiers"></button>
+          <figcaption>The post-campaign report, from request form to scheduler and report tiers.</figcaption>
+        </figure>
+      </div>
+      <figure class="fmap" aria-labelledby="fmap-cap">
+        <div class="fmap-in">
+          <div class="fmap-pages">
+            <p class="fmap-k">Figma file · Gradient UI redesign</p>
+            <p class="fmap-h">Pages</p>
+            <ul>
+              <li>Mockup</li>
+              <li class="is-on">Homepage, by user</li>
+              <li>Post-campaign wrap report</li>
+              <li>Pre-sales dashboard</li>
+            </ul>
+          </div>
+          <div class="fmap-canvas">
+            <div class="fmap-group">
+              <p class="fmap-h">Internal users</p>
+              <ul>
+                <li><b>Account managers</b><span>Homepage</span></li>
+                <li><b>Team leads</b><span>Homepage</span></li>
+                <li><b>Company-wide</b><span>Homepage</span></li>
+              </ul>
+            </div>
+            <div class="fmap-group">
+              <p class="fmap-h">External users</p>
+              <ul>
+                <li><b>Advertisers</b><span>The Gradient experience, with its UX documentation on the canvas</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <figcaption id="fmap-cap">How the Gradient file is organized: one page per deliverable, and on the homepage page one section per kind of user. A diagram of the file, not a screenshot.</figcaption>
+      </figure>
+    </section>
+
+    <section aria-labelledby="lg-opt">
+      <p class="cstep"><span>4</span>Options</p><h2 id="lg-opt" data-short="Options">Three decisions where the other option was real</h2>
+      <div class="table-scroll">
+        <table class="impact">
+          <thead><tr><th scope="col">The question</th><th scope="col">The other option</th><th scope="col">What we chose, and why</th></tr></thead>
+          <tbody>
+            <tr><td>How does someone start a dashboard?</td><td>From templates: pick one and fill it in</td><td>From a question to the agent. Templates stayed in the library as a starting point, not as the only way in</td></tr>
+            <tr><td>Should the agent ask before it edits?</td><td>Silent edits. Engineering proposed them: three fewer clicks per change</td><td>Confirmation. I ran both with five managers. With silent edits, three of them rebuilt the chart by hand to check it. Confirming cost four seconds and saved the rebuild</td></tr>
+            <tr><td>What does the change card show?</td><td>Version 1: every property the agent touched</td><td>Version 2: only what was removed and what was added. Nobody read version 1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="lg-test">
+      <p class="cstep"><span>5</span>Prototype and test</p><h2 id="lg-test" data-short="Tests">What the tests changed</h2>
+      <div class="table-scroll">
+        <table class="impact">
+          <thead><tr><th scope="col">What I saw</th><th scope="col">Why it happened</th><th scope="col">What changed</th></tr></thead>
+          <tbody>
+            <tr><td>Four of five managers hesitated before Publish. One asked: "who's going to see this?"</td><td>The screen didn't say who the audience was</td><td>That question became the publish dialog: it names who will see the dashboard before you confirm</td></tr>
+            <tr><td>41% of drafts were abandoned at the first empty slot</td><td>Session replays showed managers didn't know they could ask the agent</td><td>A prompt suggestion inside every empty slot. Abandonment dropped to 17% in the next release</td></tr>
+            <tr><td>With silent edits, three of five managers rebuilt the chart by hand</td><td>They couldn't see what the agent had changed</td><td>The agent shows its plan and confirms before it changes anything</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+<section aria-labelledby="lg-s1">
+      <p class="cstep"><span>6</span>Design</p><h2 id="lg-s1" data-short="Views">One platform, the right view for each user</h2>
       <div class="prose">
         <p>LG managers oversee many advertisers. Advertisers must never see each other's data. So the same screens change scope by role: managers switch clients from a selector at the top, and each client sees only its own campaigns.</p>
         <p>I designed a homepage for each role, because each one starts the day with a different question: account managers, team leads, company-wide leadership and external advertisers.</p>
@@ -6842,7 +6966,7 @@ function start() {
       </figure>
     </section>
 
-    <section aria-labelledby="lg-s2">
+<section aria-labelledby="lg-s2">
       <h2 id="lg-s2" data-short="Agents">Agents people can find, trust and try</h2>
       <div class="prose">
         <p>With 29+ agents on the platform, the risk was a crowded toolbox nobody explores. In Agentiv, the platform's agent marketplace, each card does one job, explained in plain words, and one click adds or removes an agent.</p>
@@ -6874,7 +6998,7 @@ function start() {
       </div>
     </section>
 
-    <section aria-labelledby="lg-s3">
+<section aria-labelledby="lg-s3">
       <h2 id="lg-s3" data-short="Builder">A builder where AI does the work and you stay in charge</h2>
       <div class="prose">
         <p>When the standard views aren't enough, managers build their own dashboards with Gradient Agent, an AI assistant that adds charts, KPIs and filters from plain-language requests.</p>
@@ -6907,7 +7031,7 @@ function start() {
       <p class="psy"><span class="psy-label">The psychology behind it</span><strong>Trust in automation.</strong> People rely on AI the right amount when they can see what it's doing and why. So the agent never acts silently.<cite>Lee and See, 2004</cite></p>
     </section>
 
-    <section aria-labelledby="lg-wrong">
+<section aria-labelledby="lg-wrong">
       <h2 id="lg-wrong" data-short="When AI is wrong">Designed for when the agent is wrong</h2>
       <div class="prose">
         <p>An agent that builds dashboards will sometimes misread a request, pick the wrong metric or answer from incomplete data. A manager who catches it once and can't fix it fast stops trusting it. So I designed the moments when it goes wrong as carefully as the ones when it goes right.</p>
@@ -6990,7 +7114,7 @@ function start() {
       <div class="prose"><p>Answers that failed went back into the next sprint as a design or prompt fix, and the wording of every error state came out of that review.</p></div>
     </section>
 
-    <section aria-labelledby="lg-acr">
+<section aria-labelledby="lg-acr">
       <h2 id="lg-acr" data-short="Dashboards">Dashboards that explain themselves</h2>
       <div class="prose">
         <p>The agent builds dashboards, so the dashboards had to be worth building. ACR Insights is one of five in Gradient: what people watch on TV, and who advertises around it. An account manager opens it minutes before a client call, so each card has to work without training. The data in these screens has been modified.</p>
@@ -7015,8 +7139,8 @@ function start() {
       </div>
     </section>
 
-    <section aria-labelledby="lg-sys">
-      <h2 id="lg-sys" data-short="System">One system under every agent</h2>
+<section aria-labelledby="lg-sys">
+      <p class="cstep"><span>7</span>Build and ship</p><h2 id="lg-sys" data-short="System">One system under every agent</h2>
       <div class="prose">
         <p>Agents were being built in parallel, each team reading LG's brand manual its own way. Left alone, the marketplace would have looked like products from different companies. And someone who learns one agent should already know the next: with agents, consistency is trust.</p>
         <p>So the second designer and I put the brand manual into tokens, under everything that got built. We did it alongside the first agent's real screens, so no team waited for a finished system.</p>
@@ -7074,91 +7198,23 @@ function start() {
       </div>
     </section>
 
-    <section aria-labelledby="lg-proc">
-      <h2 id="lg-proc" data-short="Behind the screens">Behind the screens</h2>
-      <div class="prose">
-        <p>It all starts with the client. We meet with LG's teams often, and the brief came out of those meetings: AI, and a way to build their own dashboards. That brief became the agent and the dashboard builder above.</p>
-        <p>For Gradient, I first defined the product, then mapped the whole journey, then iterated on what the developers had already built.</p>
-        <p>To move faster, we used Figma's AI agents for production work throughout the project.</p>
-      </div>
-      <figure class="fmap" aria-labelledby="fmap-cap">
-        <div class="fmap-in">
-          <div class="fmap-pages">
-            <p class="fmap-k">Figma file · Gradient UI redesign</p>
-            <p class="fmap-h">Pages</p>
-            <ul>
-              <li>Mockup</li>
-              <li class="is-on">Homepage, by user</li>
-              <li>Post-campaign wrap report</li>
-              <li>Pre-sales dashboard</li>
-            </ul>
-          </div>
-          <div class="fmap-canvas">
-            <div class="fmap-group">
-              <p class="fmap-h">Internal users</p>
-              <ul>
-                <li><b>Account managers</b><span>Homepage</span></li>
-                <li><b>Team leads</b><span>Homepage</span></li>
-                <li><b>Company-wide</b><span>Homepage</span></li>
-              </ul>
-            </div>
-            <div class="fmap-group">
-              <p class="fmap-h">External users</p>
-              <ul>
-                <li><b>Advertisers</b><span>The Gradient experience, with its UX documentation on the canvas</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <figcaption id="fmap-cap">How the Gradient file is organized: one page per deliverable, and on the homepage page one section per kind of user. A diagram of the file, not a screenshot.</figcaption>
-      </figure>
-      <h3>It started with a product definition</h3>
-      <div class="prose">
-        <p>For the dashboard builder, I first wrote down what it is and what it isn't: the pages, the flows, who owns and edits a dashboard, and what goes into the first version.</p>
-      </div>
-      <ul class="handoff four" aria-label="Scope of the first version">
-        <li><strong>Navigation</strong><span>A dashboard library with drafts, templates, favorites and shared dashboards.</span></li>
-        <li><strong>Builder</strong><span>Grid drag and drop, resizable components, filters, tabs, undo, redo and autosave.</span></li>
-        <li><strong>AI agent</strong><span>One chat per dashboard that proposes changes, shows what they affect and can be undone.</span></li>
-        <li><strong>Publishing</strong><span>Draft and published versions, sharing, ownership and collaborator permissions.</span></li>
-      </ul>
-      <div class="duo natural">
-        <figure>
-          <button type="button" data-zoom aria-label="Enlarge: product definition boards"><img data-m="8" width="1060" height="921" loading="lazy" alt="Product definition boards for the dashboard builder: landing page, workspace, creation flow, collaboration and ownership, user flows and initial scope"></button>
-          <figcaption>The product definition: landing, workspace, creation flow, roles, user flows and scope.</figcaption>
-        </figure>
-        <figure>
-          <button type="button" data-zoom aria-label="Enlarge: initial scope for version one"><img data-m="9" width="978" height="853" loading="lazy" alt="Initial scope for version one, grouped into navigation, builder, AI agent, and publishing and permissions"></button>
-          <figcaption>The first version's scope, area by area.</figcaption>
-        </figure>
-      </div>
-      <h3>Then the flows</h3>
-      <div class="duo natural" data-lens="Product design||Show the thinking||Working files prove the polished screens didn't happen by accident: they show how decisions were made.||">
-        <figure>
-          <button type="button" data-zoom aria-label="Enlarge: delivery report flows"><img data-m="10" width="1030" height="903" loading="lazy" alt="Working board mapping the delivery report flow screen by screen, once for single-brand and once for multibrand advertisers, with the full request forms below"></button>
-          <figcaption>Every report flow mapped end to end, for single-brand and multibrand advertisers.</figcaption>
-        </figure>
-        <figure>
-          <button type="button" data-zoom aria-label="Enlarge: post-campaign wrap report flow"><img data-m="11" width="1077" height="946" loading="lazy" alt="Working board for the post-campaign wrap report: from the reports list to the request form, the scheduler and the standard and optional report tiers"></button>
-          <figcaption>The post-campaign report, from request form to scheduler and report tiers.</figcaption>
-        </figure>
-      </div>
-      <h3>Then the iterations on what was built</h3>
+    <section aria-labelledby="lg-build">
+      <h2 id="lg-build" data-short="Build review">Staying with the build</h2>
+      <h3>Iterating on what the developers had built</h3>
       <figure class="shot wide">
         <button type="button" data-zoom aria-label="Enlarge: Agentiv improvement proposal"><img data-m="12" width="1008" height="828" loading="lazy" alt="Side by side: the original Agentiv chat built by the developers, and my proposal with calmer hierarchy and a visible step-by-step plan on the right"></button>
         <figcaption>Iterating on what was built: the original Agentiv chat next to my proposal, with a visible step-by-step plan.</figcaption>
       </figure>
-      <div class="prose">
-        <p><strong>One iteration that failed.</strong> Version 1 of the change card listed every property the agent touched. Nobody read it. Version 2 shows only what was removed and what was added.</p>
-      </div>
+      
       <h3>Reviewing what was built</h3>
       <div class="prose"><p>Before each release I sit with the developer for twenty minutes and use the build. Three things from one of those reviews:</p></div>
       <div class="table-scroll"><table class="impact ret-t "><thead><tr><th scope="col">In the build</th><th scope="col">In my ticket</th></tr></thead><tbody><tr><td>Undo reverted everything since the last save.</td><td>"Undo reverts only the agent's change on that card. Edits made by hand after it stay."</td></tr><tr><td>The missing-data warning sat under the chart.</td><td>"The warning comes before the answer. If you have to scroll to see it, it fails."</td></tr><tr><td>The locked dataset looked like a broken dropdown.</td><td>"Show a lock and the advertiser's name. A screen reader says 'locked', not 'disabled'."</td></tr></tbody></table></div>
       <p class="source">Nine tickets that sprint, all closed before release.</p>
+    
     </section>
 
-    <section aria-labelledby="lg-s4">
-      <h2 id="lg-s4" data-short="Results">Results</h2>
+<section aria-labelledby="lg-s4">
+      <p class="cstep"><span>8</span>What moved</p><h2 id="lg-s4" data-short="Results">Results</h2>
       <h3>What the design moved</h3>
       <dl class="lg-mine"><div><dt>38 min → 9 min</dt><dd>Time to a first published dashboard</dd></div><div><dt>68%</dt><dd>of managers built a second dashboard within 2 weeks</dd></div><div><dt>12%</dt><dd>of agent changes were undone; 80% of those sessions still ended in a publish</dd></div><div><dt>62% → 94%</dt><dd>of answers passed the review set, from release 1 to release 5</dd></div></dl>
       <p class="source">Measured in PostHog on the builder and in the review set run with engineering and data.</p>
@@ -7176,6 +7232,9 @@ function start() {
         </ul>
       </div>
     </section>
+
+
+    
 
   <p class="bridge" data-lens="Product design||What I'd test next||An A/B test on the agent's confirmation step: does explaining each change raise how often people accept it?||">Designing for trust in AI comes down to three moves: show the plan, confirm the change and keep the data where it belongs.</p>
   <aside class="case-cta" aria-label="Get in touch"><div><p class="cta-title">Hiring for a role like this?</p><p>I'm open to product design roles, remote, full-time or contract. Let's talk about what you're building.</p></div><div class="cta-actions"><a class="btn btn-primary btn-grad" href="https://calendly.com/milagros-gonzalezarguello/30min" target="_blank" rel="noopener">Book a 30-min call<span class="visually-hidden"> (opens in a new tab)</span></a><a class="btn btn-ghost" href="mailto:milagros.gonzalezarguello@gmail.com">Email me</a></div></aside>
