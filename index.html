@@ -7677,7 +7677,26 @@ function start() {
   onEdit(steps: string[]): void;
   onSnooze(reason: SnoozeReason): void;
 };</code></pre>
-      <p class="source">One of five components I built in React and TypeScript with Claude Code, reviewed by a front-end developer. He renamed two of my props. His names were better.</p>
+      <div class="prose">
+        <p><strong>How to read it.</strong> The block above is the card's contract with the code: everything it needs to be told, and everything it can report back.</p>
+        <ul>
+          <li><code>status</code>: which of the four states to draw. Nothing else is allowed, so a fifth state can't appear by accident.</li>
+          <li><code>reasons</code> and <code>steps</code>: the text the card shows, as lists.</li>
+          <li><code>canAct</code>: whether to show the buttons. For a supervisor it is false, and the card becomes read only.</li>
+          <li><code>onUse</code>, <code>onEdit</code>, <code>onSnooze</code>: what the card reports when the nurse acts. Snoozing must come with a reason.</li>
+        </ul>
+      </div>
+      <h3>How I built the components</h3>
+      <div class="prose">
+        <p>I built five of the prototype's components in React and TypeScript with Claude Code. React is the set of building blocks most web products are made of; TypeScript is the label on each block that says what it accepts. Building with the same kind of blocks as the real product means the prototype behaves like software, not like linked pictures.</p>
+      </div>
+      <ul class="handoff four" aria-label="How each component was built">
+        <li><strong>I describe</strong><span>The component, its states and what each role can do, in plain language. The spec above is that description.</span></li>
+        <li><strong>Claude Code writes</strong><span>The component in React and TypeScript, inside the project.</span></li>
+        <li><strong>I read and test</strong><span>Every state, by keyboard too. What the model got wrong, I correct or ask again.</span></li>
+        <li><strong>A developer reviews</strong><span>A front-end developer read all five. He renamed two of my props. His names were better.</span></li>
+      </ul>
+      <p class="source">I don't write production code by hand. I can specify a component in the terms engineering uses, build a working version with AI, and review what gets built.</p>
       <h3 id="ret-roles">Who sees what</h3>
       <div class="prose">
         <p>This is health information, so I designed it under HIPAA rules and completed HIPAA training for the project. The two views are not two layouts of the same data: each role gets the minimum it needs to do its job, and each action on a flag is logged. Logging every read of a client record is on the Phase 2 list below.</p>
