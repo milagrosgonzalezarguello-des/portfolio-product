@@ -5238,6 +5238,35 @@ body .mwl-also a { display: inline-flex; align-items: baseline; gap: 0.5rem; min
 body .mwl-also a:hover { border-color: var(--accent); }
 body .mwl-also a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 body .mwl-also a span { font-weight: 500; font-size: 0.82rem; color: var(--muted); }
+
+/* ===== Case path: the same eight steps at the top of each case, and a small label on each section ===== */
+body .cpath { max-width: 1100px; margin: 1.75rem 0 0.5rem; }
+body .cpath-k { margin: 0 0 0.6rem; font: 700 0.72rem/1 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+body .cpath ol { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 6px; margin: 0; padding: 0; list-style: none; }
+body .cpath li > * { display: flex; flex-direction: column; gap: 0.35rem; height: 100%; padding: 0.7rem 0.7rem 0.8rem; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--accent); color: var(--ink); text-decoration: none; }
+body .cpath a:hover { border-color: var(--accent); }
+body .cpath a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+body .cpath-n { font: 700 0.72rem/1 var(--sans); color: var(--accent); }
+body .cpath-t { font: 600 0.86rem/1.25 var(--sans); }
+body .cpath-t em { display: block; margin-top: 0.25rem; font-style: normal; font-weight: 500; font-size: 0.74rem; color: var(--muted); }
+body .cpath li.is-na > * { border-top-color: var(--line); background: transparent; border-style: dashed; }
+body .cpath li.is-na .cpath-n, body .cpath li.is-na .cpath-t { color: var(--muted); }
+body .cpath li.is-now > * { border-top-color: #D98A1F; }
+body .cstep { display: flex; align-items: center; gap: 0.55rem; margin: 0 0 0.5rem; font: 700 0.74rem/1 var(--sans); letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); }
+body .cstep span { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 0.72rem; letter-spacing: 0; }
+body .cstep { margin-top: 2.5rem; }
+body section > .cstep:first-child { margin-top: 0; }
+body .cstep + h3, body .cstep + h2 { margin-top: 0; }
+body .cflow { display: grid; gap: 0.9rem; max-width: 1100px; margin: 1rem 0 1.25rem; }
+body .cflow-row { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 0.75rem; align-items: center; }
+body .cflow-k { font: 700 0.74rem/1.2 var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+body .cflow ol { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 0; padding: 0; list-style: none; }
+body .cflow li { position: relative; padding: 0.55rem 0.8rem; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); font-size: 0.88rem; line-height: 1.3; max-width: 190px; }
+body .cflow li + li::before { content: "→"; position: absolute; left: -17px; top: 50%; translate: 0 -50%; color: var(--muted); }
+body .cflow li.is-gap { border-style: dashed; color: var(--muted); background: transparent; }
+body .cflow li.is-key { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--surface)); font-weight: 600; }
+@media (max-width: 900px) { body .cpath ol { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 520px) { body .cpath ol { grid-template-columns: repeat(2, minmax(0, 1fr)); } body .cflow-row { grid-template-columns: 1fr; } }
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js"><link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/environments/RoomEnvironment.js">
 </head>
@@ -7553,7 +7582,7 @@ function start() {
       <dl class="meta">
         <div><dt>Role</dt><dd>Product Design Lead: research, story, content and prototype</dd></div>
         <div><dt>Team</dt><dd>Clear Tech's data experts and me</dd></div>
-        <div><dt>Outcome</dt><dd>Phase 2 approved</dd></div>
+        <div><dt>Outcome</dt><dd>Phase 2 approved, now in development</dd></div>
         <div><dt>Year</dt><dd>2026</dd></div>
         <div><dt>Deliverables</dt><dd>Two proposals and a working prototype with nurse and supervisor views</dd></div>
         <div><dt>Reading time</dt><dd>5 minutes</dd></div>
@@ -7588,8 +7617,9 @@ function start() {
       <p><strong>Proof before the ask.</strong> The original asked for a yes on slide 2. I moved the ask to the end, after the evidence and the demo, because a room that agrees with the diagnosis says yes on its own.</p>
     </aside>
 
+<nav class="cpath" aria-label="The path of this project"><p class="cpath-k">The path of this project</p><ol><li><a href="#ret-s1" data-jump><span class="cpath-n">1</span><span class="cpath-t">Why</span></a></li><li><a href="#ret-p2" data-jump><span class="cpath-n">2</span><span class="cpath-t">People</span></a></li><li><a href="#ret-p3" data-jump><span class="cpath-n">3</span><span class="cpath-t">Workflow</span></a></li><li><a href="#ret-p4" data-jump><span class="cpath-n">4</span><span class="cpath-t">Options</span></a></li><li><a href="#ret-p5" data-jump><span class="cpath-n">5</span><span class="cpath-t">Prototype and test</span></a></li><li><a href="#ret-s2" data-jump><span class="cpath-n">6</span><span class="cpath-t">Design</span></a></li><li class="is-now"><a href="#ret-s6" data-jump><span class="cpath-n">7</span><span class="cpath-t">Build and ship<em>In development</em></span></a></li><li><a href="#ret-s6" data-jump><span class="cpath-n">8</span><span class="cpath-t">What moved<em>Phase 2 approved</em></span></a></li></ol></nav>
     <section aria-labelledby="ret-s1">
-      <h2 id="ret-s1" data-short="Start">Where I started</h2>
+      <p class="cstep"><span>1</span>Why</p><h2 id="ret-s1" data-short="Why">A flag nobody acted on</h2>
       <div class="prose">
         <p>The flag from the organization's model landed in a weekly report and rarely turned into action. The Phase 2 proposal meant to fix that was ten slides with the same layout: no numbers from the model, a product told in bullets, a yes requested on slide 2. Nobody had seen a single screen.</p>
         <p>Before touching a screen or a slide, I met one by one with the Clear Tech experts who work with the organization every day, shaped the proposal with them and later validated every part of the prototype with them. I also talked with two nurse supervisors and one nurse. Three insights changed the pitch:</p>
@@ -7605,17 +7635,32 @@ function start() {
         <div><dt>~100 days</dt><dd>between the first flag and drop-out: three months to act</dd></div>
         <div><dt>57%</dt><dd>of upcoming drop-outs sat inside the riskiest 30%</dd></div>
       </dl>
-      <h3>What I heard, from whom, and what it changed</h3>
+      <p class="cstep"><span>2</span>People</p><h3 id="ret-p2">What I heard, from whom, and what it changed</h3>
       <div class="prose"><p>I ran seven conversations in two weeks: four with the Clear Tech analysts who work on the organization's data, two with nurse supervisors and one with a nurse. All remote, 30 to 45 minutes.</p></div>
       <div class="table-scroll"><table class="impact ret-t "><thead><tr><th scope="col">What I heard</th><th scope="col">From whom</th><th scope="col">What it changed on screen</th></tr></thead><tbody><tr><td>"I already know who's struggling. Tell me what to try."</td><td>A nurse with eleven years in the program.</td><td>The suggested approach became the centre of the screen. The risk score moved to second place.</td></tr><tr><td>"A number with no reason is a number I can't take to a family."</td><td>A nurse supervisor.</td><td>Every flag has a "Why it flagged" panel in plain words.</td></tr><tr><td>Flags and outcomes live in different systems.</td><td>Clear Tech's data team.</td><td>Each action is logged on the flag, so the model can learn from what happened next.</td></tr></tbody></table></div>
       <div class="prose"><p><strong>What I haven't validated.</strong> One nurse is not research. No nurse has used the working prototype yet. That test, with five nurses, is the first step of Phase 2.</p></div>
-      <h3>Three ways to turn a flag into action</h3>
+      <p class="cstep"><span>3</span>Workflow</p><h3 id="ret-p3">The workflow, before and after</h3>
+      <div class="prose"><p>With those conversations I drew what happened to a flag today, and what had to happen instead. The gap was not the prediction. It was every step after it.</p></div>
+      <div class="cflow" role="group" aria-label="What happens to a flag, before and after">
+        <div class="cflow-row"><p class="cflow-k">Before</p><ol><li>The model flags a client</li><li>The flag lands in a weekly report</li><li class="is-gap">The nurse reads it, if the day allows</li><li class="is-gap">No reason, no next step</li><li class="is-gap">Nothing is recorded</li></ol></div>
+        <div class="cflow-row"><p class="cflow-k">After</p><ol><li>The model flags a client</li><li>The right nurse is alerted, with the reason</li><li>The agent drafts an approach</li><li class="is-key">The nurse uses it, edits it or snoozes it</li><li>The action is logged, and the model learns</li></ol></div>
+      </div>
+      <p class="cstep"><span>4</span>Options</p><h3 id="ret-p4">Three ways to turn a flag into action</h3>
       <div class="prose"><p>Before designing a screen, I sketched three answers to the same question: what should happen when the model flags a client?</p></div>
       <div class="table-scroll"><table class="impact ret-t ret-opt"><thead><tr><th scope="col">Option</th><th scope="col">What it was</th><th scope="col">Why it lost or won</th></tr></thead><tbody><tr><td>A. A better weekly report</td><td>The same flags, ranked and colour-coded, sent to supervisors on Monday.</td><td><b>Ruled out.</b> The report already arrived on Monday and visits were planned the Friday before. A prettier report is late in the same way.</td></tr><tr><td>B. The agent contacts the family</td><td>An automatic check-in message when risk rises two weeks in a row.</td><td><b>Ruled out.</b> The program's clinical lead ended it in one line: "If a mother in a bad week gets a message from a system, we lose her." The relationship belongs to the nurse.</td></tr><tr><td>C. The agent drafts, the nurse decides</td><td>A list for today, a reason for every flag, a plan she can use, edit or snooze.</td><td><b>Chosen.</b> It was the most expensive to build. It was also the only one where a wrong prediction costs the nurse ten seconds and costs the family nothing.</td></tr></tbody></table></div>
     </section>
 
+    <section aria-labelledby="ret-p5">
+      <p class="cstep"><span>5</span>Prototype and test</p><h2 id="ret-p5" data-short="Prototype">A working prototype, not a slide</h2>
+      <div class="prose">
+        <p>I built option C as a working prototype with a nurse view and a supervisor view, on synthetic data. Five of its components are in React and TypeScript, built with Claude Code; the spec and how I built them are further down.</p>
+        <p><strong>Who tried it.</strong> I reviewed every part of it, one by one, with the Clear Tech experts who work with the organization's data, and changed it with them. No nurse has used it yet: a task-based test with five nurses is the first step of Phase 2.</p>
+      </div>
+      <p class="proto-link"><a class="btn btn-primary" href="retention-prototype.html" target="_blank" rel="noopener">Open the live prototype<span class="visually-hidden"> (opens in a new tab)</span></a><span>Nurse and supervisor views, with synthetic data.</span></p>
+    </section>
+
     <section aria-labelledby="ret-s2">
-      <h2 id="ret-s2" data-short="The agent">What the agent does, and never does</h2>
+      <p class="cstep"><span>6</span>Design</p><h2 id="ret-s2" data-short="Design">What the agent does, and never does</h2>
       <div class="prose">
         <p>Two components, one circuit. The prediction engine is the one the organization already owns; the recommendation layer is new, and reads the organization's own guidance to match it to each case. The engine flags a client, the agent alerts the right nurse, explains why and drafts a plan, and the nurse acts with the client. The nurse is the decision point, every time.</p>
       </div>
@@ -7731,7 +7776,7 @@ function start() {
     </section>
 
     <section aria-labelledby="ret-s3">
-      <h2 id="ret-s3" data-short="Proposal">The proposal: proof before the ask</h2>
+      <p class="cstep" style="color:var(--muted)">Beside the path · how it was sold</p><h2 id="ret-s3" data-short="Proposal">The proposal: proof before the ask</h2>
       <div class="prose">
         <p>Then I rebuilt the deck around the prototype. The original asked for a yes on slide 2. I moved the ask to the end, gave the model's numbers a screen of their own, and replaced the bullets about a future product with the working prototype, opened live from a slide.</p>
       </div>
@@ -7788,8 +7833,8 @@ function start() {
 
     
     <section aria-labelledby="ret-s6">
-      <h2 id="ret-s6" data-short="Result">The result</h2>
-      <p class="closing">Phase 2 was approved. The conversation went from "what is this for?" to "when can we start?"</p>
+      <p class="cstep"><span>7</span>Build and ship · 8 What moved</p><h2 id="ret-s6" data-short="Result">The result</h2>
+      <p class="closing">Phase 2 was approved, and the app is now in development. The conversation went from "what is this for?" to "when can we start?"</p>
       <div class="prose" style="margin-top: 1.25rem;">
         <p>What weighed most, in order: the evidence screen, the live prototype, and not asking for anything until the room agreed with the diagnosis.</p>
         <p><strong>What I'd test next.</strong> Whether nurses read "flags acted on, by nurse" as support or as surveillance. The prototype words it as a prompt for a conversation; only nurses can tell me if it lands that way.</p>
@@ -12394,6 +12439,19 @@ document.addEventListener('click', function (e) {
   if (reduce || !('IntersectionObserver' in window)) { go(); return; }
   var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { io.disconnect(); go(); } }, { threshold: 0.3 }); io.observe(list);
 })();
+</script>
+<script>
+// Case path: jump to a step inside the open case without touching the route.
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[data-jump]'); if (!a) return;
+  var t = document.getElementById(a.getAttribute('href').slice(1)); if (!t) return;
+  e.preventDefault();
+  var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var y = t.getBoundingClientRect().top + window.scrollY - 110;
+  window.scrollTo({ top: y, behavior: calm ? 'auto' : 'smooth' });
+  if (!t.hasAttribute('tabindex')) t.setAttribute('tabindex', '-1');
+  t.focus({ preventScroll: true });
+});
 </script>
 </body>
 </html>
