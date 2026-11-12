@@ -8633,8 +8633,9 @@ function start() {
       <p><strong>Street first, not desk first.</strong> It would have been easy to squeeze the web app onto a phone. My call: design for the street instead. Offline by default, scan before you type and one main action per screen, because this work happens in trucks and doorways, by outsourced collectors who are not tech-savvy.</p>
     </aside>
 
+<nav class="cpath" aria-label="The path of this project"><p class="cpath-k">The path of this project</p><ol><li><a href="#bm-frame" data-jump><span class="cpath-n">1</span><span class="cpath-t">Why</span></a></li><li><a href="#bm-p2" data-jump><span class="cpath-n">2</span><span class="cpath-t">People</span></a></li><li><a href="#bm-s1" data-jump><span class="cpath-n">3</span><span class="cpath-t">Workflow</span></a></li><li><a href="#bm-p4" data-jump><span class="cpath-n">4</span><span class="cpath-t">Options</span></a></li><li><a href="#bm-p5" data-jump><span class="cpath-n">5</span><span class="cpath-t">Prototype and test</span></a></li><li><a href="#bm-s2" data-jump><span class="cpath-n">6</span><span class="cpath-t">Design</span></a></li><li><a href="#bm-proc" data-jump><span class="cpath-n">7</span><span class="cpath-t">Build and ship</span></a></li><li><a href="#bm-s3" data-jump><span class="cpath-n">8</span><span class="cpath-t">What moved<em>Redesign under way</em></span></a></li></ol></nav>
     <section aria-labelledby="bm-frame">
-      <h2 id="bm-frame" data-short="Framing">How I framed the problem</h2>
+      <p class="cstep"><span>1</span>Why</p><h2 id="bm-frame" data-short="Why">How I framed the problem</h2>
       <div class="prose">
         <p>Field reps visit donors at home. With no app, they filled in a paper form at the door and typed it all again into a web app back at the office: double work, late data and copying errors on records the final product's quality depends on.</p>
         <p><strong>Where the learning came from.</strong> From the people who use it, in three ways:</p>
@@ -8650,15 +8651,8 @@ function start() {
           <li><strong>No time at the door.</strong> A rep stands in a doorway, sometimes in areas where holding a phone out for long is not safe. Registering a donor had to take seconds.</li>
           <li><strong>One entry, not two.</strong> Whatever replaced the paper form had to be the record itself, not a draft to retype later.</li>
         </ul>
-        <p><strong>What I ruled out.</strong></p>
-        <ul>
-          <li><strong>The web app on a phone.</strong> The fastest to ship, but it needed signal and kept forms built for a desk.</li>
-          <li><strong>A full-featured app.</strong> Everything the web app did, in the pocket. Too much to learn and too slow to use on a doorstep.</li>
-          <li><strong>What we built instead.</strong> A small native app that does a few things: offline by default, few fields, one main action per screen. Management keeps the heavy work in the web app.</li>
-        </ul>
-        <p>The result of that call is the number that matters most here: data entry went from two steps to one.</p>
       </div>
-      <h3>From the doorstep to the screen</h3>
+      <p class="cstep"><span>2</span>People</p><h3 id="bm-p2">From the doorstep to the screen</h3>
       <div class="prose"><p>I wasn't on the doorstep. This is how the doorstep reached the design.</p></div>
       <div class="table-scroll"><table class="impact ret-t"><thead><tr><th scope="col">What we saw and heard</th><th scope="col">The follow-up question</th><th scope="col">The decision</th></tr></thead><tbody><tr><td>Reps fill a 22-field paper form at the door and retype it at the office.</td><td>"Which fields do they leave blank on paper and fill in later?" Answer: 9 of 22.</td><td>13 fields at the door; the other 9 move to the web app. One entry, not two.</td></tr><tr><td>No signal in roughly 1 of 3 homes.</td><td>"What do they do today when the web app won't load?" Answer: a photo of the form, sent by WhatsApp to the office.</td><td>Offline by default, with a visible "3 waiting to sync" counter.</td></tr><tr><td>Reps keep the phone in a pocket in some neighbourhoods.</td><td>"How long does the phone stay out per visit?" Answer: under a minute if they can help it.</td><td>Scan before you type, biometric login, one action per screen.</td></tr></tbody></table></div>
     </section>
@@ -8683,7 +8677,7 @@ function start() {
     </section>
 
     <section aria-labelledby="bm-s1">
-      <h2 id="bm-s1" data-short="Two users">Two users, one app</h2>
+      <p class="cstep"><span>3</span>Workflow</p><h2 id="bm-s1" data-short="Workflow">Two users, one app</h2>
       <div class="arc">
         <div><h3>Collectors</h3><p>Plan the day's route, follow it on the map and scan each container to link the sample to its donor.</p></div>
         <div class="arc-new"><h3>Field reps</h3><p>Register donors without signal, edit or remove them, add photos and each home's location, and get alerts about duplicates.</p></div>
@@ -8712,8 +8706,31 @@ function start() {
       </div>
     </section>
 
+    <section aria-labelledby="bm-p4">
+      <p class="cstep"><span>4</span>Options</p><h2 id="bm-p4" data-short="Options">Three ways to replace the paper form</h2>
+      <div class="table-scroll">
+        <table class="impact">
+          <thead><tr><th scope="col">Option</th><th scope="col">What it offered</th><th scope="col">Why it stayed or went</th></tr></thead>
+          <tbody>
+            <tr><td>The web app on a phone</td><td>The fastest to ship</td><td>Ruled out. It needed signal and kept forms built for a desk</td></tr>
+            <tr><td>A full-featured app</td><td>Everything the web app did, in the pocket</td><td>Ruled out. Too much to learn and too slow to use on a doorstep</td></tr>
+            <tr><td>A small native app</td><td>Offline by default, few fields, one main action per screen</td><td>Built. Collectors and field reps work in the street all day; they can't wait to get home to load everything again</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="prose"><p>Management keeps the heavy work in the web app. The result of that call is the number that matters most here: data entry went from two steps to one.</p></div>
+    </section>
+
+    <section aria-labelledby="bm-p5">
+      <p class="cstep"><span>5</span>Prototype and test</p><h2 id="bm-p5" data-short="Pilot">A pilot with real users</h2>
+      <div class="prose">
+        <p>Before the launch, our PM and a group of real users ran a pilot with the app. We changed it with what came back.</p>
+        <p><strong>The clearest change: drafts.</strong> The first version asked for a complete donor record at the door. In the pilot, reps wanted to save what they had and finish later. So a rep can now create the record in seconds as a draft and complete it when there is more time. It is still one entry: nothing is copied from paper, nothing is typed twice.</p>
+      </div>
+    </section>
+
     <section aria-labelledby="bm-s2">
-      <h2 id="bm-s2" data-short="Street first">Built for the street</h2>
+      <p class="cstep"><span>6</span>Design</p><h2 id="bm-s2" data-short="Design">Built for the street</h2>
       <div class="prose">
         <ul>
           <li><strong>Works without signal.</strong> Everything is saved offline and syncs when the connection comes back.</li>
@@ -8725,9 +8742,10 @@ function start() {
     </section>
 
     <section aria-labelledby="bm-proc">
-      <h2 id="bm-proc" data-short="Behind the screens">Behind the screens</h2>
+      <p class="cstep"><span>7</span>Build and ship</p><h2 id="bm-proc" data-short="Build">From Figma to the phone</h2>
       <div class="prose">
         <p>Every flow, state and component was worked out in Figma before any screen was polished; the junior designer produced the boards and I approved each one.</p>
+        <p><strong>Then I reviewed the build.</strong> I checked everything the developers built against the design, listed what didn't match, and we corrected it before release.</p>
       </div>
       <figure class="shot wide">
         <button type="button" data-zoom aria-label="Enlarge: component sheet"><img data-m="79" width="976" height="915" loading="lazy" alt="Design system page with status colors, date pickers, bottom and top app bars, modal bottom sheets and buttons"></button>
@@ -8799,21 +8817,22 @@ function start() {
     </section>
 
     <section aria-labelledby="bm-s3">
-      <h2 id="bm-s3" data-short="Result">The result</h2>
+      <p class="cstep"><span>8</span>What moved</p><h2 id="bm-s3" data-short="Result">The result</h2>
       <div class="prose">
         <p>In use across the network, in 18 of Argentina's 24 provinces. The client bought the quick-start guides as an extra.</p>
         <p>After launch, copying errors on donor records went from 11% to 2% in the first quarter, on the client's QA sample.</p>
+        <p><strong>What comes next.</strong> This was the MVP. Now that people know the app and use it, the client wants more features and a stronger design. I am working on the redesign, starting with the design system.</p>
       </div>
       <p class="closing">The work stayed in the street. The paperwork didn't.</p>
     </section>
 
     <section aria-labelledby="bm-today">
-      <h2 id="bm-today" data-short="What I'd change">What I'd change today</h2>
+      <h2 id="bm-today" data-short="Redesign">What the redesign fixes first</h2>
       <ul class="handoff four" data-lens="Product design||Critique your own work||Saying what I'd change shows the thinking kept growing after the project shipped.||">
-        <li><strong>Bigger targets</strong><span>The three-dot menus are small for someone holding a container. I'd make the whole row tappable.</span></li>
-        <li><strong>Status beyond color</strong><span>Colored pills with thin borders fade in sunlight. I'd add icons and stronger contrast.</span></li>
+        <li><strong>Bigger targets</strong><span>The three-dot menus are small for someone holding a container. The whole row becomes tappable.</span></li>
+        <li><strong>Status beyond color</strong><span>Colored pills with thin borders fade in sunlight. Icons and stronger contrast.</span></li>
         <li><strong>One main action</strong><span>Scan, deregister and complaint look equal. Scanning should lead, and deregistering should ask for confirmation.</span></li>
-        <li><strong>Visible sync</strong><span>Offline mode only helps if people trust it. I'd show what's saved and what's still waiting to sync.</span></li>
+        <li><strong>Visible sync</strong><span>Offline mode only helps if people trust it. Each record shows whether it is saved or still waiting to sync.</span></li>
       </ul>
     </section>
   <p class="bridge" data-lens="Product design||What I'd test next||Ride along with a collector for a day and time every tap.||">The street set the brief: busy hands and days that don't go as planned.</p>
