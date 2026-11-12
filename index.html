@@ -8552,7 +8552,7 @@ function start() {
         <div><dt>Role</dt><dd>Product Design Lead</dd></div>
         <div><dt>Product</dt><dd>Native app, web app, quick-start guides and Play Store page</dd></div>
         <div><dt>Users</dt><dd>Collectors and field reps</dd></div>
-        <div><dt>Research</dt><dd>Weekly calls with field reps, phone interviews with collectors, one field visit</dd></div>
+        <div><dt>Research</dt><dd>Weekly calls with field reps, phone interviews with collectors, one field visit, a benchmark and an audit of the web app</dd></div>
         <div><dt>Reading time</dt><dd>3 minutes</dd></div>
       </dl>
       <p class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span><strong>Early version.</strong> These screens come from the first version of the app, and all donor names and data are fictional.</span></p>
@@ -8598,6 +8598,25 @@ function start() {
       <div class="table-scroll"><table class="impact ret-t"><thead><tr><th scope="col">What we saw and heard</th><th scope="col">The follow-up question</th><th scope="col">The decision</th></tr></thead><tbody><tr><td>Reps fill a 22-field paper form at the door and retype it at the office.</td><td>"Which fields do they leave blank on paper and fill in later?" Answer: 9 of 22.</td><td>13 fields at the door; the other 9 move to the web app. One entry, not two.</td></tr><tr><td>No signal in roughly 1 of 3 homes.</td><td>"What do they do today when the web app won't load?" Answer: a photo of the form, sent by WhatsApp to the office.</td><td>Offline by default, with a visible "3 waiting to sync" counter.</td></tr><tr><td>Reps keep the phone in a pocket in some neighbourhoods.</td><td>"How long does the phone stay out per visit?" Answer: under a minute if they can help it.</td><td>Scan before you type, biometric login, one action per screen.</td></tr></tbody></table></div>
     </section>
 
+    <section aria-labelledby="bm-res">
+      <h2 id="bm-res" data-short="Research">What else we studied</h2>
+      <div class="prose">
+        <p>Talking to field reps and collectors was the centre of the research. Around it, we looked at three more things before defining anything:</p>
+        <ul>
+          <li><strong>The business.</strong> Meetings with Biomás stakeholders, plus the user stories and flows the team worked with at the time.</li>
+          <li><strong>Other logistics apps.</strong> They share an architecture (a map, a history, a route list) and the same functions (location, optimised routes, arrival times). People already know those patterns, so we used them and invented nothing: a section that shows only the map with the donors on it, a route sheet with the donors loaded for the day, and bottom sheets that expand a donor without leaving the list.</li>
+          <li><strong>The existing web app.</strong> We audited its flows, information architecture, functions and patterns.</li>
+        </ul>
+      </div>
+      <div class="table-scroll"><table class="impact"><thead><tr><th scope="col">What the audit of the web app found</th><th scope="col">What the app does</th></tr></thead><tbody><tr><td>Filters overloaded and in no order</td><td>Search first, donation type as tabs, status as chips, and the rarely used filters behind "Other filters"</td></tr><tr><td>A confusing architecture, with links outside it</td><td>Two destinations in the bottom bar: Home and Donors</td></tr><tr><td>Little hierarchy in the information</td><td>Each donor row shows three things: name, status and ID</td></tr><tr><td>Contrast to improve</td><td>Status colors paired with their own backgrounds, defined once as tokens</td></tr></tbody></table></div>
+      <h3>From a wall of filters to a hierarchy</h3>
+      <div class="prose"><p>We pulled every filter and field out of the web app and gave each one a level. Sorting them into these groups is what let us start laying out the app.</p></div>
+      <figure class="shot wide">
+        <button type="button" data-zoom aria-label="Enlarge: information hierarchy"><img data-m="150" width="1771" height="713" loading="lazy" alt="Diagram, in Spanish, that sorts the web app's fields into five groups: search by locality, street, phone, national ID, ID, name and province; tabs for hMG and hCG; chips for inactive, suspended and active; a donor list with name, status and ID; and other filters with dates, deregistration reason, field rep and collector"></button>
+        <figcaption>The working diagram, in Spanish: search, tabs, chips, the donor list and "other filters".</figcaption>
+      </figure>
+    </section>
+
     <section aria-labelledby="bm-s1">
       <h2 id="bm-s1" data-short="Two users">Two users, one app</h2>
       <div class="arc">
@@ -8605,6 +8624,7 @@ function start() {
         <div class="arc-new"><h3>Field reps</h3><p>Register donors without signal, edit or remove them, add photos and each home's location, and get alerts about duplicates.</p></div>
       </div>
       <div class="prose">
+        <p>A field rep's flow starts with one question: is she registering a new donor? She picks the form (hMG or hCG) and fills it in. If she can't finish it on the doorstep, the app saves a pre-registration and she completes it later, within a set deadline.</p>
         <p>Three calls from that first version still hold up: a status on every donor, directions with a landmark, and a way out when a code won't scan.</p>
       </div>
       <div class="phones devices">
@@ -8648,6 +8668,12 @@ function start() {
         <button type="button" data-zoom aria-label="Enlarge: component sheet"><img data-m="79" width="976" height="915" loading="lazy" alt="Design system page with status colors, date pickers, bottom and top app bars, modal bottom sheets and buttons"></button>
         <figcaption>The component sheet, as it sits in Figma: status colors, date pickers, app bars, bottom sheets and buttons.</figcaption>
       </figure>
+      <h3>A grid first</h3>
+      <div class="prose"><p>Every screen sits on four columns with 16px margins and 16px gutters, so a list, a form and a button line up the same way everywhere.</p></div>
+      <figure class="shot wide">
+        <button type="button" data-zoom aria-label="Enlarge: the 4-column grid"><img data-m="151" width="1330" height="757" loading="lazy" alt="The 4-column grid on its own, then laid over the home screen with its two register-donor buttons and over the donor list"></button>
+        <figcaption>The grid alone, then over the home screen and the donor list.</figcaption>
+      </figure>
       <h3>Tokens before screens</h3>
       <div class="prose">
         <p>Color is named by what it means, not by how it looks. Each status has a role color and a background to pair it with (Error BG, Warning BG, Info BG, Success), so a status reads the same on the donor list, in a message and on a button. The components sit on top of those roles and follow Material, the native Android kit the developers built with, so what they received matched what they already had in code.</p>
@@ -8658,6 +8684,10 @@ function start() {
           <tbody><tr><th scope="row"><i style="background:#B50E0E"></i>Error</th><td><code>#B50E0E</code></td><td>Errors and actions that cannot be undone</td></tr><tr><th scope="row"><i style="background:#AB4905"></i>Advertencia</th><td><code>#AB4905</code></td><td>Warnings that need a look before going on</td></tr><tr><th scope="row"><i style="background:#1365BB"></i>Información</th><td><code>#1365BB</code></td><td>Neutral notices and the main action</td></tr><tr><th scope="row"><i style="background:#6D7599"></i>Íconos</th><td><code>#6D7599</code></td><td>Icons and secondary marks</td></tr></tbody>
         </table>
       </div>
+      <figure class="shot wide">
+        <button type="button" data-zoom aria-label="Enlarge: tokens"><img data-m="152" width="1759" height="755" loading="lazy" alt="Token sheet, in Spanish: three shadow levels, fourteen color roles including a background for each status, the icon set and eight type styles"></button>
+        <figcaption>The whole set: three shadows, fourteen color roles, the icons and eight type styles.</figcaption>
+      </figure>
       <p class="source">Values read from the component sheet above, from the first version of the app.</p>
     </section>
 
@@ -12203,7 +12233,7 @@ function start() {
 <template data-media="scoreboard"><i data-m="59" data-s="img/050a7d63c6929c.webp"></i><i data-m="60" data-s="img/e656c0d54d7586.webp"></i><i data-m="61" data-s="img/e957c69be3d0ff.webp"></i><i data-m="62" data-s="img/801959b27fcaf5.webp"></i></template><script>__m(document.currentScript.previousElementSibling)</script>
 <template data-media="rif"><i data-m="63" data-s="img/66dbe018664fe6.webp"></i><i data-m="64" data-s="img/4d65cf4a93bae5.webp"></i><i data-m="65" data-s="img/08eea886433322.webp"></i><i data-m="66" data-s="img/6b75556ba63876.webp"></i><i data-m="67" data-s="img/5e9bd92edc7d44.webp"></i><i data-m="68" data-s="img/ddf8293efe783f.webp"></i></template><script>__m(document.currentScript.previousElementSibling)</script>
 <template data-media="realestate"><i data-m="69" data-s="img/d409dfa6e48fbe.webp"></i><i data-m="70" data-s="img/c7966235b0a1dd.webp"></i><i data-m="71" data-s="img/f860746172b543.webp"></i><i data-m="72" data-s="img/36157fc31aa596.webp"></i><i data-m="73" data-s="img/7fd761c009e1c3.webp"></i><i data-m="74" data-s="img/816993114c64a2.webp"></i></template><script>__m(document.currentScript.previousElementSibling)</script>
-<template data-media="biomas"><i data-m="75" data-s="img/5aac21fdd237c2.webp"></i><i data-m="76" data-s="img/0ba67bf93bb486.webp"></i><i data-m="77" data-s="img/97ff68045de268.webp"></i><i data-m="78" data-s="img/8e4f161ceb090f.webp"></i><i data-m="79" data-s="img/d6f07075b7e9d2.webp"></i><i data-m="80" data-s="img/972cbea16ec03c.webp"></i><i data-m="81" data-s="img/f3723696b2b2bc.webp"></i><i data-m="82" data-s="img/3ec0006b6d6100.webp"></i><i data-m="83" data-s="img/f8aedf1710cf44.webp"></i><i data-m="84" data-s="img/557d03888e7d0d.webp"></i></template><script>__m(document.currentScript.previousElementSibling)</script>
+<template data-media="biomas"><i data-m="75" data-s="img/5aac21fdd237c2.webp"></i><i data-m="76" data-s="img/0ba67bf93bb486.webp"></i><i data-m="77" data-s="img/97ff68045de268.webp"></i><i data-m="78" data-s="img/8e4f161ceb090f.webp"></i><i data-m="79" data-s="img/d6f07075b7e9d2.webp"></i><i data-m="80" data-s="img/972cbea16ec03c.webp"></i><i data-m="81" data-s="img/f3723696b2b2bc.webp"></i><i data-m="82" data-s="img/3ec0006b6d6100.webp"></i><i data-m="83" data-s="img/f8aedf1710cf44.webp"></i><i data-m="84" data-s="img/557d03888e7d0d.webp"></i><i data-m="150" data-s="img/cc67c5c1ec9c23.webp"></i><i data-m="151" data-s="img/51f3dd8202d47f.webp"></i><i data-m="152" data-s="img/bab2e6390d3ece.webp"></i></template><script>__m(document.currentScript.previousElementSibling)</script>
 <template data-media="uxguide"><i data-m="85" data-s="img/e47f6324dbcc51.webp"></i><i data-m="86" data-s="img/6c4fcb3ec71534.webp"></i><i data-m="87" data-s="img/07e51ad995c02d.webp"></i><i data-m="88" data-s="img/cdd8150cd15b38.webp"></i><i data-m="89" data-s="img/3c4a338181401f.webp"></i><i data-m="90" data-s="img/16bae7270076bd.webp"></i><i data-m="91" data-s="img/cdfb6c70f3e22c.webp"></i><i data-m="92" data-s="img/db273019a791ad.webp"></i><i data-m="93" data-s="img/406a18c6fb0bcd.webp"></i><i data-m="94" data-s="img/7bb53f7170e050.webp"></i><i data-m="95" data-s="img/28eb23e40f3202.webp"></i><i data-m="96" data-s="img/a5538454cd450a.webp"></i><i data-m="97" data-s="img/cbb2a792d14f16.webp"></i><i data-m="98" data-s="img/7b3c37842287ba.webp"></i><i data-m="99" data-s="img/b971ae7f04d851.webp"></i></template><script>__m(document.currentScript.previousElementSibling)</script>
 <template data-media="cammesa"><i data-m="100" data-s="img/4bb629d840d54d.webp"></i><i data-m="101" data-s="img/fb5fe8f24cb6a8.webp"></i><i data-m="102" data-s="img/d7aaf2d2cc659a.webp"></i><i data-m="103" data-s="img/8eae6262e28c49.webp"></i><i data-m="104" data-s="img/172aef7a887474.webp"></i><i data-m="105" data-s="img/a83933da650511.webp"></i><i data-m="106" data-s="img/0de8c04e78fadd.webp"></i><i data-m="107" data-s="img/a3dcadc7ff753b.webp"></i></template><script>__m(document.currentScript.previousElementSibling)</script>
 <template data-media="climatepath"><i data-m="108" data-s="img/ef690edb9961da.webp"></i><i data-m="109" data-s="img/676df11e0259b5.webp"></i><i data-m="110" data-s="img/d9032a97a89b30.webp"></i><i data-m="111" data-s="img/41e30b242945ad.webp"></i><i data-m="112" data-s="img/98256be4a934a9.webp"></i><i data-m="113" data-s="img/6f8d05580be8ac.webp"></i><i data-m="114" data-s="img/8a6d72921932fb.webp"></i></template><script>__m(document.currentScript.previousElementSibling)</script>
