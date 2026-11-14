@@ -38,3 +38,9 @@ Never invent research, users, metrics or tools. Only use what is already on the 
 
 - Toolbox descriptions say how she uses the tool ("I use it to…"). axe and Loom were removed on purpose; accessibility checks name Stark only.
 - Check changes on desktop and at phone width before committing.
+
+## Added after the second round on LG
+
+- **Annotate screenshots instead of writing loose paragraphs.** Use `.anno` (figure with `data-anno`): numbered pins on the capture and the same numbers in a short key under it. Place each pin beside what it points at, never on top of the text.
+- **Prefer real captures over recreated demos.** She is not sure about the recreated "try the agent" demo in LG and wants a real screenshot there when she provides one.
+- **Gradient is one of the agents in the Agentiv marketplace**, not a platform that contains it.

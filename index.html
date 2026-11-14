@@ -5194,6 +5194,23 @@ body .tchg figcaption { margin-top: 0.6rem; font-size: 0.88rem; color: var(--mut
 @media (max-width: 760px) { body .pains, body .plat ul, body .tchg, body .flowline { grid-template-columns: 1fr; } body .flowline { gap: 22px; } body .flowline li:not(:last-child)::after { content: "↓"; right: auto; left: 1rem; top: auto; bottom: -21px; translate: 0 0; } }
 @media (max-width: 520px) { body .areas, body .dec-opts { grid-template-columns: 1fr; } body .dec { padding: 1rem; } }
 @media (prefers-reduced-motion: reduce) { body .tl li > *, body .tl li::after, body .tl-k::before { transition: none; } }
+/* annotated screenshots: numbered pins on the image, the same numbers in the key beside it */
+body .anno { display: grid; grid-template-columns: 1fr; gap: 1rem; margin: 1.5rem 0 2.25rem; width: min(100%, 1100px); max-width: 1100px; }
+body .anno-img { position: relative; }
+body .anno-img button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+body .anno-img img { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 26px 50px -30px rgba(28, 30, 60, 0.5); }
+body .anno-pin, body .anno-key li::before { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #5B7CFF, #2338B8 60%, #6A3CF0); color: #fff; font: 700 0.78rem/1 var(--sans); }
+body .anno-pin { position: absolute; translate: -50% -50%; box-shadow: 0 0 0 3px #fff, 0 6px 14px -2px rgba(20, 22, 60, 0.55); cursor: default; transition: scale 260ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 260ms ease; }
+body .anno-pin::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid #5B7CFF; opacity: 0; animation: anno-ping 2.8s ease-out infinite; animation-delay: calc(var(--i, 0) * 350ms); }
+@keyframes anno-ping { 0% { scale: 1; opacity: 0.7; } 70%, 100% { scale: 2.1; opacity: 0; } }
+body .anno-pin.is-hot { scale: 1.3; box-shadow: 0 0 0 3px #fff, 0 0 0 7px rgba(91, 124, 255, 0.45), 0 8px 18px -2px rgba(20, 22, 60, 0.6); z-index: 2; }
+body .anno-key { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 4px 8px; counter-reset: an; }
+body .anno-key li { position: relative; counter-increment: an; display: grid; gap: 0.15rem; align-content: start; padding: 0.7rem 0.8rem 0.7rem 3rem; border-radius: 14px; border: 1px solid transparent; transition: background-color 200ms ease, border-color 200ms ease; }
+body .anno-key li::before { content: counter(an); position: absolute; left: 0.8rem; top: 0.7rem; }
+body .anno-key li b { font: 700 1rem/1.3 var(--sans); } body .anno-key li span { font-size: 0.93rem; line-height: 1.45; color: var(--muted); }
+body .anno-key li.is-hot { background: var(--surface); border-color: var(--line); }
+@media (max-width: 900px) { body .anno { grid-template-columns: 1fr; } body .anno-pin { width: 20px; height: 20px; font-size: 0.66rem; box-shadow: 0 0 0 2px #fff, 0 4px 10px -2px rgba(20, 22, 60, 0.55); } }
+@media (prefers-reduced-motion: reduce) { body .anno-pin::after { animation: none; } body .anno-pin { transition: none; } }
 /* the closing line of How I work, as a statement */
 body .jf-close { max-width: 24ch; margin-top: clamp(2.5rem, 5vw, 4rem); font-size: clamp(1.7rem, 3.4vw, 2.9rem); line-height: 1.12; letter-spacing: -0.025em; font-weight: 700; text-wrap: balance; }
 /* ===== hero, more air: a larger headline, then room before the paragraph and before the actions ===== */
@@ -7036,15 +7053,12 @@ function start() {
 
     <section aria-labelledby="lg-s1">
       <h2 id="lg-s1" data-short="Views">One platform, the right view for each user</h2>
-      <div class="prose">
-        <p>An LG manager looks after many advertisers, and one advertiser must never see another's data. So the screens are the same for everyone, but what they show depends on who you are. Managers switch between clients from a selector at the top. Each client sees only its own campaigns.</p>
-        <p>I designed a homepage for each role, because each one starts the day with a different question: account managers, team leads, company-wide leadership and external advertisers.</p>
-        <ul>
-          <li><strong>Answer first, details on demand.</strong> Headline numbers, then the trend, then proof of the value LG adds.</li>
-          <li><strong>Context inside the number.</strong> Each channel card shows its own mix, so there's no extra chart to decode.</li>
-          <li><strong>An assistant next to the data.</strong> Each advertiser has its own chat, so questions start from what's on screen.</li>
-        </ul>
-      </div>
+      <div class="prose"><p>An LG manager looks after many advertisers, and one advertiser must never see another's data. So the screens are the same for everyone, but what they show depends on who you are.</p></div>
+      <figure class="anno" data-anno>
+        <div class="anno-img"><button type="button" data-zoom aria-label="Enlarge: the advertiser home, explained"><img src="img/706d5c990e70de.webp" width="967" height="649" loading="lazy" alt="The advertiser home with five numbered points: the client selector, the headline numbers, a channel card with its mix, the reach chart and the chat"></button><span class="anno-pin" style="left:43.5%;top:2.6%" data-n="1" aria-hidden="true">1</span><span class="anno-pin" style="left:21.6%;top:11.5%" data-n="2" aria-hidden="true">2</span><span class="anno-pin" style="left:61.4%;top:11.5%" data-n="3" aria-hidden="true">3</span><span class="anno-pin" style="left:21.6%;top:65%" data-n="4" aria-hidden="true">4</span><span class="anno-pin" style="left:19%;top:37.3%" data-n="5" aria-hidden="true">5</span></div>
+        <ol class="anno-key"><li data-n="1"><b>One selector for the client</b><span>Managers switch between advertisers here. An advertiser only ever sees its own campaigns.</span></li><li data-n="2"><b>The answer first</b><span>The headline numbers open the page, before any chart.</span></li><li data-n="3"><b>The mix inside the number</b><span>Each channel card shows how it splits, so there is no extra chart to decode.</span></li><li data-n="4"><b>Then the proof</b><span>The trend, and below it the extra reach LG adds.</span></li><li data-n="5"><b>A chat next to the data</b><span>Each advertiser has its own chat, so questions start from what is on screen.</span></li></ol>
+      </figure>
+      <div class="prose"><p>I designed a different homepage for each role, because each one starts the day with a different question: account managers, team leads, company leadership and advertisers.</p></div>
       <figure class="shot wide">
         <button type="button" data-zoom aria-label="Enlarge: role-based homepages in Figma">
           <img data-m="1" width="1405" height="1029" loading="lazy" alt="Figma file for the Gradient redesign with separate homepages for account managers, team leads, external users and company-wide leadership">
@@ -7058,11 +7072,9 @@ function start() {
       <div class="prose">
         <p>With more than 29 agents on the platform, I was worried about ending up with a crowded toolbox that nobody explores. So in the marketplace each card does one job and explains it in plain words, and you add or remove an agent with one click.</p>
       </div>
-      <figure class="shot wide">
-        <button type="button" data-zoom aria-label="Enlarge: Agentiv Marketplace">
-          <img data-m="2" width="1600" height="1023" loading="lazy" alt="Agentiv Marketplace: a grid of agent cards, each with a one-line description and an add or remove button, filters for all, my and new agents, and chats grouped by agent">
-        </button>
-        <figcaption>The marketplace: browse, search and subscribe to the agents you need.</figcaption>
+      <figure class="anno" data-anno>
+        <div class="anno-img"><button type="button" data-zoom aria-label="Enlarge: Agentiv Marketplace"><img data-m="2" width="1600" height="1023" loading="lazy" alt="Agentiv Marketplace: a grid of agent cards, each with a one-line description and an add or remove button, filters for all, my and new agents, and chats grouped by agent"></button><span class="anno-pin" style="left:20.2%;top:13.3%" data-n="1" aria-hidden="true">1</span><span class="anno-pin" style="left:26.4%;top:21.3%" data-n="2" aria-hidden="true">2</span><span class="anno-pin" style="left:21.4%;top:36.5%" data-n="3" aria-hidden="true">3</span><span class="anno-pin" style="left:1.6%;top:24%" data-n="4" aria-hidden="true">4</span></div>
+        <ol class="anno-key"><li data-n="1"><b>Three ways to look</b><span>All the agents, the ones you already use, and the new ones.</span></li><li data-n="2"><b>One job, in plain words</b><span>Each card says what the agent does in one or two lines.</span></li><li data-n="3"><b>One click to add or remove</b><span>No setup and no request to IT.</span></li><li data-n="4"><b>Chats grouped by agent</b><span>Your conversations stay under the agent they belong to.</span></li></ol>
       </figure>
       <div class="prose"><p>Six of the agents in the marketplace, as the platform presents them:</p></div>
       <div class="agents">
@@ -7091,20 +7103,14 @@ function start() {
         <p>When the standard views aren't enough, managers build their own dashboards. They ask Gradient Agent in plain language, and it adds the charts, KPIs and filters.</p>
       </div>
       <h3>The agent sets up, and explains why</h3>
-      <div class="prose"><p>It creates one tab per dataset and tells you why: so charts and filters stay consistent. Every empty slot gives you two ways to go on: drag a component in, or ask the agent.</p></div>
-      <figure class="shot wide">
-        <button type="button" data-zoom aria-label="Enlarge: agent sets up the dashboard">
-          <img data-m="3" width="1522" height="1024" loading="lazy" alt="Gradient Agent explains it created one tab per dataset, next to a canvas with a first KPI and empty slots to add KPIs, charts and tables">
-        </button>
-        <figcaption>The agent prepares the layout and tells you how it's organized.</figcaption>
+      <figure class="anno" data-anno>
+        <div class="anno-img"><button type="button" data-zoom aria-label="Enlarge: the agent sets up the dashboard"><img data-m="3" width="1522" height="1024" loading="lazy" alt="Gradient Agent explains it created one tab per dataset, next to a canvas with a first KPI and empty slots to add KPIs, charts and tables"></button><span class="anno-pin" style="left:5%;top:12%" data-n="1" aria-hidden="true">1</span><span class="anno-pin" style="left:24.7%;top:9%" data-n="2" aria-hidden="true">2</span><span class="anno-pin" style="left:25.6%;top:41.3%" data-n="3" aria-hidden="true">3</span><span class="anno-pin" style="left:4.4%;top:73%" data-n="4" aria-hidden="true">4</span></div>
+        <ol class="anno-key"><li data-n="1"><b>It tells you what it did</b><span>"I created one tab for each dataset", and why: so charts and filters stay consistent.</span></li><li data-n="2"><b>One tab per dataset</b><span>Data from different datasets never ends up in the same tab.</span></li><li data-n="3"><b>Two ways to fill a slot</b><span>Drag a component in, or ask the agent to add one.</span></li><li data-n="4"><b>Suggestions to start</b><span>If you don't know what to ask, these are one click away.</span></li></ol>
       </figure>
       <h3>Refine by chat, or by hand</h3>
-      <div class="prose"><p>The agent confirms every change and suggests the next one. If you want full control, you select a chart and edit it yourself. The dataset stays locked so data never gets mixed. And if the agent gets something wrong, you undo it and the draft is still there, so a mistake costs almost nothing.</p></div>
-      <figure class="shot wide">
-        <button type="button" data-zoom aria-label="Enlarge: refining the dashboard">
-          <img data-m="4" width="1522" height="1024" loading="lazy" alt="The user asks the agent to add a KPI for total orders and the agent confirms it; a selected line chart shows its properties panel">
-        </button>
-        <figcaption>Ask for a change, or open the properties panel and make it yourself.</figcaption>
+      <figure class="anno" data-anno>
+        <div class="anno-img"><button type="button" data-zoom aria-label="Enlarge: refining the dashboard"><img data-m="4" width="1522" height="1024" loading="lazy" alt="The user asks the agent to add a KPI for total orders and the agent confirms it; a selected line chart shows its properties panel"></button><span class="anno-pin" style="left:4.3%;top:22.5%" data-n="1" aria-hidden="true">1</span><span class="anno-pin" style="left:25%;top:42.4%" data-n="2" aria-hidden="true">2</span><span class="anno-pin" style="left:80.4%;top:9.8%" data-n="3" aria-hidden="true">3</span><span class="anno-pin" style="left:80.4%;top:24.7%" data-n="4" aria-hidden="true">4</span><span class="anno-pin" style="left:77.6%;top:2.8%" data-n="5" aria-hidden="true">5</span></div>
+        <ol class="anno-key"><li data-n="1"><b>The agent confirms each change</b><span>And suggests what you could do next.</span></li><li data-n="2"><b>Or do it by hand</b><span>Select any chart to edit it yourself.</span></li><li data-n="3"><b>Full control in the panel</b><span>Data, style, filters and interactions.</span></li><li data-n="4"><b>The dataset is locked</b><span>So data never gets mixed.</span></li><li data-n="5"><b>Undo, and autosave</b><span>If the agent gets it wrong you take it back, and the draft is still there.</span></li></ol>
       </figure>
       <h3>Publish on purpose</h3>
       <div class="prose"><p><strong>A user changed my mind here.</strong> I saw Publish as the end of the task: the dashboard is done, one click, live. In the usability sessions, 4 of 5 account managers stopped at that button, and one asked "who's going to see this?" For them it was the scariest moment, because an unfinished number could end up in front of an advertiser. I had designed for finishing. They needed to know who was on the other side first.</p>
@@ -7175,20 +7181,14 @@ function start() {
         <figcaption id="gd-cap">Try it: ask for a change, then undo it or tell the agent it got you wrong. A recreation of the pattern, with demo data.</figcaption>
       </figure>
       <h3>Answers name their sources, and say what they can't stand behind</h3>
-      <div class="prose"><p>When a manager asks why a number moved, the answer lists the dataset, the dates and the filters it used. If some data is missing or still being processed, it says so before the answer, and the chart marks those days.</p></div>
-      <figure class="shot wide">
-        <button type="button" data-zoom aria-label="Enlarge: an answer with its sources">
-          <img data-m="6" width="1522" height="760" loading="lazy" alt="The agent explains a drop in CTR, opens with a warning that two days of CTV data are still processing, lists the dataset, dates, brands and channels it used, and offers to add the answer as a chart">
-        </button>
-        <figcaption>The warning comes before the answer, not in a footnote.</figcaption>
+      <figure class="anno" data-anno>
+        <div class="anno-img"><button type="button" data-zoom aria-label="Enlarge: an answer with its sources"><img data-m="6" width="1522" height="760" loading="lazy" alt="The agent explains a drop in CTR, opens with a warning that two days of CTV data are still processing, lists the dataset, dates, brands and channels it used, and offers to add the answer as a chart"></button><span class="anno-pin" style="left:5.4%;top:27%" data-n="1" aria-hidden="true">1</span><span class="anno-pin" style="left:5.4%;top:58.5%" data-n="2" aria-hidden="true">2</span><span class="anno-pin" style="left:87.4%;top:48%" data-n="3" aria-hidden="true">3</span></div>
+        <ol class="anno-key"><li data-n="1"><b>The warning comes first</b><span>If data is missing or still being processed, it says so before the answer.</span></li><li data-n="2"><b>What the answer is based on</b><span>The dataset, the dates and the filters it used.</span></li><li data-n="3"><b>The chart marks it too</b><span>The days still processing are shaded.</span></li></ol>
       </figure>
       <h3>Work you can see, and stop</h3>
-      <div class="prose"><p>Building a dashboard takes a few seconds. So there is no spinner: the agent shows its plan step by step, the canvas shows where each piece will go, and you can stop it at any point with one click. A step is only applied once it's finished.</p></div>
-      <figure class="shot wide">
-        <button type="button" data-zoom aria-label="Enlarge: the agent building a dashboard">
-          <img data-m="7" width="1522" height="760" loading="lazy" alt="The agent works through a five-step plan with two steps done, one in progress and two waiting; the canvas shows the finished KPIs, a placeholder for the chart being built and a Stop button">
-        </button>
-        <figcaption>Progress you can read, and interrupt.</figcaption>
+      <figure class="anno" data-anno>
+        <div class="anno-img"><button type="button" data-zoom aria-label="Enlarge: the agent building a dashboard"><img data-m="7" width="1522" height="760" loading="lazy" alt="The agent works through a five-step plan with two steps done, one in progress and two waiting; the canvas shows the finished KPIs, a placeholder for the chart being built and a Stop button"></button><span class="anno-pin" style="left:5.6%;top:37%" data-n="1" aria-hidden="true">1</span><span class="anno-pin" style="left:25.1%;top:43%" data-n="2" aria-hidden="true">2</span><span class="anno-pin" style="left:17.6%;top:94.6%" data-n="3" aria-hidden="true">3</span></div>
+        <ol class="anno-key"><li data-n="1"><b>The plan, step by step</b><span>Done, in progress and waiting. No spinner.</span></li><li data-n="2"><b>Where each piece will go</b><span>The canvas shows what is being built, in its place.</span></li><li data-n="3"><b>Stop, always one click away</b><span>A step is only applied once it is finished.</span></li></ol>
       </figure>
       <h3>How we judged the agent's work</h3>
       <div class="prose"><p>With engineering and data, I turned real questions from LG's managers into a review set we ran before each release. Every answer had to pass four checks:</p></div>
@@ -12689,6 +12689,17 @@ document.addEventListener('click', function (e) {
     en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-lit'); io.unobserve(e.target); } });
   }, { rootMargin: '0px 0px -35% 0px', threshold: 0.2 });
   lists.forEach(function (l) { l.classList.add('tl-anim'); Array.prototype.forEach.call(l.children, function (li) { io.observe(li); }); });
+})();
+/* annotated screenshots: a pin and its line in the key light up together */
+(function () {
+  document.querySelectorAll('[data-anno]').forEach(function (f) {
+    function set(n, on) { f.querySelectorAll('[data-n="' + n + '"]').forEach(function (e) { e.classList.toggle('is-hot', on); }); }
+    f.querySelectorAll('[data-n]').forEach(function (e, i) {
+      if (e.classList.contains('anno-pin')) e.style.setProperty('--i', i);
+      e.addEventListener('mouseenter', function () { set(e.getAttribute('data-n'), true); });
+      e.addEventListener('mouseleave', function () { set(e.getAttribute('data-n'), false); });
+    });
+  });
 })();
 </script>
 </body>
