@@ -5189,6 +5189,7 @@ body .tchg blockquote { margin: 0.6rem 0 0; padding: 0.6rem 0.9rem; border-left:
 body .tchg-t > p:not([class]) { margin: 0; font-size: 1rem; line-height: 1.5; }
 body .tchg figure { margin: 0; } body .tchg figure button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
 body .tchg img { display: block; width: 100%; height: auto; max-height: 420px; object-fit: contain; border-radius: 14px; border: 1px solid var(--line); background: #fff; box-shadow: 0 22px 44px -26px rgba(28, 30, 60, 0.45); }
+body .tchg-s figure { justify-self: center; max-width: 361px; } body .tchg-s .checks li { font-size: 0.98rem; }
 body .tchg figcaption { margin-top: 0.6rem; font-size: 0.88rem; color: var(--muted); }
 @media (max-width: 900px) { body .areas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 760px) { body .pains, body .plat ul, body .tchg, body .flowline { grid-template-columns: 1fr; } body .flowline { gap: 22px; } body .flowline li:not(:last-child)::after { content: "↓"; right: auto; left: 1rem; top: auto; bottom: -21px; translate: 0 0; } }
@@ -7186,6 +7187,20 @@ function start() {
         <ol class="anno-key"><li data-n="1"><b>The warning comes first</b><span>If data is missing or still being processed, it says so before the answer.</span></li><li data-n="2"><b>What the answer is based on</b><span>The dataset, the dates and the filters it used.</span></li><li data-n="3"><b>The chart marks it too</b><span>The days still processing are shaded.</span></li></ol>
       </figure>
       <h3>Work you can see, and stop</h3>
+      <div class="tchg tchg-s">
+        <div class="tchg-t">
+          <p class="tchg-k">What I added</p>
+          <p class="tchg-big">A status list while the agent works</p>
+          <p>Some requests take more than a minute. So while the agent works, it lists the step it is on, the ones it finished, and how long each one took.</p>
+          <p class="tchg-k">Why</p>
+          <ul class="checks">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>A wait you can see feels shorter.</strong> With only a spinner, people think it froze, and they leave or ask again.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>You read what the agent is doing, in plain words.</strong> That is where trust starts.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>If the result looks wrong, you know where to look.</strong> Each step has a name.</span></li>
+          </ul>
+        </div>
+        <figure><button type="button" data-zoom aria-label="Enlarge: the agent's status list"><img src="img/4973576db83d1a.webp" width="361" height="438" loading="lazy" alt="Gradient Agent's status list during a request: analyzing request, loading the widget composer skill, building query, reading the topic model, fetching data and building the requested widgets are done, each with its time, formatting response is in progress, and a Running label sits below"></button><figcaption>A real request: six steps done, each with its time, and one in progress.</figcaption></figure>
+      </div>
       <figure class="anno" data-anno>
         <div class="anno-img"><button type="button" data-zoom aria-label="Enlarge: the agent building a dashboard"><img data-m="7" width="1522" height="760" loading="lazy" alt="The agent works through a five-step plan with two steps done, one in progress and two waiting; the canvas shows the finished KPIs, a placeholder for the chart being built and a Stop button"></button><span class="anno-pin" style="left:5.6%;top:37%" data-n="1" aria-hidden="true">1</span><span class="anno-pin" style="left:25.1%;top:43%" data-n="2" aria-hidden="true">2</span><span class="anno-pin" style="left:17.6%;top:94.6%" data-n="3" aria-hidden="true">3</span></div>
         <ol class="anno-key"><li data-n="1"><b>The plan, step by step</b><span>Done, in progress and waiting. No spinner.</span></li><li data-n="2"><b>Where each piece will go</b><span>The canvas shows what is being built, in its place.</span></li><li data-n="3"><b>Stop, always one click away</b><span>A step is only applied once it is finished.</span></li></ol>
