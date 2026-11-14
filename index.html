@@ -5134,13 +5134,15 @@ body .pains li > p:last-child, body .areas li > p:last-child { margin: 0; font-s
 body .checks { list-style: none; margin: 0.9rem 0 0; padding: 0; display: grid; gap: 0.6rem; max-width: 640px; }
 body .checks li { display: flex; gap: 0.75rem; align-items: flex-start; font-size: 1.05rem; line-height: 1.45; }
 body .checks svg, body .tl-d svg { flex: none; width: 22px; height: 22px; padding: 4px; border-radius: 50%; background: var(--accent); color: #fff; stroke-width: 2.6; margin-top: 1px; }
-body .plat { margin: 1.5rem 0 0; max-width: 900px; }
+body .plat { margin: 1.5rem 0 0; max-width: 1000px; }
 body .plat-box { padding: 1.25rem; border-radius: 22px; border: 1.5px dashed var(--line); background: color-mix(in srgb, var(--surface) 60%, transparent); }
 body .plat-k { margin: 0 0 0.9rem; font: 700 1.1rem/1.2 var(--sans); } body .plat-k span { margin-left: 0.5rem; font-weight: 500; font-size: 0.88rem; color: var(--muted); }
 body .plat ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 body .plat li { position: relative; display: grid; gap: 0.3rem; align-content: start; padding: 1rem; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); }
 body .plat li b { font-size: 1rem; } body .plat li span { font-size: 0.88rem; line-height: 1.4; color: var(--muted); }
 body .plat li.is-on { background: #1A2163; border-color: #1A2163; color: #fff; box-shadow: 0 18px 36px -18px rgba(26, 33, 99, 0.8); } body .plat li.is-on span { color: #C6CFFF; }
+body .plat ul.plat-agents { grid-template-columns: repeat(4, minmax(0, 1fr)); } body .plat-agents li.is-more { border-style: dashed; background: transparent; }
+@media (max-width: 760px) { body .plat ul.plat-agents { grid-template-columns: repeat(2, minmax(0, 1fr)); } body .plat-agents li.is-on { grid-column: span 2; grid-row: auto; } }
 body .plat li i { justify-self: start; margin-top: 0.4rem; padding: 0.25rem 0.6rem; border-radius: 99px; background: #8FA2FF; color: #10143F; font: 700 0.68rem/1 var(--sans); font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; }
 body .tl { list-style: none; margin: 1.25rem 0 0; padding: 0; max-width: 760px; }
 body .tl li { position: relative; padding: 0 0 2rem 3rem; }
@@ -6830,7 +6832,7 @@ function start() {
     <header class="case-head">
       <p class="case-client">LG Ad Solutions</p>
       <h1 id="case-title" tabindex="-1">Gradient: AI Analytics for Advertisers</h1>
-      <p class="lede">Brands pay a lot to appear on LG smart TVs, and they all ask the same thing: is it working? LG's teams couldn't answer quickly. Getting the data together by hand took hours, sometimes days. They came to us asking for two things: AI, and a way to build their own dashboards. I led the product design of what came out of that, a platform called Gradient, used mostly by LG's internal teams.</p>
+      <p class="lede">Brands pay a lot to appear on LG smart TVs, and they all ask the same thing: is it working? LG's teams couldn't answer quickly. Getting the data together by hand took hours, sometimes days. They came to us asking for two things: AI, and a way to build their own dashboards. I led the product design of what came out of that: Gradient, the analytics agent in LG's agent marketplace, used mostly by LG's internal teams.</p>
       <dl class="meta">
         <div><dt>Role</dt><dd>Product Design Lead</dd></div>
         <div><dt>Team</dt><dd>LG's product teams, Clear Tech's developers, a second designer and me</dd></div>
@@ -6888,15 +6890,20 @@ function start() {
     </section>
 
     <section aria-labelledby="lg-what">
-      <p class="cstep"><span>2</span>The solution, and how I got there</p><h2 id="lg-what" data-part data-short="Solution">We built Agentiv, with Gradient inside</h2>
-      <div class="prose"><p>The answer was Agentiv, a platform of AI agents that Clear Tech built for LG. Gradient is its analytics side, and it's what this case is about.</p></div>
-      <figure class="plat" aria-label="How Agentiv is organised">
+      <p class="cstep"><span>2</span>The solution, and how I got there</p><h2 id="lg-what" data-part data-short="Solution">A marketplace of agents, and Gradient is one of them</h2>
+      <div class="prose"><p>The answer was Agentiv, a marketplace of AI agents that Clear Tech built for LG. Gradient is one of those agents, the one for analytics, and it's what this case is about.</p></div>
+      <figure class="plat" aria-label="Gradient is one of the agents in the Agentiv marketplace">
         <div class="plat-box">
-          <p class="plat-k">Agentiv <span>29+ AI agents in production</span></p>
-          <ul>
-            <li><b>Agents for clients</b><span>Reports, media planning, campaign monitoring</span></li>
-            <li><b>Agents for LG's teams</b><span>Campaign setup, ad creatives, internal reporting</span></li>
-            <li class="is-on"><b>Gradient</b><span>Analytics, and a builder where an agent makes your dashboards</span><i>This case</i></li>
+          <p class="plat-k">Agentiv marketplace <span>29+ AI agents in production</span></p>
+          <ul class="plat-agents">
+            <li class="is-on"><b>Gradient</b><span>Analytics, and a builder where the agent makes your dashboards</span><i>This case</i></li>
+            <li><b>ACR Agent</b><span>Live reports</span></li>
+            <li><b>Media Planning Agent</b><span>Campaign simulation</span></li>
+            <li><b>Campaign Performance Agent</b><span>Automatic monitoring</span></li>
+            <li><b>Mosaic Agent</b><span>Campaign automation</span></li>
+            <li><b>AD Hermes</b><span>Automatic creatives</span></li>
+            <li><b>Reporting Agent</b><span>Self-service analytics</span></li>
+            <li class="is-more"><b>+ 22 more</b><span>For clients and for LG's own teams</span></li>
           </ul>
         </div>
       </figure>
