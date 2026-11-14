@@ -5121,6 +5121,77 @@ body .jf-t .jf-th { gap: 0.9rem; }
 @media (max-width: 760px) { body .jf-t .jf-v { margin-right: 0.3em; } }
 @media (max-width: 640px) { body .jf-t td:first-child { font-size: 0.78rem; } body .jf-t .jf-th { gap: 0.55rem; } body .jf-t th:first-child .jf-th { gap: 0.95rem; } body .jf-t .jf-hd b { font-size: 1.15rem; } body .jf-t .jf-hd small { font-size: 0.62rem; letter-spacing: 0.08em; } }
 @media (min-width: 901px) { body #view-lg .handoff.three[aria-label="Accessibility checks"] { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 680px; } }
+/* ===== case storytelling blocks: pains, checks, platform map, lit timeline, decisions, test changes ===== */
+body .pains, body .areas { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: 14px; max-width: 1100px; }
+body .pains { grid-template-columns: repeat(3, minmax(0, 1fr)); } body .areas { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+body .pains li, body .areas li { padding: 1.4rem 1.4rem 1.5rem; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 18px 40px -28px rgba(28, 30, 60, 0.35); }
+body .pains-i { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 14px; color: #fff; background: linear-gradient(135deg, #5B7CFF, #2338B8 55%, #6A3CF0); box-shadow: 0 10px 22px -10px rgba(51, 70, 232, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.35); }
+body .pains-i svg { width: 22px; height: 22px; }
+body .pains-n { margin: 1.1rem 0 0; font: 700 clamp(1.35rem, 2.2vw, 1.8rem)/1.1 var(--sans); letter-spacing: -0.03em; color: var(--accent); }
+body .pains h3, body .areas h3 { margin: 0.5rem 0 0.4rem; font: 700 1.08rem/1.25 var(--sans); letter-spacing: -0.01em; }
+body .areas h3 { margin-top: 1rem; }
+body .pains li > p:last-child, body .areas li > p:last-child { margin: 0; font-size: 0.95rem; line-height: 1.5; color: var(--muted); }
+body .checks { list-style: none; margin: 0.9rem 0 0; padding: 0; display: grid; gap: 0.6rem; max-width: 640px; }
+body .checks li { display: flex; gap: 0.75rem; align-items: flex-start; font-size: 1.05rem; line-height: 1.45; }
+body .checks svg, body .tl-d svg { flex: none; width: 22px; height: 22px; padding: 4px; border-radius: 50%; background: var(--accent); color: #fff; stroke-width: 2.6; margin-top: 1px; }
+body .plat { margin: 1.5rem 0 0; max-width: 900px; }
+body .plat-box { padding: 1.25rem; border-radius: 22px; border: 1.5px dashed var(--line); background: color-mix(in srgb, var(--surface) 60%, transparent); }
+body .plat-k { margin: 0 0 0.9rem; font: 700 1.1rem/1.2 var(--sans); } body .plat-k span { margin-left: 0.5rem; font-weight: 500; font-size: 0.88rem; color: var(--muted); }
+body .plat ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+body .plat li { position: relative; display: grid; gap: 0.3rem; align-content: start; padding: 1rem; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); }
+body .plat li b { font-size: 1rem; } body .plat li span { font-size: 0.88rem; line-height: 1.4; color: var(--muted); }
+body .plat li.is-on { background: #1A2163; border-color: #1A2163; color: #fff; box-shadow: 0 18px 36px -18px rgba(26, 33, 99, 0.8); } body .plat li.is-on span { color: #C6CFFF; }
+body .plat li i { justify-self: start; margin-top: 0.4rem; padding: 0.25rem 0.6rem; border-radius: 99px; background: #8FA2FF; color: #10143F; font: 700 0.68rem/1 var(--sans); font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; }
+body .tl { list-style: none; margin: 1.25rem 0 0; padding: 0; max-width: 760px; }
+body .tl li { position: relative; padding: 0 0 2rem 3rem; }
+body .tl li::before { content: ""; position: absolute; left: 10px; top: 6px; bottom: -6px; width: 2px; background: var(--line); }
+body .tl li::after { content: ""; position: absolute; left: 10px; top: 6px; width: 2px; height: calc(100% + 0px); background: var(--accent); transform-origin: 50% 0; scale: 1 1; transition: scale 900ms cubic-bezier(0.16, 1, 0.3, 1) 150ms; }
+body .tl li:last-child::before, body .tl li:last-child::after { display: none; }
+body .tl li:last-child { padding-bottom: 0; }
+body .tl-k { position: relative; margin: 0 0 0.35rem; font: 700 0.74rem/1.6 var(--sans); letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); }
+body .tl-k::before { content: ""; position: absolute; left: calc(-3rem + 1px); top: 1px; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 18%, transparent), 0 0 22px 2px color-mix(in srgb, var(--accent) 55%, transparent); transition: background-color 400ms ease, box-shadow 600ms ease, scale 500ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+body .tl h4 { margin: 0 0 0.3rem; font: 700 1.2rem/1.25 var(--sans); letter-spacing: -0.015em; }
+body .tl li > p { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.5; }
+body .tl .tl-d { display: flex; gap: 0.7rem; align-items: flex-start; margin-top: 0.8rem; padding: 0.8rem 1rem; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); color: var(--ink); font-size: 0.98rem; }
+body .tl li > * { transition: opacity 500ms ease, translate 600ms cubic-bezier(0.16, 1, 0.3, 1); }
+body .tl.tl-anim li:not(.is-lit) > *:not(.tl-k) { opacity: 0.28; translate: 0 8px; }
+body .tl.tl-anim li:not(.is-lit) .tl-k { color: var(--muted); }
+body .tl.tl-anim li:not(.is-lit) .tl-k::before { background: var(--line); box-shadow: none; scale: 0.7; }
+body .tl.tl-anim li:not(.is-lit)::after { scale: 1 0; }
+body .flowline { list-style: none; margin: 1.25rem 0 1.25rem; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px; max-width: 1000px; counter-reset: fl; }
+body .flowline li { position: relative; counter-increment: fl; padding: 0.9rem 1rem; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); font: 600 0.95rem/1.3 var(--sans); }
+body .flowline li::before { content: counter(fl); display: block; margin-bottom: 0.35rem; font: 700 0.72rem/1 var(--sans); color: var(--accent); }
+body .flowline li:not(:last-child)::after { content: "→"; position: absolute; right: -21px; top: 50%; translate: 0 -50%; color: var(--accent); font-weight: 700; }
+body .dec { margin: 1.5rem 0 0; padding: 1.4rem; border-radius: 22px; background: var(--surface); border: 1px solid var(--line); max-width: 900px; }
+body .dec-q { margin: 0 0 1rem; font: 700 clamp(1.15rem, 1.8vw, 1.4rem)/1.25 var(--sans); letter-spacing: -0.015em; }
+body .dec-q span { display: block; margin-bottom: 0.3rem; font: 700 0.72rem/1 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+body .dec-opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+body .dec-o { padding: 1rem; border-radius: 16px; border: 1.5px dashed var(--line); }
+body .dec-o h3 { margin: 0.8rem 0 0; font: 600 1.02rem/1.3 var(--sans); }
+body .dec-o.is-no h3 { color: var(--muted); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--muted) 55%, transparent); }
+body .dec-o.is-yes { border: 2px solid var(--accent); background: color-mix(in srgb, var(--accent) 6%, var(--surface)); }
+body .dec-tag { display: flex; align-items: center; gap: 0.45rem; margin: 0 0 0.8rem; font: 700 0.74rem/1 var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+body .dec-tag svg { width: 18px; height: 18px; padding: 3px; border-radius: 50%; background: var(--line); color: var(--muted); stroke-width: 2.6; }
+body .dec-o.is-yes .dec-tag { color: var(--accent); } body .dec-o.is-yes .dec-tag svg { background: var(--accent); color: #fff; }
+body .dec-sk { display: grid; gap: 6px; height: 84px; padding: 10px; border-radius: 10px; background: color-mix(in srgb, var(--ink) 4%, var(--paper)); align-content: center; }
+body .dec-o.is-no .dec-sk { opacity: 0.6; }
+body .sk-tiles { grid-template-columns: repeat(3, 1fr); } body .sk-tiles i { height: 100%; min-height: 56px; border-radius: 6px; background: color-mix(in srgb, var(--ink) 14%, transparent); }
+body .sk-list i { height: 5px; border-radius: 9px; background: color-mix(in srgb, var(--ink) 20%, transparent); } body .sk-list i:nth-child(even) { width: 70%; }
+body .sk-ask span { justify-self: start; padding: 0.5rem 0.8rem; border-radius: 12px 12px 12px 3px; background: var(--accent); color: #fff; font: 600 0.86rem/1.2 var(--sans); }
+body .sk-diff span { padding: 0.35rem 0.7rem; border-radius: 8px; font: 700 0.82rem/1.2 var(--sans); } body .sk-diff .m { background: #FBE3E3; color: #9B1C1C; } body .sk-diff .m::before { content: "− "; } body .sk-diff .p { background: #DDF3E4; color: #17633A; } body .sk-diff .p::before { content: "+ "; }
+body .dec-why { margin: 1rem 0 0; font-size: 1rem; line-height: 1.5; }
+body .tchg { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(1.25rem, 3vw, 2.5rem); align-items: center; margin: 1.5rem 0 0; padding: clamp(1.1rem, 2.4vw, 1.75rem); border-radius: 22px; background: var(--surface); border: 1px solid var(--line); max-width: 1100px; }
+body .tchg-k { margin: 1rem 0 0.25rem; font: 700 0.72rem/1 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); } body .tchg-k:first-child { margin-top: 0; }
+body .tchg-big { margin: 0; font: 700 clamp(1.3rem, 2.2vw, 1.75rem)/1.15 var(--sans); letter-spacing: -0.025em; }
+body .tchg blockquote { margin: 0.6rem 0 0; padding: 0.6rem 0.9rem; border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; background: color-mix(in srgb, var(--accent) 7%, transparent); font: 600 1.05rem/1.35 var(--sans); }
+body .tchg-t > p:not([class]) { margin: 0; font-size: 1rem; line-height: 1.5; }
+body .tchg figure { margin: 0; } body .tchg figure button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+body .tchg img { display: block; width: 100%; height: auto; max-height: 420px; object-fit: contain; border-radius: 14px; border: 1px solid var(--line); background: #fff; box-shadow: 0 22px 44px -26px rgba(28, 30, 60, 0.45); }
+body .tchg figcaption { margin-top: 0.6rem; font-size: 0.88rem; color: var(--muted); }
+@media (max-width: 900px) { body .areas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { body .pains, body .plat ul, body .tchg, body .flowline { grid-template-columns: 1fr; } body .flowline { gap: 22px; } body .flowline li:not(:last-child)::after { content: "↓"; right: auto; left: 1rem; top: auto; bottom: -21px; translate: 0 0; } }
+@media (max-width: 520px) { body .areas, body .dec-opts { grid-template-columns: 1fr; } body .dec { padding: 1rem; } }
+@media (prefers-reduced-motion: reduce) { body .tl li > *, body .tl li::after, body .tl-k::before { transition: none; } }
 /* the closing line of How I work, as a statement */
 body .jf-close { max-width: 24ch; margin-top: clamp(2.5rem, 5vw, 4rem); font-size: clamp(1.7rem, 3.4vw, 2.9rem); line-height: 1.12; letter-spacing: -0.025em; font-weight: 700; text-wrap: balance; }
 /* ===== hero, more air: a larger headline, then room before the paragraph and before the actions ===== */
@@ -6770,7 +6841,7 @@ function start() {
         <div><dt>Users</dt><dd>LG managers and advertisers</dd></div>
         <div data-lens="UX||Visibility of system status||Knowing how long something takes makes it easier to start. No hidden cost, no surprise.||Nielsen, 1994"><dt>Reading time</dt><dd>7 minutes</dd></div>
       </dl>
-      <p class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span><strong>Under NDA.</strong> Data, brand names and figures in these screens have been modified to protect the client.</span></p>
+      <p class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span><strong>All screenshots are sanitized.</strong> This work is under NDA, so the data, brand names and figures in every screen have been changed to protect the client.</span></p>
           <p class="gd-teaser"><button type="button" data-gd-jump>Try the agent: ask for a change, then undo it<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M6 13l6 6 6-6"/></svg></button></p>
     </header>
 
@@ -6787,51 +6858,22 @@ function start() {
         </button>
         <figcaption>The campaign home answers "is it working?" first, and shows the proof below.</figcaption>
       </figure>
-    <nav class="cpath cpath-4" aria-label="How this case is told"><p class="cpath-k">How this case is told</p><ol><li><a href="#lg-why" data-jump><span class="cpath-n">1</span><span class="cpath-t">The challenge</span></a></li><li><a href="#lg-flow" data-jump><span class="cpath-n">2</span><span class="cpath-t">The solution, and how I got there</span></a></li><li><a href="#lg-s4" data-jump><span class="cpath-n">3</span><span class="cpath-t">The impact</span></a></li><li><a href="#lg-learn" data-jump><span class="cpath-n">4</span><span class="cpath-t">What I learned</span></a></li></ol></nav>
+    <nav class="cpath cpath-4" aria-label="How this case is told"><p class="cpath-k">How this case is told</p><ol><li><a href="#lg-why" data-jump><span class="cpath-n">1</span><span class="cpath-t">The challenge</span></a></li><li><a href="#lg-what" data-jump><span class="cpath-n">2</span><span class="cpath-t">The solution, and how I got there</span></a></li><li><a href="#lg-s4" data-jump><span class="cpath-n">3</span><span class="cpath-t">The impact</span></a></li><li><a href="#lg-learn" data-jump><span class="cpath-n">4</span><span class="cpath-t">What I learned</span></a></li></ol></nav>
 <section aria-labelledby="lg-why">
       <p class="cstep"><span>1</span>The challenge</p><h2 id="lg-why" data-part data-short="Challenge">Why LG needed it</h2>
-      <div class="prose">
-        <p>LG Ad Solutions was growing faster than its operations could keep up with. Gradient is the analytics side of Agentiv, the agent platform Clear Tech built for LG, which today runs more than 29 AI agents. Some serve clients and others run the business from the inside. Three things were pushing them:</p>
-        <ul>
-          <li><strong>The competition was ahead.</strong> By LG Ad Solutions' own figures, nearly 1 in 4 companies already used intelligent systems, and Meta, Google and Amazon were two or three steps in front.</li>
-          <li><strong>Nobody could see the return.</strong> Clients paid millions to be on smart TVs, and LG couldn't quickly tell them if it was working.</li>
-          <li><strong>Money was getting lost on the way.</strong> Of every dollar, LG Ad Solutions counted only 62 cents reaching mid-sized companies. Each team built its own tools, so the same work got done, and paid for, twice.</li>
-        </ul>
-      </div>
-      <h3>My part, in three phases</h3>
-      <div class="table-scroll">
-        <table class="impact">
-          <thead><tr><th scope="col">Phase</th><th scope="col">What I did</th><th scope="col">What I decided</th></tr></thead>
-          <tbody>
-            <tr><td>Definition</td><td>Wrote what the dashboard builder is and is not: pages, flows, ownership and the scope of version one</td><td>One chat per dashboard, and drafts kept apart from published versions</td></tr>
-            <tr><td>Flows</td><td>Mapped every report flow end to end, for single-brand and multibrand advertisers</td><td>The same screens change scope by role, so no advertiser sees another's data</td></tr>
-            <tr><td>Iteration</td><td>Reworked what the developers had already built, starting with the agent chat</td><td>The agent shows its plan step by step and confirms before it changes anything</td></tr>
-          </tbody>
-        </table>
-      </div>
-    <h3>Where the brief came from</h3>
-      <div class="prose"><p>We meet with LG's teams often, and the brief came out of those meetings: AI, and a way for people to build their own dashboards.</p></div>
-      
-      <div class="prose">
-        <p>For the dashboard builder, I started by writing down what it is and what it isn't: which pages it has, how you move through it, who owns a dashboard and who can edit it, and what goes into the first version.</p>
-      </div>
-      <ul class="handoff four" aria-label="Scope of the first version">
-        <li><strong>Navigation</strong><span>A dashboard library with drafts, templates, favorites and shared dashboards.</span></li>
-        <li><strong>Builder</strong><span>Grid drag and drop, resizable components, filters, tabs, undo, redo and autosave.</span></li>
-        <li><strong>AI agent</strong><span>One chat per dashboard that proposes changes, shows what they affect and can be undone.</span></li>
-        <li><strong>Publishing</strong><span>Draft and published versions, sharing, ownership and collaborator permissions.</span></li>
+      <div class="prose"><p>LG Ad Solutions was growing faster than its operations could keep up with. Three things were pushing them.</p></div>
+      <ul class="pains" aria-label="The three problems">
+        <li><span class="pains-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 19 22 12 13 5 13 19"/><polygon points="2 19 11 12 2 5 2 19"/></svg></span><p class="pains-n">1 in 4</p><h3>The competition was ahead</h3><p>By LG's own figures, nearly 1 in 4 companies already used intelligent systems. Meta, Google and Amazon were two or three steps in front.</p></li>
+        <li><span class="pains-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.53 13.53 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/></svg></span><p class="pains-n">"Is it working?"</p><h3>Nobody could see the return</h3><p>Clients paid millions to be on smart TVs, and LG couldn't quickly tell them if it was working.</p></li>
+        <li><span class="pains-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg></span><p class="pains-n">62¢ of every $1</p><h3>Money got lost on the way</h3><p>That is what reached mid-sized companies. Each team built its own tools, so the same work got done, and paid for, twice.</p></li>
       </ul>
-      <div class="duo natural">
-        <figure>
-          <button type="button" data-zoom aria-label="Enlarge: product definition boards"><img data-m="8" width="1060" height="921" loading="lazy" alt="Product definition boards for the dashboard builder: landing page, workspace, creation flow, collaboration and ownership, user flows and initial scope"></button>
-          <figcaption>The product definition: landing, workspace, creation flow, roles, user flows and scope.</figcaption>
-        </figure>
-        <figure>
-          <button type="button" data-zoom aria-label="Enlarge: initial scope for version one"><img data-m="9" width="978" height="853" loading="lazy" alt="Initial scope for version one, grouped into navigation, builder, AI agent, and publishing and permissions"></button>
-          <figcaption>The first version's scope, area by area.</figcaption>
-        </figure>
-      </div>
-      </section>
+      <h3>What they asked for</h3>
+      <ul class="checks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>AI</strong> that takes the manual work out of reporting.</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>A way to build their own dashboards</strong>, without waiting for IT.</span></li>
+      </ul>
+      <p class="source">The brief came out of the meetings we hold with LG's teams.</p>
+    </section>
 
     <section aria-labelledby="lg-people">
       <h2 id="lg-people" data-short="People">Who I designed for, and how I listened</h2>
@@ -6845,10 +6887,54 @@ function start() {
       </ul>
     </section>
 
+    <section aria-labelledby="lg-what">
+      <p class="cstep"><span>2</span>The solution, and how I got there</p><h2 id="lg-what" data-part data-short="Solution">We built Agentiv, with Gradient inside</h2>
+      <div class="prose"><p>The answer was Agentiv, a platform of AI agents that Clear Tech built for LG. Gradient is its analytics side, and it's what this case is about.</p></div>
+      <figure class="plat" aria-label="How Agentiv is organised">
+        <div class="plat-box">
+          <p class="plat-k">Agentiv <span>29+ AI agents in production</span></p>
+          <ul>
+            <li><b>Agents for clients</b><span>Reports, media planning, campaign monitoring</span></li>
+            <li><b>Agents for LG's teams</b><span>Campaign setup, ad creatives, internal reporting</span></li>
+            <li class="is-on"><b>Gradient</b><span>Analytics, and a builder where an agent makes your dashboards</span><i>This case</i></li>
+          </ul>
+        </div>
+      </figure>
+      <h3>My part, in three steps</h3>
+      <ol class="tl" data-tl>
+        <li><p class="tl-k">Step 1 · Definition</p><h4>I wrote down what the dashboard builder is, and what it isn't</h4><p>Its pages, its flows, who owns a dashboard and what goes into version one.</p><p class="tl-d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>I decided:</b> one chat per dashboard, and drafts kept apart from published versions.</span></p></li>
+        <li><p class="tl-k">Step 2 · Flows</p><h4>I mapped every report flow from start to end</h4><p>For advertisers with one brand, and for advertisers with several.</p><p class="tl-d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>I decided:</b> the same screens show different data depending on who you are, so no advertiser sees another's.</span></p></li>
+        <li><p class="tl-k">Step 3 · Iteration</p><h4>I reworked what the developers had already built</h4><p>Starting with the agent chat.</p><p class="tl-d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><b>I decided:</b> the agent shows its plan step by step, and confirms before it changes anything.</span></p></li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="lg-def">
+      <h2 id="lg-def" data-short="Definition">Step 1: what goes into version one</h2>
+      <div class="prose"><p>Before drawing anything, I wrote the scope of the first version of the dashboard builder. It has four areas.</p></div>
+      <ul class="areas" aria-label="The four areas of version one">
+        <li><span class="pains-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><h3>A library</h3><p>Where you find your dashboards: drafts, templates, favorites and the ones shared with you.</p></li>
+        <li><span class="pains-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span><h3>A builder</h3><p>Where you put a dashboard together: drag and drop, resize, filters, tabs, undo and autosave.</p></li>
+        <li><span class="pains-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z"/></svg></span><h3>An AI agent</h3><p>One chat per dashboard. It proposes changes, shows what they affect, and every change can be undone.</p></li>
+        <li><span class="pains-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg></span><h3>Publishing</h3><p>Draft and published versions, sharing, and who owns and who can edit each dashboard.</p></li>
+      </ul>
+      <div class="duo natural">
+        <figure>
+          <button type="button" data-zoom aria-label="Enlarge: product definition boards"><img data-m="8" width="1060" height="921" loading="lazy" alt="Product definition boards for the dashboard builder: landing page, workspace, creation flow, collaboration and ownership, user flows and initial scope"></button>
+          <figcaption>The product definition: landing, workspace, creation flow, roles, user flows and scope.</figcaption>
+        </figure>
+        <figure>
+          <button type="button" data-zoom aria-label="Enlarge: initial scope for version one"><img data-m="9" width="978" height="853" loading="lazy" alt="Initial scope for version one, grouped into navigation, builder, AI agent, and publishing and permissions"></button>
+          <figcaption>The first version's scope, area by area.</figcaption>
+        </figure>
+      </div>
+    </section>
+
     <section aria-labelledby="lg-flow">
-      <p class="cstep"><span>2</span>The solution, and how I got there</p><h2 id="lg-flow" data-part data-short="Solution">First, every flow from start to end</h2>
-      <div class="prose"><p>I mapped every report flow, from the moment someone asks for a report to the moment it's delivered. I did it for an advertiser with one brand and for one with several. The Figma file is organized the same way, with one section per kind of user. We used Figma's AI agents for production work all through the project, to move faster.</p></div>
-      
+      <h2 id="lg-flow" data-short="Flows">Step 2: every flow, from start to end</h2>
+      <ol class="flowline" aria-label="A report flow, from request to delivery">
+        <li>Someone asks for a report</li><li>They fill in the request form</li><li>The report is scheduled</li><li>The report is delivered</li>
+      </ol>
+      <div class="prose"><p>I mapped this for every kind of report, once for an advertiser with one brand and once for an advertiser with several. We used Figma's AI agents for production work all through the project, to move faster.</p></div>
       <div class="duo natural" data-lens="Product design||Show the thinking||Working files prove the polished screens didn't happen by accident: they show how decisions were made.||">
         <figure>
           <button type="button" data-zoom aria-label="Enlarge: delivery report flows"><img data-m="10" width="1030" height="903" loading="lazy" alt="Working board mapping the delivery report flow screen by screen, once for single-brand and once for multibrand advertisers, with the full request forms below"></button>
@@ -6859,6 +6945,7 @@ function start() {
           <figcaption>The post-campaign report, from request form to scheduler and report tiers.</figcaption>
         </figure>
       </div>
+
       <figure class="fmap" aria-labelledby="fmap-cap">
         <div class="fmap-in">
           <div class="fmap-pages">
@@ -6893,32 +6980,54 @@ function start() {
     </section>
 
     <section aria-labelledby="lg-opt">
-      <h2 id="lg-opt" data-short="Options">Two decisions that could have gone the other way</h2>
-      <div class="table-scroll">
-        <table class="impact">
-          <thead><tr><th scope="col">The question</th><th scope="col">The other option</th><th scope="col">What we chose, and why</th></tr></thead>
-          <tbody>
-            <tr><td>How does someone start a dashboard?</td><td>From templates: pick one and fill it in</td><td>From a question to the agent. Templates stayed in the library as a starting point, not as the only way in</td></tr>
-            <tr><td>What does the change card show?</td><td>Version 1: every property the agent touched</td><td>Version 2: only what was removed and what was added. Nobody read version 1</td></tr>
-          </tbody>
-        </table>
+      <h2 id="lg-opt" data-short="Decisions">Two decisions that could have gone the other way</h2>
+      <div class="dec">
+        <p class="dec-q"><span>Decision 1</span>How does someone start a dashboard?</p>
+        <div class="dec-opts">
+          <div class="dec-o is-no"><p class="dec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>Not chosen</p><div class="dec-sk sk-tiles" aria-hidden="true"><i></i><i></i><i></i></div><h3>Pick a template and fill it in</h3></div>
+          <div class="dec-o is-yes"><p class="dec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>What we chose</p><div class="dec-sk sk-ask" aria-hidden="true"><span>What was my CTR in LATAM?</span></div><h3>Ask the agent a question</h3></div>
+        </div>
+        <p class="dec-why"><b>Why:</b> people arrive with a question, not with a layout in mind. Templates stayed in the library as one way to start, not the only one.</p>
       </div>
+      <div class="dec">
+        <p class="dec-q"><span>Decision 2</span>When the agent changes something, what does it show you?</p>
+        <div class="dec-opts">
+          <div class="dec-o is-no"><p class="dec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>Version 1, dropped</p><div class="dec-sk sk-list" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div><h3>Every property the agent touched</h3></div>
+          <div class="dec-o is-yes"><p class="dec-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Version 2, shipped</p><div class="dec-sk sk-diff" aria-hidden="true"><span class="m">Removed</span><span class="p">Added</span></div><h3>Only what was removed and what was added</h3></div>
+        </div>
+        <p class="dec-why"><b>Why:</b> nobody read version 1. It was too long to check, so people stopped checking.</p>
+      </div>
+      <p class="source">The small drawings are simplified sketches, not screens from the product.</p>
     </section>
 
     <section aria-labelledby="lg-test">
       <h2 id="lg-test" data-short="Tests">What the tests changed</h2>
-      <div class="table-scroll">
-        <table class="impact">
-          <thead><tr><th scope="col">What I saw</th><th scope="col">Why it happened</th><th scope="col">What changed</th></tr></thead>
-          <tbody>
-            <tr><td>Four of five managers hesitated before Publish. One asked: "who's going to see this?"</td><td>The screen didn't say who the audience was</td><td>That question became the publish dialog: it names who will see the dashboard before you confirm</td></tr>
-            <tr><td>41% of drafts were abandoned at the first empty slot</td><td>Session replays showed managers didn't know they could ask the agent</td><td>A prompt suggestion inside every empty slot. Abandonment dropped to 17% in the next release</td></tr>
-          </tbody>
-        </table>
+      <div class="tchg">
+        <div class="tchg-t">
+          <p class="tchg-k">What I saw</p>
+          <p class="tchg-big">4 of 5 managers stopped before Publish</p>
+          <blockquote>"Who's going to see this?"</blockquote>
+          <p class="tchg-k">Why</p>
+          <p>The screen didn't say who the audience was.</p>
+          <p class="tchg-k">What changed</p>
+          <p>That question became part of the publish dialog. It tells you who will see the dashboard before you confirm.</p>
+        </div>
+        <figure><button type="button" data-zoom aria-label="Enlarge: the publish dialog"><img src="img/106d439a901bea.webp" width="522" height="589" loading="lazy" alt="The publish dialog, with the question who can view this dashboard and a selector set to everyone with dashboard access"></button><figcaption>The dialog now asks "Who can view this dashboard?"</figcaption></figure>
+      </div>
+      <div class="tchg">
+        <div class="tchg-t">
+          <p class="tchg-k">What I saw</p>
+          <p class="tchg-big">41% of drafts were abandoned at the first empty slot</p>
+          <p class="tchg-k">Why</p>
+          <p>In the session replays, managers didn't know they could ask the agent.</p>
+          <p class="tchg-k">What changed</p>
+          <p>Every empty slot now says it. Abandonment went down to <b>17%</b> in the next release.</p>
+        </div>
+        <figure><button type="button" data-zoom aria-label="Enlarge: an empty slot"><img src="img/1c5987561b2fbf.webp" width="460" height="200" loading="lazy" alt="An empty slot in the builder that says add a visualization, drag and drop a chart here or ask Gradient Agent to add one for you"></button><figcaption>The empty slot offers both ways: drag a chart, or ask the agent.</figcaption></figure>
       </div>
     </section>
 
-<section aria-labelledby="lg-s1">
+    <section aria-labelledby="lg-s1">
       <h2 id="lg-s1" data-short="Views">One platform, the right view for each user</h2>
       <div class="prose">
         <p>An LG manager looks after many advertisers, and one advertiser must never see another's data. So the screens are the same for everyone, but what they show depends on who you are. Managers switch between clients from a selector at the top. Each client sees only its own campaigns.</p>
@@ -7159,7 +7268,7 @@ function start() {
     </section>
 
     <section aria-labelledby="lg-build">
-      <h2 id="lg-build" data-short="Build review">Staying with the build</h2>
+      <h2 id="lg-build" data-short="Build review">Step 3: reworking what was built</h2>
       <h3>Iterating on what the developers had built</h3>
       <figure class="shot wide">
         <button type="button" data-zoom aria-label="Enlarge: Agentiv improvement proposal"><img data-m="12" width="1008" height="828" loading="lazy" alt="Side by side: the original Agentiv chat built by the developers, and my proposal with calmer hierarchy and a visible step-by-step plan on the right"></button>
@@ -12563,6 +12672,17 @@ document.addEventListener('click', function (e) {
   if (!t.hasAttribute('tabindex')) t.setAttribute('tabindex', '-1');
   t.focus({ preventScroll: true });
 });
+</script>
+<script>
+/* timelines light up step by step as they scroll into view */
+(function () {
+  var lists = document.querySelectorAll('[data-tl]');
+  if (!lists.length || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var io = new IntersectionObserver(function (en) {
+    en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-lit'); io.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -35% 0px', threshold: 0.2 });
+  lists.forEach(function (l) { l.classList.add('tl-anim'); Array.prototype.forEach.call(l.children, function (li) { io.observe(li); }); });
+})();
 </script>
 </body>
 </html>
